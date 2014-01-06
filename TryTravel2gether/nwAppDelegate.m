@@ -8,7 +8,7 @@
 
 #import "nwAppDelegate.h"
 
-#import "TripsTVC.h"
+#import "TripsCDTVC.h"
 
 @implementation nwAppDelegate
 
@@ -20,7 +20,7 @@
 {
     // Override point for customization after application launch.
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-    TripsTVC *controller = (TripsTVC *)navigationController.topViewController;
+    TripsCDTVC *controller = (TripsCDTVC *)navigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;
     return YES;
 }

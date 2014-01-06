@@ -26,10 +26,11 @@
 		C9F8049D187A348700EE4EDE /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F8049C187A348700EE4EDE /* Trip.m */; };
 		C9F804A0187A348800EE4EDE /* Day.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F8049F187A348800EE4EDE /* Day.m */; };
 		C9F804A4187A355900EE4EDE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F804A3187A355900EE4EDE /* CoreData.framework */; };
-		C9F804A7187A4C7800EE4EDE /* TripsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F804A6187A4C7800EE4EDE /* TripsTVC.m */; };
-		C9F804AA187A4C9B00EE4EDE /* AddTripTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F804A9187A4C9B00EE4EDE /* AddTripTVC.m */; };
+		C9F804A7187A4C7800EE4EDE /* TripsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F804A6187A4C7800EE4EDE /* TripsCDTVC.m */; };
+		C9F804AA187A4C9B00EE4EDE /* AddTripCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F804A9187A4C9B00EE4EDE /* AddTripCDTVC.m */; };
 		C9F804F7187A733000EE4EDE /* nwAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F804F6187A733000EE4EDE /* nwAppDelegate.m */; };
 		C9F804FA187A74DB00EE4EDE /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F804F9187A74DB00EE4EDE /* CoreDataTableViewController.m */; };
+		C9F804FD187AA42C00EE4EDE /* TripDetailCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F804FC187AA42C00EE4EDE /* TripDetailCDTVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,14 +70,16 @@
 		C9F8049E187A348800EE4EDE /* Day.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Day.h; sourceTree = "<group>"; };
 		C9F8049F187A348800EE4EDE /* Day.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Day.m; sourceTree = "<group>"; };
 		C9F804A3187A355900EE4EDE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		C9F804A5187A4C7800EE4EDE /* TripsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripsTVC.h; sourceTree = "<group>"; };
-		C9F804A6187A4C7800EE4EDE /* TripsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripsTVC.m; sourceTree = "<group>"; };
-		C9F804A8187A4C9B00EE4EDE /* AddTripTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTripTVC.h; sourceTree = "<group>"; };
-		C9F804A9187A4C9B00EE4EDE /* AddTripTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTripTVC.m; sourceTree = "<group>"; };
+		C9F804A5187A4C7800EE4EDE /* TripsCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripsCDTVC.h; sourceTree = "<group>"; };
+		C9F804A6187A4C7800EE4EDE /* TripsCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripsCDTVC.m; sourceTree = "<group>"; };
+		C9F804A8187A4C9B00EE4EDE /* AddTripCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTripCDTVC.h; sourceTree = "<group>"; };
+		C9F804A9187A4C9B00EE4EDE /* AddTripCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTripCDTVC.m; sourceTree = "<group>"; };
 		C9F804F5187A733000EE4EDE /* nwAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nwAppDelegate.h; sourceTree = "<group>"; };
 		C9F804F6187A733000EE4EDE /* nwAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = nwAppDelegate.m; sourceTree = "<group>"; };
 		C9F804F8187A74DB00EE4EDE /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		C9F804F9187A74DB00EE4EDE /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
+		C9F804FB187AA42C00EE4EDE /* TripDetailCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripDetailCDTVC.h; sourceTree = "<group>"; };
+		C9F804FC187AA42C00EE4EDE /* TripDetailCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripDetailCDTVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,10 +203,12 @@
 				C9F804F9187A74DB00EE4EDE /* CoreDataTableViewController.m */,
 				C9DB0018186B187E00F3B008 /* nwViewController.h */,
 				C9DB0019186B187E00F3B008 /* nwViewController.m */,
-				C9F804A5187A4C7800EE4EDE /* TripsTVC.h */,
-				C9F804A6187A4C7800EE4EDE /* TripsTVC.m */,
-				C9F804A8187A4C9B00EE4EDE /* AddTripTVC.h */,
-				C9F804A9187A4C9B00EE4EDE /* AddTripTVC.m */,
+				C9F804A5187A4C7800EE4EDE /* TripsCDTVC.h */,
+				C9F804A6187A4C7800EE4EDE /* TripsCDTVC.m */,
+				C9F804A8187A4C9B00EE4EDE /* AddTripCDTVC.h */,
+				C9F804A9187A4C9B00EE4EDE /* AddTripCDTVC.m */,
+				C9F804FB187AA42C00EE4EDE /* TripDetailCDTVC.h */,
+				C9F804FC187AA42C00EE4EDE /* TripDetailCDTVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -322,14 +327,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9F804AA187A4C9B00EE4EDE /* AddTripTVC.m in Sources */,
+				C9F804AA187A4C9B00EE4EDE /* AddTripCDTVC.m in Sources */,
 				C9F804A0187A348800EE4EDE /* Day.m in Sources */,
+				C9F804FD187AA42C00EE4EDE /* TripDetailCDTVC.m in Sources */,
 				C9F804FA187A74DB00EE4EDE /* CoreDataTableViewController.m in Sources */,
 				C9DB0010186B187E00F3B008 /* main.m in Sources */,
 				C9F8049D187A348700EE4EDE /* Trip.m in Sources */,
 				C9DB0014186B187E00F3B008 /* nwAppDelegate.m.before in Sources */,
 				C9F80494187A333D00EE4EDE /* Model.xcdatamodeld in Sources */,
-				C9F804A7187A4C7800EE4EDE /* TripsTVC.m in Sources */,
+				C9F804A7187A4C7800EE4EDE /* TripsCDTVC.m in Sources */,
 				C9F804F7187A733000EE4EDE /* nwAppDelegate.m in Sources */,
 				C9DB001A186B187E00F3B008 /* nwViewController.m in Sources */,
 				C9DB003E186B197400F3B008 /* TourModel.xcdatamodeld in Sources */,
