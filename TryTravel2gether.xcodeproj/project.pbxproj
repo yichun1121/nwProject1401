@@ -12,7 +12,7 @@
 		C9DB0008186B187D00F3B008 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DB0007186B187D00F3B008 /* UIKit.framework */; };
 		C9DB000E186B187E00F3B008 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9DB000C186B187E00F3B008 /* InfoPlist.strings */; };
 		C9DB0010186B187E00F3B008 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DB000F186B187E00F3B008 /* main.m */; };
-		C9DB0014186B187E00F3B008 /* nwAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DB0013186B187E00F3B008 /* nwAppDelegate.m */; };
+		C9DB0014186B187E00F3B008 /* nwAppDelegate.m.before in Sources */ = {isa = PBXBuildFile; fileRef = C9DB0013186B187E00F3B008 /* nwAppDelegate.m.before */; };
 		C9DB0017186B187E00F3B008 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9DB0015186B187E00F3B008 /* Main.storyboard */; };
 		C9DB001A186B187E00F3B008 /* nwViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DB0019186B187E00F3B008 /* nwViewController.m */; };
 		C9DB001C186B187E00F3B008 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9DB001B186B187E00F3B008 /* Images.xcassets */; };
@@ -28,6 +28,8 @@
 		C9F804A4187A355900EE4EDE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F804A3187A355900EE4EDE /* CoreData.framework */; };
 		C9F804A7187A4C7800EE4EDE /* TripsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F804A6187A4C7800EE4EDE /* TripsTVC.m */; };
 		C9F804AA187A4C9B00EE4EDE /* AddTripTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F804A9187A4C9B00EE4EDE /* AddTripTVC.m */; };
+		C9F804F7187A733000EE4EDE /* nwAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F804F6187A733000EE4EDE /* nwAppDelegate.m */; };
+		C9F804FA187A74DB00EE4EDE /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F804F9187A74DB00EE4EDE /* CoreDataTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,8 +51,8 @@
 		C9DB000D186B187E00F3B008 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C9DB000F186B187E00F3B008 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C9DB0011186B187E00F3B008 /* TryTravel2gether-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TryTravel2gether-Prefix.pch"; sourceTree = "<group>"; };
-		C9DB0012186B187E00F3B008 /* nwAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nwAppDelegate.h; sourceTree = "<group>"; };
-		C9DB0013186B187E00F3B008 /* nwAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = nwAppDelegate.m; sourceTree = "<group>"; };
+		C9DB0012186B187E00F3B008 /* nwAppDelegate.h.before */ = {isa = PBXFileReference; lastKnownFileType = text; path = nwAppDelegate.h.before; sourceTree = "<group>"; };
+		C9DB0013186B187E00F3B008 /* nwAppDelegate.m.before */ = {isa = PBXFileReference; lastKnownFileType = text; path = nwAppDelegate.m.before; sourceTree = "<group>"; };
 		C9DB0016186B187E00F3B008 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C9DB0018186B187E00F3B008 /* nwViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nwViewController.h; sourceTree = "<group>"; };
 		C9DB0019186B187E00F3B008 /* nwViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = nwViewController.m; sourceTree = "<group>"; };
@@ -71,6 +73,10 @@
 		C9F804A6187A4C7800EE4EDE /* TripsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripsTVC.m; sourceTree = "<group>"; };
 		C9F804A8187A4C9B00EE4EDE /* AddTripTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTripTVC.h; sourceTree = "<group>"; };
 		C9F804A9187A4C9B00EE4EDE /* AddTripTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTripTVC.m; sourceTree = "<group>"; };
+		C9F804F5187A733000EE4EDE /* nwAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nwAppDelegate.h; sourceTree = "<group>"; };
+		C9F804F6187A733000EE4EDE /* nwAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = nwAppDelegate.m; sourceTree = "<group>"; };
+		C9F804F8187A74DB00EE4EDE /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
+		C9F804F9187A74DB00EE4EDE /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,8 +129,10 @@
 			isa = PBXGroup;
 			children = (
 				C9F804A2187A34EB00EE4EDE /* View */,
-				C9DB0012186B187E00F3B008 /* nwAppDelegate.h */,
-				C9DB0013186B187E00F3B008 /* nwAppDelegate.m */,
+				C9F804F5187A733000EE4EDE /* nwAppDelegate.h */,
+				C9F804F6187A733000EE4EDE /* nwAppDelegate.m */,
+				C9DB0012186B187E00F3B008 /* nwAppDelegate.h.before */,
+				C9DB0013186B187E00F3B008 /* nwAppDelegate.m.before */,
 				C9DB003B186B195800F3B008 /* CoreDataModel */,
 				C9F804A1187A34B400EE4EDE /* Controller */,
 				C9DB001B186B187E00F3B008 /* Images.xcassets */,
@@ -188,6 +196,8 @@
 		C9F804A1187A34B400EE4EDE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C9F804F8187A74DB00EE4EDE /* CoreDataTableViewController.h */,
+				C9F804F9187A74DB00EE4EDE /* CoreDataTableViewController.m */,
 				C9DB0018186B187E00F3B008 /* nwViewController.h */,
 				C9DB0019186B187E00F3B008 /* nwViewController.m */,
 				C9F804A5187A4C7800EE4EDE /* TripsTVC.h */,
@@ -314,11 +324,13 @@
 			files = (
 				C9F804AA187A4C9B00EE4EDE /* AddTripTVC.m in Sources */,
 				C9F804A0187A348800EE4EDE /* Day.m in Sources */,
+				C9F804FA187A74DB00EE4EDE /* CoreDataTableViewController.m in Sources */,
 				C9DB0010186B187E00F3B008 /* main.m in Sources */,
 				C9F8049D187A348700EE4EDE /* Trip.m in Sources */,
-				C9DB0014186B187E00F3B008 /* nwAppDelegate.m in Sources */,
+				C9DB0014186B187E00F3B008 /* nwAppDelegate.m.before in Sources */,
 				C9F80494187A333D00EE4EDE /* Model.xcdatamodeld in Sources */,
 				C9F804A7187A4C7800EE4EDE /* TripsTVC.m in Sources */,
+				C9F804F7187A733000EE4EDE /* nwAppDelegate.m in Sources */,
 				C9DB001A186B187E00F3B008 /* nwViewController.m in Sources */,
 				C9DB003E186B197400F3B008 /* TourModel.xcdatamodeld in Sources */,
 			);

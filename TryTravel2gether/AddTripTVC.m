@@ -10,12 +10,20 @@
 
 @implementation AddTripTVC
 @synthesize delegate;
+@synthesize managedObjectContext=_managedObjectContext;
 
 -(void)viewDidLoad{
     [super viewDidLoad];
 }
 -(void) save:(id)sender{
     NSLog(@"Telling the AddTripTVC Delegate that Save was tapped on the AddTripTVC");
+    
+    Trip *role = [NSEntityDescription insertNewObjectForEntityForName:@"Trip"
+                                               inManagedObjectContext:self.managedObjectContext];
+    
+    role.name = self.tripName.text;
+    
+    [self.managedObjectContext save:nil];  // write to database
     
     //發射按下的訊號，讓有實做theSaveButtonOnTheAddTripTVCWasTapped這個method的程式（監聽add的程式）知道。
     [self.delegate theSaveButtonOnTheAddTripTVCWasTapped:self];

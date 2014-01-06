@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Trip.h"
 
 
 @class AddTripTVC;
@@ -24,7 +24,10 @@
 
 
 @interface AddTripTVC : UITableViewController
+
+@property (weak, nonatomic) IBOutlet UITextField *tripName; //TODO: tripName不知道要weak還是strong
 @property (nonatomic, weak) id <AddTripTVCDelegate> delegate;
+@property (nonatomic, strong)NSManagedObjectContext *managedObjectContext;
 
 - (IBAction)save:(id)sender;
 

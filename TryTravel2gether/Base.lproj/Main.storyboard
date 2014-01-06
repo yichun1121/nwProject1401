@@ -88,6 +88,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tripName" destination="HRL-LE-scw" id="ouo-8y-6Ci"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="elp-Zg-J6E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
