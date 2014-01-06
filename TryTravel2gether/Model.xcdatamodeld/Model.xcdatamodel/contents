@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Day" representedClassName="Day" syncable="YES">
+        <attribute name="dayIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="inTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="days" inverseEntity="Trip" syncable="YES"/>
+    </entity>
+    <entity name="Trip" representedClassName="Trip" syncable="YES">
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="days" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="inTrip" inverseEntity="Day" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Trip" positionX="160" positionY="192" width="128" height="103"/>
+        <element name="Day" positionX="-29" positionY="189" width="128" height="88"/>
+    </elements>
+</model>
