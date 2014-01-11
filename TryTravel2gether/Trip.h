@@ -2,7 +2,7 @@
 //  Trip.h
 //  TryTravel2gether
 //
-//  Created by 葉小鴨與貓一拳 on 14/1/6.
+//  Created by YICHUN on 2014/1/11.
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 
@@ -13,9 +13,17 @@
 
 @interface Trip : NSManagedObject
 
+@property (nonatomic, retain) NSDate * endDate;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSDate * startDate;
-@property (nonatomic, retain) NSDate * endDate;
-@property (nonatomic, retain) Day *days;
+@property (nonatomic, retain) NSSet *days;
+@end
+
+@interface Trip (CoreDataGeneratedAccessors)
+
+- (void)addDaysObject:(Day *)value;
+- (void)removeDaysObject:(Day *)value;
+- (void)addDays:(NSSet *)values;
+- (void)removeDays:(NSSet *)values;
 
 @end

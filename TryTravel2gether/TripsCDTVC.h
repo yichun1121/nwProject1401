@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "CoreDataTableViewController.h"  // so we can fetch
-#import "AddTripCDTVC.h" // so this class can be a AddTripTVCDelegate
-#import "TripDetailCDTVC.h" // so this class can be an TripDetailTVCDelegate
+#import "AddTripTVC.h" // so this class can be a AddTripTVCDelegate
+#import "TripDetailTVC.h" // so this class can be an TripDetailTVCDelegate
 #import "Trip.h"
 
-@interface TripsCDTVC : CoreDataTableViewController <AddTripTVCDelegate, TripDetailCDTVCDelegate>
+@interface TripsCDTVC : CoreDataTableViewController <AddTripTVCDelegate, TripDetailTVCDelegate>
 /*  
     TripsTVC繼承UITableViewController（父類別只能有一個）
     後面的括號表示同時俱有AddTripTVCDelegate的功能（也就是會實作Delegate裡面宣告的method，以便在監聽事件觸發後處理）

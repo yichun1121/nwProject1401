@@ -6,13 +6,13 @@
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 
-#import "TripDetailCDTVC.h"
+#import "TripDetailTVC.h"
 
-@interface TripDetailCDTVC ()
+@interface TripDetailTVC ()
 
 @end
 
-@implementation TripDetailCDTVC
+@implementation TripDetailTVC
 @synthesize delegate;
 @synthesize managedObjectContext=_managedObjectContext;
 @synthesize trip=_trip;
@@ -25,7 +25,7 @@
 }
 
 -(void) save:(id)sender{
-    NSLog(@"Telling the TripDetailCDTVC Delegate that Save was tapped on the TripDetailCDTVC");
+    NSLog(@"Telling the TripDetailCDTVC Delegate that Save was tapped on the TripDetailTVC");
     
     /* 
         直接修改傳進來的這個trip物件，然後存起來，就直接同步managedObjectContext的資料了
@@ -35,6 +35,6 @@
     [self.managedObjectContext save:nil];  // write to database
     
     //發射按下的訊號，讓有實做theSaveButtonOnTheAddTripTVCWasTapped這個method的程式（監聽add的程式）知道。
-    [self.delegate theSaveButtonOnTheTripDetailCDTVCWasTapped:self];
+    [self.delegate theSaveButtonOnTheTripDetailTVCWasTapped:self];
 }
 @end

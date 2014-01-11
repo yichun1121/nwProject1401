@@ -2,7 +2,7 @@
 //  Day.h
 //  TryTravel2gether
 //
-//  Created by 葉小鴨與貓一拳 on 14/1/6.
+//  Created by YICHUN on 2014/1/11.
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 
@@ -13,8 +13,8 @@
 
 @interface Day : NSManagedObject
 
-@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * dayIndex;
+@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) Trip *inTrip;
 
 @end

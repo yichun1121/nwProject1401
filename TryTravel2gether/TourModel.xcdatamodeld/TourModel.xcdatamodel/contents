@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Day" syncable="YES">
+        <attribute name="dayIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="inTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="days" inverseEntity="Trip" syncable="YES"/>
+        <relationship name="receipts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Receipt" inverseName="day" inverseEntity="Receipt" syncable="YES"/>
+    </entity>
     <entity name="Item" syncable="YES">
         <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -15,13 +21,18 @@
         <relationship name="receipts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Receipt" inverseName="location" inverseEntity="Receipt" syncable="YES"/>
     </entity>
     <entity name="Partner" syncable="YES">
-        <relationship name="inTour" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tour" inverseName="partners" inverseEntity="Tour" syncable="YES"/>
+        <relationship name="inTour" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="partners" inverseEntity="Trip" syncable="YES"/>
         <relationship name="payedReceipts" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Receipt" inverseName="payer" inverseEntity="Receipt" syncable="YES"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="inTourPartnerGroup" inverseEntity="User" syncable="YES"/>
+        <relationship name="people" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="inTourPartnerGroup" inverseEntity="Person" syncable="YES"/>
     </entity>
     <entity name="PayWay" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="receipts" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Receipt" inverseName="payWay" inverseEntity="Receipt" syncable="YES"/>
+    </entity>
+    <entity name="Person" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="inTourPartnerGroup" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Partner" inverseName="people" inverseEntity="Partner" syncable="YES"/>
+        <relationship name="inVestedLists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Vested" inverseName="users" inverseEntity="Vested" syncable="YES"/>
     </entity>
     <entity name="Photo" syncable="YES">
         <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
@@ -30,35 +41,26 @@
     <entity name="Receipt" syncable="YES">
         <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="total" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <relationship name="day" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TourDay" inverseName="receipts" inverseEntity="TourDay" syncable="YES"/>
+        <relationship name="day" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="receipts" inverseEntity="Day" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="inReceipt" inverseEntity="Item" syncable="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="receipts" inverseEntity="Location" syncable="YES"/>
         <relationship name="payer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Partner" inverseName="payedReceipts" inverseEntity="Partner" syncable="YES"/>
         <relationship name="payWay" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PayWay" inverseName="receipts" inverseEntity="PayWay" syncable="YES"/>
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="inReceipt" inverseEntity="Photo" syncable="YES"/>
     </entity>
-    <entity name="Tour" syncable="YES">
+    <entity name="Trip" syncable="YES">
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="days" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TourDay" inverseName="tour" inverseEntity="TourDay" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="days" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Day" inverseName="inTrip" inverseEntity="Day" syncable="YES"/>
         <relationship name="partners" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Partner" inverseName="inTour" inverseEntity="Partner" syncable="YES"/>
         <relationship name="vesteds" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Vested" inverseName="inTour" inverseEntity="Vested" syncable="YES"/>
-    </entity>
-    <entity name="TourDay" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="receipts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Receipt" inverseName="day" inverseEntity="Receipt" syncable="YES"/>
-        <relationship name="tour" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tour" inverseName="days" inverseEntity="Tour" syncable="YES"/>
-    </entity>
-    <entity name="User" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="inTourPartnerGroup" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Partner" inverseName="user" inverseEntity="Partner" syncable="YES"/>
-        <relationship name="inVestedLists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Vested" inverseName="users" inverseEntity="Vested" syncable="YES"/>
     </entity>
     <entity name="Vested" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="buyItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="belongTo" inverseEntity="Item" syncable="YES"/>
-        <relationship name="inTour" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tour" inverseName="vesteds" inverseEntity="Tour" syncable="YES"/>
-        <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="inVestedLists" inverseEntity="User" syncable="YES"/>
+        <relationship name="inTour" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="vesteds" inverseEntity="Trip" syncable="YES"/>
+        <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="inVestedLists" inverseEntity="Person" syncable="YES"/>
     </entity>
     <elements>
         <element name="Item" positionX="-191" positionY="2" width="128" height="133"/>
@@ -67,9 +69,9 @@
         <element name="PayWay" positionX="-137" positionY="291" width="128" height="73"/>
         <element name="Photo" positionX="34" positionY="324" width="128" height="73"/>
         <element name="Receipt" positionX="27" positionY="135" width="128" height="163"/>
-        <element name="Tour" positionX="385" positionY="413" width="128" height="103"/>
-        <element name="TourDay" positionX="205" positionY="117" width="128" height="103"/>
-        <element name="User" positionX="-137" positionY="378" width="128" height="88"/>
+        <element name="Trip" positionX="385" positionY="413" width="128" height="133"/>
+        <element name="Day" positionX="205" positionY="117" width="128" height="103"/>
+        <element name="Person" positionX="-137" positionY="378" width="128" height="88"/>
         <element name="Vested" positionX="-288" positionY="479" width="128" height="103"/>
     </elements>
 </model>

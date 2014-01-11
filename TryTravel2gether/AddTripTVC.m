@@ -1,14 +1,14 @@
 //
-//  AddTripCDTVC.m
+//  AddTripTVC.m
 //  TryTravel2gether
 //
 //  Created by 葉小鴨與貓一拳 on 14/1/6.
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 
-#import "AddTripCDTVC.h"
+#import "AddTripTVC.h"
 
-@implementation AddTripCDTVC
+@implementation AddTripTVC
 @synthesize delegate;
 @synthesize managedObjectContext=_managedObjectContext;
 
@@ -16,7 +16,7 @@
     [super viewDidLoad];
 }
 -(void) save:(id)sender{
-    NSLog(@"Telling the AddTripCDTVC Delegate that Save was tapped on the AddTripCDTVC");
+    NSLog(@"Telling the AddTripTVC Delegate that Save was tapped on the AddTripTVC");
     
     Trip *role = [NSEntityDescription insertNewObjectForEntityForName:@"Trip"
                                                inManagedObjectContext:self.managedObjectContext];

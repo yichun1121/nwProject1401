@@ -10,7 +10,7 @@
 #import "Trip.h"
 
 
-@class AddTripCDTVC;
+@class AddTripTVC;
 //介面 (interface) 中若需要用到其他類別 (class) 名稱，除了可先用 #import 直接引入標頭檔外，亦可用 @class 指令宣告可用的類別名稱。
 
 /*  
@@ -19,11 +19,11 @@
     只要想在save按下之後做事的人都要實作這個method： theSaveButtonOnTheAddTripTVCWasTapped。
 */
 @protocol AddTripTVCDelegate
-- (void)theSaveButtonOnTheAddTripTVCWasTapped:(AddTripCDTVC *)controller; //上面要加@class AddTripTVC;才可以用
+- (void)theSaveButtonOnTheAddTripTVCWasTapped:(AddTripTVC *)controller; //上面要加@class AddTripTVC;才可以用
 @end
 
 
-@interface AddTripCDTVC : UITableViewController
+@interface AddTripTVC : UITableViewController
 
 @property (weak, nonatomic) IBOutlet UITextField *tripName; //TODO: tripName不知道要weak還是strong
 @property (nonatomic, weak) id <AddTripTVCDelegate> delegate;

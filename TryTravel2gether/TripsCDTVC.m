@@ -19,83 +19,6 @@
     [self setupFetchedResultsController];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Trips Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
-    // Configure the cell...
-    Trip *trip = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = trip.name;
-    
-    return cell;
-}
-
-#pragma mark - Segue Settings
-
-// 內建，準備Segue的method
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    //判斷是哪條連線（會對應Segue的名稱）
-	if ([segue.identifier isEqualToString:@"Add Trip Segue"])
-	{
-        NSLog(@"Setting TripTVC as a delegate of AddTripTVC");
-        
-        AddTripCDTVC *addTripCDTVC = segue.destinationViewController;
-        addTripCDTVC.delegate = self;
-        /*
-            已經在AddTripCDTVC裡宣告了一個delegate（是AddTripCDTVCDelegate）
-            addTripCDTVC.delegate=self的意思是：我要監控AddTripCDTVC
-         */
-        
-        addTripCDTVC.managedObjectContext=self.managedObjectContext;
-        //把這個managedObjectContext傳過去，使用同一個managedObjectContext。（這樣新增東西才有反應吧？！）
-	}else if ([segue.identifier isEqualToString:@"Trip Detail Segue"])
-    {
-        NSLog(@"Setting TripsCDTVC as a delegate of TripDetailCDTVC");
-        TripDetailCDTVC *tripDetailCDTVC = segue.destinationViewController;
-        tripDetailCDTVC.delegate = self;
-         //TripTVC.delegate=self的意思是：我要監控TripDetailCDTVC
-        tripDetailCDTVC.managedObjectContext = self.managedObjectContext;
-        
-        // Store selected Role in selectedRole property
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        //可以直接用indexPath找到CoreData裡的實際物件，然後pass給Detail頁
-        self.selectedTrip = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        
-        NSLog(@"Passing selected trip (%@) to TripDetailCDTVC", self.selectedTrip.name);
-        tripDetailCDTVC.trip = self.selectedTrip;
-    }
-    else {
-        NSLog(@"Unidentified Segue Attempted!");
-    }
-}
-
-#pragma mark - Delegation
-/*
-    .h檔案宣告時有@interface TripsTVC : UITableViewController <AddTripTVCDelegate>
-    就要實作AddTripTVCDelegate宣告的method
- */
-- (void)theSaveButtonOnTheAddTripTVCWasTapped:(AddTripCDTVC *)controller
-{
-    // do something here like refreshing the table or whatever
-    
-    // close the delegated view
-    [controller.navigationController popViewControllerAnimated:YES];
-}
-
--(void)theSaveButtonOnTheTripDetailCDTVCWasTapped:(TripDetailCDTVC *)controller{
-    
-    // do something here like refreshing the table or whatever
-    
-    // close the delegated view
-    [controller.navigationController popViewControllerAnimated:YES];
-}
-
 #pragma mark - FetchedResultsController
 
 - (void)setupFetchedResultsController
@@ -122,6 +45,64 @@
     [self performFetch];
 }
 
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Trips Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    // Configure the cell...
+    Trip *trip = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = trip.name;
+    
+    
+    return cell;
+}
+
+#pragma mark - Segue Settings
+
+// 內建，準備Segue的method
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    //判斷是哪條連線（會對應Segue的名稱）
+	if ([segue.identifier isEqualToString:@"Add Trip Segue"])
+	{
+        NSLog(@"Setting TripTVC as a delegate of AddTripTVC");
+        
+        AddTripTVC *addTripTVC = segue.destinationViewController;
+        addTripTVC.delegate = self;
+        /*
+         已經在AddTripCDTVC裡宣告了一個delegate（是AddTripCDTVCDelegate）
+         addTripCDTVC.delegate=self的意思是：我要監控AddTripCDTVC
+         */
+        
+        addTripTVC.managedObjectContext=self.managedObjectContext;
+        //把這個managedObjectContext傳過去，使用同一個managedObjectContext。（這樣新增東西才有反應吧？！）
+	}else if ([segue.identifier isEqualToString:@"Trip Detail Segue"])
+    {
+        NSLog(@"Setting TripsCDTVC as a delegate of TripDetailTVC");
+        TripDetailTVC *tripDetailTVC = segue.destinationViewController;
+        tripDetailTVC.delegate = self;
+        //TripTVC.delegate=self的意思是：我要監控TripDetailCDTVC
+        tripDetailTVC.managedObjectContext = self.managedObjectContext;
+        
+        // Store selected Role in selectedRole property
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        //可以直接用indexPath找到CoreData裡的實際物件，然後pass給Detail頁
+        self.selectedTrip = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        
+        NSLog(@"Passing selected trip (%@) to TripDetailTVC", self.selectedTrip.name);
+        tripDetailTVC.trip = self.selectedTrip;
+    }
+    else {
+        NSLog(@"Unidentified Segue Attempted!");
+    }
+}
+
 #pragma mark - Deleting
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -143,4 +124,24 @@
     }
 }
 
+#pragma mark - Delegation
+/*
+ .h檔案宣告時有@interface TripsTVC : UITableViewController <AddTripTVCDelegate>
+ 就要實作AddTripTVCDelegate宣告的method
+ */
+- (void)theSaveButtonOnTheAddTripTVCWasTapped:(AddTripTVC *)controller
+{
+    // do something here like refreshing the table or whatever
+    
+    // close the delegated view
+    [controller.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)theSaveButtonOnTheTripDetailTVCWasTapped:(TripDetailTVC *)controller{
+    
+    // do something here like refreshing the table or whatever
+    
+    // close the delegated view
+    [controller.navigationController popViewControllerAnimated:YES];
+}
 @end
