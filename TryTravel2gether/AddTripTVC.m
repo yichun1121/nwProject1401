@@ -89,7 +89,22 @@ static NSInteger sPickerCellHeight=162;
 #pragma mark - Picker的事件
 -(IBAction)pickerChanged:(id)sender{
     UIDatePicker *targetPicker=sender;
-    UITableViewCell *targetDateCell=[self.tableView cellForRowAtIndexPath:self.actingDateCellIndexPath];
-    targetDateCell.detailTextLabel.text=[self.dateFormatter stringFromDate:targetPicker.date];
+    if (self.actingDateCellIndexPath) {
+    //目標DateCell存在時，把picker的日期寫進cell裡
+        UITableViewCell *targetDateCell=[self.tableView cellForRowAtIndexPath:self.actingDateCellIndexPath];
+        targetDateCell.detailTextLabel.text=[self.dateFormatter stringFromDate:targetPicker.date];
+        //重新設定picker規則
+        [self resetPickersRole];
+    }else{
+        NSLog(@"【Error】missing actingDateCellIndexPath in AddTripTVC.");
+    }
+}
+
+#pragma mark - 設定Picker規則(end>=start)
+-(void)resetPickersRole{
+    self.startPicker.maximumDate=self.endPicker.date;
+    self.endPicker.minimumDate=self.startPicker.date;
+    self.startDate.detailTextLabel.text=[self.dateFormatter stringFromDate:self.startPicker.date];
+    self.endDate.detailTextLabel.text=[self.dateFormatter stringFromDate:self.endPicker.date];
 }
 @end

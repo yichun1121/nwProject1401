@@ -223,7 +223,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </navigationItem>
                     <connections>
                         <outlet property="endDate" destination="Fcu-M3-cWm" id="BUK-yb-xgS"/>
+                        <outlet property="endPicker" destination="7j4-Vp-Whb" id="JAy-Rv-kdo"/>
                         <outlet property="startDate" destination="SNl-ap-fZh" id="aty-S8-hzE"/>
+                        <outlet property="startPicker" destination="DQ4-xQ-Lfe" id="gWz-KN-ywn"/>
                         <outlet property="tripName" destination="HRL-LE-scw" id="ouo-8y-6Ci"/>
                     </connections>
                 </tableViewController>
