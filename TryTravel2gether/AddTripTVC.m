@@ -48,6 +48,7 @@ static NSInteger sPickerCellHeight=162;
     //發射按下的訊號，讓有實做theSaveButtonOnTheAddTripTVCWasTapped這個method的程式（監聽add的程式）知道。
     [self.delegate theSaveButtonOnTheAddTripTVCWasTapped:self];
 }
+
 #pragma mark - 每次點選row的時候會做的事
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -85,4 +86,10 @@ static NSInteger sPickerCellHeight=162;
     return result;
 }
 
+#pragma mark - Picker的事件
+-(IBAction)pickerChanged:(id)sender{
+    UIDatePicker *targetPicker=sender;
+    UITableViewCell *targetDateCell=[self.tableView cellForRowAtIndexPath:self.actingDateCellIndexPath];
+    targetDateCell.detailTextLabel.text=[self.dateFormatter stringFromDate:targetPicker.date];
+}
 @end
