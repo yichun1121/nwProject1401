@@ -8,12 +8,25 @@
 
 #import "AddTripTVC.h"
 
+@interface AddTripTVC ()
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
+@end
+
 @implementation AddTripTVC
 @synthesize delegate;
 @synthesize managedObjectContext=_managedObjectContext;
+@synthesize dateFormatter;
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    
+    //-----Date Formatter----------
+    self.dateFormatter = [[NSDateFormatter alloc] init];
+    [self.dateFormatter setDateFormat:@"yyyy/MM/dd"];
+    
+    //-----顯示當天的日期-----------
+    self.startDate.detailTextLabel.text= [self.dateFormatter stringFromDate:[NSDate date]];
+    self.endDate.detailTextLabel.text=[self.dateFormatter stringFromDate:[NSDate date]];
 }
 -(void) save:(id)sender{
     NSLog(@"Telling the AddTripTVC Delegate that Save was tapped on the AddTripTVC");

@@ -25,9 +25,14 @@
 
 @interface AddTripTVC : UITableViewController
 
-@property (weak, nonatomic) IBOutlet UITextField *tripName; //TODO: tripName不知道要weak還是strong
 @property (nonatomic, weak) id <AddTripTVCDelegate> delegate;
 @property (nonatomic, strong)NSManagedObjectContext *managedObjectContext;
+
+
+@property (weak, nonatomic) IBOutlet UITextField *tripName; //TODO: tripName不知道要weak還是strong
+@property (weak, nonatomic) IBOutlet UITableViewCell *startDate;
+@property (weak, nonatomic) IBOutlet UITableViewCell *endDate;
+
 
 - (IBAction)save:(id)sender;
 
