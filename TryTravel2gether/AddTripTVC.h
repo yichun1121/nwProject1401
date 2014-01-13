@@ -37,4 +37,9 @@
 - (IBAction)save:(id)sender;
 
 
+#pragma mark - 新增加的內容for picker action
+@property (strong,nonatomic) NSIndexPath *actingDateCellIndexPath;
+@property (strong,nonatomic) NSIndexPath *actingPickerCellIndexPath;
+
+
 @end
