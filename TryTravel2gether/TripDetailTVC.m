@@ -9,19 +9,28 @@
 #import "TripDetailTVC.h"
 
 @interface TripDetailTVC ()
-
+@property NSDateFormatter *dateFormatter;
 @end
 
 @implementation TripDetailTVC
 @synthesize delegate;
 @synthesize managedObjectContext=_managedObjectContext;
 @synthesize trip=_trip;
+@synthesize dateFormatter=_dateFormatter;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     NSLog(@"Setting the value of fields in this static table to that of the passed Role");
+    
+    //-----Date Formatter----------
+    self.dateFormatter=[[NSDateFormatter alloc]init];
+    self.dateFormatter.dateFormat=@"yyyy/MM/dd";
+    
+    //-----顯示trip資訊-----------
     self.tripName.text = self.trip.name;
+    self.startDate.detailTextLabel.text=[self.dateFormatter stringFromDate:self.trip.startDate];
+    self.endDate.detailTextLabel.text=[self.dateFormatter stringFromDate:self.trip.endDate];
 }
 
 -(void) save:(id)sender{
@@ -32,6 +41,7 @@
         不需要再建一個新的managedObjectContext，也不用再建一個Trip，直接改舊的就可以了
     */
     [self.trip setName:self.tripName.text];
+    
     [self.managedObjectContext save:nil];  // write to database
     
     //發射按下的訊號，讓有實做theSaveButtonOnTheAddTripTVCWasTapped這個method的程式（監聽add的程式）知道。

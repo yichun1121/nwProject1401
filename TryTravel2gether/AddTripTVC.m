@@ -38,10 +38,13 @@ static NSInteger sPickerCellHeight=162;
 -(void) save:(id)sender{
     NSLog(@"Telling the AddTripTVC Delegate that Save was tapped on the AddTripTVC");
     
-    Trip *role = [NSEntityDescription insertNewObjectForEntityForName:@"Trip"
+    Trip *trip = [NSEntityDescription insertNewObjectForEntityForName:@"Trip"
                                                inManagedObjectContext:self.managedObjectContext];
     
-    role.name = self.tripName.text;
+    trip.name = self.tripName.text;
+    trip.startDate=[self.dateFormatter dateFromString: self.startDate.detailTextLabel.text];
+    trip.endDate=[self.dateFormatter dateFromString:self.endDate.detailTextLabel.text];
+    
     
     [self.managedObjectContext save:nil];  // write to database
     

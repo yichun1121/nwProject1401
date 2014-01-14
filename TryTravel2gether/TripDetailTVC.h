@@ -29,6 +29,12 @@
 @property (nonatomic, strong)NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong)Trip *trip;    //在.h設一個Trip property可以讓List傳一個Trip進來，然後顯示及修改
 
+@property (weak, nonatomic) IBOutlet UITableViewCell *startDate;
+@property (weak, nonatomic) IBOutlet UITableViewCell *endDate;
+
+@property (strong,nonatomic) NSIndexPath *actingDateCellIndexPath;
+@property (strong,nonatomic) NSIndexPath *actingPickerCellIndexPath;
+
 - (IBAction)save:(id)sender;
 
 @end
