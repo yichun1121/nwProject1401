@@ -39,8 +39,8 @@
     //request.predicate = [NSPredicate predicateWithFormat:@"Role.name = Blah"];
     
     // 4 - Sort it if you want
-    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"name"
-                                                                                     ascending:YES
+    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"startDate"
+                                                                                     ascending:NO
                                                                                       selector:@selector(localizedCaseInsensitiveCompare:)]];
     // 5 - Fetch it
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
