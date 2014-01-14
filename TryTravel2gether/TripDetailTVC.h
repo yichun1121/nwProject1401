@@ -31,6 +31,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *startDate;
 @property (weak, nonatomic) IBOutlet UITableViewCell *endDate;
+@property (weak, nonatomic) IBOutlet UIDatePicker *startPicker;
+@property (weak, nonatomic) IBOutlet UIDatePicker *endPicker;
 
 @property (strong,nonatomic) NSIndexPath *actingDateCellIndexPath;
 @property (strong,nonatomic) NSIndexPath *actingPickerCellIndexPath;

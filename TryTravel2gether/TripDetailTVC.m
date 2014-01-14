@@ -36,10 +36,15 @@ static NSInteger sPickerCellHeight=162;
     self.tripName.text = self.trip.name;
     self.startDate.detailTextLabel.text=[self.dateFormatter stringFromDate:self.trip.startDate];
     self.endDate.detailTextLabel.text=[self.dateFormatter stringFromDate:self.trip.endDate];
+    
+    //-----設定Picker----------
+    [self setPicker:self.startPicker RoleByDate:self.trip.startDate];
+    [self setPicker:self.endPicker RoleByDate:self.trip.endDate];
+
 }
 
 -(void) save:(id)sender{
-    NSLog(@"Telling the TripDetailCDTVC Delegate that Save was tapped on the TripDetailTVC");
+    NSLog(@"Telling the TripDetailTVC Delegate that Save was tapped on the TripDetailTVC");
     
     /* 
         直接修改傳進來的這個trip物件，然後存起來，就直接同步managedObjectContext的資料了
@@ -88,6 +93,27 @@ static NSInteger sPickerCellHeight=162;
         // 為了讓picker展開或關閉，需要重新整理tableView，beginUpdates和endUpdates
         [self.tableView beginUpdates];
         [self.tableView endUpdates];
+    }
+}
+
+#pragma mark - Picker的事件
+- (IBAction)pickerChanged:(UIDatePicker *)sender {
+    if (sender==self.startPicker) {
+        self.startDate.detailTextLabel.text=[self.dateFormatter stringFromDate:sender.date];
+    }else{
+        self.endDate.detailTextLabel.text=[self.dateFormatter stringFromDate:sender.date];
+    }
+    [self setPicker:sender RoleByDate:sender.date];
+}
+
+
+-(void)setPicker:(UIDatePicker *)picker RoleByDate:(NSDate *)date{
+    //把picker滾到指定的日期
+    picker.date=date;
+    if (picker==self.startPicker) {
+        self.endPicker.minimumDate=date;
+    }else{
+        self.startPicker.maximumDate=date;
     }
 }
 @end
