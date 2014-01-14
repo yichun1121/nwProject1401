@@ -102,9 +102,12 @@ static NSInteger sPickerCellHeight=162;
 
 #pragma mark - 設定Picker規則(end>=start)
 -(void)resetPickersRole{
-    self.startPicker.maximumDate=self.endPicker.date;
-    self.endPicker.minimumDate=self.startPicker.date;
-    self.startDate.detailTextLabel.text=[self.dateFormatter stringFromDate:self.startPicker.date];
-    self.endDate.detailTextLabel.text=[self.dateFormatter stringFromDate:self.endPicker.date];
+    if (self.actingPickerCellIndexPath.row==kStartPicker) {
+        self.endPicker.minimumDate=self.startPicker.date;
+        self.endDate.detailTextLabel.text=[self.dateFormatter stringFromDate:self.endPicker.date];
+    }else{
+        self.startPicker.maximumDate=self.endPicker.date;
+        self.startDate.detailTextLabel.text=[self.dateFormatter stringFromDate:self.startPicker.date];
+    }
 }
 @end
