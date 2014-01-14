@@ -7,6 +7,7 @@
 //
 
 #import "AddTripTVC.h"
+#import "Day.h"
 
 
 #define kStartPicker 2  //startPicker在第2行
@@ -44,12 +45,30 @@ static NSInteger sPickerCellHeight=162;
     trip.name = self.tripName.text;
     trip.startDate=[self.dateFormatter dateFromString: self.startDate.detailTextLabel.text];
     trip.endDate=[self.dateFormatter dateFromString:self.endDate.detailTextLabel.text];
-    
+    trip.days=[self creatDefaultDaysFromStartDate:trip.startDate ToEndDate:trip.endDate];
     
     [self.managedObjectContext save:nil];  // write to database
     
     //發射按下的訊號，讓有實做theSaveButtonOnTheAddTripTVCWasTapped這個method的程式（監聽add的程式）知道。
     [self.delegate theSaveButtonOnTheAddTripTVCWasTapped:self];
+}
+
+#pragma mark 負責長cell的高度，也在這設定actingPicker（每次會因為tableView beginUpdates和endUpdates重畫）
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CGFloat result=self.tableView.rowHeight;
+    if (indexPath.row==kStartPicker||indexPath.row==kEndPicker) {
+        if (indexPath.row-1==self.actingDateCellIndexPath.row) {
+            /*如果正在執行的actingDateCell是正在畫的這行的上一行
+             代表點選了dateCell，而現在正要把picker展開回原始高度。*/
+            self.actingPickerCellIndexPath=indexPath;
+            result=sPickerCellHeight;
+        }else{
+            /*否則只要是pickerCell高度就會縮成0。
+             */
+            result=0;
+        }
+    }
+    return result;
 }
 
 #pragma mark - 每次點選row的時候會做的事
@@ -71,23 +90,6 @@ static NSInteger sPickerCellHeight=162;
     }
 }
 
-#pragma mark 負責長cell的高度，也在這設定actingPicker（每次會因為tableView beginUpdates和endUpdates重畫）
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat result=self.tableView.rowHeight;
-    if (indexPath.row==kStartPicker||indexPath.row==kEndPicker) {
-        if (indexPath.row-1==self.actingDateCellIndexPath.row) {
-        /*如果正在執行的actingDateCell是正在畫的這行的上一行
-        代表點選了dateCell，而現在正要把picker展開回原始高度。*/
-            self.actingPickerCellIndexPath=indexPath;
-            result=sPickerCellHeight;
-        }else{
-        /*否則只要是pickerCell高度就會縮成0。
-         */
-            result=0;
-        }
-    }
-    return result;
-}
 
 #pragma mark - Picker的事件
 -(IBAction)pickerChanged:(id)sender{
@@ -102,7 +104,7 @@ static NSInteger sPickerCellHeight=162;
         NSLog(@"【Error】missing actingDateCellIndexPath in AddTripTVC.");
     }
 }
-
+//因為view didload的時候沒有限制min和max，等到第一個picker change之後才會設定（和tripDetail不一樣）
 #pragma mark - 設定Picker規則(end>=start)
 -(void)resetPickersRole{
     if (self.actingPickerCellIndexPath.row==kStartPicker) {
@@ -114,5 +116,29 @@ static NSInteger sPickerCellHeight=162;
         self.startPicker.maximumDate=self.endPicker.date;
         self.startDate.detailTextLabel.text=[self.dateFormatter stringFromDate:self.startPicker.date];
     }
+}
+
+-(NSSet *)creatDefaultDaysFromStartDate:(NSDate *)startDate ToEndDate:(NSDate *)endDate{
+    NSMutableSet *days;
+    days=[[NSMutableSet alloc]init];
+    
+    //建立日期原件（dateComponents）
+    NSDateComponents *dateComponents=[[NSDateComponents alloc]init];
+    
+    //算出起始和結束期間共需幾天
+    //double dayCount= ([endDate timeIntervalSinceDate:startDate]/86400)+1;
+    int dayCount= [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:startDate toDate:endDate options:0].day+1;
+    
+    for (int i=0; i<dayCount; i++) {
+        Day *day= [NSEntityDescription insertNewObjectForEntityForName:@"Day"
+                                                inManagedObjectContext:self.managedObjectContext];
+        day.dayIndex=[NSNumber numberWithInt:i+1];
+        day.name=[NSString stringWithFormat:@"Day %@",day.dayIndex];
+        dateComponents.day=i;   //一次加i天
+        day.date=[[NSCalendar currentCalendar]dateByAddingComponents:dateComponents toDate:startDate options:0];    //利用dateComponents的設定改變日期，一次加一個dateComponents
+        [days addObject:day];
+    }
+    
+    return days;
 }
 @end

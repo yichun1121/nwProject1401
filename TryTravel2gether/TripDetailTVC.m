@@ -106,7 +106,8 @@ static NSInteger sPickerCellHeight=162;
     [self setPicker:sender RoleByDate:sender.date];
 }
 
-
+//因為detail裡已經有開始結束日期，所以直接限定min和max date（和addTrip不同）
+#pragma mark - 設定Picker規則
 -(void)setPicker:(UIDatePicker *)picker RoleByDate:(NSDate *)date{
     //把picker滾到指定的日期
     picker.date=date;

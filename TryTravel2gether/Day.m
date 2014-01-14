@@ -2,7 +2,7 @@
 //  Day.m
 //  TryTravel2gether
 //
-//  Created by YICHUN on 2014/1/11.
+//  Created by YICHUN on 2014/1/15.
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 
@@ -12,6 +12,7 @@
 
 @implementation Day
 
+@dynamic date;
 @dynamic dayIndex;
 @dynamic name;
 @dynamic inTrip;
