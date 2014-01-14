@@ -8,10 +8,15 @@
 
 #import "TripsCDTVC.h"
 
+@interface TripsCDTVC()
+@property NSDateFormatter *dateFormatter;
+@end
+
 @implementation TripsCDTVC
 @synthesize fetchedResultsController=_fetchedResultsController;
 @synthesize managedObjectContext=_managedObjectContext;
 @synthesize selectedTrip=_selectedTrip;
+@synthesize dateFormatter=_dateFormatter;
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -45,6 +50,10 @@
     [self performFetch];
 }
 
+-(void)viewDidLoad{
+    self.dateFormatter=[[NSDateFormatter alloc]init];
+    [self.dateFormatter setDateFormat:@"yyyy/MM/dd"];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -57,8 +66,10 @@
     
     // Configure the cell...
     Trip *trip = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NSString *startDate=[self.dateFormatter stringFromDate:trip.startDate];
+    NSString *endDate=[self.dateFormatter stringFromDate:trip.endDate];
     cell.textLabel.text = trip.name;
-    
+    cell.detailTextLabel.text=[NSString stringWithFormat:@"%@ - %@",startDate,endDate];
     
     return cell;
 }
