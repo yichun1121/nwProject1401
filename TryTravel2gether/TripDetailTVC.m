@@ -7,6 +7,11 @@
 //
 
 #import "TripDetailTVC.h"
+#define kStartPicker 2  //startPicker在第2行
+#define kEndPicker 4    //endPicker在第4行
+/*! 展開Picker後的Cell高度
+ */
+static NSInteger sPickerCellHeight=162;
 
 @interface TripDetailTVC ()
 @property NSDateFormatter *dateFormatter;
@@ -41,10 +46,48 @@
         不需要再建一個新的managedObjectContext，也不用再建一個Trip，直接改舊的就可以了
     */
     [self.trip setName:self.tripName.text];
+    self.trip.startDate=[self.dateFormatter dateFromString:self.startDate.detailTextLabel.text];
+    self.trip.endDate=[self.dateFormatter dateFromString:self.endDate.detailTextLabel.text];
     
     [self.managedObjectContext save:nil];  // write to database
     
     //發射按下的訊號，讓有實做theSaveButtonOnTheAddTripTVCWasTapped這個method的程式（監聽add的程式）知道。
     [self.delegate theSaveButtonOnTheTripDetailTVCWasTapped:self];
+}
+
+
+#pragma mark 負責長cell的高度，也在這設定actingPicker（每次會因為tableView beginUpdates和endUpdates重畫）
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CGFloat result=self.tableView.rowHeight;
+    
+    if (indexPath.row==kStartPicker||indexPath.row==kEndPicker) {
+        //目前這行的上一行是actingDateCell
+        if(indexPath.row-1==self.actingDateCellIndexPath.row){
+            self.actingPickerCellIndexPath=indexPath;
+            result=sPickerCellHeight;
+        }else{
+            result=0;
+        }
+    }
+    return result;
+}
+
+#pragma mark - 每次點選row的時候會做的事
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *clickCell=[self.tableView cellForRowAtIndexPath:indexPath];
+    if (clickCell==self.startDate||clickCell==self.endDate) {
+        //TODO:不知道為什麼要用row判斷，不用row會錯
+        BOOL hasBeTapped=indexPath.row==self.actingDateCellIndexPath.row;
+        if (hasBeTapped) {
+        //如果剛剛才按過，表示要關上Picker（不需要原本的actionDateCell了）
+            self.actingDateCellIndexPath=nil;
+        }else{
+        //如果剛剛沒有actingCell，表示想要改變現在選擇的這個cell
+            self.actingDateCellIndexPath=indexPath;
+        }
+        // 為了讓picker展開或關閉，需要重新整理tableView，beginUpdates和endUpdates
+        [self.tableView beginUpdates];
+        [self.tableView endUpdates];
+    }
 }
 @end

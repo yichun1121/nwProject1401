@@ -71,7 +71,7 @@ static NSInteger sPickerCellHeight=162;
     }
 }
 
-#pragma mark 負責長cell的高度（每次會因為tableView beginUpdates和endUpdates重畫）
+#pragma mark 負責長cell的高度，也在這設定actingPicker（每次會因為tableView beginUpdates和endUpdates重畫）
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat result=self.tableView.rowHeight;
     if (indexPath.row==kStartPicker||indexPath.row==kEndPicker) {
@@ -106,9 +106,11 @@ static NSInteger sPickerCellHeight=162;
 #pragma mark - 設定Picker規則(end>=start)
 -(void)resetPickersRole{
     if (self.actingPickerCellIndexPath.row==kStartPicker) {
+    //如果是startPicker，改end的設定
         self.endPicker.minimumDate=self.startPicker.date;
         self.endDate.detailTextLabel.text=[self.dateFormatter stringFromDate:self.endPicker.date];
     }else{
+    //否則就是改start的設定
         self.startPicker.maximumDate=self.endPicker.date;
         self.startDate.detailTextLabel.text=[self.dateFormatter stringFromDate:self.startPicker.date];
     }
