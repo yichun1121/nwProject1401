@@ -7,6 +7,7 @@
 //
 
 #import "TripsCDTVC.h"
+#import "DaysCDTVC.h"
 
 @interface TripsCDTVC()
 @property NSDateFormatter *dateFormatter;
@@ -107,19 +108,20 @@
         tripDetailTVC.trip = self.selectedTrip;
     }else if ([segue.identifier isEqualToString:@"Days List Segue"])
     {
-        NSLog(@"Setting TripsCDTVC as a delegate of TripDetailTVC");
-        TripDetailTVC *tripDetailTVC = segue.destinationViewController;
-        tripDetailTVC.delegate = self;
-        //TripTVC.delegate=self的意思是：我要監控TripDetailCDTVC
-        tripDetailTVC.managedObjectContext = self.managedObjectContext;
+        DaysCDTVC *daysCDTVC = segue.destinationViewController;
+        //NSLog(@"Setting TripsCDTVC as a delegate of DaysTVC");
+        //daysTVC.delegate = self;
+        //應該不用監控DaysTVC
+        
+        daysCDTVC.managedObjectContext = self.managedObjectContext;
         
         // Store selected Role in selectedRole property
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         //可以直接用indexPath找到CoreData裡的實際物件，然後pass給Detail頁
         self.selectedTrip = [self.fetchedResultsController objectAtIndexPath:indexPath];
         
-        NSLog(@"Passing selected trip (%@) to TripDetailTVC", self.selectedTrip.name);
-        tripDetailTVC.trip = self.selectedTrip;
+        NSLog(@"Passing selected trip (%@) to DaysCDTVC", self.selectedTrip.name);
+        daysCDTVC.currentTrip = self.selectedTrip;
     }
     else {
         NSLog(@"Unidentified Segue Attempted!");

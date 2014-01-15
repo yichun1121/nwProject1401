@@ -133,7 +133,7 @@ static NSInteger sPickerCellHeight=162;
         Day *day= [NSEntityDescription insertNewObjectForEntityForName:@"Day"
                                                 inManagedObjectContext:self.managedObjectContext];
         day.dayIndex=[NSNumber numberWithInt:i+1];
-        day.name=[NSString stringWithFormat:@"Day %@",day.dayIndex];
+        day.name=@"";   //[NSString stringWithFormat:@"Day %@",day.dayIndex];
         dateComponents.day=i;   //一次加i天
         day.date=[[NSCalendar currentCalendar]dateByAddingComponents:dateComponents toDate:startDate options:0];    //利用dateComponents的設定改變日期，一次加一個dateComponents
         [days addObject:day];

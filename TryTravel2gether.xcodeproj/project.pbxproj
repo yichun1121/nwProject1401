@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		043A194A1885BEEF00713DAF /* Day.m in Sources */ = {isa = PBXBuildFile; fileRef = 043A19491885BEEF00713DAF /* Day.m */; };
 		043A194D1885BEEF00713DAF /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 043A194C1885BEEF00713DAF /* Trip.m */; };
+		C95AFA031886733B00DF057E /* DaysCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C95AFA021886733B00DF057E /* DaysCDTVC.m */; };
 		C9DB0004186B187D00F3B008 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DB0003186B187D00F3B008 /* Foundation.framework */; };
 		C9DB0006186B187D00F3B008 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DB0005186B187D00F3B008 /* CoreGraphics.framework */; };
 		C9DB0008186B187D00F3B008 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DB0007186B187D00F3B008 /* UIKit.framework */; };
@@ -47,6 +48,8 @@
 		043A19491885BEEF00713DAF /* Day.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Day.m; sourceTree = "<group>"; };
 		043A194B1885BEEF00713DAF /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
 		043A194C1885BEEF00713DAF /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
+		C95AFA011886733B00DF057E /* DaysCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaysCDTVC.h; sourceTree = "<group>"; };
+		C95AFA021886733B00DF057E /* DaysCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaysCDTVC.m; sourceTree = "<group>"; };
 		C9DB0000186B187D00F3B008 /* TryTravel2gether.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TryTravel2gether.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9DB0003186B187D00F3B008 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C9DB0005186B187D00F3B008 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -204,6 +207,8 @@
 				C9F804A9187A4C9B00EE4EDE /* AddTripTVC.m */,
 				C9F804FB187AA42C00EE4EDE /* TripDetailTVC.h */,
 				C9F804FC187AA42C00EE4EDE /* TripDetailTVC.m */,
+				C95AFA011886733B00DF057E /* DaysCDTVC.h */,
+				C95AFA021886733B00DF057E /* DaysCDTVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -324,6 +329,7 @@
 			files = (
 				043A194A1885BEEF00713DAF /* Day.m in Sources */,
 				C9F804AA187A4C9B00EE4EDE /* AddTripTVC.m in Sources */,
+				C95AFA031886733B00DF057E /* DaysCDTVC.m in Sources */,
 				C9F804FD187AA42C00EE4EDE /* TripDetailTVC.m in Sources */,
 				C9F804FA187A74DB00EE4EDE /* CoreDataTableViewController.m in Sources */,
 				C9DB0010186B187E00F3B008 /* main.m in Sources */,
