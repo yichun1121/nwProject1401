@@ -101,6 +101,18 @@
         //TripTVC.delegate=self的意思是：我要監控TripDetailCDTVC
         tripDetailTVC.managedObjectContext = self.managedObjectContext;
         
+        //在infoButton按下的事件中（clickTripInfo），已經找出selectedTrip了
+        
+        NSLog(@"Passing selected trip (%@) to TripDetailTVC", self.selectedTrip.name);
+        tripDetailTVC.trip = self.selectedTrip;
+    }else if ([segue.identifier isEqualToString:@"Days List Segue"])
+    {
+        NSLog(@"Setting TripsCDTVC as a delegate of TripDetailTVC");
+        TripDetailTVC *tripDetailTVC = segue.destinationViewController;
+        tripDetailTVC.delegate = self;
+        //TripTVC.delegate=self的意思是：我要監控TripDetailCDTVC
+        tripDetailTVC.managedObjectContext = self.managedObjectContext;
+        
         // Store selected Role in selectedRole property
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         //可以直接用indexPath找到CoreData裡的實際物件，然後pass給Detail頁
@@ -112,6 +124,15 @@
     else {
         NSLog(@"Unidentified Segue Attempted!");
     }
+}
+#pragma mark - 從uiButton找出所在的indexPath，然後找出selectedTrip
+- (IBAction)clickTripInfo:(UIButton *)sender {
+    CGRect buttonFrameInTableView = [sender.superview convertRect:sender.frame toView:self.tableView];
+
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonFrameInTableView.origin];
+    
+    //可以直接用indexPath找到CoreData裡的實際物件，然後pass給Detail頁
+    self.selectedTrip = [self.fetchedResultsController objectAtIndexPath:indexPath];
 }
 
 #pragma mark - Deleting
