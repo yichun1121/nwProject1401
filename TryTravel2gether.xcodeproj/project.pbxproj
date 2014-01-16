@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		043A194A1885BEEF00713DAF /* Day.m in Sources */ = {isa = PBXBuildFile; fileRef = 043A19491885BEEF00713DAF /* Day.m */; };
-		043A194D1885BEEF00713DAF /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 043A194C1885BEEF00713DAF /* Trip.m */; };
+		04A046501886E77900D98809 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A0464F1886E77900D98809 /* Trip.m */; };
+		04A046561886E77900D98809 /* Day.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A046551886E77900D98809 /* Day.m */; };
+		04A046591886E94300D98809 /* ReceiptsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A046581886E94300D98809 /* ReceiptsCDTVC.m */; };
+		04A0465C1886EA5F00D98809 /* Receipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A0465B1886EA5F00D98809 /* Receipt.m */; };
 		C95AFA031886733B00DF057E /* DaysCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C95AFA021886733B00DF057E /* DaysCDTVC.m */; };
 		C9DB0004186B187D00F3B008 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DB0003186B187D00F3B008 /* Foundation.framework */; };
 		C9DB0006186B187D00F3B008 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DB0005186B187D00F3B008 /* CoreGraphics.framework */; };
@@ -44,10 +46,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		043A19481885BEEF00713DAF /* Day.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Day.h; sourceTree = "<group>"; };
-		043A19491885BEEF00713DAF /* Day.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Day.m; sourceTree = "<group>"; };
-		043A194B1885BEEF00713DAF /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
-		043A194C1885BEEF00713DAF /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
+		04A0464D1886DFAF00D98809 /* Model 2_receipts_photos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Model 2_receipts_photos.xcdatamodel"; sourceTree = "<group>"; };
+		04A0464E1886E77900D98809 /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
+		04A0464F1886E77900D98809 /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
+		04A046541886E77900D98809 /* Day.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Day.h; sourceTree = "<group>"; };
+		04A046551886E77900D98809 /* Day.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Day.m; sourceTree = "<group>"; };
+		04A046571886E94300D98809 /* ReceiptsCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptsCDTVC.h; sourceTree = "<group>"; };
+		04A046581886E94300D98809 /* ReceiptsCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptsCDTVC.m; sourceTree = "<group>"; };
+		04A0465A1886EA5F00D98809 /* Receipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Receipt.h; sourceTree = "<group>"; };
+		04A0465B1886EA5F00D98809 /* Receipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Receipt.m; sourceTree = "<group>"; };
 		C95AFA011886733B00DF057E /* DaysCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaysCDTVC.h; sourceTree = "<group>"; };
 		C95AFA021886733B00DF057E /* DaysCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaysCDTVC.m; sourceTree = "<group>"; };
 		C9DB0000186B187D00F3B008 /* TryTravel2gether.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TryTravel2gether.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,11 +182,13 @@
 			isa = PBXGroup;
 			children = (
 				C9DB003C186B197400F3B008 /* TourModel.xcdatamodeld */,
-				043A19481885BEEF00713DAF /* Day.h */,
-				043A194B1885BEEF00713DAF /* Trip.h */,
-				043A194C1885BEEF00713DAF /* Trip.m */,
-				043A19491885BEEF00713DAF /* Day.m */,
 				C9F80492187A333D00EE4EDE /* Model.xcdatamodeld */,
+				04A0465A1886EA5F00D98809 /* Receipt.h */,
+				04A0465B1886EA5F00D98809 /* Receipt.m */,
+				04A0464E1886E77900D98809 /* Trip.h */,
+				04A0464F1886E77900D98809 /* Trip.m */,
+				04A046541886E77900D98809 /* Day.h */,
+				04A046551886E77900D98809 /* Day.m */,
 			);
 			name = CoreDataModel;
 			sourceTree = "<group>";
@@ -209,6 +218,8 @@
 				C9F804FC187AA42C00EE4EDE /* TripDetailTVC.m */,
 				C95AFA011886733B00DF057E /* DaysCDTVC.h */,
 				C95AFA021886733B00DF057E /* DaysCDTVC.m */,
+				04A046571886E94300D98809 /* ReceiptsCDTVC.h */,
+				04A046581886E94300D98809 /* ReceiptsCDTVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -327,18 +338,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				043A194A1885BEEF00713DAF /* Day.m in Sources */,
 				C9F804AA187A4C9B00EE4EDE /* AddTripTVC.m in Sources */,
 				C95AFA031886733B00DF057E /* DaysCDTVC.m in Sources */,
 				C9F804FD187AA42C00EE4EDE /* TripDetailTVC.m in Sources */,
 				C9F804FA187A74DB00EE4EDE /* CoreDataTableViewController.m in Sources */,
 				C9DB0010186B187E00F3B008 /* main.m in Sources */,
 				C9F80494187A333D00EE4EDE /* Model.xcdatamodeld in Sources */,
-				043A194D1885BEEF00713DAF /* Trip.m in Sources */,
 				C9F804A7187A4C7800EE4EDE /* TripsCDTVC.m in Sources */,
+				04A046501886E77900D98809 /* Trip.m in Sources */,
 				C9F804F7187A733000EE4EDE /* nwAppDelegate.m in Sources */,
 				C9DB001A186B187E00F3B008 /* nwViewController.m in Sources */,
+				04A046561886E77900D98809 /* Day.m in Sources */,
 				C9DB003E186B197400F3B008 /* TourModel.xcdatamodeld in Sources */,
+				04A0465C1886EA5F00D98809 /* Receipt.m in Sources */,
+				04A046591886E94300D98809 /* ReceiptsCDTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,9 +579,10 @@
 		C9F80492187A333D00EE4EDE /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				04A0464D1886DFAF00D98809 /* Model 2_receipts_photos.xcdatamodel */,
 				C9F80493187A333D00EE4EDE /* Model.xcdatamodel */,
 			);
-			currentVersion = C9F80493187A333D00EE4EDE /* Model.xcdatamodel */;
+			currentVersion = 04A0464D1886DFAF00D98809 /* Model 2_receipts_photos.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

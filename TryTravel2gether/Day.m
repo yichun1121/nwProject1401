@@ -7,6 +7,7 @@
 //
 
 #import "Day.h"
+#import "Receipt.h"
 #import "Trip.h"
 
 
@@ -16,5 +17,6 @@
 @dynamic dayIndex;
 @dynamic name;
 @dynamic inTrip;
+@dynamic receipts;
 
 @end

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Trip;
+@class Receipt, Trip;
 
 @interface Day : NSManagedObject
 
@@ -17,5 +17,14 @@
 @property (nonatomic, retain) NSNumber * dayIndex;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) Trip *inTrip;
+@property (nonatomic, retain) NSSet *receipts;
+@end
+
+@interface Day (CoreDataGeneratedAccessors)
+
+- (void)addReceiptsObject:(Receipt *)value;
+- (void)removeReceiptsObject:(Receipt *)value;
+- (void)addReceipts:(NSSet *)values;
+- (void)removeReceipts:(NSSet *)values;
 
 @end

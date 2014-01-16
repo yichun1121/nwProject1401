@@ -5,6 +5,13 @@
         <attribute name="dayIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="inTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="days" inverseEntity="Trip" syncable="YES"/>
+        <relationship name="receipts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Receipt" inverseName="day" inverseEntity="Receipt" syncable="YES"/>
+    </entity>
+    <entity name="Receipt" representedClassName="Receipt" syncable="YES">
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="total" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="day" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="receipts" inverseEntity="Day" syncable="YES"/>
     </entity>
     <entity name="Trip" representedClassName="Trip" syncable="YES">
         <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -13,7 +20,8 @@
         <relationship name="days" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Day" inverseName="inTrip" inverseEntity="Day" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Day" positionX="25" positionY="-127" width="128" height="103"/>
+        <element name="Day" positionX="25" positionY="-127" width="128" height="118"/>
+        <element name="Receipt" positionX="-137" positionY="47" width="128" height="103"/>
         <element name="Trip" positionX="162" positionY="3" width="128" height="105"/>
     </elements>
 </model>

@@ -23,6 +23,7 @@
 {
     [super viewWillAppear:animated];
     [self setupFetchedResultsController];
+    //self.tableView.editing=YES;
 }
 
 #pragma mark - FetchedResultsController
@@ -83,29 +84,29 @@
     
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+#pragma mark - Deleting（紅➖）+Inserting(綠➕）
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
+        
+        [self.tableView beginUpdates]; // Avoid  NSInternalInconsistencyException
+        
+        // Delete the role object that was swiped
+        Day *dayToDelete = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        NSLog(@"Deleting (%@)", dayToDelete.name);
+        [self.managedObjectContext deleteObject:dayToDelete];
+        [self.managedObjectContext save:nil];
+        
+        // Delete the (now empty) row on the table
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self performFetch];
+        
+        [self.tableView endUpdates];
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
 }
-*/
 
 /*
 // Override to support rearranging the table view.
@@ -134,5 +135,16 @@
 }
 
  */
-
+/*
+#pragma mark - 設定每個cell前面的加減號
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
+           editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0)
+        return UITableViewCellEditingStyleInsert;
+    //gives green circle with +
+    else
+        return UITableViewCellEditingStyleNone;
+    //or UITableViewCellEditingStyleNone
+}*/
 @end
