@@ -65,7 +65,9 @@
     
     self.dateFormatter=[[NSDateFormatter alloc]init];
     [self.dateFormatter setDateFormat:@"yyyy/MM/dd"];
+
 }
+
 
 #pragma mark - Table view data source
 
@@ -78,11 +80,25 @@
     }
     // Configure the cell...
     Day *day=[self.fetchedResultsController objectAtIndexPath:indexPath];
-    NSString *dayString=[NSString stringWithFormat:@"Day %@",day.dayIndex]; //ex:Day 2
-    cell.textLabel.text =dayString;
-    cell.detailTextLabel.text=[self.dateFormatter stringFromDate:day.date];  //([day.name isEqualToString:dayString]?@"":day.name);
+    int numOfTripDay=[self DayNumberOfTripdayInTrip:day];
+    NSString *strDay=(numOfTripDay>=1?[NSString stringWithFormat:@"Day %i",numOfTripDay]:@"Prepare");
+    cell.textLabel.text =strDay; //ex:Day 2 or Prepare;
+    NSString *strDate=[self.dateFormatter stringFromDate:day.date];
+    cell.detailTextLabel.text=[NSString stringWithFormat:@"%@：%@",strDate,day.name];    //ex:2013/11/29：關西國際機場、高台寺
     
     return cell;
+}
+/*! 判斷某天是該次旅程的第幾天（startDate當天回傳1，前一天回傳-1，不應該有0） */
+-(int)DayNumberOfTripdayInTrip:(Day *)tripDay{
+    int result=0;
+    NSDateComponents * dateComponents=[[NSDateComponents alloc]init];
+    dateComponents=[[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:tripDay.inTrip.startDate toDate:tripDay.date options:0];
+    if (dateComponents.day>=0) {
+        result=dateComponents.day+1;
+    }else{
+        result=dateComponents.day;
+    }
+    return result;
 }
 #pragma mark - Deleting（紅➖）+Inserting(綠➕）
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -107,6 +123,8 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
 }
+
+
 
 /*
 // Override to support rearranging the table view.
