@@ -35,6 +35,9 @@ static NSInteger sPickerCellHeight=162;
     //-----顯示當天的日期-----------
     self.startDate.detailTextLabel.text= [self.dateFormatter stringFromDate:[NSDate date]];
     self.endDate.detailTextLabel.text=[self.dateFormatter stringFromDate:[NSDate date]];
+    
+    //-----設定textField的delegate，讓自己監控textFeild的狀況
+    self.tripName.delegate=self;
 }
 -(void) save:(id)sender{
     NSLog(@"Telling the AddTripTVC Delegate that Save was tapped on the AddTripTVC");
@@ -118,6 +121,12 @@ static NSInteger sPickerCellHeight=162;
     }
 }
 
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+/*!建立某時間區間的Day們，回傳NSSet*/
 -(NSSet *)creatDefaultDaysFromStartDate:(NSDate *)startDate ToEndDate:(NSDate *)endDate{
     NSMutableSet *days;
     days=[[NSMutableSet alloc]init];

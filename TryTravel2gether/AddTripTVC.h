@@ -23,7 +23,7 @@
 @end
 
 
-@interface AddTripTVC : UITableViewController
+@interface AddTripTVC : UITableViewController<UITextFieldDelegate>
 
 @property (nonatomic, weak) id <AddTripTVCDelegate> delegate;
 @property (nonatomic, strong)NSManagedObjectContext *managedObjectContext;

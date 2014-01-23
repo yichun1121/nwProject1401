@@ -7,6 +7,7 @@
 //
 
 #import "DaysCDTVC.h"
+#import "ReceiptsCDTVC.m"
 
 @interface DaysCDTVC ()
 @property NSDateFormatter *dateFormatter;
@@ -125,7 +126,49 @@
 }
 
 
+#pragma mark - Segue Settings
 
+// 內建，準備Segue的method
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"Add Receipt Segue"]) {
+        
+        NSLog(@"Setting DaysCDTVC as a delegate of AddReceiptTVC");
+        
+        AddReceiptTVC *addReceiptTVC = segue.destinationViewController;
+        addReceiptTVC.delegate = self;
+        
+        /*
+         已經在AddReceiptTVC裡宣告了一個delegate（是AddReceiptTVCDelegate）
+         addReceiptCDTVC.delegate=self的意思是：我要監控AddReceiptTVC
+         */
+        
+        addReceiptTVC.managedObjectContext=self.managedObjectContext;
+        //把這個managedObjectContext傳過去，使用同一個managedObjectContext。
+        addReceiptTVC.currentTrip=self.currentTrip;
+    }else if([segue.identifier isEqualToString:@"Receipts List Segue"]){
+        NSLog(@"Setting DaysCDTVC as a delegate of ReceiptsCDTVC");
+        ReceiptsCDTVC *receiptsCDTVC=segue.destinationViewController;
+        receiptsCDTVC.managedObjectContext=self.managedObjectContext;
+        
+        // Store selected Role in selectedRole property
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        //可以直接用indexPath找到CoreData裡的實際物件，然後pass給Detail頁
+        self.selectedDay = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        
+        NSLog(@"Passing selected Day (%@) to ReceiptsCDTVC", self.selectedDay.name);
+        receiptsCDTVC.currentDay=self.selectedDay;
+    }
+}
+
+
+#pragma mark - Delegation
+-(void)theSaveButtonOnTheAddReceiptWasTapped:(AddReceiptTVC *)controller{
+    // do something here like refreshing the table or whatever
+    
+    // close the delegated view
+    [controller.navigationController popViewControllerAnimated:YES];
+    
+}
 /*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
