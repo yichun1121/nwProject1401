@@ -7,7 +7,19 @@
 //
 
 #import "CoreDataTableViewController.h"
+#import "Trip.h"
+
+@class TripDaysCDTVC;
+@protocol TripDaysCDTVCDelegate <NSObject>
+-(void)dayWasSelectedInTripDaysCDTVC:(TripDaysCDTVC *)controller;
+@end
 
 @interface TripDaysCDTVC : CoreDataTableViewController
+@property (weak,nonatomic)id delegate;
 
+@property (strong,nonatomic)NSManagedObjectContext *managedObjectContext;
+@property (strong,nonatomic)NSFetchedResultsController *fetchedResultsController;
+
+@property (strong,nonatomic)NSString *selectedDayString;
+@property (strong,nonatomic)Trip *currentTrip;
 @end

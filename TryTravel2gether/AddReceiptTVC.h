@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Receipt.h"
 #import "Day.h"
+#import "TripDaysCDTVC.h"
 
 @class AddReceiptTVC;
 
@@ -18,7 +19,7 @@
 
 @end
 
-@interface AddReceiptTVC : UITableViewController<UITextFieldDelegate>
+@interface AddReceiptTVC : UITableViewController<UITextFieldDelegate,TripDaysCDTVCDelegate>
 
 @property (weak,nonatomic)id <AddReceiptTVCDelegate> delegate;
 @property (strong,nonatomic)NSManagedObjectContext *managedObjectContext;

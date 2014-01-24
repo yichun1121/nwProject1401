@@ -8,6 +8,7 @@
 
 #import "AddReceiptTVC.h"
 #import "Trip.h"
+#import "TripDaysCDTVC.h"
 
 #define ktimePicker 5  //startPicker在第5行
 /*! 展開Picker後的Cell高度
@@ -155,6 +156,21 @@ static NSInteger sPickerCellHeight=162;
     return result;
 }
 
+#pragma mark - Segue Settings
+
+// 內建，準備Segue的method
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"Trip Day Segue"]) {
+        NSLog(@"Setting AddReceiptTVC as a delegate of TripDaysCDTVC");
+        TripDaysCDTVC *tripDaysCDTVC=segue.destinationViewController;
+        tripDaysCDTVC.delegate=self;
+        
+        tripDaysCDTVC.managedObjectContext=self.managedObjectContext;
+        
+        //可以直接用indexPath找到CoreData裡的實際物件，然後pass給Detail頁
+        tripDaysCDTVC.currentTrip=self.currentTrip;
+    }
+}
 
 #pragma mark - delegation
 //監測UITextFeild事件，按下return的時候會收鍵盤
@@ -163,4 +179,9 @@ static NSInteger sPickerCellHeight=162;
     return YES;
 }
 
+-(void)dayWasSelectedInTripDaysCDTVC:(TripDaysCDTVC *)controller{
+    self.selectedDayString=controller.selectedDayString;
+    self.dateCell.detailTextLabel.text=controller.selectedDayString;
+    [controller.navigationController popViewControllerAnimated:YES];
+}
 @end
