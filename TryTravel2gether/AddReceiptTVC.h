@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *dateCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *timeCell;
 @property (weak, nonatomic) IBOutlet UIDatePicker *timePicker;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 
 @property (strong,nonatomic) NSString *selectedDayString;
 @property (strong,nonatomic) Trip *currentTrip;

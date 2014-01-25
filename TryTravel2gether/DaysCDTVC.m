@@ -8,6 +8,7 @@
 
 #import "DaysCDTVC.h"
 #import "ReceiptsCDTVC.m"
+#import "Day+TripDay.h"
 
 @interface DaysCDTVC ()
 @property NSDateFormatter *dateFormatter;
@@ -81,9 +82,7 @@
     }
     // Configure the cell...
     Day *day=[self.fetchedResultsController objectAtIndexPath:indexPath];
-    int numOfTripDay=[self DayNumberOfTripdayInTrip:day];
-    NSString *strDay=(numOfTripDay>=1?[NSString stringWithFormat:@"Day %i",numOfTripDay]:@"Prepare");
-    cell.textLabel.text =strDay; //ex:Day 2 or Prepare;
+    cell.textLabel.text =[day DayNumberStringOfTripdayInTrip]; //ex:Day 2 or Prepare;
     NSString *strDate=[self.dateFormatter stringFromDate:day.date];
     cell.detailTextLabel.text=[NSString stringWithFormat:@"%@：%@",strDate,day.name];    //ex:2013/11/29：關西國際機場、高台寺
     

@@ -11,7 +11,8 @@
 
 @implementation Day (TripDay)
 
-/*! 判斷某天是該次旅程的第幾天（startDate當天回傳1，前一天回傳-1，不應該有0） */
+/*! 判斷某天是該次旅程的第幾天（startDate當天回傳1，前一天回傳-1，不應該有0） 
+ */
 -(int)DayNumberOfTripdayInTrip{
     int result=0;
     NSDateComponents * dateComponents=[[NSDateComponents alloc]init];
@@ -24,7 +25,8 @@
     return result;
 }
 
-/*! 回傳旅程第幾天的字串，如果在旅程前顯示Prepare，旅程結束後顯示Review */
+/*! 回傳旅程第幾天的字串，ex:Day 3，如果在旅程前顯示Prepare，旅程結束後顯示Review 
+ */
 -(NSString *)DayNumberStringOfTripdayInTrip{
     NSString *dayString=@"";
     NSDateComponents * startDateComponents=[[NSDateComponents alloc]init];

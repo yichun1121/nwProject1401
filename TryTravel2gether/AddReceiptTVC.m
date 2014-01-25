@@ -10,7 +10,8 @@
 #import "Trip.h"
 #import "TripDaysCDTVC.h"
 
-#define ktimePicker 5  //startPicker在第5行
+#define kdatePicker 5  //startPicker在第5行
+#define ktimePicker 7  //startPicker在第7行
 /*! 展開Picker後的Cell高度
  */
 static NSInteger sPickerCellHeight=162;
@@ -54,10 +55,10 @@ static NSInteger sPickerCellHeight=162;
  */
 -(void)showDefaultDateValue{
     if (self.selectedDayString) {
-        self.dateCell.detailTextLabel.text=self.selectedDayString;
+        self.dateCell.textLabel.text=self.selectedDayString;
     }else{
-        self.dateCell.detailTextLabel.text=[self.dateFormatter stringFromDate:[NSDate date]];
-        self.selectedDayString=self.dateCell.detailTextLabel.text;
+        self.dateCell.textLabel.text=[self.dateFormatter stringFromDate:[NSDate date]];
+        self.selectedDayString=self.dateCell.textLabel.text;
     }
     self.timeCell.detailTextLabel.text=[self.timeFormatter stringFromDate:[NSDate date]];
 }
@@ -120,7 +121,14 @@ static NSInteger sPickerCellHeight=162;
 #pragma mark - PickerChange事件
 
 - (IBAction)pickerChanged:(UIDatePicker *)sender {
-    self.timeCell.detailTextLabel.text=[self.timeFormatter stringFromDate: sender.date];
+    if (sender==self.timePicker) {
+        self.timeCell.detailTextLabel.text=[self.timeFormatter stringFromDate: sender.date];
+    }else if(sender==self.datePicker){
+        NSString *dateString=[self.dateFormatter stringFromDate:sender.date];
+        self.dateCell.textLabel.text=dateString;
+        self.selectedDayString=dateString;
+    }
+
 }
 
 #pragma mark - 每次點選row的時候會做的事
@@ -128,7 +136,7 @@ static NSInteger sPickerCellHeight=162;
     //TODO:不知道為什麼要用row判斷，不用row會錯
     BOOL hasBeTapped=(indexPath.row==self.actingDateCellIndexPath.row);
     UITableViewCell *clickedCell=[self.tableView cellForRowAtIndexPath:indexPath];
-    if (clickedCell==self.timeCell) {
+    if (clickedCell==self.timeCell||clickedCell==self.dateCell) {
         //如果剛剛點了同個DateCell的話就代表想要關掉picker，故把actingDateCellIndexPath設nil
         if (hasBeTapped) {
             self.actingDateCellIndexPath=nil;
@@ -144,7 +152,7 @@ static NSInteger sPickerCellHeight=162;
 #pragma mark 負責長cell的高度，也在這設定actingPicker（每次會因為tableView beginUpdates和endUpdates重畫）
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat result=self.tableView.rowHeight;
-    if (indexPath.row==ktimePicker) {
+    if (indexPath.row==ktimePicker||indexPath.row==kdatePicker) {
         if (indexPath.row-1==self.actingDateCellIndexPath.row) {
             /*如果正在執行的actingDateCell是正在畫的這行的上一行
              代表點選了dateCell，而現在正要把picker展開回原始高度。*/
@@ -182,7 +190,8 @@ static NSInteger sPickerCellHeight=162;
 
 -(void)dayWasSelectedInTripDaysCDTVC:(TripDaysCDTVC *)controller{
     self.selectedDayString=controller.selectedDayString;
-    self.dateCell.detailTextLabel.text=controller.selectedDayString;
+    self.dateCell.textLabel.text=controller.selectedDayString;
+    self.datePicker.date=[self.dateFormatter dateFromString:controller.selectedDayString];
     [controller.navigationController popViewControllerAnimated:YES];
 }
 @end
