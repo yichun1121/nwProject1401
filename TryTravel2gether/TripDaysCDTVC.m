@@ -8,6 +8,7 @@
 
 #import "TripDaysCDTVC.h"
 #import "Day.h"
+#import "Day+TripDay.h"
 
 @interface TripDaysCDTVC ()
 @property NSDateFormatter *dateFormatter;
@@ -60,7 +61,14 @@
     
     // Configure the cell...
     Day *day=[self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text=[self.dateFormatter stringFromDate:day.date];
+    cell.textLabel.text=[day DayNumberStringOfTripdayInTrip];
+    cell.detailTextLabel.text=[self.dateFormatter stringFromDate:day.date];
+    NSString *cellDayString=[self.dateFormatter stringFromDate:day.date];
+    if ([cellDayString isEqualToString: self.selectedDayString]) {
+        cell.accessoryType=UITableViewCellAccessoryCheckmark;
+    }else{
+        cell.accessoryType=UITableViewCellAccessoryNone;
+    }
     return cell;
 }
 

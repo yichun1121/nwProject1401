@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0409B6F21892B763000C6DF6 /* Day+TripDay.m in Sources */ = {isa = PBXBuildFile; fileRef = 0409B6F11892B763000C6DF6 /* Day+TripDay.m */; };
 		040A631F188ADB7B0084A3EC /* CoreDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040A631E188ADB7B0084A3EC /* CoreDataTableViewCell.m */; };
 		040A6325188ADE480084A3EC /* TripDaysCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 040A6324188ADE480084A3EC /* TripDaysCDTVC.m */; };
 		04A046501886E77900D98809 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A0464F1886E77900D98809 /* Trip.m */; };
@@ -48,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0409B6F01892B763000C6DF6 /* Day+TripDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Day+TripDay.h"; sourceTree = "<group>"; };
+		0409B6F11892B763000C6DF6 /* Day+TripDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Day+TripDay.m"; sourceTree = "<group>"; };
 		040A631D188ADB7B0084A3EC /* CoreDataTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewCell.h; sourceTree = "<group>"; };
 		040A631E188ADB7B0084A3EC /* CoreDataTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewCell.m; sourceTree = "<group>"; };
 		040A6323188ADE480084A3EC /* TripDaysCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripDaysCDTVC.h; sourceTree = "<group>"; };
@@ -197,6 +200,8 @@
 				04A0464F1886E77900D98809 /* Trip.m */,
 				04A046541886E77900D98809 /* Day.h */,
 				04A046551886E77900D98809 /* Day.m */,
+				0409B6F01892B763000C6DF6 /* Day+TripDay.h */,
+				0409B6F11892B763000C6DF6 /* Day+TripDay.m */,
 			);
 			name = CoreDataModel;
 			sourceTree = "<group>";
@@ -357,6 +362,7 @@
 				C9F804FD187AA42C00EE4EDE /* TripDetailTVC.m in Sources */,
 				C9F804FA187A74DB00EE4EDE /* CoreDataTableViewController.m in Sources */,
 				C9DB0010186B187E00F3B008 /* main.m in Sources */,
+				0409B6F21892B763000C6DF6 /* Day+TripDay.m in Sources */,
 				C9F80494187A333D00EE4EDE /* Model.xcdatamodeld in Sources */,
 				C9F804A7187A4C7800EE4EDE /* TripsCDTVC.m in Sources */,
 				040A6325188ADE480084A3EC /* TripDaysCDTVC.m in Sources */,

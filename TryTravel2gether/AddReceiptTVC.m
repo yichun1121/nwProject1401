@@ -169,6 +169,7 @@ static NSInteger sPickerCellHeight=162;
         
         //可以直接用indexPath找到CoreData裡的實際物件，然後pass給Detail頁
         tripDaysCDTVC.currentTrip=self.currentTrip;
+        tripDaysCDTVC.selectedDayString=self.selectedDayString;
     }
 }
 
