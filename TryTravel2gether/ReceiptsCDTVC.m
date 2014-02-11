@@ -72,4 +72,44 @@
     return cell;
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString: @"Add Receipt Segue From Receipts"]) {
+        NSLog(@"Setting ReceiptsCDTVC as a delegate of AddReceiptTVC");
+        AddReceiptTVC *addReceiptTVC=segue.destinationViewController;
+        addReceiptTVC.delegate=self;
+        addReceiptTVC.managedObjectContext=self.managedObjectContext;
+        addReceiptTVC.currentTrip=self.currentDay.inTrip;
+        //addReceiptTVC.selectedDayString=[self.dateFormatter stringFromDate:self.currentDay.date];
+    }
+}
+#pragma mark - Deleting（紅➖）+Inserting(綠➕）
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        [self.tableView beginUpdates]; // Avoid  NSInternalInconsistencyException
+        
+        // Delete the role object that was swiped
+        Receipt *receiptDelete = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        NSLog(@"Deleting %@(%@)", receiptDelete.desc,receiptDelete.total);
+        [self.managedObjectContext deleteObject:receiptDelete];
+        [self.managedObjectContext save:nil];
+        
+        // Delete the (now empty) row on the table
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self performFetch];
+        
+        [self.tableView endUpdates];
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
+}
+
+#pragma mark - delegation
+-(void)theSaveButtonOnTheAddReceiptWasTapped:(AddReceiptTVC *)controller{
+    
+    [controller.navigationController popViewControllerAnimated:YES];
+}
+
 @end

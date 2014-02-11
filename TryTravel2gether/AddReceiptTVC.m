@@ -83,7 +83,7 @@ static NSInteger sPickerCellHeight=162;
 /*!以yyyy/MM/dd的日期字串取得本旅程中對應的Day，如果沒有這天，回傳nil
  */
 -(Day *)getTripDayByDate:(NSString *)dateString{
-    NSLog(@"Find the trip day in the current trip.");
+    NSLog(@"Find the trip day:%@ in the current trip.",dateString);
     NSEntityDescription *entityDesc =
     [NSEntityDescription entityForName:@"Day" inManagedObjectContext:self.managedObjectContext];
     

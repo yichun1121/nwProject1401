@@ -10,6 +10,7 @@
 #import "ReceiptsCDTVC.m"
 #import "Day+TripDay.h"
 
+
 @interface DaysCDTVC ()
 @property NSDateFormatter *dateFormatter;
 @end
@@ -156,6 +157,14 @@
         
         NSLog(@"Passing selected Day (%@) to ReceiptsCDTVC", self.selectedDay.name);
         receiptsCDTVC.currentDay=self.selectedDay;
+    }else if ([segue.identifier isEqualToString:@"Add Day Segue"]){
+        NSLog(@"Setting DaysCDTVC as a delegate of AddDayTVC");
+        AddDayTVC *addDayTVC=segue.destinationViewController;
+        addDayTVC.delegate=self;
+        
+        addDayTVC.managedObjectContext=self.managedObjectContext;
+        addDayTVC.currentTrip=self.currentTrip;
+        
     }
 }
 
@@ -168,43 +177,7 @@
     [controller.navigationController popViewControllerAnimated:YES];
     
 }
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
+-(void)theSaveButtonOnTheAddDayWasTapped:(AddDayTVC *)controller{
+    [controller.navigationController popViewControllerAnimated:YES];
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
-/*
-#pragma mark - 設定每個cell前面的加減號
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
-           editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row == 0)
-        return UITableViewCellEditingStyleInsert;
-    //gives green circle with +
-    else
-        return UITableViewCellEditingStyleNone;
-    //or UITableViewCellEditingStyleNone
-}*/
 @end
