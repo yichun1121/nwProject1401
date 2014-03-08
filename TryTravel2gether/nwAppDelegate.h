@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
 @interface nwAppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -16,6 +17,9 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+
+//因為在系統起來的時候會先判斷有沒有Role，如果沒有的話執行預設群組設定，所以需要撈資料來看
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 

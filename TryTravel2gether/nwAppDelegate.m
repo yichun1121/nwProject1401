@@ -7,7 +7,7 @@
 //
 
 #import "nwAppDelegate.h"
-
+#import "MoneyType+LoadDefaultType.h"
 #import "TripsCDTVC.h"
 
 @implementation nwAppDelegate
@@ -16,8 +16,70 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
+//撈資料用的
+@synthesize fetchedResultsController=__fetchedResultsController;
+
+#pragma mark - 4. 配合3傳入的名稱和符號新增一個MoneyType
+- (void)insertMoneyWithTypeName:(NSString *)moneyTypeName useMoneySign:(NSString *)moneySign standardMoneySign:(NSString *)standardSign
+{
+    MoneyType *type = [NSEntityDescription insertNewObjectForEntityForName:@"MoneyType"
+                                                    inManagedObjectContext:self.managedObjectContext];
+    
+    type.name = moneyTypeName;
+    type.sign=moneySign;
+    type.standardSign=standardSign;
+    
+    [self.managedObjectContext save:nil];
+}
+
+#pragma mark - 2. 先撈出來看需不需要載入default資料
+- (void)setupFetchedResultsControllerByEntityName:(NSString*)entityName AttributeName:(NSString*)attributeName
+{
+    // 1 - Decide what Entity you want
+    //NSString *entityName = @"MoneyType"; // Put your entity name here
+    NSLog(@"Setting up a Fetched Results Controller for the Entity named %@", entityName);
+    
+    // 2 - Request that Entity
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
+    
+    // 3 - Filter it if you want
+    //request.predicate = [NSPredicate predicateWithFormat:@"Person.name = Blah"];
+    
+    // 4 - Sort it if you want
+    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:attributeName ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
+    // 5 - Fetch it
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    [self.fetchedResultsController performFetch:nil];
+}
+
+#pragma mark - 3. 創建預設的資訊寫在這裡一個一個設定
+- (void)importCoreDataDefaultMoneyTypes {
+    
+    // TODO...把幣別資訊寫在plist裡面再讀出來用
+    NSLog(@"Importing Core Data Default Values for Roles...");
+    [self insertMoneyWithTypeName:@"Taiwan Dollar" useMoneySign:@"NT" standardMoneySign:@"TWD"];
+    [self insertMoneyWithTypeName:@"Japanese Yen" useMoneySign:@"￥" standardMoneySign:@"JPY"];
+    NSLog(@"Importing Core Data Default Values for Roles Completed!");
+}
+#pragma mark - 1. 在這判斷是否要載入default資訊
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    /*
+     要設定Default Data的話加這段>
+     系統起來的時候會檢查有沒有Role存在，沒有的話就把預設的Role存進去
+     
+     */
+    [self setupFetchedResultsControllerByEntityName:@"MoneyType" AttributeName:@"name"];
+    
+    if (![[self.fetchedResultsController fetchedObjects] count] > 0 ) {
+        NSLog(@"!!!!! ~~> There's nothing in the database so defaults will be inserted");
+        [self importCoreDataDefaultMoneyTypes];
+    }
+    else {
+        NSLog(@"There's stuff in the database so skipping the import of default data");
+    }
+
+    
     // Override point for customization after application launch.
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     TripsCDTVC *controller = (TripsCDTVC *)navigationController.topViewController;

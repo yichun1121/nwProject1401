@@ -10,6 +10,8 @@
 
 @implementation Trip (Days)
 
+/*!判斷該trip是否已有某日
+ */
 -(BOOL)hadThisDate:(NSDate *)date{
     BOOL hadDay=YES;
     
