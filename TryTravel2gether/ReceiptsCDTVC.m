@@ -50,6 +50,8 @@
 {
     [super viewDidLoad];
     
+    self.navigationItem.title=self.currentDay.name;
+    
     //-----Date Formatter----------
     self.dateFormatter=[[NSDateFormatter alloc]init];
     self.timeFormatter=[[NSDateFormatter alloc]init];
@@ -68,7 +70,9 @@
     // Configure the cell...
     Receipt *receipt=[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text=receipt.desc;
-    cell.detailTextLabel.text=[NSString stringWithFormat:@"%@",receipt.total];
+    // TODO....幣別符號
+    NSString *moneyTypeSign=@"￥";
+    cell.detailTextLabel.text=[NSString stringWithFormat:@"%@%@",moneyTypeSign,receipt.total];
     return cell;
 }
 

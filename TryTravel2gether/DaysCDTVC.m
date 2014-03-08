@@ -85,7 +85,8 @@
     Day *day=[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text =[day DayNumberStringOfTripdayInTrip]; //ex:Day 2 or Prepare;
     NSString *strDate=[self.dateFormatter stringFromDate:day.date];
-    cell.detailTextLabel.text=[NSString stringWithFormat:@"%@：%@",strDate,day.name];    //ex:2013/11/29：關西國際機場、高台寺
+    NSString *shortDate=[strDate substringFromIndex:5];
+    cell.detailTextLabel.text=[NSString stringWithFormat:@"%@：%@",shortDate,day.name];    //ex:2013/11/29：關西國際機場、高台寺
     
     return cell;
 }
@@ -165,6 +166,16 @@
         addDayTVC.managedObjectContext=self.managedObjectContext;
         addDayTVC.currentTrip=self.currentTrip;
         
+    }else if([segue.identifier isEqualToString:@"Day Detail Segue"]){
+        NSLog(@"Setting DaysCDTVC as a delegate of DayDetailTVC");
+        DayDetailTVC * dayDetailTVC=segue.destinationViewController;
+        dayDetailTVC.delegate=self;
+        dayDetailTVC.managedObjectContext=self.managedObjectContext;
+        
+        NSIndexPath *indexPath=[self.tableView indexPathForCell:sender];;
+        self.selectedDay=[self.fetchedResultsController objectAtIndexPath:indexPath];
+        dayDetailTVC.day=self.selectedDay;
+        
     }
 }
 
@@ -178,6 +189,9 @@
     
 }
 -(void)theSaveButtonOnTheAddDayWasTapped:(AddDayTVC *)controller{
+    [controller.navigationController popViewControllerAnimated:YES];
+}
+-(void)theSaveButtonOnTheDayDetailTVCWasTapped:(DayDetailTVC *)controller{
     [controller.navigationController popViewControllerAnimated:YES];
 }
 @end

@@ -122,7 +122,8 @@
 }
 
 #pragma mark - delegation
-//監測UITextFeild事件，按下return的時候會收鍵盤
+#pragma mark - 監測UITextFeild事件，按下return的時候會收鍵盤
+//要在viewDidLoad裡加上textField的delegate=self，才監聽的到
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;

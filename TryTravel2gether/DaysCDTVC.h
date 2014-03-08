@@ -12,8 +12,9 @@
 #import "CoreDataTableViewController.h"
 #import "AddReceiptTVC.h"
 #import "AddDayTVC.h"
+#import "DayDetailTVC.h"
 
-@interface DaysCDTVC : CoreDataTableViewController<AddReceiptTVCDelegate,AddDayTVCDelegate>
+@interface DaysCDTVC : CoreDataTableViewController<AddReceiptTVCDelegate,AddDayTVCDelegate,DayDetailTVCDelegate>
 
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;

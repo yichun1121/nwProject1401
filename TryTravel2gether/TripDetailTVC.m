@@ -26,7 +26,7 @@ static NSInteger sPickerCellHeight=162;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"Setting the value of fields in this static table to that of the passed Role");
+    NSLog(@"Setting the value of fields in this static table to that of the passed Trip");
     
     //-----Date Formatter----------
     self.dateFormatter=[[NSDateFormatter alloc]init];

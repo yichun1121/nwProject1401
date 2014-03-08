@@ -27,7 +27,7 @@ static NSInteger sPickerCellHeight=162;
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    
+
     //-----Date Formatter----------
     self.dateFormatter = [[NSDateFormatter alloc] init];
     [self.dateFormatter setDateFormat:@"yyyy/MM/dd"];

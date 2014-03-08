@@ -21,7 +21,7 @@
     </entity>
     <elements>
         <element name="Day" positionX="25" positionY="-127" width="128" height="118"/>
-        <element name="Receipt" positionX="-137" positionY="47" width="128" height="103"/>
+        <element name="Receipt" positionX="-146" positionY="-90" width="128" height="103"/>
         <element name="Trip" positionX="162" positionY="3" width="128" height="105"/>
     </elements>
 </model>
