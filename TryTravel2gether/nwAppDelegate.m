@@ -7,8 +7,8 @@
 //
 
 #import "nwAppDelegate.h"
-#import "MoneyType+LoadDefaultType.h"
 #import "TripsCDTVC.h"
+#import "Currency.h"
 
 @implementation nwAppDelegate
 
@@ -22,12 +22,12 @@
 #pragma mark - 4. 配合3傳入的名稱和符號新增一個MoneyType
 - (void)insertMoneyWithTypeName:(NSString *)moneyTypeName useMoneySign:(NSString *)moneySign standardMoneySign:(NSString *)standardSign
 {
-    MoneyType *type = [NSEntityDescription insertNewObjectForEntityForName:@"MoneyType"
+    Currency *currency = [NSEntityDescription insertNewObjectForEntityForName:@"Currency"
                                                     inManagedObjectContext:self.managedObjectContext];
     
-    type.name = moneyTypeName;
-    type.sign=moneySign;
-    type.standardSign=standardSign;
+    currency.name = moneyTypeName;
+    currency.sign=moneySign;
+    currency.standardSign=standardSign;
     
     [self.managedObjectContext save:nil];
 }
@@ -55,10 +55,11 @@
 #pragma mark - 3. 創建預設的資訊寫在這裡一個一個設定
 - (void)importCoreDataDefaultMoneyTypes {
     
-    // TODO...把幣別資訊寫在plist裡面再讀出來用
+    // TODO: 把幣別資訊寫在plist裡面再讀出來用
     NSLog(@"Importing Core Data Default Values for Roles...");
     [self insertMoneyWithTypeName:@"Taiwan Dollar" useMoneySign:@"NT" standardMoneySign:@"TWD"];
     [self insertMoneyWithTypeName:@"Japanese Yen" useMoneySign:@"￥" standardMoneySign:@"JPY"];
+    [self insertMoneyWithTypeName:@"U.S.Dollar" useMoneySign:@"＄" standardMoneySign:@"USD"];
     NSLog(@"Importing Core Data Default Values for Roles Completed!");
 }
 #pragma mark - 1. 在這判斷是否要載入default資訊
@@ -69,7 +70,7 @@
      系統起來的時候會檢查有沒有Role存在，沒有的話就把預設的Role存進去
      
      */
-    [self setupFetchedResultsControllerByEntityName:@"MoneyType" AttributeName:@"name"];
+    [self setupFetchedResultsControllerByEntityName:@"Currency" AttributeName:@"name"];
     
     if (![[self.fetchedResultsController fetchedObjects] count] > 0 ) {
         NSLog(@"!!!!! ~~> There's nothing in the database so defaults will be inserted");

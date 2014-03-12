@@ -1,24 +1,22 @@
 //
-//  Day.m
+//  Currency.m
 //  TryTravel2gether
 //
 //  Created by YICHUN on 2014/3/12.
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 
-#import "Day.h"
+#import "Currency.h"
 #import "DayCurrency.h"
-#import "Receipt.h"
 #import "Trip.h"
 
 
-@implementation Day
+@implementation Currency
 
-@dynamic date;
-@dynamic dayIndex;
 @dynamic name;
-@dynamic inTrip;
-@dynamic receipts;
+@dynamic sign;
+@dynamic standardSign;
 @dynamic dayCurrency;
+@dynamic trips;
 
 @end

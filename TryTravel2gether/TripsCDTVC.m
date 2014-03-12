@@ -83,7 +83,7 @@
     //判斷是哪條連線（會對應Segue的名稱）
 	if ([segue.identifier isEqualToString:@"Add Trip Segue"])
 	{
-        NSLog(@"Setting TripTVC as a delegate of AddTripTVC");
+        NSLog(@"Setting TripCDTVC as a delegate of AddTripTVC");
         
         AddTripTVC *addTripTVC = segue.destinationViewController;
         addTripTVC.delegate = self;

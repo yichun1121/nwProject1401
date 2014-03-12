@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Trip.h"
+#import "CurrencyCDTVC.h"
 
 
 @class AddTripTVC;
@@ -23,7 +24,7 @@
 @end
 
 
-@interface AddTripTVC : UITableViewController<UITextFieldDelegate>
+@interface AddTripTVC : UITableViewController<UITextFieldDelegate,CurrencyCDTVCDelegate>
 
 @property (nonatomic, weak) id <AddTripTVCDelegate> delegate;
 @property (nonatomic, strong)NSManagedObjectContext *managedObjectContext;

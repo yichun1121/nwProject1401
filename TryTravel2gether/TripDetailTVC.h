@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Trip.h"
+#import "CurrencyCDTVC.h"
 
 @class TripDetailTVC;
 //介面 (interface) 中若需要用到其他類別 (class) 名稱，除了可先用 #import 直接引入標頭檔外，亦可用 @class 指令宣告可用的類別名稱。
@@ -22,7 +23,7 @@
 @end
 
 
-@interface TripDetailTVC : UITableViewController
+@interface TripDetailTVC : UITableViewController<CurrencyCDTVCDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *tripName; //TODO: tripName不知道要weak還是strong
 @property (nonatomic, weak) id <TripDetailTVCDelegate> delegate;

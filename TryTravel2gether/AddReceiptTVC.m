@@ -9,9 +9,10 @@
 #import "AddReceiptTVC.h"
 #import "Trip.h"
 #import "TripDaysCDTVC.h"
+#import "CurrencyCDTVC.h"
 
-#define kdatePicker 5  //startPicker在第5行
-#define ktimePicker 7  //startPicker在第7行
+#define kdatePicker 6  //datePicker在第6行
+#define ktimePicker 8  //timePicker在第8行
 /*! 展開Picker後的Cell高度
  */
 static NSInteger sPickerCellHeight=162;
@@ -20,6 +21,9 @@ static NSInteger sPickerCellHeight=162;
 @property NSDateFormatter *dateFormatter;
 @property NSDateFormatter *timeFormatter;
 @property NSDateFormatter *dateTimeFormatter;
+@property Currency *currentCurrency;
+@property (weak, nonatomic) IBOutlet UITableViewCell *currency;
+@property (weak, nonatomic) IBOutlet UILabel *currencySign;
 
 @property NSIndexPath * actingDateCellIndexPath;
 @end
@@ -50,6 +54,7 @@ static NSInteger sPickerCellHeight=162;
     
     //設定頁面初始的顯示狀態
     [self showDefaultDateValue];
+    [self setAllCurrencyWithCurrency:self.currentTrip.mainCurrency];
 }
 /*! 如果沒有指定的話預設顯示當天的Date和Time
  */
@@ -73,6 +78,7 @@ static NSInteger sPickerCellHeight=162;
     receipt.total=[NSNumber numberWithDouble:[self.totalPrice.text doubleValue]];
     receipt.time=[self.timeFormatter dateFromString:self.timeCell.detailTextLabel.text];
     receipt.day=selectedDay;
+    //TODO: 還沒儲存DayCurrency
 
     NSLog(@"Save new Receipt in AddReceiptTVC");
     
@@ -163,6 +169,13 @@ static NSInteger sPickerCellHeight=162;
     }
     return result;
 }
+/*!設定currentCurrency還有頁面相關顯示
+ */
+-(void)setAllCurrencyWithCurrency:(Currency *)currency{
+    self.currentCurrency=currency;
+    self.currency.detailTextLabel.text=currency.standardSign;
+    self.currencySign.text=currency.sign;
+}
 
 #pragma mark - Segue Settings
 
@@ -178,6 +191,14 @@ static NSInteger sPickerCellHeight=162;
         //可以直接用indexPath找到CoreData裡的實際物件，然後pass給Detail頁
         tripDaysCDTVC.currentTrip=self.currentTrip;
         tripDaysCDTVC.selectedDayString=self.selectedDayString;
+    }else if([segue.identifier isEqualToString:@"Currency Segue"]){
+        NSLog(@"Setting CurrencyCDTVC as a delegate of TripDaysCDTVC");
+        CurrencyCDTVC *currencyCDTVC=segue.destinationViewController;
+        
+        currencyCDTVC.delegate=self;
+        currencyCDTVC.managedObjectContext=self.managedObjectContext;
+        currencyCDTVC.selectedCurrency=self.currentCurrency;
+        
     }
 }
 
@@ -193,6 +214,10 @@ static NSInteger sPickerCellHeight=162;
     self.selectedDayString=controller.selectedDayString;
     self.dateCell.textLabel.text=controller.selectedDayString;
     self.datePicker.date=[self.dateFormatter dateFromString:controller.selectedDayString];
+    [controller.navigationController popViewControllerAnimated:YES];
+}
+-(void)currencyWasSelectedInCurrencyCDTVC:(CurrencyCDTVC *)controller{
+    [self setAllCurrencyWithCurrency:controller.selectedCurrency];
     [controller.navigationController popViewControllerAnimated:YES];
 }
 @end

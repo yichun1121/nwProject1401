@@ -15,6 +15,8 @@ static NSInteger sPickerCellHeight=162;
 
 @interface TripDetailTVC ()
 @property NSDateFormatter *dateFormatter;
+@property (weak, nonatomic) IBOutlet UITableViewCell *currency;
+@property (strong,nonatomic) Currency *currentCurrency;
 @end
 
 @implementation TripDetailTVC
@@ -36,6 +38,9 @@ static NSInteger sPickerCellHeight=162;
     self.tripName.text = self.trip.name;
     self.startDate.detailTextLabel.text=[self.dateFormatter stringFromDate:self.trip.startDate];
     self.endDate.detailTextLabel.text=[self.dateFormatter stringFromDate:self.trip.endDate];
+    self.currentCurrency=self.trip.mainCurrency;
+    self.currency.detailTextLabel.text=self.currentCurrency.standardSign;
+    
     
     //-----設定Picker----------
     [self setPicker:self.startPicker RoleByDate:self.trip.startDate];
@@ -116,5 +121,31 @@ static NSInteger sPickerCellHeight=162;
     }else{
         self.startPicker.maximumDate=date;
     }
+}
+
+// 內建，準備Segue的method
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"Currency Segue"]){
+        NSLog(@"Setting CurrencyCDTVC as a delegate of TripDaysCDTVC");
+        CurrencyCDTVC *currencyCDTVC=segue.destinationViewController;
+        
+        currencyCDTVC.delegate=self;
+        currencyCDTVC.managedObjectContext=self.managedObjectContext;
+        currencyCDTVC.selectedCurrency=self.currentCurrency;
+    }
+}
+
+#pragma mark - delegation
+#pragma mark 監測UITextFeild事件，按下return的時候會收鍵盤
+//要在viewDidLoad裡加上textField的delegate=self，才監聽的到
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+-(void)currencyWasSelectedInCurrencyCDTVC:(CurrencyCDTVC *)controller{
+    self.currentCurrency=controller.selectedCurrency;
+    self.currency.detailTextLabel.text=self.currentCurrency.standardSign;
+    [controller.navigationController popViewControllerAnimated:YES];
 }
 @end

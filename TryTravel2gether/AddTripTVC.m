@@ -8,7 +8,8 @@
 
 #import "AddTripTVC.h"
 #import "Day.h"
-
+#import "Currency+CRUD.h"
+#import "CurrencyCDTVC.h"
 
 #define kStartPicker 2  //startPicker在第2行
 #define kEndPicker 4    //endPicker在第4行
@@ -18,6 +19,8 @@ static NSInteger sPickerCellHeight=162;
 
 @interface AddTripTVC ()
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
+@property (weak, nonatomic) IBOutlet UITableViewCell *currency;
+@property (strong,nonatomic) Currency *currentCurrency;
 @end
 
 @implementation AddTripTVC
@@ -38,6 +41,13 @@ static NSInteger sPickerCellHeight=162;
     
     //-----設定textField的delegate，讓自己監控textFeild的狀況
     self.tripName.delegate=self;
+    
+    //-----設定幣別，以及顯示幣別
+    Currency *currency = [NSEntityDescription insertNewObjectForEntityForName:@"Currency"
+                                               inManagedObjectContext:self.managedObjectContext];
+
+    self.currentCurrency=[currency getWithStandardSign:@"USD"];
+    self.currency.detailTextLabel.text=self.currentCurrency.standardSign;
 }
 -(void) save:(id)sender{
     NSLog(@"Telling the AddTripTVC Delegate that Save was tapped on the AddTripTVC");
@@ -49,6 +59,8 @@ static NSInteger sPickerCellHeight=162;
     trip.startDate=[self.dateFormatter dateFromString: self.startDate.detailTextLabel.text];
     trip.endDate=[self.dateFormatter dateFromString:self.endDate.detailTextLabel.text];
     trip.days=[self creatDefaultDaysFromStartDate:trip.startDate ToEndDate:trip.endDate];
+    trip.mainCurrency=self.currentCurrency;
+    
     
     [self.managedObjectContext save:nil];  // write to database
     
@@ -121,10 +133,6 @@ static NSInteger sPickerCellHeight=162;
     }
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
-    return YES;
-}
 
 /*!建立某時間區間的Day們，回傳NSSet*/
 -(NSSet *)creatDefaultDaysFromStartDate:(NSDate *)startDate ToEndDate:(NSDate *)endDate{
@@ -149,5 +157,32 @@ static NSInteger sPickerCellHeight=162;
     }
     
     return days;
+}
+
+
+// 內建，準備Segue的method
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"Currency Segue"]){
+        NSLog(@"Setting CurrencyCDTVC as a delegate of TripDaysCDTVC");
+        CurrencyCDTVC *currencyCDTVC=segue.destinationViewController;
+        
+        currencyCDTVC.delegate=self;
+        currencyCDTVC.managedObjectContext=self.managedObjectContext;
+        currencyCDTVC.selectedCurrency=self.currentCurrency;
+    }
+}
+
+#pragma mark - delegation
+#pragma mark 監測UITextFeild事件，按下return的時候會收鍵盤
+//要在viewDidLoad裡加上textField的delegate=self，才監聽的到
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+-(void)currencyWasSelectedInCurrencyCDTVC:(CurrencyCDTVC *)controller{
+    self.currentCurrency=controller.selectedCurrency;
+    self.currency.detailTextLabel.text=self.currentCurrency.standardSign;
+    [controller.navigationController popViewControllerAnimated:YES];
 }
 @end

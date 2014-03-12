@@ -2,13 +2,13 @@
 //  Receipt.m
 //  TryTravel2gether
 //
-//  Created by YICHUN on 2014/3/8.
+//  Created by YICHUN on 2014/3/12.
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 
 #import "Receipt.h"
 #import "Day.h"
-#import "DayMoneyType.h"
+#import "DayCurrency.h"
 
 
 @implementation Receipt
@@ -17,6 +17,6 @@
 @dynamic time;
 @dynamic total;
 @dynamic day;
-@dynamic dayMoneyType;
+@dynamic dayCurrency;
 
 @end

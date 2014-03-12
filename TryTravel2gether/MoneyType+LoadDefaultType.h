@@ -6,11 +6,11 @@
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 
-#import "MoneyType.h"
+#import "Currency.h"
 #import <CoreData/CoreData.h>
 
 
-@interface MoneyType (LoadDefaultType)
+@interface Currency (LoadDefaultType)
 
 @property (strong, nonatomic) NSManagedObjectContext * managedObjectContext;
 //因為在系統起來的時候會先判斷有沒有MoneyType，如果沒有的話執行預設群組設定，所以需要撈資料來看

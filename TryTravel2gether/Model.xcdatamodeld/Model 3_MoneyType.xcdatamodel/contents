@@ -1,42 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Currency" representedClassName="Currency" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sign" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="standardSign" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="dayCurrency" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DayCurrency" inverseName="currency" inverseEntity="DayCurrency" syncable="YES"/>
+        <relationship name="trips" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Trip" inverseName="mainCurrency" inverseEntity="Trip" syncable="YES"/>
+    </entity>
     <entity name="Day" representedClassName="Day" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="dayIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="dayMoneyType" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DayMoneyType" inverseName="tripDay" inverseEntity="DayMoneyType" syncable="YES"/>
+        <relationship name="dayCurrency" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DayCurrency" inverseName="tripDay" inverseEntity="DayCurrency" syncable="YES"/>
         <relationship name="inTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="days" inverseEntity="Trip" syncable="YES"/>
         <relationship name="receipts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Receipt" inverseName="day" inverseEntity="Receipt" syncable="YES"/>
     </entity>
-    <entity name="DayMoneyType" representedClassName="DayMoneyType" syncable="YES">
-        <relationship name="moneyType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MoneyType" inverseName="dayMoneyType" inverseEntity="MoneyType" syncable="YES"/>
-        <relationship name="receipts" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Receipt" inverseName="dayMoneyType" inverseEntity="Receipt" syncable="YES"/>
-        <relationship name="tripDay" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="dayMoneyType" inverseEntity="Day" syncable="YES"/>
-    </entity>
-    <entity name="MoneyType" representedClassName="MoneyType" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="sign" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="standardSign" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="dayMoneyType" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DayMoneyType" inverseName="moneyType" inverseEntity="DayMoneyType" syncable="YES"/>
+    <entity name="DayCurrency" representedClassName="DayCurrency" syncable="YES">
+        <relationship name="currency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="dayCurrency" inverseEntity="Currency" syncable="YES"/>
+        <relationship name="receipts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Receipt" inverseName="dayCurrency" inverseEntity="Receipt" syncable="YES"/>
+        <relationship name="tripDay" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="dayCurrency" inverseEntity="Day" syncable="YES"/>
     </entity>
     <entity name="Receipt" representedClassName="Receipt" syncable="YES">
         <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="time" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="total" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="day" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="receipts" inverseEntity="Day" syncable="YES"/>
-        <relationship name="dayMoneyType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DayMoneyType" inverseName="receipts" inverseEntity="DayMoneyType" syncable="YES"/>
+        <relationship name="dayCurrency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DayCurrency" inverseName="receipts" inverseEntity="DayCurrency" syncable="YES"/>
     </entity>
     <entity name="Trip" representedClassName="Trip" syncable="YES">
         <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="days" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Day" inverseName="inTrip" inverseEntity="Day" syncable="YES"/>
+        <relationship name="mainCurrency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="trips" inverseEntity="Currency" syncable="YES"/>
     </entity>
     <elements>
         <element name="Day" positionX="52" positionY="-115" width="128" height="133"/>
-        <element name="MoneyType" positionX="61" positionY="45" width="128" height="103"/>
+        <element name="Currency" positionX="88" positionY="126" width="128" height="118"/>
         <element name="Receipt" positionX="-146" positionY="-90" width="128" height="118"/>
-        <element name="Trip" positionX="234" positionY="3" width="128" height="105"/>
-        <element name="DayMoneyType" positionX="-155" positionY="90" width="128" height="88"/>
+        <element name="Trip" positionX="234" positionY="3" width="128" height="118"/>
+        <element name="DayCurrency" positionX="-155" positionY="90" width="128" height="88"/>
     </elements>
 </model>
