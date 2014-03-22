@@ -44,6 +44,7 @@ static NSInteger sPickerCellHeight=162;
     
     //-----設定幣別，以及顯示幣別
     NWUserSettings *userSetting=[NWUserSettings new];
+    userSetting.managedObjectContext=self.managedObjectContext;
     self.currentCurrency=[userSetting getDefaultCurrency];
     self.currency.detailTextLabel.text=self.currentCurrency.standardSign;
 }
