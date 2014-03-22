@@ -8,8 +8,8 @@
 
 #import "AddTripTVC.h"
 #import "Day.h"
-#import "Currency+CRUD.h"
 #import "CurrencyCDTVC.h"
+#import "nwUserSettings.h"
 
 #define kStartPicker 2  //startPicker在第2行
 #define kEndPicker 4    //endPicker在第4行
@@ -43,10 +43,8 @@ static NSInteger sPickerCellHeight=162;
     self.tripName.delegate=self;
     
     //-----設定幣別，以及顯示幣別
-    Currency *currency = [NSEntityDescription insertNewObjectForEntityForName:@"Currency"
-                                               inManagedObjectContext:self.managedObjectContext];
-
-    self.currentCurrency=[currency getWithStandardSign:@"USD"];
+    NWUserSettings *userSetting=[NWUserSettings new];
+    self.currentCurrency=[userSetting getDefaultCurrency];
     self.currency.detailTextLabel.text=self.currentCurrency.standardSign;
 }
 -(void) save:(id)sender{

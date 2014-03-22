@@ -60,7 +60,13 @@
     }
     
     // Configure the cell...
-    Currency *currency=[self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell=[self configureCell:cell AtIndexPath:indexPath];
+    return cell;
+}
+/*!組合TableViewCell的顯示內容
+ */
+-(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
+        Currency *currency=[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text=currency.name;
     cell.detailTextLabel.text=currency.standardSign;
 
@@ -71,7 +77,6 @@
     }
     return cell;
 }
-
 #pragma mark - 每次點選row的時候會做的事
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     

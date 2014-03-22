@@ -7,6 +7,8 @@
 //
 
 #import "ReceiptsCDTVC.h"
+#import "DayCurrency.h"
+#import "Currency.h"
 
 @interface ReceiptsCDTVC ()
 @property NSDateFormatter *dateFormatter;
@@ -68,14 +70,18 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     // Configure the cell...
-    Receipt *receipt=[self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text=receipt.desc;
-    // TODO....幣別符號
-    NSString *moneyTypeSign=@"￥";
-    cell.detailTextLabel.text=[NSString stringWithFormat:@"%@%@",moneyTypeSign,receipt.total];
+    cell=[self configureCell:cell AtIndexPath:indexPath];
     return cell;
 }
-
+/*!組合TableViewCell的顯示內容
+ */
+-(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
+        Receipt *receipt=[self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text=receipt.desc;
+    NSString *moneyTypeSign=receipt.dayCurrency.currency.sign;
+    cell.detailTextLabel.text=[NSString stringWithFormat:@"%@ %@",moneyTypeSign,receipt.total];
+    return cell;
+}
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString: @"Add Receipt Segue From Receipts"]) {
         NSLog(@"Setting ReceiptsCDTVC as a delegate of AddReceiptTVC");

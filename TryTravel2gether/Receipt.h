@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Day, DayMoneyType;
+@class Day, DayCurrency;
 
 @interface Receipt : NSManagedObject
 
@@ -17,6 +17,6 @@
 @property (nonatomic, retain) NSDate * time;
 @property (nonatomic, retain) NSNumber * total;
 @property (nonatomic, retain) Day *day;
-@property (nonatomic, retain) DayMoneyType *dayCurrency;
+@property (nonatomic, retain) DayCurrency *dayCurrency;
 
 @end

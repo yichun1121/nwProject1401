@@ -60,7 +60,14 @@
     }
     
     // Configure the cell...
-    Day *day=[self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell=[self configureCell:cell AtIndexPath:indexPath];
+    return cell;
+}
+
+/*!組合TableViewCell的顯示內容
+ */
+-(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
+        Day *day=[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text=[day DayNumberStringOfTripdayInTrip];
     cell.detailTextLabel.text=[self.dateFormatter stringFromDate:day.date];
     NSString *cellDayString=[self.dateFormatter stringFromDate:day.date];

@@ -82,12 +82,18 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     // Configure the cell...
-    Day *day=[self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell=[self configureCell:cell AtIndexPath:indexPath];
+    
+    return cell;
+}
+/*!組合TableViewCell的顯示內容
+ */
+-(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
+        Day *day=[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text =[day DayNumberStringOfTripdayInTrip]; //ex:Day 2 or Prepare;
     NSString *strDate=[self.dateFormatter stringFromDate:day.date];
     NSString *shortDate=[strDate substringFromIndex:5];
     cell.detailTextLabel.text=[NSString stringWithFormat:@"%@：%@",shortDate,day.name];    //ex:2013/11/29：關西國際機場、高台寺
-    
     return cell;
 }
 /*! 判斷某天是該次旅程的第幾天（startDate當天回傳1，前一天回傳-1，不應該有0） */

@@ -66,12 +66,16 @@
     }
     
     // Configure the cell...
-    Trip *trip = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell=[self configureCell:cell AtIndexPath:indexPath];
+    
+    return cell;
+}
+-(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
+        Trip *trip = [self.fetchedResultsController objectAtIndexPath:indexPath];
     NSString *startDate=[self.dateFormatter stringFromDate:trip.startDate];
     NSString *endDate=[self.dateFormatter stringFromDate:trip.endDate];
     cell.textLabel.text = trip.name;
     cell.detailTextLabel.text=[NSString stringWithFormat:@"%@ - %@",startDate,endDate];
-    
     return cell;
 }
 

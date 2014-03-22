@@ -11,14 +11,14 @@
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="dayIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="dayCurrency" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DayCurrency" inverseName="tripDay" inverseEntity="DayCurrency" syncable="YES"/>
+        <relationship name="dayCurrencies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DayCurrency" inverseName="tripDay" inverseEntity="DayCurrency" syncable="YES"/>
         <relationship name="inTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="days" inverseEntity="Trip" syncable="YES"/>
         <relationship name="receipts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Receipt" inverseName="day" inverseEntity="Receipt" syncable="YES"/>
     </entity>
     <entity name="DayCurrency" representedClassName="DayCurrency" syncable="YES">
         <relationship name="currency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="dayCurrency" inverseEntity="Currency" syncable="YES"/>
         <relationship name="receipts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Receipt" inverseName="dayCurrency" inverseEntity="Receipt" syncable="YES"/>
-        <relationship name="tripDay" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="dayCurrency" inverseEntity="Day" syncable="YES"/>
+        <relationship name="tripDay" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="dayCurrencies" inverseEntity="Day" syncable="YES"/>
     </entity>
     <entity name="Receipt" representedClassName="Receipt" syncable="YES">
         <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
@@ -35,10 +35,10 @@
         <relationship name="mainCurrency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="trips" inverseEntity="Currency" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Day" positionX="52" positionY="-115" width="128" height="133"/>
         <element name="Currency" positionX="88" positionY="126" width="128" height="118"/>
+        <element name="Day" positionX="52" positionY="-115" width="128" height="133"/>
+        <element name="DayCurrency" positionX="-155" positionY="90" width="128" height="88"/>
         <element name="Receipt" positionX="-146" positionY="-90" width="128" height="118"/>
         <element name="Trip" positionX="234" positionY="3" width="128" height="118"/>
-        <element name="DayCurrency" positionX="-155" positionY="90" width="128" height="88"/>
     </elements>
 </model>

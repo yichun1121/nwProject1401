@@ -9,7 +9,8 @@
 #import "AddReceiptTVC.h"
 #import "Trip.h"
 #import "TripDaysCDTVC.h"
-#import "CurrencyCDTVC.h"
+#import "DayCurrency.h"
+#import "Currency.h"
 
 #define kdatePicker 6  //datePicker在第6行
 #define ktimePicker 8  //timePicker在第8行
@@ -56,7 +57,7 @@ static NSInteger sPickerCellHeight=162;
     [self showDefaultDateValue];
     [self setAllCurrencyWithCurrency:self.currentTrip.mainCurrency];
 }
-/*! 如果沒有指定的話預設顯示當天的Date和Time
+/*! 顯示預設日期，如果沒有指定的話預設顯示當天的Date和Time
  */
 -(void)showDefaultDateValue{
     if (self.selectedDayString) {
@@ -78,8 +79,9 @@ static NSInteger sPickerCellHeight=162;
     receipt.total=[NSNumber numberWithDouble:[self.totalPrice.text doubleValue]];
     receipt.time=[self.timeFormatter dateFromString:self.timeCell.detailTextLabel.text];
     receipt.day=selectedDay;
-    //TODO: 還沒儲存DayCurrency
 
+    receipt.dayCurrency=[self getDayCurrencyWithTripDay:selectedDay Currency:self.currentCurrency];
+    
     NSLog(@"Save new Receipt in AddReceiptTVC");
     
     [self.managedObjectContext save:nil];  // write to database
@@ -175,6 +177,49 @@ static NSInteger sPickerCellHeight=162;
     self.currentCurrency=currency;
     self.currency.detailTextLabel.text=currency.standardSign;
     self.currencySign.text=currency.sign;
+}
+
+-(DayCurrency *)getDayCurrencyWithTripDay:(Day *)tripDay Currency:(Currency *)currency{
+    //-----Date Formatter----------
+    NSDateFormatter *dateFormatter;
+    dateFormatter=[[NSDateFormatter alloc]init];
+    dateFormatter.dateFormat=@"yyyy/MM/dd";
+    
+    NSString *dateString=[dateFormatter stringFromDate:tripDay.date];
+    NSLog(@"Find the DayCurrency in trip:%@, date:%@, currency:%@ ...",tripDay.inTrip.name,dateString,currency.standardSign);
+    
+    NSEntityDescription *entityDesc =
+    [NSEntityDescription entityForName:@"DayCurrency" inManagedObjectContext:self.managedObjectContext];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDesc];
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"(tripDay = %@) AND (currency=%@)", tripDay,currency];
+    [request setPredicate:pred];
+    
+    NSError *error;
+    NSArray *objects = [self.managedObjectContext executeFetchRequest:request error:&error];
+    
+    if ([objects count] == 0) {
+        NSLog(@"Can't Find.");
+        return [self createDayCurrencyWithTripDay:tripDay Currency:currency];
+    } else {
+        NSLog(@"Done.");
+        return objects[0];
+    }
+}
+-(DayCurrency *)createDayCurrencyWithTripDay:(Day *)tripDay Currency:(Currency *)currency{
+    NSLog(@"Create the new DayCurrency");
+    
+    DayCurrency *dayCurrency = [NSEntityDescription insertNewObjectForEntityForName:@"DayCurrency"
+                                                             inManagedObjectContext:self.managedObjectContext];
+    dayCurrency.tripDay=tripDay;
+    dayCurrency.currency=currency;
+    
+    NSLog(@"Create new DayCurrency in DayCurrency+FindOneOrCreateNew");
+    
+    [self.managedObjectContext save:nil];  // write to database
+    return dayCurrency;
 }
 
 #pragma mark - Segue Settings
