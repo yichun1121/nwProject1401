@@ -1,5 +1,5 @@
 //
-//  Receipt.h
+//  CatInTrip.h
 //  TryTravel2gether
 //
 //  Created by YICHUN on 2014/3/24.
@@ -9,19 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Day, DayCurrency, Item;
+@class Category, Item, Trip;
 
-@interface Receipt : NSManagedObject
+@interface CatInTrip : NSManagedObject
 
-@property (nonatomic, retain) NSString * desc;
-@property (nonatomic, retain) NSDate * time;
-@property (nonatomic, retain) NSNumber * total;
-@property (nonatomic, retain) Day *day;
-@property (nonatomic, retain) DayCurrency *dayCurrency;
+@property (nonatomic, retain) Category *category;
+@property (nonatomic, retain) Trip *trip;
 @property (nonatomic, retain) NSSet *items;
 @end
 
-@interface Receipt (CoreDataGeneratedAccessors)
+@interface CatInTrip (CoreDataGeneratedAccessors)
 
 - (void)addItemsObject:(Item *)value;
 - (void)removeItemsObject:(Item *)value;
