@@ -8,12 +8,11 @@
 
 #import "AddReceiptTVC.h"
 #import "Trip.h"
-#import "TripDaysCDTVC.h"
+#import "TripDaysTVC.h"
 #import "DayCurrency.h"
 #import "Currency.h"
 
-#define kdatePicker 6  //datePicker在第6行
-#define ktimePicker 8  //timePicker在第8行
+#define ktimePicker 6  //timePicker在第8行
 /*! 展開Picker後的Cell高度
  */
 static NSInteger sPickerCellHeight=162;
@@ -26,7 +25,7 @@ static NSInteger sPickerCellHeight=162;
 @property (weak, nonatomic) IBOutlet UITableViewCell *currency;
 @property (weak, nonatomic) IBOutlet UILabel *currencySign;
 
-@property NSIndexPath * actingDateCellIndexPath;
+@property NSIndexPath * actingCellIndexPath;
 @end
 
 @implementation AddReceiptTVC
@@ -61,10 +60,10 @@ static NSInteger sPickerCellHeight=162;
  */
 -(void)showDefaultDateValue{
     if (self.selectedDayString) {
-        self.dateCell.textLabel.text=self.selectedDayString;
+        self.dateCell.detailTextLabel.text=self.selectedDayString;
     }else{
-        self.dateCell.textLabel.text=[self.dateFormatter stringFromDate:[NSDate date]];
-        self.selectedDayString=self.dateCell.textLabel.text;
+        self.dateCell.detailTextLabel.text=[self.dateFormatter stringFromDate:[NSDate date]];
+        self.selectedDayString=self.dateCell.detailTextLabel.text;
     }
     self.timeCell.detailTextLabel.text=[self.timeFormatter stringFromDate:[NSDate date]];
 }
@@ -82,9 +81,9 @@ static NSInteger sPickerCellHeight=162;
 
     receipt.dayCurrency=[self getDayCurrencyWithTripDay:selectedDay Currency:self.currentCurrency];
     
-    NSLog(@"Save new Receipt in AddReceiptTVC");
     
     [self.managedObjectContext save:nil];  // write to database
+    NSLog(@"Save new Receipt in AddReceiptTVC");
     [self.delegate theSaveButtonOnTheAddReceiptWasTapped:self];
     
 }
@@ -131,25 +130,27 @@ static NSInteger sPickerCellHeight=162;
 - (IBAction)pickerChanged:(UIDatePicker *)sender {
     if (sender==self.timePicker) {
         self.timeCell.detailTextLabel.text=[self.timeFormatter stringFromDate: sender.date];
-    }else if(sender==self.datePicker){
-        NSString *dateString=[self.dateFormatter stringFromDate:sender.date];
-        self.dateCell.textLabel.text=dateString;
-        self.selectedDayString=dateString;
     }
+//    else if(sender==self.datePicker){
+//        NSString *dateString=[self.dateFormatter stringFromDate:sender.date];
+//        self.dateCell.detailTextLabel.text=dateString;
+//        self.selectedDayString=dateString;
+//    }
 
 }
 
 #pragma mark - 每次點選row的時候會做的事
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //TODO:不知道為什麼要用row判斷，不用row會錯
-    BOOL hasBeTapped=(indexPath.row==self.actingDateCellIndexPath.row);
+    BOOL hasBeTapped=(indexPath.row==self.actingCellIndexPath.row);
     UITableViewCell *clickedCell=[self.tableView cellForRowAtIndexPath:indexPath];
-    if (clickedCell==self.timeCell||clickedCell==self.dateCell) {
+    //if (clickedCell==self.timeCell||clickedCell==self.dateCell) {
+    if (clickedCell==self.timeCell) {
         //如果剛剛點了同個DateCell的話就代表想要關掉picker，故把actingDateCellIndexPath設nil
         if (hasBeTapped) {
-            self.actingDateCellIndexPath=nil;
+            self.actingCellIndexPath=nil;
         }else{
-            self.actingDateCellIndexPath=indexPath;
+            self.actingCellIndexPath=indexPath;
         }
         // 為了讓picker展開或關閉，需要重新整理tableView，beginUpdates和endUpdates
         [self.tableView beginUpdates];
@@ -160,8 +161,8 @@ static NSInteger sPickerCellHeight=162;
 #pragma mark 負責長cell的高度，也在這設定actingPicker（每次會因為tableView beginUpdates和endUpdates重畫）
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat result=self.tableView.rowHeight;
-    if (indexPath.row==ktimePicker||indexPath.row==kdatePicker) {
-        if (indexPath.row-1==self.actingDateCellIndexPath.row) {
+    if (indexPath.row==ktimePicker) {
+        if (indexPath.row-1==self.actingCellIndexPath.row) {
             /*如果正在執行的actingDateCell是正在畫的這行的上一行
              代表點選了dateCell，而現在正要把picker展開回原始高度。*/
             result=sPickerCellHeight;
@@ -180,12 +181,12 @@ static NSInteger sPickerCellHeight=162;
 }
 
 -(DayCurrency *)getDayCurrencyWithTripDay:(Day *)tripDay Currency:(Currency *)currency{
-    //-----Date Formatter----------
-    NSDateFormatter *dateFormatter;
-    dateFormatter=[[NSDateFormatter alloc]init];
-    dateFormatter.dateFormat=@"yyyy/MM/dd";
+//    //-----Date Formatter----------
+//    NSDateFormatter *dateFormatter;
+//    dateFormatter=[[NSDateFormatter alloc]init];
+//    dateFormatter.dateFormat=@"yyyy/MM/dd";
     
-    NSString *dateString=[dateFormatter stringFromDate:tripDay.date];
+    NSString *dateString=[ self.dateFormatter stringFromDate:tripDay.date];
     NSLog(@"Find the DayCurrency in trip:%@, date:%@, currency:%@ ...",tripDay.inTrip.name,dateString,currency.standardSign);
     
     NSEntityDescription *entityDesc =
@@ -227,17 +228,17 @@ static NSInteger sPickerCellHeight=162;
 // 內建，準備Segue的method
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"Trip Day Segue"]) {
-        NSLog(@"Setting AddReceiptTVC as a delegate of TripDaysCDTVC");
-        TripDaysCDTVC *tripDaysCDTVC=segue.destinationViewController;
-        tripDaysCDTVC.delegate=self;
+        NSLog(@"Setting AddReceiptTVC as a delegate of TripDaysTVC...");
+        TripDaysTVC *TripDaysTVC=segue.destinationViewController;
+        TripDaysTVC.delegate=self;
         
-        tripDaysCDTVC.managedObjectContext=self.managedObjectContext;
+        TripDaysTVC.managedObjectContext=self.managedObjectContext;
         
         //可以直接用indexPath找到CoreData裡的實際物件，然後pass給Detail頁
-        tripDaysCDTVC.currentTrip=self.currentTrip;
-        tripDaysCDTVC.selectedDayString=self.selectedDayString;
+        TripDaysTVC.currentTrip=self.currentTrip;
+        TripDaysTVC.selectedDayString=self.selectedDayString;
     }else if([segue.identifier isEqualToString:@"Currency Segue"]){
-        NSLog(@"Setting CurrencyCDTVC as a delegate of TripDaysCDTVC");
+        NSLog(@"Setting CurrencyCDTVC as a delegate of TripDaysTVC...");
         CurrencyCDTVC *currencyCDTVC=segue.destinationViewController;
         
         currencyCDTVC.delegate=self;
@@ -255,10 +256,10 @@ static NSInteger sPickerCellHeight=162;
     return YES;
 }
 
--(void)dayWasSelectedInTripDaysCDTVC:(TripDaysCDTVC *)controller{
+-(void)dayWasSelectedInTripDaysTVC:(TripDaysTVC *)controller{
     self.selectedDayString=controller.selectedDayString;
-    self.dateCell.textLabel.text=controller.selectedDayString;
-    self.datePicker.date=[self.dateFormatter dateFromString:controller.selectedDayString];
+    self.dateCell.detailTextLabel.text=controller.selectedDayString;
+    //self.datePicker.date=[self.dateFormatter dateFromString:controller.selectedDayString];
     [controller.navigationController popViewControllerAnimated:YES];
 }
 -(void)currencyWasSelectedInCurrencyCDTVC:(CurrencyCDTVC *)controller{

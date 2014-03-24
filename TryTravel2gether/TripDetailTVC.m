@@ -126,7 +126,7 @@ static NSInteger sPickerCellHeight=162;
 // 內建，準備Segue的method
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"Currency Segue"]){
-        NSLog(@"Setting CurrencyCDTVC as a delegate of TripDaysCDTVC");
+        NSLog(@"Setting TripDetailTVC as a delegate of currencyCDTVC");
         CurrencyCDTVC *currencyCDTVC=segue.destinationViewController;
         
         currencyCDTVC.delegate=self;

@@ -1,5 +1,5 @@
 //
-//  TripDaysCDTVC.h
+//  TripDaysTVC.h
 //  TryTravel2gether
 //
 //  Created by YICHUN on 2014/1/19.
@@ -9,13 +9,14 @@
 #import "CoreDataTableViewController.h"
 #import "Trip.h"
 
-@class TripDaysCDTVC;
-@protocol TripDaysCDTVCDelegate <NSObject>
--(void)dayWasSelectedInTripDaysCDTVC:(TripDaysCDTVC *)controller;
+@class TripDaysTVC;
+@protocol TripDaysTVCDelegate <NSObject>
+-(void)dayWasSelectedInTripDaysTVC:(TripDaysTVC *)controller;
 @end
 
-@interface TripDaysCDTVC : CoreDataTableViewController
+@interface TripDaysTVC : UITableViewController<NSFetchedResultsControllerDelegate>
 @property (weak,nonatomic)id delegate;
+
 
 @property (strong,nonatomic)NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic)NSFetchedResultsController *fetchedResultsController;
