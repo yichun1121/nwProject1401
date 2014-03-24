@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>3B98A233-E8B3-4CB0-B908-145B726CEE6E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TryTravel2gether</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7AC6C5F3-9762-4CCA-B8C5-0981F0994A97</key>
+		<string>ssh://github.com/yichun1121/nwProject1401.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TryTravel2gether.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7AC6C5F3-9762-4CCA-B8C5-0981F0994A97</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/yichun1121/nwProject1401.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7AC6C5F3-9762-4CCA-B8C5-0981F0994A97</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7AC6C5F3-9762-4CCA-B8C5-0981F0994A97</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TryTravel2gether</string>
+		</dict>
+	</array>
+</dict>
+</plist>
