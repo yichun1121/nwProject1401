@@ -2,20 +2,20 @@
 //  CatInTrip.h
 //  TryTravel2gether
 //
-//  Created by vincent on 2014/3/24.
+//  Created by YICHUN on 2014/3/24.
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Item, Itemcategory, Trip;
+@class Category, Item, Trip;
 
 @interface CatInTrip : NSManagedObject
 
-@property (nonatomic, retain) Itemcategory *category;
-@property (nonatomic, retain) NSSet *items;
+@property (nonatomic, retain) Category *category;
 @property (nonatomic, retain) Trip *trip;
+@property (nonatomic, retain) NSSet *items;
 @end
 
 @interface CatInTrip (CoreDataGeneratedAccessors)

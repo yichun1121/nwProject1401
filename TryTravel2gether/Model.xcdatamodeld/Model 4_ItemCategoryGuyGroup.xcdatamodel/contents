@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Category" representedClassName="Category" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="catInTrips" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CatInTrip" inverseName="category" inverseEntity="CatInTrip" syncable="YES"/>
+    </entity>
     <entity name="CatInTrip" representedClassName="CatInTrip" syncable="YES">
-        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Itemcategory" inverseName="catInTrips" inverseEntity="Itemcategory" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="catInTrips" inverseEntity="Category" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="catInTrip" inverseEntity="Item" syncable="YES"/>
         <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="catsInTrip" inverseEntity="Trip" syncable="YES"/>
     </entity>
@@ -47,10 +51,6 @@
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="items" inverseEntity="Group" syncable="YES"/>
         <relationship name="receipt" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Receipt" inverseName="items" inverseEntity="Receipt" syncable="YES"/>
     </entity>
-    <entity name="Itemcategory" representedClassName="Itemcategory" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="catInTrips" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CatInTrip" inverseName="category" inverseEntity="CatInTrip" syncable="YES"/>
-    </entity>
     <entity name="Receipt" representedClassName="Receipt" syncable="YES">
         <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="time" optional="YES" attributeType="Date" syncable="YES"/>
@@ -69,16 +69,16 @@
         <relationship name="mainCurrency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="trips" inverseEntity="Currency" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Itemcategory" positionX="-279" positionY="-189" width="128" height="73"/>
-        <element name="CatInTrip" positionX="-54" positionY="-180" width="128" height="88"/>
         <element name="Currency" positionX="63" positionY="72" width="128" height="118"/>
         <element name="Day" positionX="88" positionY="-79" width="128" height="133"/>
         <element name="DayCurrency" positionX="-146" positionY="110" width="128" height="88"/>
-        <element name="Group" positionX="207" positionY="194" width="128" height="103"/>
-        <element name="Guy" positionX="556" positionY="189" width="128" height="73"/>
-        <element name="GuyInGroup" positionX="385" positionY="189" width="128" height="73"/>
-        <element name="Item" positionX="-297" positionY="-27" width="128" height="133"/>
         <element name="Receipt" positionX="-101" positionY="-88" width="128" height="133"/>
         <element name="Trip" positionX="369" positionY="-103" width="128" height="148"/>
+        <element name="Category" positionX="-279" positionY="-189" width="128" height="73"/>
+        <element name="Item" positionX="-297" positionY="-27" width="128" height="133"/>
+        <element name="Group" positionX="207" positionY="194" width="128" height="103"/>
+        <element name="GuyInGroup" positionX="385" positionY="189" width="128" height="73"/>
+        <element name="Guy" positionX="556" positionY="189" width="128" height="73"/>
+        <element name="CatInTrip" positionX="-54" positionY="-180" width="128" height="88"/>
     </elements>
 </model>
