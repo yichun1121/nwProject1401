@@ -1,8 +1,8 @@
 //
-//  Category.h
+//  Itemcategory.h
 //  TryTravel2gether
 //
-//  Created by YICHUN on 2014/3/24.
+//  Created by vincent on 2014/3/24.
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 
@@ -11,13 +11,13 @@
 
 @class CatInTrip;
 
-@interface Category : NSManagedObject
+@interface Itemcategory : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet *catInTrips;
 @end
 
-@interface Category (CoreDataGeneratedAccessors)
+@interface Itemcategory (CoreDataGeneratedAccessors)
 
 - (void)addCatInTripsObject:(CatInTrip *)value;
 - (void)removeCatInTripsObject:(CatInTrip *)value;

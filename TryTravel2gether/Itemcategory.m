@@ -1,16 +1,16 @@
 //
-//  Category.m
+//  Itemcategory.m
 //  TryTravel2gether
 //
-//  Created by YICHUN on 2014/3/24.
+//  Created by vincent on 2014/3/24.
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 
-#import "Category.h"
+#import "Itemcategory.h"
 #import "CatInTrip.h"
 
 
-@implementation Category
+@implementation Itemcategory
 
 @dynamic name;
 @dynamic catInTrips;

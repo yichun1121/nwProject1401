@@ -14,6 +14,8 @@
 		04858D4018AA63F000A81340 /* DayDetailTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04858D3F18AA63F000A81340 /* DayDetailTVC.m */; };
 		04A04665188A4B5D00D98809 /* AddReceiptTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A04664188A4B5D00D98809 /* AddReceiptTVC.m */; };
 		04ED46F018A64CAF004EA22E /* Trip+Days.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ED46EF18A64CAF004EA22E /* Trip+Days.m */; };
+		BF1B4EBB18E07CD6004841FE /* Itemcategory.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1B4EBA18E07CD6004841FE /* Itemcategory.m */; };
+		BF1B4EBE18E07CD7004841FE /* CatInTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1B4EBD18E07CD7004841FE /* CatInTrip.m */; };
 		C903A89B18D46D76009708C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C903A89A18D46D76009708C6 /* Images.xcassets */; };
 		C909F35318D00FE600E02B8D /* CurrencyCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C909F35218D00FE600E02B8D /* CurrencyCDTVC.m */; };
 		C909F36E18D0125800E02B8D /* DayCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = C909F36D18D0125800E02B8D /* DayCurrency.m */; };
@@ -25,10 +27,8 @@
 		C9D28AF618E00B9E00304370 /* Receipt.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D28AF518E00B9E00304370 /* Receipt.m */; };
 		C9D28AF918E00B9F00304370 /* GuyInGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D28AF818E00B9F00304370 /* GuyInGroup.m */; };
 		C9D28AFC18E00B9F00304370 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D28AFB18E00B9F00304370 /* Trip.m */; };
-		C9D28AFF18E00B9F00304370 /* CatInTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D28AFE18E00B9F00304370 /* CatInTrip.m */; };
 		C9D28B0218E00B9F00304370 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D28B0118E00B9F00304370 /* Group.m */; };
 		C9D28B0518E00B9F00304370 /* Guy.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D28B0418E00B9F00304370 /* Guy.m */; };
-		C9D28B0818E00B9F00304370 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D28B0718E00B9F00304370 /* Category.m */; };
 		C9D28B0B18E00B9F00304370 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D28B0A18E00B9F00304370 /* Item.m */; };
 		C9DB0004186B187D00F3B008 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DB0003186B187D00F3B008 /* Foundation.framework */; };
 		C9DB0006186B187D00F3B008 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DB0005186B187D00F3B008 /* CoreGraphics.framework */; };
@@ -79,6 +79,10 @@
 		04E6AF7818AF6AFB007714A3 /* Model 3_MoneyType.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 3_MoneyType.xcdatamodel"; sourceTree = "<group>"; };
 		04ED46EE18A64CAF004EA22E /* Trip+Days.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Trip+Days.h"; sourceTree = "<group>"; };
 		04ED46EF18A64CAF004EA22E /* Trip+Days.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Trip+Days.m"; sourceTree = "<group>"; };
+		BF1B4EB918E07CD6004841FE /* Itemcategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Itemcategory.h; sourceTree = "<group>"; };
+		BF1B4EBA18E07CD6004841FE /* Itemcategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Itemcategory.m; sourceTree = "<group>"; };
+		BF1B4EBC18E07CD7004841FE /* CatInTrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatInTrip.h; sourceTree = "<group>"; };
+		BF1B4EBD18E07CD7004841FE /* CatInTrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatInTrip.m; sourceTree = "<group>"; };
 		C903A89A18D46D76009708C6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C909F35118D00FE600E02B8D /* CurrencyCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyCDTVC.h; sourceTree = "<group>"; };
 		C909F35218D00FE600E02B8D /* CurrencyCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyCDTVC.m; sourceTree = "<group>"; };
@@ -96,21 +100,17 @@
 		C964B93018D42FDC002EF48C /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
 		C964B93218D43061002EF48C /* Day.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Day.h; sourceTree = "<group>"; };
 		C964B93318D43061002EF48C /* Day.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Day.m; sourceTree = "<group>"; };
-		C9D28ADB18DFFFC200304370 /* Model 4_ItemCategoryGuyGroup.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Model 4_ItemCategoryGuyGroup.xcdatamodel"; sourceTree = "<group>"; };
+		C9D28ADB18DFFFC200304370 /* Model 4_ItemCategoryGuyGroup.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 4_ItemCategoryGuyGroup.xcdatamodel"; sourceTree = "<group>"; };
 		C9D28AF418E00B9E00304370 /* Receipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Receipt.h; sourceTree = "<group>"; };
 		C9D28AF518E00B9E00304370 /* Receipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Receipt.m; sourceTree = "<group>"; };
 		C9D28AF718E00B9F00304370 /* GuyInGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuyInGroup.h; sourceTree = "<group>"; };
 		C9D28AF818E00B9F00304370 /* GuyInGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuyInGroup.m; sourceTree = "<group>"; };
 		C9D28AFA18E00B9F00304370 /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
 		C9D28AFB18E00B9F00304370 /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
-		C9D28AFD18E00B9F00304370 /* CatInTrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatInTrip.h; sourceTree = "<group>"; };
-		C9D28AFE18E00B9F00304370 /* CatInTrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatInTrip.m; sourceTree = "<group>"; };
 		C9D28B0018E00B9F00304370 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		C9D28B0118E00B9F00304370 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		C9D28B0318E00B9F00304370 /* Guy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Guy.h; sourceTree = "<group>"; };
 		C9D28B0418E00B9F00304370 /* Guy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Guy.m; sourceTree = "<group>"; };
-		C9D28B0618E00B9F00304370 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
-		C9D28B0718E00B9F00304370 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
 		C9D28B0918E00B9F00304370 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		C9D28B0A18E00B9F00304370 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		C9DB0000186B187D00F3B008 /* TryTravel2gether.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TryTravel2gether.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -248,6 +248,10 @@
 			children = (
 				C9DB003C186B197400F3B008 /* TourModel.xcdatamodeld */,
 				C9F80492187A333D00EE4EDE /* Model.xcdatamodeld */,
+				BF1B4EBC18E07CD7004841FE /* CatInTrip.h */,
+				BF1B4EBD18E07CD7004841FE /* CatInTrip.m */,
+				BF1B4EB918E07CD6004841FE /* Itemcategory.h */,
+				BF1B4EBA18E07CD6004841FE /* Itemcategory.m */,
 				C9D28AFA18E00B9F00304370 /* Trip.h */,
 				C9D28AFB18E00B9F00304370 /* Trip.m */,
 				04ED46EE18A64CAF004EA22E /* Trip+Days.h */,
@@ -262,10 +266,6 @@
 				C9D28AF518E00B9E00304370 /* Receipt.m */,
 				C9D28B0918E00B9F00304370 /* Item.h */,
 				C9D28B0A18E00B9F00304370 /* Item.m */,
-				C9D28B0618E00B9F00304370 /* Category.h */,
-				C9D28B0718E00B9F00304370 /* Category.m */,
-				C9D28AFD18E00B9F00304370 /* CatInTrip.h */,
-				C9D28AFE18E00B9F00304370 /* CatInTrip.m */,
 				C9D28B0318E00B9F00304370 /* Guy.h */,
 				C9D28B0418E00B9F00304370 /* Guy.m */,
 				C9D28B0018E00B9F00304370 /* Group.h */,
@@ -376,7 +376,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = nw;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = NW;
 				TargetAttributes = {
 					C9DB0020186B187E00F3B008 = {
@@ -442,7 +442,6 @@
 				C9D28B0B18E00B9F00304370 /* Item.m in Sources */,
 				C90D484118DADC7500367316 /* NWUserSettings.m in Sources */,
 				C9F804FD187AA42C00EE4EDE /* TripDetailTVC.m in Sources */,
-				C9D28B0818E00B9F00304370 /* Category.m in Sources */,
 				C9F804FA187A74DB00EE4EDE /* CoreDataTableViewController.m in Sources */,
 				0409B6F51893BEAE000C6DF6 /* AddDayTVC.m in Sources */,
 				C9DB0010186B187E00F3B008 /* main.m in Sources */,
@@ -457,9 +456,10 @@
 				C9D28AF918E00B9F00304370 /* GuyInGroup.m in Sources */,
 				C909F35318D00FE600E02B8D /* CurrencyCDTVC.m in Sources */,
 				040A631F188ADB7B0084A3EC /* CoreDataTableViewCell.m in Sources */,
+				BF1B4EBE18E07CD7004841FE /* CatInTrip.m in Sources */,
 				C909F36E18D0125800E02B8D /* DayCurrency.m in Sources */,
 				C9F804F7187A733000EE4EDE /* nwAppDelegate.m in Sources */,
-				C9D28AFF18E00B9F00304370 /* CatInTrip.m in Sources */,
+				BF1B4EBB18E07CD6004841FE /* Itemcategory.m in Sources */,
 				C9DB001A186B187E00F3B008 /* nwViewController.m in Sources */,
 				C9D28AF618E00B9E00304370 /* Receipt.m in Sources */,
 				C9DB003E186B197400F3B008 /* TourModel.xcdatamodeld in Sources */,
@@ -513,7 +513,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -552,7 +551,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -610,7 +608,6 @@
 		C9DB0036186B187E00F3B008 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TryTravel2gether.app/TryTravel2gether";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -633,7 +630,6 @@
 		C9DB0037186B187E00F3B008 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TryTravel2gether.app/TryTravel2gether";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
