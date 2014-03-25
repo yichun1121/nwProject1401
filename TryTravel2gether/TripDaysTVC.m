@@ -241,13 +241,16 @@
     [UIView animateWithDuration: 0.4f
                      animations:^{
                          //animations裡面是終點位置
+                         //先改變contentSize，底下需多撐一個picker的高度
                          self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height+itemSize.height);
-                         self.tableView.contentOffset=CGPointMake(0, self.tableView.contentSize.height-self.tableView.frame.size.height);
+                         //如果加了picker之後的content高度大於螢幕高度，才需要移到最下面
+                         if (self.tableView.contentSize.height>self.tableView.frame.size.height) {
+                             self.tableView.contentOffset=CGPointMake(0, self.tableView.contentSize.height-self.tableView.frame.size.height);
+                         }
                      }
                      completion:^(BOOL finished) {} ];
 }
-/*!實作UIDatePicker的Changed delegate
- */
+
 - (void) datePickerDateChanged:(UIDatePicker *)paramDatePicker {
     //find the current selected cell row in the table view
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];

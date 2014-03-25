@@ -105,24 +105,6 @@ static NSInteger sPickerCellHeight=162;
 //    }
 
 }
-#pragma mark - 每次點選row的時候會做的事
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //TODO:不知道為什麼要用row判斷，不用row會錯
-    BOOL hasBeTapped=(indexPath.row==self.actingCellIndexPath.row);
-    UITableViewCell *clickedCell=[self.tableView cellForRowAtIndexPath:indexPath];
-    //if (clickedCell==self.timeCell||clickedCell==self.dateCell) {
-    if (clickedCell==self.timeCell) {
-        //如果剛剛點了同個DateCell的話就代表想要關掉picker，故把actingDateCellIndexPath設nil
-        if (hasBeTapped) {
-            self.actingCellIndexPath=nil;
-        }else{
-            self.actingCellIndexPath=indexPath;
-        }
-        // 為了讓picker展開或關閉，需要重新整理tableView，beginUpdates和endUpdates
-        [self.tableView beginUpdates];
-        [self.tableView endUpdates];
-    }
-}
 
 #pragma mark - Table view data source
 #pragma mark 負責長cell的高度，也在這設定actingPicker（每次會因為tableView beginUpdates和endUpdates重畫）
@@ -262,5 +244,23 @@ static NSInteger sPickerCellHeight=162;
 -(void)currencyWasSelectedInCurrencyCDTVC:(CurrencyCDTVC *)controller{
     [self setAllCurrencyWithCurrency:controller.selectedCurrency];
     [controller.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark 監測點選row時候的事件
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //TODO:不知道為什麼要用row判斷，不用row會錯
+    BOOL hasBeTapped=(indexPath.row==self.actingCellIndexPath.row);
+    UITableViewCell *clickedCell=[self.tableView cellForRowAtIndexPath:indexPath];
+    //if (clickedCell==self.timeCell||clickedCell==self.dateCell) {
+    if (clickedCell==self.timeCell) {
+        //如果剛剛點了同個DateCell的話就代表想要關掉picker，故把actingDateCellIndexPath設nil
+        if (hasBeTapped) {
+            self.actingCellIndexPath=nil;
+        }else{
+            self.actingCellIndexPath=indexPath;
+        }
+        // 為了讓picker展開或關閉，需要重新整理tableView，beginUpdates和endUpdates
+        [self.tableView beginUpdates];
+        [self.tableView endUpdates];
+    }
 }
 @end

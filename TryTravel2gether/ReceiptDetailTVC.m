@@ -23,10 +23,28 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *dateCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *timeCell;
 @property NSIndexPath * actingCellIndexPath;
+@property (strong,nonatomic) UIDatePicker *timePicker;
 
 @end
 
 @implementation ReceiptDetailTVC
+@synthesize timePicker=_timePicker;
+
+-(UIDatePicker *)timePicker{
+    if(_timePicker == nil){
+        _timePicker = [[UIDatePicker alloc] init];
+        _timePicker.date=[self.dateFormatter dateFromString: self.selectedDayString];
+        
+        
+        [_timePicker addTarget:self
+                   action:@selector(pickerChanged:)
+         forControlEvents:UIControlEventValueChanged];
+        _timePicker.datePickerMode = UIDatePickerModeTime;
+        //NSString *datetimeString=[self.dateCell.detailTextLabel.text stringByAppendingString:self.timeCell.detailTextLabel.text];
+        _timePicker.date=[self.timeFormatter dateFromString:self.timeCell.detailTextLabel.text];
+    }
+    return _timePicker;
+}
 
 - (void)viewDidLoad
 {
@@ -48,6 +66,7 @@
     //-----顯示day資訊-----------
     [self configureTheCell];
 }
+#pragma mark - 事件
 -(void)save:(id)sender{
     Day *selectedDay=[self getTripDayByDate:self.selectedDayString];
     self.receipt.desc = self.desc.text;
@@ -63,13 +82,52 @@
     [self.delegate theSaveButtonOnTheAddReceiptWasTapped:self];
     NSLog(@"Telling the DayDetailTVC Delegate that Save was tapped on the DayDetailTVC");
 }
-
+- (void) pickerChanged:(UIDatePicker *)paramDatePicker {
+    //find the current selected cell row in the table view
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    UITableViewCell *clickCell=[self.tableView cellForRowAtIndexPath:indexPath];
+    clickCell.detailTextLabel.text=[self.timeFormatter stringFromDate:paramDatePicker.date];
+}
 /*!設定currentCurrency還有頁面相關顯示
  */
 -(void)setAllCurrencyWithCurrency:(Currency *)currency{
     self.currentCurrency=currency;
     self.currency.detailTextLabel.text=currency.standardSign;
     self.currencySign.text=currency.sign;
+}
+-(void)setPickerFrame:(UIDatePicker *)picker WithIndexPath:(NSIndexPath *)indexPath{
+    //find the current table view size
+    CGRect screenRect = [self.view bounds];
+    CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPath];
+    //find the date picker size
+    CGSize pickerSize = [self.timePicker sizeThatFits:CGSizeZero];
+    
+    //set the picker frame
+    NSLog(@"screenRect.y=%f,lastcell.y=%f",screenRect.origin.y,cellRect.origin.y);
+    CGRect pickerRect = CGRectMake(0.0,
+                                   cellRect.origin.y+cellRect.size.height,
+                                   pickerSize.width,
+                                   pickerSize.height);
+    
+    
+    self.timePicker.frame = pickerRect;
+}
+
+/*!動畫設定，讓某大小之物件，動作流暢呈現至畫面最底
+ */
+-(void)animateToPlaceWithItemSize:(CGSize)itemSize{
+    //下面這是動畫設定，讓動作流暢到位：[UIView animateWithDuration: animations: completion: ];
+    [UIView animateWithDuration: 0.4f
+                     animations:^{
+                         //animations裡面是終點位置
+                         //先改變contentSize，底下需多撐一個picker的高度
+                         self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height+itemSize.height);
+                         //如果加了picker之後的content高度大於螢幕高度，才需要移到最下面
+                         if (self.tableView.contentSize.height>self.tableView.frame.size.height) {
+                             self.tableView.contentOffset=CGPointMake(0, self.tableView.contentSize.height-self.tableView.frame.size.height);
+                         }
+                     }
+                     completion:^(BOOL finished) {} ];
 }
 
 #pragma mark - Table view data source
@@ -202,5 +260,24 @@
     [self setAllCurrencyWithCurrency:controller.selectedCurrency];
     [controller.navigationController popViewControllerAnimated:YES];
 }
-
+#pragma mark 監測點選row時候的事件
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *clickCell=[self.tableView cellForRowAtIndexPath:indexPath];
+    if (clickCell==self.timeCell) {
+        bool hasBeTapped=NO;
+        if(indexPath.row==self.actingCellIndexPath.row){
+            hasBeTapped=YES;
+        }
+        if (hasBeTapped) {
+            self.actingCellIndexPath=nil;
+            [self.timePicker removeFromSuperview];
+        }else{
+            self.actingCellIndexPath=indexPath;
+            [self setPickerFrame:self.timePicker WithIndexPath:indexPath];
+            //add the picker to the view
+            [self.view addSubview:self.timePicker];
+            [self animateToPlaceWithItemSize:[self.timePicker sizeThatFits:CGSizeZero]];
+        }
+    }
+}
 @end
