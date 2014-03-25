@@ -102,9 +102,9 @@
     NSDateComponents * dateComponents=[[NSDateComponents alloc]init];
     dateComponents=[[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:tripDay.inTrip.startDate toDate:tripDay.date options:0];
     if (dateComponents.day>=0) {
-        result=dateComponents.day+1;
+        result=(int)dateComponents.day+1;
     }else{
-        result=dateComponents.day;
+        result=(int)dateComponents.day;
     }
     return result;
 }
@@ -133,7 +133,7 @@
 }
 
 
-#pragma mark - Segue Settings
+#pragma mark - ➤ Navigation：Segue Settings
 
 // 內建，準備Segue的method
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

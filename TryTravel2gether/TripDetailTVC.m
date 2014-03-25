@@ -123,6 +123,7 @@ static NSInteger sPickerCellHeight=162;
     }
 }
 
+#pragma mark - ➤ Navigation：Segue Settings
 // 內建，準備Segue的method
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"Currency Segue"]){

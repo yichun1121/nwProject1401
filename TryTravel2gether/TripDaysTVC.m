@@ -1,3 +1,4 @@
+
 //
 //  TripDaysTVC.m
 //  TryTravel2gether
@@ -14,7 +15,8 @@
 @interface TripDaysTVC ()
 @property NSDateFormatter *dateFormatter;
 @property NSIndexPath *actingDateCellIndexPath;
-@property (weak, nonatomic) UIDatePicker *datePicker;
+@property (strong, nonatomic) UIDatePicker *datePicker;
+//只要是程式生的ui（不是畫在storyboard裡的）如果才生成就不見，就考慮用strong
 @end
 
 @implementation TripDaysTVC
@@ -165,6 +167,7 @@
         
         [self.delegate dayWasSelectedInTripDaysTVC:self];
     }else{
+        //點選PUSH那行
         bool hasBeTapped=NO;
         if (indexPath.row==self.actingDateCellIndexPath.row) {
             hasBeTapped=YES;
@@ -207,8 +210,8 @@
     
     
     [picker addTarget:self
-                        action:@selector(datePickerDateChanged:)
-              forControlEvents:UIControlEventValueChanged];
+                action:@selector(datePickerDateChanged:)
+      forControlEvents:UIControlEventValueChanged];
     picker.datePickerMode = UIDatePickerModeDate;
     return picker;
 }

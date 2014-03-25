@@ -24,6 +24,7 @@
 		C964B92E18D42BBB002EF48C /* Day+Expend.m in Sources */ = {isa = PBXBuildFile; fileRef = C964B92D18D42BBB002EF48C /* Day+Expend.m */; };
 		C964B93118D42FDC002EF48C /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = C964B93018D42FDC002EF48C /* Currency.m */; };
 		C964B93418D43061002EF48C /* Day.m in Sources */ = {isa = PBXBuildFile; fileRef = C964B93318D43061002EF48C /* Day.m */; };
+		C980686718E0B4C200841064 /* ReceiptDetailTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C980686618E0B4C200841064 /* ReceiptDetailTVC.m */; };
 		C9D28AF618E00B9E00304370 /* Receipt.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D28AF518E00B9E00304370 /* Receipt.m */; };
 		C9D28AF918E00B9F00304370 /* GuyInGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D28AF818E00B9F00304370 /* GuyInGroup.m */; };
 		C9D28AFC18E00B9F00304370 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D28AFB18E00B9F00304370 /* Trip.m */; };
@@ -100,6 +101,8 @@
 		C964B93018D42FDC002EF48C /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
 		C964B93218D43061002EF48C /* Day.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Day.h; sourceTree = "<group>"; };
 		C964B93318D43061002EF48C /* Day.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Day.m; sourceTree = "<group>"; };
+		C980686518E0B4C200841064 /* ReceiptDetailTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptDetailTVC.h; sourceTree = "<group>"; };
+		C980686618E0B4C200841064 /* ReceiptDetailTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptDetailTVC.m; sourceTree = "<group>"; };
 		C9D28ADB18DFFFC200304370 /* Model 4_ItemCategoryGuyGroup.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 4_ItemCategoryGuyGroup.xcdatamodel"; sourceTree = "<group>"; };
 		C9D28AF418E00B9E00304370 /* Receipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Receipt.h; sourceTree = "<group>"; };
 		C9D28AF518E00B9E00304370 /* Receipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Receipt.m; sourceTree = "<group>"; };
@@ -319,6 +322,8 @@
 				04A04664188A4B5D00D98809 /* AddReceiptTVC.m */,
 				C909F35118D00FE600E02B8D /* CurrencyCDTVC.h */,
 				C909F35218D00FE600E02B8D /* CurrencyCDTVC.m */,
+				C980686518E0B4C200841064 /* ReceiptDetailTVC.h */,
+				C980686618E0B4C200841064 /* ReceiptDetailTVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -376,7 +381,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = nw;
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = NW;
 				TargetAttributes = {
 					C9DB0020186B187E00F3B008 = {
@@ -462,6 +467,7 @@
 				BF1B4EC118E08127004841FE /* Itemcategory.m in Sources */,
 				C9DB001A186B187E00F3B008 /* nwViewController.m in Sources */,
 				C9D28AF618E00B9E00304370 /* Receipt.m in Sources */,
+				C980686718E0B4C200841064 /* ReceiptDetailTVC.m in Sources */,
 				C9DB003E186B197400F3B008 /* TourModel.xcdatamodeld in Sources */,
 				C964B92E18D42BBB002EF48C /* Day+Expend.m in Sources */,
 				C9D28B0218E00B9F00304370 /* Group.m in Sources */,
@@ -513,7 +519,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -552,7 +557,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -610,7 +614,6 @@
 		C9DB0036186B187E00F3B008 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TryTravel2gether.app/TryTravel2gether";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -633,7 +636,6 @@
 		C9DB0037186B187E00F3B008 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TryTravel2gether.app/TryTravel2gether";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

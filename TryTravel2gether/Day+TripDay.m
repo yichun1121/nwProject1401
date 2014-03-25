@@ -18,9 +18,9 @@
     NSDateComponents * dateComponents=[[NSDateComponents alloc]init];
     dateComponents=[[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:self.inTrip.startDate toDate:self.date options:0];
     if (dateComponents.day>=0) {
-        result=dateComponents.day+1;
+        result=(int)dateComponents.day+1;
     }else{
-        result=dateComponents.day;
+        result=(int)dateComponents.day;
     }
     return result;
 }
