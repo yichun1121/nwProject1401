@@ -14,6 +14,8 @@
 		04858D4018AA63F000A81340 /* DayDetailTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04858D3F18AA63F000A81340 /* DayDetailTVC.m */; };
 		04A04665188A4B5D00D98809 /* AddReceiptTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A04664188A4B5D00D98809 /* AddReceiptTVC.m */; };
 		04ED46F018A64CAF004EA22E /* Trip+Days.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ED46EF18A64CAF004EA22E /* Trip+Days.m */; };
+		18B8143F18E6E9740089BF0B /* AddGuyTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8143E18E6E9740089BF0B /* AddGuyTVC.m */; };
+		18B8144218E6E9B80089BF0B /* GuysCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8144118E6E9B80089BF0B /* GuysCDTVC.m */; };
 		BF1B4EC118E08127004841FE /* Itemcategory.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1B4EC018E08127004841FE /* Itemcategory.m */; };
 		BF1B4EC418E08128004841FE /* CatInTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1B4EC318E08128004841FE /* CatInTrip.m */; };
 		C903A89B18D46D76009708C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C903A89A18D46D76009708C6 /* Images.xcassets */; };
@@ -80,6 +82,10 @@
 		04E6AF7818AF6AFB007714A3 /* Model 3_MoneyType.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 3_MoneyType.xcdatamodel"; sourceTree = "<group>"; };
 		04ED46EE18A64CAF004EA22E /* Trip+Days.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Trip+Days.h"; sourceTree = "<group>"; };
 		04ED46EF18A64CAF004EA22E /* Trip+Days.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Trip+Days.m"; sourceTree = "<group>"; };
+		18B8143D18E6E9740089BF0B /* AddGuyTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddGuyTVC.h; sourceTree = "<group>"; };
+		18B8143E18E6E9740089BF0B /* AddGuyTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddGuyTVC.m; sourceTree = "<group>"; };
+		18B8144018E6E9B80089BF0B /* GuysCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuysCDTVC.h; sourceTree = "<group>"; };
+		18B8144118E6E9B80089BF0B /* GuysCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuysCDTVC.m; sourceTree = "<group>"; };
 		BF1B4EBF18E08127004841FE /* Itemcategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Itemcategory.h; sourceTree = "<group>"; };
 		BF1B4EC018E08127004841FE /* Itemcategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Itemcategory.m; sourceTree = "<group>"; };
 		BF1B4EC218E08128004841FE /* CatInTrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatInTrip.h; sourceTree = "<group>"; };
@@ -296,6 +302,8 @@
 		C9F804A1187A34B400EE4EDE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				18B8144018E6E9B80089BF0B /* GuysCDTVC.h */,
+				18B8144118E6E9B80089BF0B /* GuysCDTVC.m */,
 				040A631D188ADB7B0084A3EC /* CoreDataTableViewCell.h */,
 				040A631E188ADB7B0084A3EC /* CoreDataTableViewCell.m */,
 				C9F804F8187A74DB00EE4EDE /* CoreDataTableViewController.h */,
@@ -324,6 +332,8 @@
 				C909F35218D00FE600E02B8D /* CurrencyCDTVC.m */,
 				C980686518E0B4C200841064 /* ReceiptDetailTVC.h */,
 				C980686618E0B4C200841064 /* ReceiptDetailTVC.m */,
+				18B8143D18E6E9740089BF0B /* AddGuyTVC.h */,
+				18B8143E18E6E9740089BF0B /* AddGuyTVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -442,6 +452,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18B8143F18E6E9740089BF0B /* AddGuyTVC.m in Sources */,
 				C9F804AA187A4C9B00EE4EDE /* AddTripTVC.m in Sources */,
 				C95AFA031886733B00DF057E /* DaysCDTVC.m in Sources */,
 				C9D28B0B18E00B9F00304370 /* Item.m in Sources */,
@@ -467,6 +478,7 @@
 				BF1B4EC118E08127004841FE /* Itemcategory.m in Sources */,
 				C9DB001A186B187E00F3B008 /* nwViewController.m in Sources */,
 				C9D28AF618E00B9E00304370 /* Receipt.m in Sources */,
+				18B8144218E6E9B80089BF0B /* GuysCDTVC.m in Sources */,
 				C980686718E0B4C200841064 /* ReceiptDetailTVC.m in Sources */,
 				C9DB003E186B197400F3B008 /* TourModel.xcdatamodeld in Sources */,
 				C964B92E18D42BBB002EF48C /* Day+Expend.m in Sources */,
