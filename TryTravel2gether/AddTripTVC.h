@@ -40,9 +40,5 @@
 
 #pragma mark - 新增加的內容for picker action
 @property (strong,nonatomic) NSIndexPath *actingDateCellIndexPath;      //一定要設strong
-@property (strong,nonatomic) NSIndexPath *actingPickerCellIndexPath;    //一定要設strong
-
-@property (weak, nonatomic) IBOutlet UIDatePicker *startPicker;
-@property (weak, nonatomic) IBOutlet UIDatePicker *endPicker;
 
 @end
