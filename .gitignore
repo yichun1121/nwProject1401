@@ -36,3 +36,6 @@ profile
 DerivedData
 *.hmap
 *.xccheckout
+#Pods - for those of you who use CocoaPods
+Pods
+.idea/
