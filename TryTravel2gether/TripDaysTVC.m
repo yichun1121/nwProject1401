@@ -14,7 +14,7 @@
 @interface TripDaysTVC ()
 @property NSDateFormatter *dateFormatter;
 @property NSIndexPath *actingDateCellIndexPath;
-@property (weak, nonatomic) UIDatePicker *datePicker;
+@property (strong, nonatomic) UIDatePicker *datePicker;
 @end
 
 @implementation TripDaysTVC
