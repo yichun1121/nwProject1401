@@ -1355,8 +1355,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="x24-EA-ln3"/>
         <segue reference="KZj-iX-YmC"/>
+        <segue reference="fuU-qV-pe9"/>
         <segue reference="r1V-Ci-7uc"/>
     </inferredMetricsTieBreakers>
 </document>

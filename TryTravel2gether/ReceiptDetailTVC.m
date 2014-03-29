@@ -42,6 +42,7 @@
         _timePicker.datePickerMode = UIDatePickerModeTime;
         //NSString *datetimeString=[self.dateCell.detailTextLabel.text stringByAppendingString:self.timeCell.detailTextLabel.text];
         _timePicker.date=[self.timeFormatter dateFromString:self.timeCell.detailTextLabel.text];
+        _timePicker.backgroundColor=[UIColor whiteColor];
     }
     return _timePicker;
 }
@@ -97,20 +98,14 @@
 }
 -(void)setPickerFrame:(UIDatePicker *)picker WithIndexPath:(NSIndexPath *)indexPath{
     //find the current table view size
-    CGRect screenRect = [self.view bounds];
     CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPath];
     //find the date picker size
     CGSize pickerSize = [self.timePicker sizeThatFits:CGSizeZero];
     
-    //set the picker frame
-    NSLog(@"screenRect.y=%f,lastcell.y=%f",screenRect.origin.y,cellRect.origin.y);
-    CGRect pickerRect = CGRectMake(0.0,
-                                   cellRect.origin.y+cellRect.size.height,
-                                   pickerSize.width,
-                                   pickerSize.height);
-    
-    
-    self.timePicker.frame = pickerRect;
+    self.timePicker.frame = CGRectMake(0.0,
+                                       cellRect.origin.y+cellRect.size.height,
+                                       pickerSize.width,
+                                       pickerSize.height);
 }
 
 /*!動畫設定，讓某大小之物件，動作流暢呈現至畫面最底
@@ -120,12 +115,18 @@
     [UIView animateWithDuration: 0.4f
                      animations:^{
                          //animations裡面是終點位置
+                         
+                         //TODO: picker的移位目前還是有問題，需測試tableviewcell很多行但picker從中間生成的時候
+                         
+                         
                          //先改變contentSize，底下需多撐一個picker的高度
                          self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height+itemSize.height);
                          //如果加了picker之後的content高度大於螢幕高度，才需要移到最下面
                          if (self.tableView.contentSize.height>self.tableView.frame.size.height) {
                              self.tableView.contentOffset=CGPointMake(0, self.tableView.contentSize.height-self.tableView.frame.size.height);
                          }
+                         
+                        
                      }
                      completion:^(BOOL finished) {} ];
 }
@@ -270,7 +271,10 @@
         }
         if (hasBeTapped) {
             self.actingCellIndexPath=nil;
+            //把剛剛加的picker高度扣回去
+            self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height-[self.timePicker sizeThatFits:CGSizeZero].height);
             [self.timePicker removeFromSuperview];
+
         }else{
             self.actingCellIndexPath=indexPath;
             [self setPickerFrame:self.timePicker WithIndexPath:indexPath];
@@ -278,6 +282,15 @@
             [self.view addSubview:self.timePicker];
             [self animateToPlaceWithItemSize:[self.timePicker sizeThatFits:CGSizeZero]];
         }
+        // 想要改變cell高度，需要重新整理tableView，beginUpdates和endUpdates
+        //[self.tableView beginUpdates];
+        //[self.tableView endUpdates];
     }
+}
+//下面這個目前沒有使用
+#pragma mark 負責長cell的高度，也在這設定actingPicker（每次會因為tableView beginUpdates和endUpdates重畫）
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CGFloat height=self.tableView.rowHeight;
+    return height;
 }
 @end
