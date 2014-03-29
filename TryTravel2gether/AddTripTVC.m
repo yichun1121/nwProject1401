@@ -197,7 +197,7 @@
     
     //算出起始和結束期間共需幾天
     //double dayCount= ([endDate timeIntervalSinceDate:startDate]/86400)+1;
-    int dayCount= [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:startDate toDate:endDate options:0].day+1;
+    int dayCount= (int)[[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:startDate toDate:endDate options:0].day+1;
     
     for (int i=0; i<dayCount; i++) {
         Day *day= [NSEntityDescription insertNewObjectForEntityForName:@"Day"
@@ -212,7 +212,7 @@
     return days;
 }
 
-
+#pragma mark - ➤ Navigation：Segue Settings
 // 內建，準備Segue的method
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"Currency Segue"]){

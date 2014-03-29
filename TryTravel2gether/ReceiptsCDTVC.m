@@ -9,6 +9,7 @@
 #import "ReceiptsCDTVC.h"
 #import "DayCurrency.h"
 #import "Currency.h"
+#import "ReceiptDetailTVC.h"
 
 @interface ReceiptsCDTVC ()
 @property NSDateFormatter *dateFormatter;
@@ -82,6 +83,8 @@
     cell.detailTextLabel.text=[NSString stringWithFormat:@"%@ %@",moneyTypeSign,receipt.total];
     return cell;
 }
+
+#pragma mark - ➤ Navigation：Segue Settings
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString: @"Add Receipt Segue From Receipts"]) {
         NSLog(@"Setting ReceiptsCDTVC as a delegate of AddReceiptTVC");
@@ -90,6 +93,14 @@
         addReceiptTVC.managedObjectContext=self.managedObjectContext;
         addReceiptTVC.currentTrip=self.currentDay.inTrip;
         //addReceiptTVC.selectedDayString=[self.dateFormatter stringFromDate:self.currentDay.date];
+    }else if ([segue.identifier isEqualToString:@"Receipt Detail Segue"]){
+        NSLog(@"Setting ReceiptsCDTVC as a delegate of ReceiptDetailTVC");
+        ReceiptDetailTVC * receiptDetailTVC=segue.destinationViewController;
+        receiptDetailTVC.delegate=self;
+        receiptDetailTVC.managedObjectContext=self.managedObjectContext;
+        NSIndexPath *indexPath=[self.tableView indexPathForCell:sender];;
+        self.selectedReceipt=[self.fetchedResultsController objectAtIndexPath:indexPath];
+        receiptDetailTVC.receipt=self.selectedReceipt;
     }
 }
 #pragma mark - Deleting（紅➖）+Inserting(綠➕）

@@ -1,3 +1,4 @@
+
 //
 //  TripDaysTVC.m
 //  TryTravel2gether
@@ -15,6 +16,7 @@
 @property NSDateFormatter *dateFormatter;
 @property NSIndexPath *actingDateCellIndexPath;
 @property (strong, nonatomic) UIDatePicker *datePicker;
+//只要是程式生的ui（不是畫在storyboard裡的）如果才生成就不見，就考慮用strong
 @end
 
 @implementation TripDaysTVC
@@ -23,6 +25,7 @@
 @synthesize delegate;
 @synthesize selectedDayString;
 @synthesize actingDateCellIndexPath;
+@synthesize datePicker=_datePicker;
 
 //-(void)viewWillAppear:(BOOL)animated{
 //    [super viewWillAppear:animated];
@@ -68,6 +71,20 @@
     _fetchedResultsController.delegate = self;
     
 	return _fetchedResultsController;
+}
+
+-(UIDatePicker *)datePicker{
+    if(_datePicker == nil){
+        _datePicker = [[UIDatePicker alloc] init];
+        _datePicker.date=[self.dateFormatter dateFromString: self.selectedDayString];
+        
+        [_datePicker addTarget:self
+                   action:@selector(pickerChanged:)
+         forControlEvents:UIControlEventValueChanged];
+        _datePicker.datePickerMode = UIDatePickerModeDate;
+        _datePicker.backgroundColor=[UIColor whiteColor];
+    }
+    return _datePicker;
 }
 
 -(void)viewDidLoad{
@@ -165,6 +182,7 @@
         
         [self.delegate dayWasSelectedInTripDaysTVC:self];
     }else{
+        //點選PUSH那行
         bool hasBeTapped=NO;
         if (indexPath.row==self.actingDateCellIndexPath.row) {
             hasBeTapped=YES;
@@ -175,6 +193,8 @@
             //selectedDayString在pickerChanged的時候就設好了
             //self.selectedDayString=clickCell.detailTextLabel.text;
             
+            //把剛剛加的picker高度扣回去
+            self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height-[self.datePicker sizeThatFits:CGSizeZero].height);
             [self.datePicker removeFromSuperview];
             
             [self.delegate dayWasSelectedInTripDaysTVC:self];
@@ -184,33 +204,12 @@
             UITableViewCell *clickCell=[self.tableView cellForRowAtIndexPath:indexPath];
             clickCell.detailTextLabel.text=self.selectedDayString;
 
-            self.datePicker=[self getDatePickerAtIndexPath:indexPath];
             [self setPickerFrame:self.datePicker WithIndexPath:indexPath];
             //add the picker to the view
             [self.view addSubview:self.datePicker];
             [self animateToPlaceWithItemSize:[self.datePicker sizeThatFits:CGSizeZero]];
         }
     }
-}
-
--(UIDatePicker *)getDatePickerAtIndexPath:(NSIndexPath *)indexPath{
-
-
-    UIDatePicker *picker;
-    if(self.datePicker == nil){
-        picker = [[UIDatePicker alloc] init];
-        
-    }else{
-        picker=self.datePicker;
-    }
-    picker.date=[self.dateFormatter dateFromString: self.selectedDayString];
-    
-    
-    [picker addTarget:self
-                        action:@selector(datePickerDateChanged:)
-              forControlEvents:UIControlEventValueChanged];
-    picker.datePickerMode = UIDatePickerModeDate;
-    return picker;
 }
 
 -(void)setPickerFrame:(UIDatePicker *)picker WithIndexPath:(NSIndexPath *)indexPath{
@@ -227,7 +226,6 @@
                                    pickerSize.width,
                                    pickerSize.height);
     
-    
     self.datePicker.frame = pickerRect;
 }
 
@@ -238,14 +236,17 @@
     [UIView animateWithDuration: 0.4f
                      animations:^{
                          //animations裡面是終點位置
+                         //先改變contentSize，底下需多撐一個picker的高度
                          self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height+itemSize.height);
-                         self.tableView.contentOffset=CGPointMake(0, self.tableView.contentSize.height-self.tableView.frame.size.height);
+                         //如果加了picker之後的content高度大於螢幕高度，才需要移到最下面
+                         if (self.tableView.contentSize.height>self.tableView.frame.size.height) {
+                             self.tableView.contentOffset=CGPointMake(0, self.tableView.contentSize.height-self.tableView.frame.size.height);
+                         }
                      }
                      completion:^(BOOL finished) {} ];
 }
-/*!實作UIDatePicker的Changed delegate
- */
-- (void) datePickerDateChanged:(UIDatePicker *)paramDatePicker {
+
+- (void) pickerChanged:(UIDatePicker *)paramDatePicker {
     //find the current selected cell row in the table view
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     UITableViewCell *clickCell=[self.tableView cellForRowAtIndexPath:indexPath];
