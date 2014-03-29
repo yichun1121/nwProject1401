@@ -58,6 +58,7 @@ static NSInteger sPickerCellHeight=162;
     [self.trip setName:self.tripName.text];
     self.trip.startDate=[self.dateFormatter dateFromString:self.startDate.detailTextLabel.text];
     self.trip.endDate=[self.dateFormatter dateFromString:self.endDate.detailTextLabel.text];
+    self.trip.mainCurrency=self.currentCurrency;
     
     [self.managedObjectContext save:nil];  // write to database
     
@@ -123,6 +124,7 @@ static NSInteger sPickerCellHeight=162;
     }
 }
 
+#pragma mark - ➤ Navigation：Segue Settings
 // 內建，準備Segue的method
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"Currency Segue"]){

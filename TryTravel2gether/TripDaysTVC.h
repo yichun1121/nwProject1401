@@ -15,7 +15,7 @@
 @end
 
 @interface TripDaysTVC : UITableViewController<NSFetchedResultsControllerDelegate>
-@property (weak,nonatomic)id delegate;
+@property (strong,nonatomic)id delegate;
 
 
 @property (strong,nonatomic)NSManagedObjectContext *managedObjectContext;

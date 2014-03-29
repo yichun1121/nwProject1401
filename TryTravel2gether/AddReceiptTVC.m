@@ -67,18 +67,25 @@ static NSInteger sPickerCellHeight=162;
     }
     self.timeCell.detailTextLabel.text=[self.timeFormatter stringFromDate:[NSDate date]];
 }
+/*!設定currentCurrency還有頁面相關顯示
+ */
+-(void)setAllCurrencyWithCurrency:(Currency *)currency{
+    self.currentCurrency=currency;
+    self.currency.detailTextLabel.text=currency.standardSign;
+    self.currencySign.text=currency.sign;
+}
+
+#pragma mark - 事件
 -(IBAction)save:(id)sender{
-    NSLog(@"Telling the AddReceiptTVC Delegate that Save was tapped on the AddReceiptTVC");
-    
     Receipt *receipt = [NSEntityDescription insertNewObjectForEntityForName:@"Receipt"
-                                               inManagedObjectContext:self.managedObjectContext];
+                                                     inManagedObjectContext:self.managedObjectContext];
     
     Day *selectedDay=[self getTripDayByDate:self.selectedDayString];
     receipt.desc = self.desc.text;
     receipt.total=[NSNumber numberWithDouble:[self.totalPrice.text doubleValue]];
     receipt.time=[self.timeFormatter dateFromString:self.timeCell.detailTextLabel.text];
     receipt.day=selectedDay;
-
+    
     receipt.dayCurrency=[self getDayCurrencyWithTripDay:selectedDay Currency:self.currentCurrency];
     
     
@@ -87,6 +94,35 @@ static NSInteger sPickerCellHeight=162;
     [self.delegate theSaveButtonOnTheAddReceiptWasTapped:self];
     
 }
+- (IBAction)pickerChanged:(UIDatePicker *)sender {
+    if (sender==self.timePicker) {
+        self.timeCell.detailTextLabel.text=[self.timeFormatter stringFromDate: sender.date];
+    }
+//    else if(sender==self.datePicker){
+//        NSString *dateString=[self.dateFormatter stringFromDate:sender.date];
+//        self.dateCell.detailTextLabel.text=dateString;
+//        self.selectedDayString=dateString;
+//    }
+
+}
+
+#pragma mark - Table view data source
+#pragma mark 負責長cell的高度，也在這設定actingPicker（每次會因為tableView beginUpdates和endUpdates重畫）
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CGFloat result=self.tableView.rowHeight;
+    if (indexPath.row==ktimePicker) {
+        if (indexPath.row-1==self.actingCellIndexPath.row) {
+            /*如果正在執行的actingDateCell是正在畫的這行的上一行
+             代表點選了dateCell，而現在正要把picker展開回原始高度。*/
+            result=sPickerCellHeight;
+        }else{
+            result=0;
+        }
+    }
+    return result;
+}
+
+#pragma mark - ▣ CRUD_TripDay+DayCurrency
 /*!以yyyy/MM/dd的日期字串取得本旅程中對應的Day，如果沒有這天，回傳nil
  */
 -(Day *)getTripDayByDate:(NSString *)dateString{
@@ -114,7 +150,7 @@ static NSInteger sPickerCellHeight=162;
     NSLog(@"Create the new day in the current trip.");
     
     Day *day = [NSEntityDescription insertNewObjectForEntityForName:@"Day"
-                                                     inManagedObjectContext:self.managedObjectContext];
+                                             inManagedObjectContext:self.managedObjectContext];
     day.name=@"";
     day.date=date;
     day.inTrip=self.currentTrip;
@@ -124,67 +160,11 @@ static NSInteger sPickerCellHeight=162;
     [self.managedObjectContext save:nil];  // write to database
     return day;
 }
-
-#pragma mark - PickerChange事件
-
-- (IBAction)pickerChanged:(UIDatePicker *)sender {
-    if (sender==self.timePicker) {
-        self.timeCell.detailTextLabel.text=[self.timeFormatter stringFromDate: sender.date];
-    }
-//    else if(sender==self.datePicker){
-//        NSString *dateString=[self.dateFormatter stringFromDate:sender.date];
-//        self.dateCell.detailTextLabel.text=dateString;
-//        self.selectedDayString=dateString;
-//    }
-
-}
-
-#pragma mark - 每次點選row的時候會做的事
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //TODO:不知道為什麼要用row判斷，不用row會錯
-    BOOL hasBeTapped=(indexPath.row==self.actingCellIndexPath.row);
-    UITableViewCell *clickedCell=[self.tableView cellForRowAtIndexPath:indexPath];
-    //if (clickedCell==self.timeCell||clickedCell==self.dateCell) {
-    if (clickedCell==self.timeCell) {
-        //如果剛剛點了同個DateCell的話就代表想要關掉picker，故把actingDateCellIndexPath設nil
-        if (hasBeTapped) {
-            self.actingCellIndexPath=nil;
-        }else{
-            self.actingCellIndexPath=indexPath;
-        }
-        // 為了讓picker展開或關閉，需要重新整理tableView，beginUpdates和endUpdates
-        [self.tableView beginUpdates];
-        [self.tableView endUpdates];
-    }
-}
-#pragma mark - Table view data source
-#pragma mark 負責長cell的高度，也在這設定actingPicker（每次會因為tableView beginUpdates和endUpdates重畫）
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat result=self.tableView.rowHeight;
-    if (indexPath.row==ktimePicker) {
-        if (indexPath.row-1==self.actingCellIndexPath.row) {
-            /*如果正在執行的actingDateCell是正在畫的這行的上一行
-             代表點選了dateCell，而現在正要把picker展開回原始高度。*/
-            result=sPickerCellHeight;
-        }else{
-            result=0;
-        }
-    }
-    return result;
-}
-/*!設定currentCurrency還有頁面相關顯示
- */
--(void)setAllCurrencyWithCurrency:(Currency *)currency{
-    self.currentCurrency=currency;
-    self.currency.detailTextLabel.text=currency.standardSign;
-    self.currencySign.text=currency.sign;
-}
-
 -(DayCurrency *)getDayCurrencyWithTripDay:(Day *)tripDay Currency:(Currency *)currency{
-//    //-----Date Formatter----------
-//    NSDateFormatter *dateFormatter;
-//    dateFormatter=[[NSDateFormatter alloc]init];
-//    dateFormatter.dateFormat=@"yyyy/MM/dd";
+    //    //-----Date Formatter----------
+    //    NSDateFormatter *dateFormatter;
+    //    dateFormatter=[[NSDateFormatter alloc]init];
+    //    dateFormatter.dateFormat=@"yyyy/MM/dd";
     
     NSString *dateString=[ self.dateFormatter stringFromDate:tripDay.date];
     NSLog(@"Find the DayCurrency in trip:%@, date:%@, currency:%@ ...",tripDay.inTrip.name,dateString,currency.standardSign);
@@ -223,8 +203,8 @@ static NSInteger sPickerCellHeight=162;
     return dayCurrency;
 }
 
-#pragma mark - Segue Settings
 
+#pragma mark - ➤ Navigation：Segue Settings
 // 內建，準備Segue的method
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"Trip Day Segue"]) {
@@ -255,7 +235,6 @@ static NSInteger sPickerCellHeight=162;
     [textField resignFirstResponder];
     return YES;
 }
-
 -(void)dayWasSelectedInTripDaysTVC:(TripDaysTVC *)controller{
     self.selectedDayString=controller.selectedDayString;
     self.dateCell.detailTextLabel.text=controller.selectedDayString;
@@ -265,5 +244,23 @@ static NSInteger sPickerCellHeight=162;
 -(void)currencyWasSelectedInCurrencyCDTVC:(CurrencyCDTVC *)controller{
     [self setAllCurrencyWithCurrency:controller.selectedCurrency];
     [controller.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark 監測點選row時候的事件
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //TODO:不知道為什麼要用row判斷，不用row會錯
+    BOOL hasBeTapped=(indexPath.row==self.actingCellIndexPath.row);
+    UITableViewCell *clickedCell=[self.tableView cellForRowAtIndexPath:indexPath];
+    //if (clickedCell==self.timeCell||clickedCell==self.dateCell) {
+    if (clickedCell==self.timeCell) {
+        //如果剛剛點了同個DateCell的話就代表想要關掉picker，故把actingDateCellIndexPath設nil
+        if (hasBeTapped) {
+            self.actingCellIndexPath=nil;
+        }else{
+            self.actingCellIndexPath=indexPath;
+        }
+        // 為了讓picker展開或關閉，需要重新整理tableView，beginUpdates和endUpdates
+        [self.tableView beginUpdates];
+        [self.tableView endUpdates];
+    }
 }
 @end
