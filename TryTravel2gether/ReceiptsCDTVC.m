@@ -10,6 +10,7 @@
 #import "DayCurrency.h"
 #import "Currency.h"
 #import "ReceiptDetailTVC.h"
+#import "ItemsCDTVC.h"
 
 @interface ReceiptsCDTVC ()
 @property NSDateFormatter *dateFormatter;
@@ -87,11 +88,19 @@
 #pragma mark - ➤ Navigation：Segue Settings
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString: @"Add Receipt Segue From Receipts"]) {
-        NSLog(@"Setting ReceiptsCDTVC as a delegate of AddReceiptTVC");
+        NSLog(@"Setting %@ as a delegate of AddReceiptTVC",self.class);
         AddReceiptTVC *addReceiptTVC=segue.destinationViewController;
         addReceiptTVC.delegate=self;
         addReceiptTVC.managedObjectContext=self.managedObjectContext;
         addReceiptTVC.currentTrip=self.currentDay.inTrip;
+        //addReceiptTVC.selectedDayString=[self.dateFormatter stringFromDate:self.currentDay.date];
+    }else if ([segue.identifier isEqualToString:@"Add Receipt Segue From Receipts Button"]) {
+        NSLog(@"Setting %@ as a delegate of AddReceiptTVC",self.class);
+        AddReceiptTVC *addReceiptTVC=segue.destinationViewController;
+        addReceiptTVC.delegate=self;
+        addReceiptTVC.managedObjectContext=self.managedObjectContext;
+        addReceiptTVC.currentTrip=self.currentDay.inTrip;
+        addReceiptTVC.selectedDayString=[self.dateFormatter stringFromDate:self.currentDay.date];
         //addReceiptTVC.selectedDayString=[self.dateFormatter stringFromDate:self.currentDay.date];
     }else if ([segue.identifier isEqualToString:@"Receipt Detail Segue"]){
         NSLog(@"Setting ReceiptsCDTVC as a delegate of ReceiptDetailTVC");
@@ -101,6 +110,13 @@
         NSIndexPath *indexPath=[self.tableView indexPathForCell:sender];;
         self.selectedReceipt=[self.fetchedResultsController objectAtIndexPath:indexPath];
         receiptDetailTVC.receipt=self.selectedReceipt;
+    }else if([segue.identifier isEqualToString:@"Items List Segue From Receipts"]){
+        NSLog(@"Setting ReceiptsCDTVC as a delegate of ItemsCDTVC");
+        ItemsCDTVC *itemsCDTVC=segue.destinationViewController;
+        NSIndexPath *indexPath=[self.tableView indexPathForCell:sender];
+        self.selectedReceipt=[self.fetchedResultsController objectAtIndexPath:indexPath];
+        itemsCDTVC.currentReceipt=self.selectedReceipt;
+        itemsCDTVC.managedObjectContext=self.managedObjectContext;
     }
 }
 #pragma mark - Deleting（紅➖）+Inserting(綠➕）

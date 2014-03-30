@@ -24,7 +24,11 @@
 		C964B92E18D42BBB002EF48C /* Day+Expend.m in Sources */ = {isa = PBXBuildFile; fileRef = C964B92D18D42BBB002EF48C /* Day+Expend.m */; };
 		C964B93118D42FDC002EF48C /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = C964B93018D42FDC002EF48C /* Currency.m */; };
 		C964B93418D43061002EF48C /* Day.m in Sources */ = {isa = PBXBuildFile; fileRef = C964B93318D43061002EF48C /* Day.m */; };
+		C97365F218E6EA170060583A /* ItemsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C97365F118E6EA170060583A /* ItemsCDTVC.m */; };
 		C980686718E0B4C200841064 /* ReceiptDetailTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C980686618E0B4C200841064 /* ReceiptDetailTVC.m */; };
+		C9C4097B18E7247600E1F3FE /* AddItemTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C4097A18E7247600E1F3FE /* AddItemTVC.m */; };
+		C9C4097E18E73D6700E1F3FE /* Receipt+Calculate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C4097D18E73D6700E1F3FE /* Receipt+Calculate.m */; };
+		C9C4098418E8758900E1F3FE /* NWCustCellTitleSubDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9C4098318E8758900E1F3FE /* NWCustCellTitleSubDetail.xib */; };
 		C9D28AF618E00B9E00304370 /* Receipt.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D28AF518E00B9E00304370 /* Receipt.m */; };
 		C9D28AF918E00B9F00304370 /* GuyInGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D28AF818E00B9F00304370 /* GuyInGroup.m */; };
 		C9D28AFC18E00B9F00304370 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D28AFB18E00B9F00304370 /* Trip.m */; };
@@ -37,13 +41,13 @@
 		C9DB000E186B187E00F3B008 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9DB000C186B187E00F3B008 /* InfoPlist.strings */; };
 		C9DB0010186B187E00F3B008 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DB000F186B187E00F3B008 /* main.m */; };
 		C9DB0017186B187E00F3B008 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9DB0015186B187E00F3B008 /* Main.storyboard */; };
-		C9DB001A186B187E00F3B008 /* nwViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DB0019186B187E00F3B008 /* nwViewController.m */; };
 		C9DB0023186B187E00F3B008 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DB0022186B187E00F3B008 /* XCTest.framework */; };
 		C9DB0024186B187E00F3B008 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DB0003186B187D00F3B008 /* Foundation.framework */; };
 		C9DB0025186B187E00F3B008 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9DB0007186B187D00F3B008 /* UIKit.framework */; };
 		C9DB002D186B187E00F3B008 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9DB002B186B187E00F3B008 /* InfoPlist.strings */; };
 		C9DB002F186B187E00F3B008 /* TryTravel2getherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DB002E186B187E00F3B008 /* TryTravel2getherTests.m */; };
 		C9DB003E186B197400F3B008 /* TourModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C9DB003C186B197400F3B008 /* TourModel.xcdatamodeld */; };
+		C9F64D3618E709A00005ED24 /* NWCustCellTitleSubDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F64D3518E709A00005ED24 /* NWCustCellTitleSubDetail.m */; };
 		C9F80494187A333D00EE4EDE /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C9F80492187A333D00EE4EDE /* Model.xcdatamodeld */; };
 		C9F804A4187A355900EE4EDE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F804A3187A355900EE4EDE /* CoreData.framework */; };
 		C9F804A7187A4C7800EE4EDE /* TripsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F804A6187A4C7800EE4EDE /* TripsCDTVC.m */; };
@@ -101,8 +105,15 @@
 		C964B93018D42FDC002EF48C /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
 		C964B93218D43061002EF48C /* Day.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Day.h; sourceTree = "<group>"; };
 		C964B93318D43061002EF48C /* Day.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Day.m; sourceTree = "<group>"; };
+		C97365F018E6EA170060583A /* ItemsCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsCDTVC.h; sourceTree = "<group>"; };
+		C97365F118E6EA170060583A /* ItemsCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsCDTVC.m; sourceTree = "<group>"; };
 		C980686518E0B4C200841064 /* ReceiptDetailTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptDetailTVC.h; sourceTree = "<group>"; };
 		C980686618E0B4C200841064 /* ReceiptDetailTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptDetailTVC.m; sourceTree = "<group>"; };
+		C9C4097918E7247600E1F3FE /* AddItemTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddItemTVC.h; sourceTree = "<group>"; };
+		C9C4097A18E7247600E1F3FE /* AddItemTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddItemTVC.m; sourceTree = "<group>"; };
+		C9C4097C18E73D6700E1F3FE /* Receipt+Calculate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Receipt+Calculate.h"; sourceTree = "<group>"; };
+		C9C4097D18E73D6700E1F3FE /* Receipt+Calculate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Receipt+Calculate.m"; sourceTree = "<group>"; };
+		C9C4098318E8758900E1F3FE /* NWCustCellTitleSubDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NWCustCellTitleSubDetail.xib; path = NWCust/NWCustCellTitleSubDetail.xib; sourceTree = "<group>"; };
 		C9D28ADB18DFFFC200304370 /* Model 4_ItemCategoryGuyGroup.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 4_ItemCategoryGuyGroup.xcdatamodel"; sourceTree = "<group>"; };
 		C9D28AF418E00B9E00304370 /* Receipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Receipt.h; sourceTree = "<group>"; };
 		C9D28AF518E00B9E00304370 /* Receipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Receipt.m; sourceTree = "<group>"; };
@@ -125,14 +136,14 @@
 		C9DB000F186B187E00F3B008 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C9DB0011186B187E00F3B008 /* TryTravel2gether-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TryTravel2gether-Prefix.pch"; sourceTree = "<group>"; };
 		C9DB0016186B187E00F3B008 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		C9DB0018186B187E00F3B008 /* nwViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nwViewController.h; sourceTree = "<group>"; };
-		C9DB0019186B187E00F3B008 /* nwViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = nwViewController.m; sourceTree = "<group>"; };
 		C9DB0021186B187E00F3B008 /* TryTravel2getherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TryTravel2getherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9DB0022186B187E00F3B008 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		C9DB002A186B187E00F3B008 /* TryTravel2getherTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TryTravel2getherTests-Info.plist"; sourceTree = "<group>"; };
 		C9DB002C186B187E00F3B008 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C9DB002E186B187E00F3B008 /* TryTravel2getherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TryTravel2getherTests.m; sourceTree = "<group>"; };
 		C9DB003D186B197400F3B008 /* TourModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TourModel.xcdatamodel; sourceTree = "<group>"; };
+		C9F64D3418E709A00005ED24 /* NWCustCellTitleSubDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWCustCellTitleSubDetail.h; path = NWCust/NWCustCellTitleSubDetail.h; sourceTree = "<group>"; };
+		C9F64D3518E709A00005ED24 /* NWCustCellTitleSubDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWCustCellTitleSubDetail.m; path = NWCust/NWCustCellTitleSubDetail.m; sourceTree = "<group>"; };
 		C9F80493187A333D00EE4EDE /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		C9F804A3187A355900EE4EDE /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C9F804A5187A4C7800EE4EDE /* TripsCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripsCDTVC.h; sourceTree = "<group>"; };
@@ -181,6 +192,14 @@
 			name = NWClass;
 			sourceTree = "<group>";
 		};
+		C9C4098218E8754000E1F3FE /* CustView */ = {
+			isa = PBXGroup;
+			children = (
+				C9C4098318E8758900E1F3FE /* NWCustCellTitleSubDetail.xib */,
+			);
+			name = CustView;
+			sourceTree = "<group>";
+		};
 		C9DB0001186B187D00F3B008 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,12 +224,14 @@
 		C9DB0009186B187E00F3B008 /* TryTravel2gether */ = {
 			isa = PBXGroup;
 			children = (
+				C9C4098218E8754000E1F3FE /* CustView */,
 				C903A89A18D46D76009708C6 /* Images.xcassets */,
 				C9F804A2187A34EB00EE4EDE /* View */,
 				C9F804F5187A733000EE4EDE /* nwAppDelegate.h */,
 				C9F804F6187A733000EE4EDE /* nwAppDelegate.m */,
 				C9DB003B186B195800F3B008 /* CoreDataModel */,
 				C9F804A1187A34B400EE4EDE /* Controller */,
+				C9F64D3318E708D80005ED24 /* CustController */,
 				C90D483E18DADC1700367316 /* NWClass */,
 				C9DB000A186B187E00F3B008 /* Supporting Files */,
 			);
@@ -266,6 +287,8 @@
 				C964B92C18D42BBB002EF48C /* Day+Expend.h */,
 				C964B92D18D42BBB002EF48C /* Day+Expend.m */,
 				C9D28AF418E00B9E00304370 /* Receipt.h */,
+				C9C4097C18E73D6700E1F3FE /* Receipt+Calculate.h */,
+				C9C4097D18E73D6700E1F3FE /* Receipt+Calculate.m */,
 				C9D28AF518E00B9E00304370 /* Receipt.m */,
 				C9D28B0918E00B9F00304370 /* Item.h */,
 				C9D28B0A18E00B9F00304370 /* Item.m */,
@@ -293,6 +316,15 @@
 			);
 			sourceTree = "<group>";
 		};
+		C9F64D3318E708D80005ED24 /* CustController */ = {
+			isa = PBXGroup;
+			children = (
+				C9F64D3418E709A00005ED24 /* NWCustCellTitleSubDetail.h */,
+				C9F64D3518E709A00005ED24 /* NWCustCellTitleSubDetail.m */,
+			);
+			name = CustController;
+			sourceTree = "<group>";
+		};
 		C9F804A1187A34B400EE4EDE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,8 +332,6 @@
 				040A631E188ADB7B0084A3EC /* CoreDataTableViewCell.m */,
 				C9F804F8187A74DB00EE4EDE /* CoreDataTableViewController.h */,
 				C9F804F9187A74DB00EE4EDE /* CoreDataTableViewController.m */,
-				C9DB0018186B187E00F3B008 /* nwViewController.h */,
-				C9DB0019186B187E00F3B008 /* nwViewController.m */,
 				C9F804A5187A4C7800EE4EDE /* TripsCDTVC.h */,
 				C9F804A6187A4C7800EE4EDE /* TripsCDTVC.m */,
 				C9F804FB187AA42C00EE4EDE /* TripDetailTVC.h */,
@@ -324,6 +354,10 @@
 				C909F35218D00FE600E02B8D /* CurrencyCDTVC.m */,
 				C980686518E0B4C200841064 /* ReceiptDetailTVC.h */,
 				C980686618E0B4C200841064 /* ReceiptDetailTVC.m */,
+				C97365F018E6EA170060583A /* ItemsCDTVC.h */,
+				C97365F118E6EA170060583A /* ItemsCDTVC.m */,
+				C9C4097918E7247600E1F3FE /* AddItemTVC.h */,
+				C9C4097A18E7247600E1F3FE /* AddItemTVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -421,6 +455,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9C4098418E8758900E1F3FE /* NWCustCellTitleSubDetail.xib in Resources */,
 				C9DB000E186B187E00F3B008 /* InfoPlist.strings in Resources */,
 				C903A89B18D46D76009708C6 /* Images.xcassets in Resources */,
 				C9DB0017186B187E00F3B008 /* Main.storyboard in Resources */,
@@ -446,8 +481,11 @@
 				C95AFA031886733B00DF057E /* DaysCDTVC.m in Sources */,
 				C9D28B0B18E00B9F00304370 /* Item.m in Sources */,
 				C90D484118DADC7500367316 /* NWUserSettings.m in Sources */,
+				C97365F218E6EA170060583A /* ItemsCDTVC.m in Sources */,
 				C9F804FD187AA42C00EE4EDE /* TripDetailTVC.m in Sources */,
 				C9F804FA187A74DB00EE4EDE /* CoreDataTableViewController.m in Sources */,
+				C9C4097E18E73D6700E1F3FE /* Receipt+Calculate.m in Sources */,
+				C9C4097B18E7247600E1F3FE /* AddItemTVC.m in Sources */,
 				0409B6F51893BEAE000C6DF6 /* AddDayTVC.m in Sources */,
 				C9DB0010186B187E00F3B008 /* main.m in Sources */,
 				04ED46F018A64CAF004EA22E /* Trip+Days.m in Sources */,
@@ -465,8 +503,8 @@
 				C909F36E18D0125800E02B8D /* DayCurrency.m in Sources */,
 				C9F804F7187A733000EE4EDE /* nwAppDelegate.m in Sources */,
 				BF1B4EC118E08127004841FE /* Itemcategory.m in Sources */,
-				C9DB001A186B187E00F3B008 /* nwViewController.m in Sources */,
 				C9D28AF618E00B9E00304370 /* Receipt.m in Sources */,
+				C9F64D3618E709A00005ED24 /* NWCustCellTitleSubDetail.m in Sources */,
 				C980686718E0B4C200841064 /* ReceiptDetailTVC.m in Sources */,
 				C9DB003E186B197400F3B008 /* TourModel.xcdatamodeld in Sources */,
 				C964B92E18D42BBB002EF48C /* Day+Expend.m in Sources */,
