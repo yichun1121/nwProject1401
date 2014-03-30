@@ -1,5 +1,41 @@
-TryTravel2gether.xcodeproj/project.xcworkspace/xcshareddata/
-TryTravel2gether.xcodeproj/project.xcworkspace/xcuserdata/YICHUN.xcuserdatad/UserInterfaceState.xcuserstate
-TryTravel2gether.xcodeproj/project.xcworkspace/xcuserdata/YICHUN.xcuserdatad/xcdebugger/
-TryTravel2gether.xcodeproj/xcuserdata/YICHUN.xcuserdatad/xcdebugger/
+# github上有專門在維護.gitignore的設定 (Objective-c.gitignore)
+# OS X generated - 主要記錄使用者對於每個資料夾的不同設定 (圖示大小、位置、其它屬性)
+.DS_Store
+
+# Xcode
+# Exclude the build directory
+build/
+
+# Exclude user-specific Xcode 5 files
+*.pbxuser
+!default.pbxuser
+
+*.mode1v3
+!default.mode1v3
+
+*.mode2v3
+!default.mode2v3
+
+*.perspectivev3
+!default.perspectivev3
+
+# 此為資料夾型態，不同的使用者都會產生 (e.g.   your_name.xcuserdatad)
+xcuserdata
+
+# github上面的gitignore，已經將xcworkspace從gitignore中移除。
+# 是否最好移除，尚待查看
+# 原因在此
+*.xcworkspace
+!default.xcworkspace
+
+# The .xccheckout file contains VCS metadata, and should therefore not be checked into the VCS.
 *.xccheckout
+
+profile
+*.moved-aside
+DerivedData
+*.hmap
+*.xccheckout
+#Pods - for those of you who use CocoaPods
+Pods
+.idea/
