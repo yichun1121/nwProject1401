@@ -47,6 +47,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.detailTextLabel=super.detailTextLabel;
+        self.titleTextLabel=super.textLabel;
     }
     return self;
 }
