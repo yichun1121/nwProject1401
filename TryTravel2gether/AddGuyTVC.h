@@ -19,7 +19,7 @@
 
 
 @property (weak, nonatomic) IBOutlet UITextField *guyName;
-@property (weak, nonatomic) IBOutlet UITextField *groupName;//TODO:groupName還沒存到Entity
+
 
 
 

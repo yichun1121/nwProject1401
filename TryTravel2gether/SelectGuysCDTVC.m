@@ -1,17 +1,25 @@
 //
-//  GuysCDTVC.m
+//  SelectGuysTVC.m
 //  TryTravel2gether
 //
-//  Created by apple on 2014/3/29.
+//  Created by apple on 2014/4/5.
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 
-#import "GuysCDTVC.h"
+#import "SelectGuysCDTVC.h"
 
-@implementation GuysCDTVC
+@interface SelectGuysCDTVC ()
 
-@synthesize fetchedResultsController=_fetchedResultsController;
+
+@property NSIndexPath *actingDateCellIndexPath;
+
+@end
+
+@implementation SelectGuysCDTVC
 @synthesize managedObjectContext=_managedObjectContext;
+@synthesize fetchedResultsController=_fetchedResultsController;
+@synthesize delegate;
+@synthesize actingDateCellIndexPath;
 
 
 - (void)viewWillAppear:(BOOL)animated
@@ -19,6 +27,7 @@
     [super viewWillAppear:animated];
     [self setupFetchedResultsController];
 }
+
 
 #pragma mark - FetchedResultsController
 
@@ -48,6 +57,16 @@
 
 
 
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    
+    self.tableView.allowsMultipleSelectionDuringEditing=YES;
+    [self.tableView setEditing:YES animated:YES];
+    
+}
+
+#pragma mark - Table view data source
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Guys Cell";
@@ -67,6 +86,10 @@
     cell.textLabel.text = guy.name;
     return cell;
 }
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+
+}
+
 
 #pragma mark - ➤ Navigation：Segue Settings
 
@@ -74,15 +97,15 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     //判斷是哪條連線（會對應Segue的名稱）
-	if ([segue.identifier isEqualToString:@"Add Guy Segue From Guy List"])
+	if ([segue.identifier isEqualToString:@"Add Guy Segue From Select GuysTVC"])
 	{
-        NSLog(@"Setting GuyCDTVC as a delegate of AddGuyTVC");
+        NSLog(@"Setting SelectGuysTVC as a delegate of AddGuyTVC");
         
         AddGuyTVC *addGuyTVC = segue.destinationViewController;
         addGuyTVC.delegate = self;
         /*
-         已經在AddTripCDTVC裡宣告了一個delegate（是AddTripCDTVCDelegate）
-         addTripCDTVC.delegate=self的意思是：我要監控AddTripCDTVC
+         已經在AddGuyTVC裡宣告了一個delegate（是AddGuyTVCDelegate）
+         addGuyTVC.delegate=self的意思是：我要監控AddGuyCDTVC
          */
         
         addGuyTVC.managedObjectContext=self.managedObjectContext;
@@ -93,30 +116,9 @@
     }
 }
 
-#pragma mark - Deleting
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
-        [self.tableView beginUpdates]; // Avoid  NSInternalInconsistencyException
-        
-        // Delete the role object that was swiped
-        Guy *guyToDelete = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        NSLog(@"Deleting (%@)", guyToDelete.name);
-        [self.managedObjectContext deleteObject:guyToDelete];
-        [self.managedObjectContext save:nil];
-        
-        // Delete the (now empty) row on the table
-        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [self performFetch];
-        
-        [self.tableView endUpdates];
-    }
-}
-
 #pragma mark - Delegation
 /*
- .h檔案宣告時有@interface GuysTVC : UITableViewController <AddGuyTVCDelegate>
+ .h檔案宣告時有@interface SelectGuysTVC : UITableViewController <AddGuyTVCDelegate>
  就要實作AddGuyTVCDelegate宣告的method
  */
 -(void)theSaveButtonOnTheAddGuyWasTapped:(AddGuyTVC *)controller
@@ -125,6 +127,15 @@
     
     // close the delegated view
     [controller.navigationController popViewControllerAnimated:YES];
+    
+    
 }
+
+//TODO:done button還沒有作用
+
+
+
+
+
 
 @end
