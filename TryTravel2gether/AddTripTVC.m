@@ -10,6 +10,7 @@
 #import "Day.h"
 #import "CurrencyCDTVC.h"
 #import "nwUserSettings.h"
+#import "SelectGuysCDTVC.h"
 
 @interface AddTripTVC ()
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
@@ -222,6 +223,12 @@
         currencyCDTVC.delegate=self;
         currencyCDTVC.managedObjectContext=self.managedObjectContext;
         currencyCDTVC.selectedCurrency=self.currentCurrency;
+    }else if([segue.identifier isEqualToString:@"Select Guy Segue"]){
+            NSLog(@"Setting AddTripTVC as a delegate of SelectGuyTVC");
+            SelectGuysCDTVC *selectGuysCDTVC=segue.destinationViewController;
+            selectGuysCDTVC.delegate=self;
+            selectGuysCDTVC.managedObjectContext=self.managedObjectContext;
+        
     }
 }
 
