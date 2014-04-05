@@ -366,6 +366,8 @@
 				C97365F118E6EA170060583A /* ItemsCDTVC.m */,
 				C9C4097918E7247600E1F3FE /* AddItemTVC.h */,
 				C9C4097A18E7247600E1F3FE /* AddItemTVC.m */,
+				18B8143D18E6E9740089BF0B /* AddGuyTVC.h */,
+				18B8143E18E6E9740089BF0B /* AddGuyTVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -514,6 +516,7 @@
 				BF1B4EC118E08127004841FE /* Itemcategory.m in Sources */,
 				C9D28AF618E00B9E00304370 /* Receipt.m in Sources */,
 				C9F64D3618E709A00005ED24 /* NWCustCellTitleSubDetail.m in Sources */,
+				18B8144218E6E9B80089BF0B /* GuysCDTVC.m in Sources */,
 				C980686718E0B4C200841064 /* ReceiptDetailTVC.m in Sources */,
 				C9DB003E186B197400F3B008 /* TourModel.xcdatamodeld in Sources */,
 				C964B92E18D42BBB002EF48C /* Day+Expend.m in Sources */,

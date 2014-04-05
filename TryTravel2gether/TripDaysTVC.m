@@ -16,6 +16,7 @@
 @property NSDateFormatter *dateFormatter;
 @property NSIndexPath *actingDateCellIndexPath;
 @property (strong, nonatomic) UIDatePicker *datePicker;
+//只要是程式生的ui（不是畫在storyboard裡的）如果才生成就不見，就考慮用strong
 @end
 
 @implementation TripDaysTVC

@@ -101,11 +101,10 @@
     int result=0;
     NSDateComponents * dateComponents=[[NSDateComponents alloc]init];
     dateComponents=[[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:tripDay.inTrip.startDate toDate:tripDay.date options:0];
-    int dayCount=(int)dateComponents.day;
     if (dateComponents.day>=0) {
-        result=dayCount+1;
+        result=(int)dateComponents.day+1;
     }else{
-        result=dayCount;
+        result=(int)dateComponents.day;
     }
     return result;
 }

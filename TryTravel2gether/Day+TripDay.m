@@ -17,11 +17,10 @@
     int result=0;
     NSDateComponents * dateComponents=[[NSDateComponents alloc]init];
     dateComponents=[[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:self.inTrip.startDate toDate:self.date options:0];
-    int daycount=(int)dateComponents.day;
     if (dateComponents.day>=0) {
-        result=daycount+1;
+        result=(int)dateComponents.day+1;
     }else{
-        result=daycount;
+        result=(int)dateComponents.day;
     }
     return result;
 }

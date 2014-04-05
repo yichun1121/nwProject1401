@@ -12,7 +12,6 @@
 #import "TripDetailTVC.h" // so this class can be an TripDetailTVCDelegate
 #import "Trip.h"
 
-
 @interface TripsCDTVC : CoreDataTableViewController <AddTripTVCDelegate, TripDetailTVCDelegate>
 /*  
     TripsTVC繼承UITableViewController（父類別只能有一個）
