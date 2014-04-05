@@ -8,7 +8,7 @@
 
 #import "TripsCDTVC.h"
 #import "DaysCDTVC.h"
-#import "GuysCDTVC.h"
+#import "SettingsTVC.h"
 
 @interface TripsCDTVC()
 @property NSDateFormatter *dateFormatter;
@@ -130,14 +130,14 @@
         
         NSLog(@"Passing selected trip (%@) to DaysCDTVC", self.selectedTrip.name);
         daysCDTVC.currentTrip = self.selectedTrip;
-    }else if ([segue.identifier isEqualToString:@"Guys List Segue"])
+    }else if ([segue.identifier isEqualToString:@"Settings Segue"])
     {
-        GuysCDTVC *guysCDTVC = segue.destinationViewController;
+        SettingsTVC *settingsTVC = segue.destinationViewController;
         //NSLog(@"Setting TripsCDTVC as a delegate of GuysTVC");
         //guysTVC.delegate = self;
         //應該不用監控DaysTVC
         
-        guysCDTVC.managedObjectContext = self.managedObjectContext;
+        settingsTVC.managedObjectContext = self.managedObjectContext;
         
     }else {
         NSLog(@"Unidentified Segue Attempted!");

@@ -64,6 +64,7 @@
     self.timeFormatter.dateFormat=@"HH:mm";
 }
 
+#pragma mark - Table view data source
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString * CellIdentifier=@"Receipt Cell";
