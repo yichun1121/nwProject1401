@@ -207,6 +207,67 @@
 			name = NWClass;
 			sourceTree = "<group>";
 		};
+		C913902D18F05EB20069EAC2 /* Trip */ = {
+			isa = PBXGroup;
+			children = (
+				C9F804A5187A4C7800EE4EDE /* TripsCDTVC.h */,
+				C9F804A6187A4C7800EE4EDE /* TripsCDTVC.m */,
+				C9F804FB187AA42C00EE4EDE /* TripDetailTVC.h */,
+				C9F804FC187AA42C00EE4EDE /* TripDetailTVC.m */,
+				C9F804A8187A4C9B00EE4EDE /* AddTripTVC.h */,
+				C9F804A9187A4C9B00EE4EDE /* AddTripTVC.m */,
+			);
+			name = Trip;
+			sourceTree = "<group>";
+		};
+		C913902E18F05EC60069EAC2 /* Guy */ = {
+			isa = PBXGroup;
+			children = (
+				18B8144018E6E9B80089BF0B /* GuysCDTVC.h */,
+				18B8144118E6E9B80089BF0B /* GuysCDTVC.m */,
+				18B8143D18E6E9740089BF0B /* AddGuyTVC.h */,
+				18B8143E18E6E9740089BF0B /* AddGuyTVC.m */,
+			);
+			name = Guy;
+			sourceTree = "<group>";
+		};
+		C913902F18F05ED90069EAC2 /* Day */ = {
+			isa = PBXGroup;
+			children = (
+				C95AFA011886733B00DF057E /* DaysCDTVC.h */,
+				C95AFA021886733B00DF057E /* DaysCDTVC.m */,
+				04858D3E18AA63F000A81340 /* DayDetailTVC.h */,
+				04858D3F18AA63F000A81340 /* DayDetailTVC.m */,
+				0409B6F31893BEAE000C6DF6 /* AddDayTVC.h */,
+				0409B6F41893BEAE000C6DF6 /* AddDayTVC.m */,
+			);
+			name = Day;
+			sourceTree = "<group>";
+		};
+		C913903018F05F320069EAC2 /* Receipt */ = {
+			isa = PBXGroup;
+			children = (
+				C94BF2C3189118940039C6CC /* ReceiptsCDTVC.h */,
+				C94BF2C4189118940039C6CC /* ReceiptsCDTVC.m */,
+				04A04663188A4B5D00D98809 /* AddReceiptTVC.h */,
+				04A04664188A4B5D00D98809 /* AddReceiptTVC.m */,
+				C980686518E0B4C200841064 /* ReceiptDetailTVC.h */,
+				C980686618E0B4C200841064 /* ReceiptDetailTVC.m */,
+			);
+			name = Receipt;
+			sourceTree = "<group>";
+		};
+		C913903118F05F580069EAC2 /* Item */ = {
+			isa = PBXGroup;
+			children = (
+				C97365F018E6EA170060583A /* ItemsCDTVC.h */,
+				C97365F118E6EA170060583A /* ItemsCDTVC.m */,
+				C9C4097918E7247600E1F3FE /* AddItemTVC.h */,
+				C9C4097A18E7247600E1F3FE /* AddItemTVC.m */,
+			);
+			name = Item;
+			sourceTree = "<group>";
+		};
 		C9C4098218E8754000E1F3FE /* CustView */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,12 +346,12 @@
 		C9DB003B186B195800F3B008 /* CoreDataModel */ = {
 			isa = PBXGroup;
 			children = (
+				C9DB003C186B197400F3B008 /* TourModel.xcdatamodeld */,
+				C9F80492187A333D00EE4EDE /* Model.xcdatamodeld */,
 				BF1B4EC218E08128004841FE /* CatInTrip.h */,
 				BF1B4EC318E08128004841FE /* CatInTrip.m */,
 				BF1B4EBF18E08127004841FE /* Itemcategory.h */,
 				BF1B4EC018E08127004841FE /* Itemcategory.m */,
-				C9DB003C186B197400F3B008 /* TourModel.xcdatamodeld */,
-				C9F80492187A333D00EE4EDE /* Model.xcdatamodeld */,
 				C9D28AFA18E00B9F00304370 /* Trip.h */,
 				C9D28AFB18E00B9F00304370 /* Trip.m */,
 				04ED46EE18A64CAF004EA22E /* Trip+Days.h */,
@@ -343,46 +404,25 @@
 		C9F804A1187A34B400EE4EDE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				18B8144018E6E9B80089BF0B /* GuysCDTVC.h */,
-				18B8144118E6E9B80089BF0B /* GuysCDTVC.m */,
 				040A631D188ADB7B0084A3EC /* CoreDataTableViewCell.h */,
 				040A631E188ADB7B0084A3EC /* CoreDataTableViewCell.m */,
 				C9F804F8187A74DB00EE4EDE /* CoreDataTableViewController.h */,
 				C9F804F9187A74DB00EE4EDE /* CoreDataTableViewController.m */,
-				C9F804A5187A4C7800EE4EDE /* TripsCDTVC.h */,
-				C9F804A6187A4C7800EE4EDE /* TripsCDTVC.m */,
-				C9F804FB187AA42C00EE4EDE /* TripDetailTVC.h */,
-				C9F804FC187AA42C00EE4EDE /* TripDetailTVC.m */,
-				C9F804A8187A4C9B00EE4EDE /* AddTripTVC.h */,
-				C9F804A9187A4C9B00EE4EDE /* AddTripTVC.m */,
-				C95AFA011886733B00DF057E /* DaysCDTVC.h */,
-				C95AFA021886733B00DF057E /* DaysCDTVC.m */,
-				04858D3E18AA63F000A81340 /* DayDetailTVC.h */,
-				04858D3F18AA63F000A81340 /* DayDetailTVC.m */,
-				0409B6F31893BEAE000C6DF6 /* AddDayTVC.h */,
-				0409B6F41893BEAE000C6DF6 /* AddDayTVC.m */,
+				C913902D18F05EB20069EAC2 /* Trip */,
+				C913902F18F05ED90069EAC2 /* Day */,
 				040A6323188ADE480084A3EC /* TripDaysTVC.h */,
+				040A6324188ADE480084A3EC /* TripDaysTVC.m */,
 				1859D0FC18F00AD200C93338 /* SelectGuysCDTVC.h */,
 				1859D0FD18F00AD200C93338 /* SelectGuysCDTVC.m */,
-				040A6324188ADE480084A3EC /* TripDaysTVC.m */,
-				C94BF2C3189118940039C6CC /* ReceiptsCDTVC.h */,
-				C94BF2C4189118940039C6CC /* ReceiptsCDTVC.m */,
-				04A04663188A4B5D00D98809 /* AddReceiptTVC.h */,
-				04A04664188A4B5D00D98809 /* AddReceiptTVC.m */,
+				C913903018F05F320069EAC2 /* Receipt */,
+				C913903118F05F580069EAC2 /* Item */,
 				C909F35118D00FE600E02B8D /* CurrencyCDTVC.h */,
 				C909F35218D00FE600E02B8D /* CurrencyCDTVC.m */,
-				C980686518E0B4C200841064 /* ReceiptDetailTVC.h */,
-				C980686618E0B4C200841064 /* ReceiptDetailTVC.m */,
-				C97365F018E6EA170060583A /* ItemsCDTVC.h */,
-				C97365F118E6EA170060583A /* ItemsCDTVC.m */,
-				C9C4097918E7247600E1F3FE /* AddItemTVC.h */,
-				C9C4097A18E7247600E1F3FE /* AddItemTVC.m */,
-				18B8143D18E6E9740089BF0B /* AddGuyTVC.h */,
-				18B8143E18E6E9740089BF0B /* AddGuyTVC.m */,
-				C913902718F01D060069EAC2 /* SettingsTVC.h */,
-				C913902818F01D060069EAC2 /* SettingsTVC.m */,
 				C913902A18F034420069EAC2 /* CategoriesCDTVC.h */,
 				C913902B18F034420069EAC2 /* CategoriesCDTVC.m */,
+				C913902E18F05EC60069EAC2 /* Guy */,
+				C913902718F01D060069EAC2 /* SettingsTVC.h */,
+				C913902818F01D060069EAC2 /* SettingsTVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
