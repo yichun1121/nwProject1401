@@ -516,6 +516,7 @@
 				C9DB0010186B187E00F3B008 /* main.m in Sources */,
 				04ED46F018A64CAF004EA22E /* Trip+Days.m in Sources */,
 				C913902C18F034420069EAC2 /* CategoriesCDTVC.m in Sources */,
+				1859D0FE18F00AD200C93338 /* SelectGuysCDTVC.m in Sources */,
 				04858D4018AA63F000A81340 /* DayDetailTVC.m in Sources */,
 				C964B93118D42FDC002EF48C /* Currency.m in Sources */,
 				0409B6F21892B763000C6DF6 /* Day+TripDay.m in Sources */,
