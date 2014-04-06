@@ -29,6 +29,7 @@
 		C964B92E18D42BBB002EF48C /* Day+Expend.m in Sources */ = {isa = PBXBuildFile; fileRef = C964B92D18D42BBB002EF48C /* Day+Expend.m */; };
 		C964B93118D42FDC002EF48C /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = C964B93018D42FDC002EF48C /* Currency.m */; };
 		C964B93418D43061002EF48C /* Day.m in Sources */ = {isa = PBXBuildFile; fileRef = C964B93318D43061002EF48C /* Day.m */; };
+		C96AC7B318F10EBB0037DA8B /* AddCategoryTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C96AC7B218F10EBB0037DA8B /* AddCategoryTVC.m */; };
 		C97365F218E6EA170060583A /* ItemsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C97365F118E6EA170060583A /* ItemsCDTVC.m */; };
 		C980686718E0B4C200841064 /* ReceiptDetailTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C980686618E0B4C200841064 /* ReceiptDetailTVC.m */; };
 		C9C4097B18E7247600E1F3FE /* AddItemTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C4097A18E7247600E1F3FE /* AddItemTVC.m */; };
@@ -120,6 +121,8 @@
 		C964B93018D42FDC002EF48C /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
 		C964B93218D43061002EF48C /* Day.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Day.h; sourceTree = "<group>"; };
 		C964B93318D43061002EF48C /* Day.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Day.m; sourceTree = "<group>"; };
+		C96AC7B118F10EBB0037DA8B /* AddCategoryTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCategoryTVC.h; sourceTree = "<group>"; };
+		C96AC7B218F10EBB0037DA8B /* AddCategoryTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCategoryTVC.m; sourceTree = "<group>"; };
 		C97365F018E6EA170060583A /* ItemsCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsCDTVC.h; sourceTree = "<group>"; };
 		C97365F118E6EA170060583A /* ItemsCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsCDTVC.m; sourceTree = "<group>"; };
 		C980686518E0B4C200841064 /* ReceiptDetailTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptDetailTVC.h; sourceTree = "<group>"; };
@@ -300,11 +303,11 @@
 		C9DB0009186B187E00F3B008 /* TryTravel2gether */ = {
 			isa = PBXGroup;
 			children = (
-				C9C4098218E8754000E1F3FE /* CustView */,
 				C903A89A18D46D76009708C6 /* Images.xcassets */,
-				C9F804A2187A34EB00EE4EDE /* View */,
 				C9F804F5187A733000EE4EDE /* nwAppDelegate.h */,
 				C9F804F6187A733000EE4EDE /* nwAppDelegate.m */,
+				C9F804A2187A34EB00EE4EDE /* View */,
+				C9C4098218E8754000E1F3FE /* CustView */,
 				C9DB003B186B195800F3B008 /* CoreDataModel */,
 				C9F804A1187A34B400EE4EDE /* Controller */,
 				C9F64D3318E708D80005ED24 /* CustController */,
@@ -423,6 +426,8 @@
 				C913902E18F05EC60069EAC2 /* Guy */,
 				C913902718F01D060069EAC2 /* SettingsTVC.h */,
 				C913902818F01D060069EAC2 /* SettingsTVC.m */,
+				C96AC7B118F10EBB0037DA8B /* AddCategoryTVC.h */,
+				C96AC7B218F10EBB0037DA8B /* AddCategoryTVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -572,6 +577,7 @@
 				C909F36E18D0125800E02B8D /* DayCurrency.m in Sources */,
 				C9F804F7187A733000EE4EDE /* nwAppDelegate.m in Sources */,
 				BF1B4EC118E08127004841FE /* Itemcategory.m in Sources */,
+				C96AC7B318F10EBB0037DA8B /* AddCategoryTVC.m in Sources */,
 				C9D28AF618E00B9E00304370 /* Receipt.m in Sources */,
 				C9F64D3618E709A00005ED24 /* NWCustCellTitleSubDetail.m in Sources */,
 				18B8144218E6E9B80089BF0B /* GuysCDTVC.m in Sources */,

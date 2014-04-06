@@ -7,8 +7,9 @@
 //
 
 #import "CoreDataTableViewController.h"
+#import "AddCategoryTVC.h"
 
-@interface CategoriesCDTVC : CoreDataTableViewController
+@interface CategoriesCDTVC : CoreDataTableViewController<AddCategoryTVCDelegate>
 
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic) NSFetchedResultsController *fetchedResultsController;

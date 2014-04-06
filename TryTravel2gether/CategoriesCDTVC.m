@@ -79,9 +79,18 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"Add Cat Segue From Cat List"]) {
+        AddCategoryTVC * addCategoryTVC=segue.destinationViewController;
+        addCategoryTVC.delegate=self;
+        addCategoryTVC.managedObjectContext=self.managedObjectContext;
+    }
 }
 
+#pragma mark - delegation
+-(void)theSaveButtonOnTheAddCategoryWasTapped:(AddCategoryTVC *)controller
+{
+    
+    [controller.navigationController popViewControllerAnimated:YES];
+}
 
 @end
