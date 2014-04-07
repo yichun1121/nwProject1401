@@ -835,7 +835,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Select Guys" id="Iy2-Sb-AX8">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Xyk-lD-2YH"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Xyk-lD-2YH">
+                            <connections>
+                                <action selector="done:" destination="f57-t3-MmB" id="csv-hv-jYo"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6oH-3C-uAn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1932,9 +1936,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="x24-EA-ln3"/>
-        <segue reference="TUs-AD-ywu"/>
         <segue reference="moX-HC-O6P"/>
         <segue reference="r1V-Ci-7uc"/>
+        <segue reference="x24-EA-ln3"/>
+        <segue reference="sp3-cC-l9s"/>
     </inferredMetricsTieBreakers>
 </document>

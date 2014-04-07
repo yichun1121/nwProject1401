@@ -24,6 +24,7 @@
 @synthesize delegate;
 @synthesize managedObjectContext=_managedObjectContext;
 @synthesize dateFormatter=_dateFormatter;
+@synthesize SelectedGuys=_SelectedGuys;
 
 -(UIDatePicker *) startPicker
 {
@@ -64,6 +65,8 @@
     userSetting.managedObjectContext=self.managedObjectContext;
     self.currentCurrency=[userSetting getDefaultCurrency];
     self.currency.detailTextLabel.text=self.currentCurrency.standardSign;
+    
+    self.SelectedGuys=[NSMutableArray new];
 }
 -(void) save:(id)sender{
     NSLog(@"Telling the AddTripTVC Delegate that Save was tapped on the AddTripTVC");
@@ -219,15 +222,14 @@
     if([segue.identifier isEqualToString:@"Currency Segue"]){
         NSLog(@"Setting AddTripTVC as a delegate of CurrencyCDTVC");
         CurrencyCDTVC *currencyCDTVC=segue.destinationViewController;
-        
         currencyCDTVC.delegate=self;
         currencyCDTVC.managedObjectContext=self.managedObjectContext;
         currencyCDTVC.selectedCurrency=self.currentCurrency;
     }else if([segue.identifier isEqualToString:@"Select Guy Segue"]){
-            NSLog(@"Setting AddTripTVC as a delegate of SelectGuyTVC");
-            SelectGuysCDTVC *selectGuysCDTVC=segue.destinationViewController;
-            selectGuysCDTVC.delegate=self;
-            selectGuysCDTVC.managedObjectContext=self.managedObjectContext;
+        NSLog(@"Setting AddTripTVC as a delegate of SelectGuyTVC");
+        SelectGuysCDTVC *selectGuysCDTVC=segue.destinationViewController;
+        selectGuysCDTVC.delegate=self;
+        selectGuysCDTVC.managedObjectContext=self.managedObjectContext;
         
     }
 }
@@ -243,6 +245,11 @@
 -(void)currencyWasSelectedInCurrencyCDTVC:(CurrencyCDTVC *)controller{
     self.currentCurrency=controller.selectedCurrency;
     self.currency.detailTextLabel.text=self.currentCurrency.standardSign;
+    [controller.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)guyWasSelectedInSelectGuysCDTVC:(SelectGuysCDTVC *)controller{
+    self.SelectedGuys=controller.SelectedGuys;
     [controller.navigationController popViewControllerAnimated:YES];
 }
 @end

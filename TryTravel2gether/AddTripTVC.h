@@ -33,7 +33,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *tripName; //TODO: tripName不知道要weak還是strong
 @property (weak, nonatomic) IBOutlet UITableViewCell *startDate;
 @property (weak, nonatomic) IBOutlet UITableViewCell *endDate;
-
+@property (strong,nonatomic)NSMutableArray *SelectedGuys;
 
 - (IBAction)save:(id)sender;
 

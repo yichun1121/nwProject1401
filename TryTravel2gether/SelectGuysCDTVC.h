@@ -20,7 +20,8 @@
 @property (strong,nonatomic)id delegate;
 @property (strong,nonatomic)NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic)NSFetchedResultsController *fetchedResultsController;
-
+@property (strong,nonatomic)NSMutableArray *SelectedGuys;
+- (IBAction)done:(id)sender;
 
 
 @end
