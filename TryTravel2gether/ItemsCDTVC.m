@@ -125,6 +125,7 @@
         addItemTVC.currentReceipt=self.currentReceipt;
         addItemTVC.delegate=self;
     }
+    
 }
 
 #pragma mark - Deleting（紅➖）+Inserting(綠➕）

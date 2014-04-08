@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Receipt.h"
+#import "SelectCategoryCDTVC.h"
 
 @class AddItemTVC;
 @protocol AddItemTVCDelegate <NSObject>
@@ -15,7 +16,7 @@
 -(void)theSaveButtonOnTheAddItemWasTapped:(AddItemTVC *)controller;
 
 @end
-@interface AddItemTVC : UITableViewController<UITextFieldDelegate>
+@interface AddItemTVC : UITableViewController<UITextFieldDelegate,SelectCategoryCDTVCDelegate>
 
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic) id<AddItemTVCDelegate> delegate;
