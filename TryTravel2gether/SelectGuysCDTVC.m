@@ -63,7 +63,7 @@
     
     self.tableView.allowsMultipleSelectionDuringEditing=YES;
     [self.tableView setEditing:YES animated:YES];
-    self.SelectedGuys=[NSMutableArray new];
+    self.SelectedGuys=[NSMutableSet new];
     
 }
 
@@ -90,11 +90,16 @@
 }
 
 #pragma mark - 每次點選row的時候會做的事
-//將點選的人名存進NSMutableArray
+//將點選的人名存進NSMutableSet
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
    UITableViewCell *clickCell=[self.tableView cellForRowAtIndexPath:indexPath];
     NSString *guysname=clickCell.textLabel.text;
     [self.SelectedGuys addObject:guysname];
+}
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *clickCell=[self.tableView cellForRowAtIndexPath:indexPath];
+    NSString *guysname=clickCell.textLabel.text;
+    [self.SelectedGuys removeObject:guysname];
 }
 
 

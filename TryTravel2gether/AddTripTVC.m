@@ -66,7 +66,10 @@
     self.currentCurrency=[userSetting getDefaultCurrency];
     self.currency.detailTextLabel.text=self.currentCurrency.standardSign;
     
-    self.SelectedGuys=[NSMutableArray new];
+    //-----設定參與者，以及顯示人數
+    self.guysCell.textLabel.text=@"Select Guys";
+    self.guysCell.detailTextLabel.text=[NSString stringWithFormat:@"%d",[self.SelectedGuys count]];
+    self.SelectedGuys=[NSSet new];
 }
 -(void) save:(id)sender{
     NSLog(@"Telling the AddTripTVC Delegate that Save was tapped on the AddTripTVC");
@@ -250,6 +253,7 @@
 
 -(void)guyWasSelectedInSelectGuysCDTVC:(SelectGuysCDTVC *)controller{
     self.SelectedGuys=controller.SelectedGuys;
+    self.guysCell.detailTextLabel.text=[NSString stringWithFormat:@"%d Guys",[self.SelectedGuys count]];
     [controller.navigationController popViewControllerAnimated:YES];
 }
 @end
