@@ -33,10 +33,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *tripName; //TODO: tripName不知道要weak還是strong
 @property (weak, nonatomic) IBOutlet UITableViewCell *startDate;
 @property (weak, nonatomic) IBOutlet UITableViewCell *endDate;
-
+@property (strong,nonatomic)NSSet *SelectedGuys;
 
 - (IBAction)save:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UITableViewCell *guysCell;
 
 #pragma mark - 新增加的內容for picker action
 @property (strong,nonatomic) NSIndexPath *actingDateCellIndexPath;      //一定要設strong

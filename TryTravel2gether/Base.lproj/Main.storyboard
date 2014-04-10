@@ -516,18 +516,25 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Participants" id="b9K-bZ-la9">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="8Ez-Av-bhG">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="YY0-YL-I8P" detailTextLabel="dtb-nj-K4f" style="IBUITableViewCellStyleValue1" id="8Ez-Av-bhG">
                                         <rect key="frame" x="0.0" y="284" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Ez-Av-bhG" id="Hq9-7j-PLY">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select Guys" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qju-2D-QPe">
-                                                    <rect key="frame" x="16" y="11" width="93" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YY0-YL-I8P">
+                                                    <rect key="frame" x="15" y="11" width="33" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dtb-nj-K4f">
+                                                    <rect key="frame" x="241" y="11" width="44" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -554,6 +561,7 @@
                     <connections>
                         <outlet property="currency" destination="Ijm-SX-Z4e" id="I45-p9-vXA"/>
                         <outlet property="endDate" destination="Fcu-M3-cWm" id="BUK-yb-xgS"/>
+                        <outlet property="guysCell" destination="8Ez-Av-bhG" id="rOx-fI-n9o"/>
                         <outlet property="startDate" destination="SNl-ap-fZh" id="aty-S8-hzE"/>
                         <outlet property="tripName" destination="HRL-LE-scw" id="ouo-8y-6Ci"/>
                     </connections>
@@ -897,7 +905,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Select Guys" id="Iy2-Sb-AX8">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Xyk-lD-2YH"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Xyk-lD-2YH">
+                            <connections>
+                                <action selector="done:" destination="f57-t3-MmB" id="csv-hv-jYo"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6oH-3C-uAn" userLabel="First Responder" sceneMemberID="firstResponder"/>
