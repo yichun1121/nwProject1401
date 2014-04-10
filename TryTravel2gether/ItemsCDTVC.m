@@ -152,7 +152,9 @@
     }
 }
 
+
 #pragma mark - 5 steps: 設定編輯模式下僅可以移動cell位置
+//TODO: Item要加index排序才有意義，所以現在還沒有做
 // 須在self.editing=YES;情況下才有作用
 
 // 1. 先設定cell為可編輯模式
@@ -167,9 +169,13 @@
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
-// 3. 將編輯模式時cell左方的delete圖示變成空的
+// 3. 將編輯模式時cell左方的delete圖示變成空的（可是非編輯還是可以delete）
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewCellEditingStyleNone;
+    if (self.tableView.editing) {
+        return UITableViewCellEditingStyleNone;
+    }else{
+        return UITableViewCellEditingStyleDelete;
+    }
 }
 // 4. 回傳編輯模式時，cell需不需要縮排。因為將左方delete圖示清掉，所以cell選擇不縮排
 - (BOOL)tableView:(UITableView *)tableview shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -178,10 +184,6 @@
 // 5. 真正移動時的進入的method
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath{
 }
-
-
-
-
 
 #pragma mark - delegation
 -(void)theSaveButtonOnTheAddItemWasTapped:(AddItemTVC *)controller{
