@@ -12,10 +12,6 @@
 #import "DayCurrency.h"
 #import "Currency.h"
 
-#define ktimePicker 6  //timePicker在第8行
-/*! 展開Picker後的Cell高度
- */
-static NSInteger sPickerCellHeight=162;
 
 @interface AddReceiptTVC ()
 @property NSDateFormatter *dateFormatter;
@@ -24,6 +20,7 @@ static NSInteger sPickerCellHeight=162;
 @property Currency *currentCurrency;
 @property (weak, nonatomic) IBOutlet UITableViewCell *currency;
 @property (weak, nonatomic) IBOutlet UILabel *currencySign;
+@property (strong, nonatomic) IBOutlet UIDatePicker *timePicker;
 
 @property NSIndexPath * actingCellIndexPath;
 @end
@@ -34,6 +31,16 @@ static NSInteger sPickerCellHeight=162;
 @synthesize dateFormatter=_dateFormatter;
 @synthesize timeFormatter=_timeFormatter;
 @synthesize dateTimeFormatter=_dateTimeFormatter;
+
+-(UIDatePicker *) timePicker
+{
+    if (!_timePicker) {
+        _timePicker = [[UIDatePicker alloc] init];
+        _timePicker.datePickerMode=UIDatePickerModeTime;
+        _timePicker.backgroundColor=[UIColor whiteColor];
+    }
+    return _timePicker;
+}
 
 - (void)viewDidLoad
 {
@@ -94,6 +101,8 @@ static NSInteger sPickerCellHeight=162;
     [self.delegate theSaveButtonOnTheAddReceiptWasTapped:self];
     
 }
+
+
 - (IBAction)pickerChanged:(UIDatePicker *)sender {
     if (sender==self.timePicker) {
         self.timeCell.detailTextLabel.text=[self.timeFormatter stringFromDate: sender.date];
@@ -106,21 +115,7 @@ static NSInteger sPickerCellHeight=162;
 
 }
 
-#pragma mark - Table view data source
-#pragma mark 負責長cell的高度，也在這設定actingPicker（每次會因為tableView beginUpdates和endUpdates重畫）
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat result=self.tableView.rowHeight;
-    if (indexPath.row==ktimePicker) {
-        if (indexPath.row-1==self.actingCellIndexPath.row) {
-            /*如果正在執行的actingDateCell是正在畫的這行的上一行
-             代表點選了dateCell，而現在正要把picker展開回原始高度。*/
-            result=sPickerCellHeight;
-        }else{
-            result=0;
-        }
-    }
-    return result;
-}
+
 
 #pragma mark - ▣ CRUD_TripDay+DayCurrency
 /*!以yyyy/MM/dd的日期字串取得本旅程中對應的Day，如果沒有這天，回傳nil
@@ -202,6 +197,74 @@ static NSInteger sPickerCellHeight=162;
     [self.managedObjectContext save:nil];  // write to database
     return dayCurrency;
 }
+#pragma mark - 每次點選row的時候會做的事
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //每次點選row時清除所有的picker
+    for (UIView *subview in [self.view subviews]) {
+        if ([subview isKindOfClass:[UIDatePicker class]]) {
+            [subview removeFromSuperview];
+            self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height-[self.timePicker sizeThatFits:CGSizeZero].height);
+        }
+    }
+    
+    
+    UITableViewCell *clickCell=[self.tableView cellForRowAtIndexPath:indexPath];
+    
+    if (clickCell==self.timeCell) {
+        //TODO:不知道為什麼要用row判斷，不用row會錯
+        BOOL hasBeTapped=indexPath.row==self.actingDateCellIndexPath.row;
+        
+        if (hasBeTapped) {
+            //如果剛剛才按過，表示要關上Picker（不需要原本的actionDateCell了）
+            self.actingDateCellIndexPath=nil;
+        }else{
+            
+            self.actingDateCellIndexPath = indexPath;
+             [self setPickerFrame:self.timePicker  WithIndexPath:indexPath];
+            [self.view addSubview:self.timePicker ];
+            [self animateToPlaceWithItemSize:[self.timePicker  sizeThatFits:CGSizeZero]];
+            [self.timePicker  addTarget:self
+                             action:@selector(pickerChanged:)
+                   forControlEvents:UIControlEventValueChanged];
+        }
+    }else{
+        self.actingDateCellIndexPath=nil;
+    }
+    
+}
+
+-(void)setPickerFrame:(UIDatePicker *)picker WithIndexPath:(NSIndexPath *)indexPath{
+    //find the current table view size
+    CGRect screenRect = [self.view bounds];
+    CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPath];
+    //find the date picker size
+    CGSize pickerSize = [picker sizeThatFits:CGSizeZero];
+    
+    //set the picker frame
+    NSLog(@"screenRect.y=%f,lastcell.y=%f",screenRect.origin.y,cellRect.origin.y);
+    CGRect pickerRect = CGRectMake(0.0,
+                                   cellRect.origin.y+cellRect.size.height,
+                                   pickerSize.width,
+                                   pickerSize.height);
+    picker.frame = pickerRect;
+}
+
+/*!動畫設定，讓某大小之物件，動作流暢呈現至畫面最底
+ */
+-(void)animateToPlaceWithItemSize:(CGSize)itemSize{
+    //下面這是動畫設定，讓動作流暢到位：[UIView animateWithDuration: animations: completion: ];
+    [UIView animateWithDuration: 0.4f
+                     animations:^{
+                         //animations裡面是終點位置
+                         self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height+itemSize.height);
+                         if (self.tableView.contentSize.height > self.tableView.frame.size.height) {
+                             self.tableView.contentOffset=CGPointMake(0, self.tableView.contentSize.height-self.tableView.frame.size.height);
+                         }
+                     }
+                     completion:^(BOOL finished) {} ];
+}
+
+
 
 
 #pragma mark - ➤ Navigation：Segue Settings
@@ -245,22 +308,5 @@ static NSInteger sPickerCellHeight=162;
     [self setAllCurrencyWithCurrency:controller.selectedCurrency];
     [controller.navigationController popViewControllerAnimated:YES];
 }
-#pragma mark 監測點選row時候的事件
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //TODO:不知道為什麼要用row判斷，不用row會錯
-    BOOL hasBeTapped=(indexPath.row==self.actingCellIndexPath.row);
-    UITableViewCell *clickedCell=[self.tableView cellForRowAtIndexPath:indexPath];
-    //if (clickedCell==self.timeCell||clickedCell==self.dateCell) {
-    if (clickedCell==self.timeCell) {
-        //如果剛剛點了同個DateCell的話就代表想要關掉picker，故把actingDateCellIndexPath設nil
-        if (hasBeTapped) {
-            self.actingCellIndexPath=nil;
-        }else{
-            self.actingCellIndexPath=indexPath;
-        }
-        // 為了讓picker展開或關閉，需要重新整理tableView，beginUpdates和endUpdates
-        [self.tableView beginUpdates];
-        [self.tableView endUpdates];
-    }
-}
+
 @end

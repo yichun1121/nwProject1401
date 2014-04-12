@@ -82,25 +82,9 @@
 }
 
 
-#pragma mark 負責長cell的高度，也在這設定actingPicker（每次會因為tableView beginUpdates和endUpdates重畫）
-//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    CGFloat result=self.tableView.rowHeight;
-//    
-//    if (indexPath.row==kStartPicker||indexPath.row==kEndPicker) {
-//        //目前這行的上一行是actingDateCell
-//        if(indexPath.row-1==self.actingDateCellIndexPath.row){
-//            self.actingPickerCellIndexPath=indexPath;
-//            result=sPickerCellHeight;
-//        }else{
-//            result=0;
-//        }
-//    }
-//    return result;
-//}
-
 #pragma mark - 每次點選row的時候會做的事
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    //每次點選row時清除所有的picker
     for (UIView *subview in [self.view subviews]) {
         if ([subview isKindOfClass:[UIDatePicker class]]) {
             [subview removeFromSuperview];
