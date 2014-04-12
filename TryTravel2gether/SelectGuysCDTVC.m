@@ -63,8 +63,13 @@
     
     self.tableView.allowsMultipleSelectionDuringEditing=YES;
     [self.tableView setEditing:YES animated:YES];
-    self.SelectedGuys=[NSMutableSet new];
     
+}
+-(NSMutableSet *)SelectedGuys{
+    if (_SelectedGuys==nil) {
+        _SelectedGuys=[NSMutableSet new];
+    }
+    return _SelectedGuys;
 }
 
 #pragma mark - Table view data source
@@ -92,14 +97,12 @@
 #pragma mark - 每次點選row的時候會做的事
 //將點選的人名存進NSMutableSet
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-   UITableViewCell *clickCell=[self.tableView cellForRowAtIndexPath:indexPath];
-    NSString *guysname=clickCell.textLabel.text;
-    [self.SelectedGuys addObject:guysname];
+   Guy *guy=[self.fetchedResultsController objectAtIndexPath:indexPath];
+   [self.SelectedGuys addObject:guy];
 }
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *clickCell=[self.tableView cellForRowAtIndexPath:indexPath];
-    NSString *guysname=clickCell.textLabel.text;
-    [self.SelectedGuys removeObject:guysname];
+    Guy *guy=[self.fetchedResultsController objectAtIndexPath:indexPath];
+    [self.SelectedGuys removeObject:guy];
 }
 
 
