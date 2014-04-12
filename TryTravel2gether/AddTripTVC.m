@@ -131,6 +131,8 @@
                                  action:@selector(pickerChanged:)
                        forControlEvents:UIControlEventValueChanged];
         }
+    }else{
+         self.actingDateCellIndexPath=nil;
     }
 }
 

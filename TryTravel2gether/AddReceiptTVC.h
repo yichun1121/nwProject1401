@@ -29,7 +29,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *desc;
 @property (weak, nonatomic) IBOutlet UITableViewCell *dateCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *timeCell;
-@property (weak, nonatomic) IBOutlet UIDatePicker *timePicker;
+
 //@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 
 @property (strong,nonatomic) NSString *selectedDayString;
@@ -37,4 +37,7 @@
 
 
 -(IBAction)save:(id)sender;
+
+#pragma mark - 新增加的內容for picker action
+@property (strong,nonatomic) NSIndexPath *actingDateCellIndexPath;      //一定要設strong
 @end
