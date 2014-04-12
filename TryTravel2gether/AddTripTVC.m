@@ -11,6 +11,8 @@
 #import "CurrencyCDTVC.h"
 #import "nwUserSettings.h"
 #import "SelectGuysCDTVC.h"
+#import "Group.h"
+#import "Guy.h"
 
 @interface AddTripTVC ()
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
@@ -82,7 +84,7 @@
     trip.endDate=[self.dateFormatter dateFromString:self.endDate.detailTextLabel.text];
     trip.days=[self creatDefaultDaysFromStartDate:trip.startDate ToEndDate:trip.endDate];
     trip.mainCurrency=self.currentCurrency;
-    
+    trip.groups=self.SelectedGuys;
     
     [self.managedObjectContext save:nil];  // write to database
     
@@ -236,6 +238,26 @@
         
     }
 }
+
+#pragma mark - Group&GuyInGroup
+-(Group *)createGroupInCurrentTrip{
+    NSLog(@"Create the new group in the current trip.");
+    
+    Group *group = [NSEntityDescription insertNewObjectForEntityForName:@"Group"
+                                             inManagedObjectContext:self.managedObjectContext];
+    
+    group.inTrip=self.currentTrip;
+    NSLog(@"Create new Group in AddTripTVC");
+    
+    [self.managedObjectContext save:nil];  // write to database
+    return group;
+}
+//-(void)createDefaultGroupWithGuy{
+//    for (Guy *guy in self.SelectedGuys) {
+//        
+//    }
+//    
+//}
 
 #pragma mark - delegation
 #pragma mark 監測UITextFeild事件，按下return的時候會收鍵盤
