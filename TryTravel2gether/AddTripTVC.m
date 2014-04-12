@@ -70,7 +70,8 @@
     
     //-----設定參與者，以及顯示人數
     self.guysCell.textLabel.text=@"Select Guys";
-    self.guysCell.detailTextLabel.text=[NSString stringWithFormat:@"%d",[self.SelectedGuys count]];
+    int guyscount=(int)[self.SelectedGuys count];
+    self.guysCell.detailTextLabel.text=[NSString stringWithFormat:@"%i",guyscount];
     self.SelectedGuys=[NSSet new];
 }
 -(void) save:(id)sender{
@@ -275,7 +276,8 @@
 
 -(void)guyWasSelectedInSelectGuysCDTVC:(SelectGuysCDTVC *)controller{
     self.SelectedGuys=controller.SelectedGuys;
-    self.guysCell.detailTextLabel.text=[NSString stringWithFormat:@"%d Guys",[self.SelectedGuys count]];
+    int guyscount=(int)[self.SelectedGuys count];
+    self.guysCell.detailTextLabel.text=[NSString stringWithFormat:@"%i Guys",guyscount];
     [controller.navigationController popViewControllerAnimated:YES];
 }
 @end

@@ -12,7 +12,7 @@
 
 
 @class SelectGuysCDTVC;
-@protocol SelectGuysCDTVCDelegate <NSObject,AddGuyTVCDelegate>
+@protocol SelectGuysCDTVCDelegate <NSObject>
 -(void)guyWasSelectedInSelectGuysCDTVC:(SelectGuysCDTVC *)controller;
 @end
 

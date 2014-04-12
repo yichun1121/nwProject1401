@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Trip.h"
 #import "CurrencyCDTVC.h"
+#import "SelectGuysCDTVC.h"
 
 
 @class AddTripTVC;
@@ -24,7 +25,7 @@
 @end
 
 
-@interface AddTripTVC : UITableViewController<UITextFieldDelegate,CurrencyCDTVCDelegate>
+@interface AddTripTVC : UITableViewController<UITextFieldDelegate,CurrencyCDTVCDelegate,SelectGuysCDTVCDelegate>
 
 @property (nonatomic, weak) id <AddTripTVCDelegate> delegate;
 @property (nonatomic, strong)NSManagedObjectContext *managedObjectContext;
