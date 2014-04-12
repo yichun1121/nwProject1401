@@ -71,7 +71,7 @@
     
     //-----註冊CustomCell----------
     UINib* myCellNib = [UINib nibWithNibName:@"NWCustCellTitleSubDetail" bundle:nil];
-    [self.tableView registerNib:myCellNib forCellReuseIdentifier:@"Item Cell"];
+    [self.tableView registerNib:myCellNib forCellReuseIdentifier:@"Cell"];
     
     //-----顯示未設定金額----------
     NSString *strCurrencySign=self.currentReceipt.dayCurrency.currency.sign;
@@ -80,7 +80,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * CellIdentifier=@"Item Cell";
+    static NSString * CellIdentifier=@"Cell";
 
     NWCustCellTitleSubDetail *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
