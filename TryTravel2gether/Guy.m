@@ -13,6 +13,6 @@
 @implementation Guy
 
 @dynamic name;
-@dynamic guyInGroups;
+@dynamic guyInTrips;
 
 @end

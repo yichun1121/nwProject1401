@@ -14,6 +14,6 @@
 @interface Guy : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) GuyInTrip *guyInGroups;
+@property (nonatomic, retain) GuyInTrip *guyInTrips;
 
 @end
