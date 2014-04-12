@@ -232,4 +232,9 @@
     self.currency.detailTextLabel.text=self.currentCurrency.standardSign;
     [controller.navigationController popViewControllerAnimated:YES];
 }
+
+-(void)guyWasSelectedInSelectGuysCDTVC:(SelectGuysCDTVC *)controller{
+    [controller.navigationController popViewControllerAnimated:YES];
+}
+
 @end

@@ -13,6 +13,7 @@
 #import "SelectGuysCDTVC.h"
 #import "Group.h"
 #import "Guy.h"
+#import "GuyInTrip.h"
 
 @interface AddTripTVC ()
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
@@ -75,6 +76,7 @@
     self.SelectedGuys=[NSSet new];
 }
 -(void) save:(id)sender{
+    
     NSLog(@"Telling the AddTripTVC Delegate that Save was tapped on the AddTripTVC");
     
     Trip *trip = [NSEntityDescription insertNewObjectForEntityForName:@"Trip"
@@ -85,10 +87,9 @@
     trip.endDate=[self.dateFormatter dateFromString:self.endDate.detailTextLabel.text];
     trip.days=[self creatDefaultDaysFromStartDate:trip.startDate ToEndDate:trip.endDate];
     trip.mainCurrency=self.currentCurrency;
-    trip.groups=self.SelectedGuys;
-    
     [self.managedObjectContext save:nil];  // write to database
-    
+    [self createDefaultGroupWithGuy:self.SelectedGuys InCurrentTrip:trip];
+    [self createDefaultGroupWithShareTogetherInCurrentTrip:trip];
     //發射按下的訊號，讓有實做theSaveButtonOnTheAddTripTVCWasTapped這個method的程式（監聽add的程式）知道。
     [self.delegate theSaveButtonOnTheAddTripTVCWasTapped:self];
 }
@@ -240,25 +241,42 @@
     }
 }
 
-#pragma mark - Group&GuyInGroup
--(Group *)createGroupInCurrentTrip{
-    NSLog(@"Create the new group in the current trip.");
+#pragma mark - Group&GuyInTrip
+//把每個參與者都視為一個Group
+-(void)createDefaultGroupWithGuy:(NSSet *)selectedGuy InCurrentTrip:(Trip *)trip{
     
-    Group *group = [NSEntityDescription insertNewObjectForEntityForName:@"Group"
-                                             inManagedObjectContext:self.managedObjectContext];
-    
-    group.inTrip=self.currentTrip;
-    NSLog(@"Create new Group in AddTripTVC");
-    
-    [self.managedObjectContext save:nil];  // write to database
-    return group;
+    for (Guy* guy in selectedGuy) {
+        Group *group = [NSEntityDescription insertNewObjectForEntityForName:@"Group"
+                                                     inManagedObjectContext:self.managedObjectContext];
+        group.name=guy.name;
+        group.inTrip=trip;
+        [self.managedObjectContext save:nil];
+        
+        GuyInTrip *guyInTrip = [NSEntityDescription insertNewObjectForEntityForName:@"GuyInTrip"
+                                                     inManagedObjectContext:self.managedObjectContext];
+        guyInTrip.realInTrip=[NSNumber numberWithBool:YES];
+        guyInTrip.inTrip=trip;
+        guyInTrip.groups=[NSSet setWithObject:group];
+        [self.managedObjectContext save:nil];
+    }
 }
-//-(void)createDefaultGroupWithGuy{
-//    for (Guy *guy in self.SelectedGuys) {
-//        
-//    }
-//    
-//}
+
+//所有參與者平均分攤預設為一組
+-(void)createDefaultGroupWithShareTogetherInCurrentTrip:(Trip *)trip{
+    
+    int guyscount=(int)[trip.guysInTrip count];
+    
+    //參與者為兩人以上才有設立share_together群組的必要
+    if (guyscount>1) {
+    Group *group = [NSEntityDescription insertNewObjectForEntityForName:@"Group"
+                                                 inManagedObjectContext:self.managedObjectContext];
+    group.name=[NSString stringWithFormat:@"%i_Guys_Shared",guyscount];
+    group.inTrip=trip;
+    group.guysInTrip=trip.guysInTrip;
+    [self.managedObjectContext save:nil];
+    }    
+}
+
 
 #pragma mark - delegation
 #pragma mark 監測UITextFeild事件，按下return的時候會收鍵盤

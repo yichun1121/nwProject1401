@@ -17,13 +17,13 @@
 		1859D0FE18F00AD200C93338 /* SelectGuysCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1859D0FD18F00AD200C93338 /* SelectGuysCDTVC.m */; };
 		18B8143F18E6E9740089BF0B /* AddGuyTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8143E18E6E9740089BF0B /* AddGuyTVC.m */; };
 		18B8144218E6E9B80089BF0B /* GuysCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8144118E6E9B80089BF0B /* GuysCDTVC.m */; };
+		18DE117018F939CF003F3083 /* GuyInTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DE116F18F939CF003F3083 /* GuyInTrip.m */; };
 		BF1B4EC118E08127004841FE /* Itemcategory.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1B4EC018E08127004841FE /* Itemcategory.m */; };
 		BF1B4EC418E08128004841FE /* CatInTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1B4EC318E08128004841FE /* CatInTrip.m */; };
 		C903A89B18D46D76009708C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C903A89A18D46D76009708C6 /* Images.xcassets */; };
 		C90969C418F91B2A00D46859 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = C90969C318F91B2A00D46859 /* Item.m */; };
 		C90969C718F9231C00D46859 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = C90969C618F9231C00D46859 /* Trip.m */; };
 		C90969CA18F9231D00D46859 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = C90969C918F9231D00D46859 /* Group.m */; };
-		C90969CD18F9231D00D46859 /* GuyInTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = C90969CC18F9231D00D46859 /* GuyInTrip.m */; };
 		C90969D018F9231D00D46859 /* Guy.m in Sources */ = {isa = PBXBuildFile; fileRef = C90969CF18F9231D00D46859 /* Guy.m */; };
 		C909F35318D00FE600E02B8D /* CurrencyCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C909F35218D00FE600E02B8D /* CurrencyCDTVC.m */; };
 		C909F36E18D0125800E02B8D /* DayCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = C909F36D18D0125800E02B8D /* DayCurrency.m */; };
@@ -98,6 +98,8 @@
 		18B8143E18E6E9740089BF0B /* AddGuyTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddGuyTVC.m; sourceTree = "<group>"; };
 		18B8144018E6E9B80089BF0B /* GuysCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuysCDTVC.h; sourceTree = "<group>"; };
 		18B8144118E6E9B80089BF0B /* GuysCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuysCDTVC.m; sourceTree = "<group>"; };
+		18DE116E18F939CF003F3083 /* GuyInTrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuyInTrip.h; sourceTree = "<group>"; };
+		18DE116F18F939CF003F3083 /* GuyInTrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuyInTrip.m; sourceTree = "<group>"; };
 		BF1B4EBF18E08127004841FE /* Itemcategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Itemcategory.h; sourceTree = "<group>"; };
 		BF1B4EC018E08127004841FE /* Itemcategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Itemcategory.m; sourceTree = "<group>"; };
 		BF1B4EC218E08128004841FE /* CatInTrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatInTrip.h; sourceTree = "<group>"; };
@@ -109,8 +111,6 @@
 		C90969C618F9231C00D46859 /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
 		C90969C818F9231D00D46859 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		C90969C918F9231D00D46859 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
-		C90969CB18F9231D00D46859 /* GuyInTrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuyInTrip.h; sourceTree = "<group>"; };
-		C90969CC18F9231D00D46859 /* GuyInTrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuyInTrip.m; sourceTree = "<group>"; };
 		C90969CE18F9231D00D46859 /* Guy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Guy.h; sourceTree = "<group>"; };
 		C90969CF18F9231D00D46859 /* Guy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Guy.m; sourceTree = "<group>"; };
 		C909F35118D00FE600E02B8D /* CurrencyCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyCDTVC.h; sourceTree = "<group>"; };
@@ -359,12 +359,12 @@
 				C90969C318F91B2A00D46859 /* Item.m */,
 				C9DB003C186B197400F3B008 /* TourModel.xcdatamodeld */,
 				C9F80492187A333D00EE4EDE /* Model.xcdatamodeld */,
+				18DE116E18F939CF003F3083 /* GuyInTrip.h */,
+				18DE116F18F939CF003F3083 /* GuyInTrip.m */,
 				C90969C518F9231C00D46859 /* Trip.h */,
 				C90969C618F9231C00D46859 /* Trip.m */,
 				C90969C818F9231D00D46859 /* Group.h */,
 				C90969C918F9231D00D46859 /* Group.m */,
-				C90969CB18F9231D00D46859 /* GuyInTrip.h */,
-				C90969CC18F9231D00D46859 /* GuyInTrip.m */,
 				C90969CE18F9231D00D46859 /* Guy.h */,
 				C90969CF18F9231D00D46859 /* Guy.m */,
 				BF1B4EC218E08128004841FE /* CatInTrip.h */,
@@ -589,7 +589,7 @@
 				C909F36E18D0125800E02B8D /* DayCurrency.m in Sources */,
 				C9F804F7187A733000EE4EDE /* nwAppDelegate.m in Sources */,
 				BF1B4EC118E08127004841FE /* Itemcategory.m in Sources */,
-				C90969CD18F9231D00D46859 /* GuyInTrip.m in Sources */,
+				18DE117018F939CF003F3083 /* GuyInTrip.m in Sources */,
 				C96AC7B318F10EBB0037DA8B /* AddCategoryTVC.m in Sources */,
 				C9D28AF618E00B9E00304370 /* Receipt.m in Sources */,
 				C9F64D3618E709A00005ED24 /* NWCustCellTitleSubDetail.m in Sources */,

@@ -2,7 +2,7 @@
 //  GuyInTrip.m
 //  TryTravel2gether
 //
-//  Created by YICHUN on 2014/4/12.
+//  Created by apple on 2014/4/12.
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 

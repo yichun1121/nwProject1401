@@ -35,7 +35,7 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *startDate;
 @property (weak, nonatomic) IBOutlet UITableViewCell *endDate;
 @property (strong,nonatomic)NSSet *SelectedGuys;
-@property (strong,nonatomic)Trip *currentTrip;
+
 
 - (IBAction)save:(id)sender;
 
