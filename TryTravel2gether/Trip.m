@@ -2,7 +2,7 @@
 //  Trip.m
 //  TryTravel2gether
 //
-//  Created by YICHUN on 2014/3/24.
+//  Created by YICHUN on 2014/4/12.
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 
@@ -11,6 +11,7 @@
 #import "Currency.h"
 #import "Day.h"
 #import "Group.h"
+#import "GuyInTrip.h"
 
 
 @implementation Trip
@@ -18,9 +19,10 @@
 @dynamic endDate;
 @dynamic name;
 @dynamic startDate;
-@dynamic days;
-@dynamic mainCurrency;
 @dynamic catsInTrip;
+@dynamic days;
 @dynamic groups;
+@dynamic mainCurrency;
+@dynamic guysInTrip;
 
 @end

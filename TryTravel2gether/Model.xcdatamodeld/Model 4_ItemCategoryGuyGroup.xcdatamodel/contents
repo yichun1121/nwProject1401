@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="CatInTrip" representedClassName="CatInTrip" syncable="YES">
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Itemcategory" inverseName="catInTrips" inverseEntity="Itemcategory" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="catInTrip" inverseEntity="Item" syncable="YES"/>
@@ -27,19 +27,22 @@
     </entity>
     <entity name="Group" representedClassName="Group" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="guysInGroup" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GuyInGroup" inverseName="group" inverseEntity="GuyInGroup" syncable="YES"/>
+        <relationship name="guysInTrip" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GuyInTrip" inverseName="groups" inverseEntity="GuyInTrip" syncable="YES"/>
         <relationship name="inTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="groups" inverseEntity="Trip" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="group" inverseEntity="Item" syncable="YES"/>
     </entity>
     <entity name="Guy" representedClassName="Guy" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="guyInGroups" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GuyInGroup" inverseName="guys" inverseEntity="GuyInGroup" syncable="YES"/>
+        <relationship name="guyInGroups" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GuyInTrip" inverseName="guy" inverseEntity="GuyInTrip" syncable="YES"/>
     </entity>
-    <entity name="GuyInGroup" representedClassName="GuyInGroup" syncable="YES">
-        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="guysInGroup" inverseEntity="Group" syncable="YES"/>
-        <relationship name="guys" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Guy" inverseName="guyInGroups" inverseEntity="Guy" syncable="YES"/>
+    <entity name="GuyInTrip" representedClassName="GuyInTrip" syncable="YES">
+        <attribute name="realInTrip" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="guysInTrip" inverseEntity="Group" syncable="YES"/>
+        <relationship name="guy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Guy" inverseName="guyInGroups" inverseEntity="Guy" syncable="YES"/>
+        <relationship name="inTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="guysInTrip" inverseEntity="Trip" syncable="YES"/>
     </entity>
     <entity name="Item" representedClassName="Item" syncable="YES">
+        <attribute name="itemIndex" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="quantity" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -66,19 +69,20 @@
         <relationship name="catsInTrip" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CatInTrip" inverseName="trip" inverseEntity="CatInTrip" syncable="YES"/>
         <relationship name="days" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Day" inverseName="inTrip" inverseEntity="Day" syncable="YES"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="inTrip" inverseEntity="Group" syncable="YES"/>
+        <relationship name="guysInTrip" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GuyInTrip" inverseName="inTrip" inverseEntity="GuyInTrip" syncable="YES"/>
         <relationship name="mainCurrency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="trips" inverseEntity="Currency" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Itemcategory" positionX="-279" positionY="-189" width="128" height="73"/>
         <element name="CatInTrip" positionX="-54" positionY="-180" width="128" height="88"/>
         <element name="Currency" positionX="63" positionY="72" width="128" height="118"/>
         <element name="Day" positionX="88" positionY="-79" width="128" height="133"/>
         <element name="DayCurrency" positionX="-146" positionY="110" width="128" height="88"/>
         <element name="Group" positionX="207" positionY="194" width="128" height="103"/>
         <element name="Guy" positionX="556" positionY="189" width="128" height="73"/>
-        <element name="GuyInGroup" positionX="385" positionY="189" width="128" height="73"/>
-        <element name="Item" positionX="-297" positionY="-27" width="128" height="133"/>
+        <element name="GuyInTrip" positionX="385" positionY="189" width="128" height="103"/>
+        <element name="Item" positionX="-297" positionY="-27" width="128" height="148"/>
+        <element name="Itemcategory" positionX="-279" positionY="-189" width="128" height="73"/>
         <element name="Receipt" positionX="-101" positionY="-88" width="128" height="133"/>
-        <element name="Trip" positionX="369" positionY="-103" width="128" height="148"/>
+        <element name="Trip" positionX="369" positionY="-103" width="128" height="163"/>
     </elements>
 </model>
