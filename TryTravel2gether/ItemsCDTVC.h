@@ -9,8 +9,9 @@
 #import "CoreDataTableViewController.h"
 #import "Receipt.h"
 #import "AddItemTVC.h"
+#import "ItemDetailTVC.h"
 
-@interface ItemsCDTVC : CoreDataTableViewController<AddItemTVCDelegate>
+@interface ItemsCDTVC : CoreDataTableViewController<AddItemTVCDelegate,ItemDetailTVCDelegate>
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong,nonatomic) Receipt *currentReceipt;
