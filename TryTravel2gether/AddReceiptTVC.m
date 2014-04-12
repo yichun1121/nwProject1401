@@ -190,14 +190,14 @@ static NSInteger sPickerCellHeight=162;
     }
 }
 -(DayCurrency *)createDayCurrencyWithTripDay:(Day *)tripDay Currency:(Currency *)currency{
-    NSLog(@"Create the new DayCurrency");
+    NSLog(@"Creating DayCurrency...");
     
     DayCurrency *dayCurrency = [NSEntityDescription insertNewObjectForEntityForName:@"DayCurrency"
                                                              inManagedObjectContext:self.managedObjectContext];
     dayCurrency.tripDay=tripDay;
     dayCurrency.currency=currency;
     
-    NSLog(@"Create new DayCurrency in DayCurrency+FindOneOrCreateNew");
+    NSLog(@"Create new DayCurrency:%@ @%@",currency.standardSign,self.class);
     
     [self.managedObjectContext save:nil];  // write to database
     return dayCurrency;

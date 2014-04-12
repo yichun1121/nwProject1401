@@ -8,12 +8,18 @@
 
 #import "AddItemTVC.h"
 #import "Item.h"
+#import "Itemcategory.h"
+#import "CatInTrip.h"
+#import "Day.h"
+#import "Trip.h"
 
 @interface AddItemTVC ()
 @property (weak, nonatomic) IBOutlet UITextField *name;
 @property (weak, nonatomic) IBOutlet UITextField *price;
 @property (weak, nonatomic) IBOutlet UITextField *qantity;
 @property (weak, nonatomic) IBOutlet UILabel *totalPrice;
+@property (strong,nonatomic) Itemcategory *selectedCategory;
+@property (weak, nonatomic) IBOutlet UITableViewCell *categoryName;
 
 @end
 
@@ -44,6 +50,7 @@
     item.price=[NSNumber numberWithDouble:[self.price.text doubleValue]];
     item.quantity=[NSNumber numberWithInteger:[self.qantity.text integerValue]];
     item.receipt=self.currentReceipt;
+    item.catInTrip=[self getCatInTripWithCategory:self.selectedCategory AndTrip:self.currentReceipt.day.inTrip];
     
     
     [self.managedObjectContext save:nil];  // write to database
@@ -80,15 +87,54 @@
 
 
 
+#pragma mark - ▣ CRUD_CatInTrip
+-(CatInTrip *)getCatInTripWithCategory:(Itemcategory *)category AndTrip:(Trip *)trip{
+    NSLog(@"Finding the CatInTrip in trip:%@, category:%@ ... @%@",trip.name,category.name,self.class);
+    
+    NSEntityDescription *entityDesc =
+    [NSEntityDescription entityForName:@"CatInTrip" inManagedObjectContext:self.managedObjectContext];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDesc];
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"(trip = %@) AND (category=%@)", trip,category];
+    [request setPredicate:pred];
+    
+    NSError *error;
+    NSArray *objects = [self.managedObjectContext executeFetchRequest:request error:&error];
+    
+    if ([objects count] == 0) {
+        NSLog(@"Can't Find.");
+        return [self createCategoryInTrip:trip ByCategory:category];
+    } else {
+        NSLog(@"Done.");
+        return objects[0];
+    }
+}
+-(CatInTrip *)createCategoryInTrip:(Trip *)trip ByCategory:(Itemcategory *)category{
+    CatInTrip *catInTrip=[NSEntityDescription insertNewObjectForEntityForName:@"CatInTrip"
+                                             inManagedObjectContext:self.managedObjectContext];
+    catInTrip.trip=trip;
+    catInTrip.category=category;
+    
+    [self.managedObjectContext save:nil];  // write to database
+    NSLog(@"Create new Cat:%@ in Trip:%@ @AddItemTVC",category.name,trip.name);
+    return catInTrip;
+}
 
 
-#pragma mark - Navigation
+#pragma mark - ➤ Navigation：Segue Settings
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"Select Category Segue From Add Item"]){
+        NSLog(@"Setting %@ as a delegate of AddItemTVC",self.class);
+        SelectCategoryCDTVC *selectCategoryCDTVC=[segue destinationViewController];
+        selectCategoryCDTVC.managedObjectContext=self.managedObjectContext;
+        selectCategoryCDTVC.selectedCategory=self.selectedCategory;
+        selectCategoryCDTVC.delegate=self;
+    }
 }
 
 #pragma mark - delegation
@@ -99,4 +145,14 @@
     return YES;
 }
 
+-(void)theDoneButtonOnTheSelectCategoryCDTVCWasTapped:(SelectCategoryCDTVC *)controller{
+    if (controller.selectedCategory) {
+        self.selectedCategory=controller.selectedCategory;
+        self.categoryName.textLabel.text=self.selectedCategory.name;
+    }else{
+        self.categoryName.textLabel.text=@"Uncategorized";
+    }
+
+    [controller.navigationController popViewControllerAnimated:YES];
+}
 @end

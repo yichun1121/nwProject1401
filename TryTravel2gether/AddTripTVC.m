@@ -96,7 +96,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //TODO:不知道為什麼要用row判斷，不用row會錯
-    
+    //每一次選擇
     for (UIView *subview in [self.view subviews]) {
         if ([subview isKindOfClass:[UIDatePicker class]]) {
             [subview removeFromSuperview];

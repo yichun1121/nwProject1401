@@ -7,16 +7,14 @@
 //
 
 #import "TripDetailTVC.h"
-#define kStartPicker 2  //startPicker在第2行
-#define kEndPicker 4    //endPicker在第4行
-/*! 展開Picker後的Cell高度
- */
-static NSInteger sPickerCellHeight=162;
+
 
 @interface TripDetailTVC ()
 @property NSDateFormatter *dateFormatter;
 @property (weak, nonatomic) IBOutlet UITableViewCell *currency;
 @property (strong,nonatomic) Currency *currentCurrency;
+@property (strong, nonatomic) UIDatePicker *endPicker;
+@property (strong, nonatomic) UIDatePicker *startPicker;
 @end
 
 @implementation TripDetailTVC
@@ -24,6 +22,28 @@ static NSInteger sPickerCellHeight=162;
 @synthesize managedObjectContext=_managedObjectContext;
 @synthesize trip=_trip;
 @synthesize dateFormatter=_dateFormatter;
+
+-(UIDatePicker *) startPicker
+{
+    if (!_startPicker) {
+        _startPicker = [[UIDatePicker alloc] init];
+        _startPicker.datePickerMode=UIDatePickerModeDate;
+        _startPicker.backgroundColor=[UIColor whiteColor];
+        _startPicker.date = self.trip.startDate;
+    }
+    return _startPicker;
+}
+
+-(UIDatePicker *) endPicker
+{
+    if (!_endPicker) {
+        _endPicker = [[UIDatePicker alloc] init];
+        _endPicker.datePickerMode=UIDatePickerModeDate;
+        _endPicker.backgroundColor=[UIColor whiteColor];
+        _endPicker.date=self.trip.endDate;
+    }
+    return _endPicker;
+}
 
 - (void)viewDidLoad
 {
@@ -40,11 +60,6 @@ static NSInteger sPickerCellHeight=162;
     self.endDate.detailTextLabel.text=[self.dateFormatter stringFromDate:self.trip.endDate];
     self.currentCurrency=self.trip.mainCurrency;
     self.currency.detailTextLabel.text=self.currentCurrency.standardSign;
-    
-    
-    //-----設定Picker----------
-    [self setPicker:self.startPicker RoleByDate:self.trip.startDate];
-    [self setPicker:self.endPicker RoleByDate:self.trip.endDate];
 
 }
 
@@ -68,42 +83,99 @@ static NSInteger sPickerCellHeight=162;
 
 
 #pragma mark 負責長cell的高度，也在這設定actingPicker（每次會因為tableView beginUpdates和endUpdates重畫）
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat result=self.tableView.rowHeight;
-    
-    if (indexPath.row==kStartPicker||indexPath.row==kEndPicker) {
-        //目前這行的上一行是actingDateCell
-        if(indexPath.row-1==self.actingDateCellIndexPath.row){
-            self.actingPickerCellIndexPath=indexPath;
-            result=sPickerCellHeight;
-        }else{
-            result=0;
-        }
-    }
-    return result;
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    CGFloat result=self.tableView.rowHeight;
+//    
+//    if (indexPath.row==kStartPicker||indexPath.row==kEndPicker) {
+//        //目前這行的上一行是actingDateCell
+//        if(indexPath.row-1==self.actingDateCellIndexPath.row){
+//            self.actingPickerCellIndexPath=indexPath;
+//            result=sPickerCellHeight;
+//        }else{
+//            result=0;
+//        }
+//    }
+//    return result;
+//}
 
 #pragma mark - 每次點選row的時候會做的事
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    for (UIView *subview in [self.view subviews]) {
+        if ([subview isKindOfClass:[UIDatePicker class]]) {
+            [subview removeFromSuperview];
+            self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height-[self.endPicker sizeThatFits:CGSizeZero].height);
+        }
+    }
+
+    
     UITableViewCell *clickCell=[self.tableView cellForRowAtIndexPath:indexPath];
+    
     if (clickCell==self.startDate||clickCell==self.endDate) {
         //TODO:不知道為什麼要用row判斷，不用row會錯
         BOOL hasBeTapped=indexPath.row==self.actingDateCellIndexPath.row;
+     
         if (hasBeTapped) {
         //如果剛剛才按過，表示要關上Picker（不需要原本的actionDateCell了）
             self.actingDateCellIndexPath=nil;
         }else{
         //如果剛剛沒有actingCell，表示想要改變現在選擇的這個cell
+            UIDatePicker *targetPicker = nil;
+            
+            if (clickCell==self.startDate) {
+                targetPicker = self.startPicker;
+            }else{
+                targetPicker = self.endPicker;
+            }
             self.actingDateCellIndexPath=indexPath;
+            
+            [self setPickerFrame:targetPicker WithIndexPath:indexPath];
+            
+            [self.view addSubview:targetPicker];
+            [self animateToPlaceWithItemSize:[targetPicker sizeThatFits:CGSizeZero]];
+            [targetPicker addTarget:self
+                             action:@selector(pickerChanged:)
+                   forControlEvents:UIControlEventValueChanged];
+
         }
-        // 為了讓picker展開或關閉，需要重新整理tableView，beginUpdates和endUpdates
-        [self.tableView beginUpdates];
-        [self.tableView endUpdates];
+
     }
 }
 
+
+-(void)setPickerFrame:(UIDatePicker *)picker WithIndexPath:(NSIndexPath *)indexPath{
+    //find the current table view size
+    CGRect screenRect = [self.view bounds];
+    CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPath];
+    //find the date picker size
+    CGSize pickerSize = [picker sizeThatFits:CGSizeZero];
+    
+    //set the picker frame
+    NSLog(@"screenRect.y=%f,lastcell.y=%f",screenRect.origin.y,cellRect.origin.y);
+    CGRect pickerRect = CGRectMake(0.0,
+                                   cellRect.origin.y+cellRect.size.height,
+                                   pickerSize.width,
+                                   pickerSize.height);
+    picker.frame = pickerRect;
+}
+
+/*!動畫設定，讓某大小之物件，動作流暢呈現至畫面最底
+ */
+-(void)animateToPlaceWithItemSize:(CGSize)itemSize{
+    //下面這是動畫設定，讓動作流暢到位：[UIView animateWithDuration: animations: completion: ];
+    [UIView animateWithDuration: 0.4f
+                     animations:^{
+                         //animations裡面是終點位置
+                         self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height+itemSize.height);
+                         if (self.tableView.contentSize.height > self.tableView.frame.size.height) {
+                             self.tableView.contentOffset=CGPointMake(0, self.tableView.contentSize.height-self.tableView.frame.size.height);
+                         }
+                     }
+                     completion:^(BOOL finished) {} ];
+}
+
 #pragma mark - Picker的事件
-- (IBAction)pickerChanged:(UIDatePicker *)sender {
+- (void)pickerChanged:(UIDatePicker *)sender {
     if (sender==self.startPicker) {
         self.startDate.detailTextLabel.text=[self.dateFormatter stringFromDate:sender.date];
     }else{
@@ -118,9 +190,19 @@ static NSInteger sPickerCellHeight=162;
     //把picker滾到指定的日期
     picker.date=date;
     if (picker==self.startPicker) {
-        self.endPicker.minimumDate=date;
+        //如果是startPicker，改end的設定
+        //self.endPicker.minimumDate=self.startPicker.date;
+        if ([self.endPicker.date compare:self.startPicker.date] == NSOrderedAscending) {
+            self.endPicker.date=self.startPicker.date;
+            self.endDate.detailTextLabel.text=[self.dateFormatter stringFromDate:self.endPicker.date];
+        }
     }else{
-        self.startPicker.maximumDate=date;
+        //否則就是改start的設定
+        //self.startPicker.maximumDate=self.endPicker.date;
+        if ([self.startPicker.date compare:self.endPicker.date] == NSOrderedDescending) {
+            self.startPicker.date=self.endPicker.date;
+            self.startDate.detailTextLabel.text=[self.dateFormatter stringFromDate:self.startPicker.date];
+        }
     }
 }
 

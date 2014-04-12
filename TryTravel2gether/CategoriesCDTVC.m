@@ -10,7 +10,6 @@
 #import "Itemcategory.h"
 
 @interface CategoriesCDTVC ()
-
 @end
 
 @implementation CategoriesCDTVC
@@ -85,7 +84,29 @@
         addCategoryTVC.managedObjectContext=self.managedObjectContext;
     }
 }
-
+#pragma mark - Deleting（紅➖）+Inserting(綠➕）
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        [self.tableView beginUpdates]; // Avoid  NSInternalInconsistencyException
+        
+        // Delete the role object that was swiped
+        Itemcategory *category = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        NSLog(@"Deleting %@", category.name);
+        [self.managedObjectContext deleteObject:category];
+        [self.managedObjectContext save:nil];
+        
+        // Delete the (now empty) row on the table
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self performFetch];
+        
+        [self.tableView endUpdates];
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
+}
 #pragma mark - delegation
 -(void)theSaveButtonOnTheAddCategoryWasTapped:(AddCategoryTVC *)controller
 {
@@ -94,3 +115,4 @@
 }
 
 @end
+

@@ -9,6 +9,7 @@
 #import "nwAppDelegate.h"
 #import "TripsCDTVC.h"
 #import "Currency.h"
+#import "Itemcategory.h"
 
 @implementation nwAppDelegate
 
@@ -19,16 +20,21 @@
 //撈資料用的
 @synthesize fetchedResultsController=__fetchedResultsController;
 
-#pragma mark - 4. 配合3傳入的名稱和符號新增一個MoneyType
+#pragma mark - 4. 塞值：配合3傳入的資料新增一個物件
 - (void)insertMoneyWithTypeName:(NSString *)moneyTypeName useMoneySign:(NSString *)moneySign standardMoneySign:(NSString *)standardSign
 {
     Currency *currency = [NSEntityDescription insertNewObjectForEntityForName:@"Currency"
                                                     inManagedObjectContext:self.managedObjectContext];
-    
     currency.name = moneyTypeName;
     currency.sign=moneySign;
     currency.standardSign=standardSign;
-    
+    [self.managedObjectContext save:nil];
+}
+- (void)insertCategoryWithName:(NSString *)categoryName
+{
+    Itemcategory *category = [NSEntityDescription insertNewObjectForEntityForName:@"Itemcategory"
+                                                       inManagedObjectContext:self.managedObjectContext];
+    category.name = categoryName;
     [self.managedObjectContext save:nil];
 }
 
@@ -52,7 +58,7 @@
     [self.fetchedResultsController performFetch:nil];
 }
 
-#pragma mark - 3. 創建預設的資訊寫在這裡一個一個設定
+#pragma mark - 3. Default Data：創建預設的資訊寫在這裡一個一個設定
 - (void)importCoreDataDefaultMoneyTypes {
     
     // TODO: 把幣別資訊寫在plist裡面再讀出來用
@@ -62,23 +68,65 @@
     [self insertMoneyWithTypeName:@"U.S.Dollar" useMoneySign:@"＄" standardMoneySign:@"USD"];
     NSLog(@"Importing Core Data Default Values for Roles Completed!");
 }
+- (void)importCoreDataDefaultCategories {
+    
+    // TODO: 把物品類別資訊寫在plist裡面再讀出來用
+    NSLog(@"Importing Core Data Default Values for Roles...");
+    [self insertCategoryWithName:@"Food"];
+    [self insertCategoryWithName:@"Transport"];
+    [self insertCategoryWithName:@"Entertainment"];
+    [self insertCategoryWithName:@"Room"];
+    [self insertCategoryWithName:@"Buy"];
+    [self insertCategoryWithName:@"Gift"];
+    [self insertCategoryWithName:@"Uncategorized"];
+
+    NSLog(@"Importing Core Data Default Values for Roles Completed!");
+}
+
+-(void)checkDefaultData:(NSString *)entityName By:(NSString *)attributeName{
+    [self setupFetchedResultsControllerByEntityName:entityName AttributeName:attributeName];
+    
+    if (![[self.fetchedResultsController fetchedObjects] count] > 0 ) {
+        NSLog(@"!!!!! ~~> There's no %@ in the database so defaults will be inserted",entityName);
+        if ([@"Currency" isEqualToString:entityName]) {
+            [self importCoreDataDefaultMoneyTypes];
+        }else if ([@"Itemcategory" isEqualToString:entityName]){
+            [self importCoreDataDefaultCategories];
+        }
+    }
+    else {
+        NSLog(@"There's %@ in the database so skipping the import of default data",entityName);
+    }
+}
 #pragma mark - 1. 在這判斷是否要載入default資訊
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     /*
      要設定Default Data的話加這段>
      系統起來的時候會檢查有沒有Role存在，沒有的話就把預設的Role存進去
-     
      */
-    [self setupFetchedResultsControllerByEntityName:@"Currency" AttributeName:@"name"];
-    
-    if (![[self.fetchedResultsController fetchedObjects] count] > 0 ) {
-        NSLog(@"!!!!! ~~> There's nothing in the database so defaults will be inserted");
-        [self importCoreDataDefaultMoneyTypes];
-    }
-    else {
-        NSLog(@"There's stuff in the database so skipping the import of default data");
-    }
+    [self checkDefaultData:@"Currency" By:@"name"];
+    [self checkDefaultData:@"Itemcategory" By:@"name"];
+//    [self setupFetchedResultsControllerByEntityName:@"Currency" AttributeName:@"name"];
+//    
+//    if (![[self.fetchedResultsController fetchedObjects] count] > 0 ) {
+//        NSLog(@"!!!!! ~~> There's no Currency in the database so defaults will be inserted");
+//        [self importCoreDataDefaultMoneyTypes];
+//    }
+//    else {
+//        NSLog(@"There's stuff in the database so skipping the import of default data");
+//    }
+//
+//    //Uncategorized
+//    [self setupFetchedResultsControllerByEntityName:@"Itemcategory" AttributeName:@"name"];
+//    
+//    if (![[self.fetchedResultsController fetchedObjects] count] > 0 ) {
+//        NSLog(@"!!!!! ~~> There's no Itemcategory in the database so defaults will be inserted");
+//        [self importCoreDataDefaultCategories];
+//    }
+//    else {
+//        NSLog(@"There's stuff in the database so skipping the import of default data");
+//    }
 
     
     // Override point for customization after application launch.

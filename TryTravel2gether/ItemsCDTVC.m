@@ -30,6 +30,10 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self setupFetchedResultController];
+
+    //計算未設定剩餘款
+    NSString *strCurrencySign=self.currentReceipt.dayCurrency.currency.sign;
+    self.remaining.text=[NSString stringWithFormat:@"%@ %g",strCurrencySign,[self.currentReceipt getMoneyIsNotSet]];
 }
 
 #pragma mark - FetchedResultsController
@@ -67,15 +71,16 @@
     
     //-----註冊CustomCell----------
     UINib* myCellNib = [UINib nibWithNibName:@"NWCustCellTitleSubDetail" bundle:nil];
-    [self.tableView registerNib:myCellNib forCellReuseIdentifier:@"Item Cell"];
+    [self.tableView registerNib:myCellNib forCellReuseIdentifier:@"Cell"];
     
     //-----顯示未設定金額----------
-    self.remaining.text=[NSString stringWithFormat:@"%g",[self.currentReceipt getMoneyIsNotSet]];
+    NSString *strCurrencySign=self.currentReceipt.dayCurrency.currency.sign;
+    self.remaining.text=[NSString stringWithFormat:@"%@ %g",strCurrencySign,[self.currentReceipt getMoneyIsNotSet]];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * CellIdentifier=@"Item Cell";
+    static NSString * CellIdentifier=@"Cell";
 
     NWCustCellTitleSubDetail *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -93,38 +98,33 @@
     cell.titleTextLabel.text=item.name;
     cell.subtitleTextLabel.text=[NSString stringWithFormat:@"%@ x %@",item.price,item.quantity];
     double totalPrice=[item.price doubleValue]*[item.quantity integerValue];
-    cell.detailTextLabel.text=[NSString stringWithFormat:@"%g",totalPrice];
+    NSString *strCurrencySign=item.receipt.dayCurrency.currency.sign;
+    cell.detailTextLabel.text=[NSString stringWithFormat:@"%@ %g",strCurrencySign,totalPrice];
+    
     return cell;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - NSFetchedResultsControllerDelegate
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
-    [super controllerWillChangeContent:controller];
-    self.remaining.text=[NSString stringWithFormat:@"%g",[self.currentReceipt getMoneyIsNotSet]];
-    
-}
-
-#pragma mark - Navigation
+#pragma mark - ➤ Navigation：Segue Settings
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"Add Item Segue From Item List"]) {
-        
         NSLog(@"Setting %@ as a delegate of AddItemTVC",self.class);
         AddItemTVC *addItemTVC=[segue destinationViewController];
         addItemTVC.managedObjectContext=self.managedObjectContext;
         addItemTVC.currentReceipt=self.currentReceipt;
         addItemTVC.delegate=self;
+    }else if([segue.identifier isEqualToString:@"Item Segue From ItemList"]){
+        NSLog(@"Setting %@ as a delegate of ItemDetailTVC",self.class);
+        NSIndexPath *indexPath=[self.tableView indexPathForCell:sender];
+        Item *selectedItem=[self.fetchedResultsController objectAtIndexPath:indexPath];
+        ItemDetailTVC *itemDetailTVC=[segue destinationViewController];
+        itemDetailTVC.managedObjectContext=self.managedObjectContext;
+        itemDetailTVC.currentItem=selectedItem;
+        itemDetailTVC.delegate=self;
     }
+    
 }
 
 #pragma mark - Deleting（紅➖）+Inserting(綠➕）
@@ -143,7 +143,10 @@
         // Delete the (now empty) row on the table
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [self performFetch];
-        self.remaining.text=[NSString stringWithFormat:@"%g",[self.currentReceipt getMoneyIsNotSet]];
+        //-----顯示未設定金額----------
+        NSString *strCurrencySign=self.currentReceipt.dayCurrency.currency.sign;
+        self.remaining.text=[NSString stringWithFormat:@"%@ %g",strCurrencySign,[self.currentReceipt getMoneyIsNotSet]];
+        
         [self.tableView endUpdates];
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
@@ -151,7 +154,9 @@
     }
 }
 
+
 #pragma mark - 5 steps: 設定編輯模式下僅可以移動cell位置
+//TODO: Item要加index排序才有意義，所以現在還沒有做
 // 須在self.editing=YES;情況下才有作用
 
 // 1. 先設定cell為可編輯模式
@@ -166,9 +171,13 @@
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
-// 3. 將編輯模式時cell左方的delete圖示變成空的
+// 3. 將編輯模式時cell左方的delete圖示變成空的（可是非編輯還是可以delete）
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewCellEditingStyleNone;
+    if (self.tableView.editing) {
+        return UITableViewCellEditingStyleNone;
+    }else{
+        return UITableViewCellEditingStyleDelete;
+    }
 }
 // 4. 回傳編輯模式時，cell需不需要縮排。因為將左方delete圖示清掉，所以cell選擇不縮排
 - (BOOL)tableView:(UITableView *)tableview shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -179,13 +188,25 @@
 }
 
 
-
-
+#pragma mark - 事件
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:@"Item Segue From ItemList" sender:nil];
+}
 
 #pragma mark - delegation
 -(void)theSaveButtonOnTheAddItemWasTapped:(AddItemTVC *)controller{
     [controller.navigationController popViewControllerAnimated:YES];
-    self.remaining.text=[NSString stringWithFormat:@"%g",[self.currentReceipt getMoneyIsNotSet]];
+    //-----顯示未設定金額----------
+    NSString *strCurrencySign=self.currentReceipt.dayCurrency.currency.sign;
+    self.remaining.text=[NSString stringWithFormat:@"%@ %g",strCurrencySign,[self.currentReceipt getMoneyIsNotSet]];
+    
 }
+-(void)theSaveButtonOnItemDetailTVCWasTapped:(ItemDetailTVC *)controller{
+    [controller.navigationController popViewControllerAnimated:YES];
+    //-----顯示未設定金額----------
+    NSString *strCurrencySign=self.currentReceipt.dayCurrency.currency.sign;
+    self.remaining.text=[NSString stringWithFormat:@"%@ %g",strCurrencySign,[self.currentReceipt getMoneyIsNotSet]];
+}
+
 
 @end
