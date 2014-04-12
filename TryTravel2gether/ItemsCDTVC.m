@@ -47,7 +47,7 @@
     
     request.predicate=[NSPredicate predicateWithFormat:@"receipt=%@",self.currentReceipt];
     
-    request.sortDescriptors=[NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"name"
+    request.sortDescriptors=[NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"itemIndex"
                                                                                     ascending:YES
                                                                                      selector:@selector(localizedCaseInsensitiveCompare:)], nil];
     self.fetchedResultsController=[[NSFetchedResultsController alloc]initWithFetchRequest:request

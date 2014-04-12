@@ -13,4 +13,5 @@
 -(double)calculateSumOfAllItems;
 -(double)getMoneyIsNotSet;
 -(BOOL)itemsAllSet;
+-(NSNumber *)getNextItemSerialNumberInReceipt;
 @end

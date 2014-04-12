@@ -33,4 +33,23 @@
     }
     return allSet;
 }
+/*!取得新增下一筆item時該設定的流水號
+ */
+-(NSNumber *)getNextItemSerialNumberInReceipt{
+    NSLog(@"getting the last item in Receipt:%@ ... @%@",self.desc,self.class);
+
+    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"itemIndex" ascending:NO]];
+    NSArray *sortedItems = [[self.items allObjects] sortedArrayUsingDescriptors:sortDescriptors];
+    int currentSerialNum=0;
+//    for (Item *item in self.items) {
+//        if ([item.itemIndex intValue]>serialNum) {
+//            serialNum=[item.itemIndex intValue];
+//        }
+//    }
+    if ([self.items count]!=0) {
+        Item *item=sortedItems[0];
+        currentSerialNum=[item.itemIndex intValue];
+    }
+    return [NSNumber numberWithInt: currentSerialNum+1];
+}
 @end

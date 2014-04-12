@@ -12,6 +12,7 @@
 #import "CatInTrip.h"
 #import "Day.h"
 #import "Trip.h"
+#import "Receipt+Calculate.h"
 
 @interface AddItemTVC ()
 @property (weak, nonatomic) IBOutlet UITextField *name;
@@ -50,8 +51,11 @@
     item.price=[NSNumber numberWithDouble:[self.price.text doubleValue]];
     item.quantity=[NSNumber numberWithInteger:[self.qantity.text integerValue]];
     item.receipt=self.currentReceipt;
+    if (!self.selectedCategory) {
+        self.selectedCategory=[self getCategoryWithName:@"Uncategorized"];
+    }
     item.catInTrip=[self getCatInTripWithCategory:self.selectedCategory AndTrip:self.currentReceipt.day.inTrip];
-    
+    item.itemIndex=self.currentReceipt.getNextItemSerialNumberInReceipt;
     
     [self.managedObjectContext save:nil];  // write to database
     NSLog(@"Save new Item in AddItemTVC");
@@ -121,6 +125,39 @@
     NSLog(@"Create new Cat:%@ in Trip:%@ @AddItemTVC",category.name,trip.name);
     return catInTrip;
 }
+-(Itemcategory *)getCategoryWithName:(NSString *)name{
+    NSLog(@"Finding the Itemcategory:%@ ... @%@",name,self.class);
+    
+    NSEntityDescription *entityDesc =
+    [NSEntityDescription entityForName:@"Itemcategory" inManagedObjectContext:self.managedObjectContext];
+    
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDesc];
+    
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"name=%@", name];
+    [request setPredicate:pred];
+    
+    NSError *error;
+    NSArray *objects = [self.managedObjectContext executeFetchRequest:request error:&error];
+    
+    if ([objects count] == 0) {
+        NSLog(@"Can't Find.");
+        return [self createCategoryWithName:name];
+    } else {
+        NSLog(@"Done.");
+        return objects[0];
+    }
+}
+-(Itemcategory *)createCategoryWithName:(NSString *)name{
+    Itemcategory *category=[NSEntityDescription insertNewObjectForEntityForName:@"Itemcategory"
+                                                       inManagedObjectContext:self.managedObjectContext];
+    category.name=name;
+    
+    [self.managedObjectContext save:nil];  // write to database
+    NSLog(@"Create new Itemcategory:%@ @%@",category.name,self.class);
+    return category;
+}
+
 
 
 #pragma mark - ➤ Navigation：Segue Settings
