@@ -45,7 +45,7 @@
     //判斷是哪條連線（會對應Segue的名稱）
     if ([segue.identifier isEqualToString:@"Guys List Segue"])
     {
-        NSLog(@"Setting %@ in GuysCDTVC",self.class);
+        NSLog(@"Setting GuysCDTVC @%@",self.class);
         GuysCDTVC *guysCDTVC = segue.destinationViewController;
         //NSLog(@"Setting TripsCDTVC as a delegate of GuysTVC");
         //guysTVC.delegate = self;
@@ -54,7 +54,7 @@
         guysCDTVC.managedObjectContext = self.managedObjectContext;
         
     }else if ([segue.identifier isEqualToString:@"Category List Segue"]){
-        NSLog(@"Setting %@ in CategoriesCDTVC",self.class);
+        NSLog(@"Setting CategoriesCDTVC @%@",self.class);
         CategoriesCDTVC *categoriesCDTVC=segue.destinationViewController;
         categoriesCDTVC.managedObjectContext=self.managedObjectContext;
     }else {
