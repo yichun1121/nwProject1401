@@ -11,7 +11,6 @@
 #import "Itemcategory.h"
 #import "CatInTrip.h"
 #import "Day.h"
-#import "Trip.h"
 #import "Receipt+Calculate.h"
 
 @interface AddItemTVC ()
@@ -58,10 +57,11 @@
     item.itemIndex=self.currentReceipt.getNextItemSerialNumberInReceipt;
     
     [self.managedObjectContext save:nil];  // write to database
-    NSLog(@"Save new Item in AddItemTVC");
+    NSLog(@"Save new Item in %@",self.class);
     [self.delegate theSaveButtonOnTheAddItemWasTapped:self];
     NSLog(@"Telling the AddItem Delegate that Save was tapped on the %@",[self class]);
 }
+
 - (IBAction)textFieldEditingChanged:(UITextField *)sender {
     double total=[self.price.text doubleValue]*[self.qantity.text integerValue];
     self.totalPrice.text=[NSString stringWithFormat:@"%g",total];
@@ -91,7 +91,7 @@
 
 
 
-#pragma mark - ▣ CRUD_CatInTrip
+#pragma mark - ▣ CRUD_CatInTrip+ItemCategory
 -(CatInTrip *)getCatInTripWithCategory:(Itemcategory *)category AndTrip:(Trip *)trip{
     NSLog(@"Finding the CatInTrip in trip:%@, category:%@ ... @%@",trip.name,category.name,self.class);
     
@@ -166,7 +166,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"Select Category Segue From Add Item"]){
-        NSLog(@"Setting %@ as a delegate of AddItemTVC",self.class);
+        NSLog(@"Setting %@ as a delegate of selectCategoryCDTVC",self.class);
         SelectCategoryCDTVC *selectCategoryCDTVC=[segue destinationViewController];
         selectCategoryCDTVC.managedObjectContext=self.managedObjectContext;
         selectCategoryCDTVC.selectedCategory=self.selectedCategory;

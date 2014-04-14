@@ -8,15 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "Item.h"
-@class ItemDetailTVC;
-@protocol ItemDetailTVCDelegate <NSObject>
+#import "ItemDetailTVC.h"
+#import "AddItemTVC.h"
+//@class ItemDetailTVC;
+//@protocol ItemDetailTVCDelegate <NSObject>
+//-(void)theSaveButtonOnItemDetailTVCWasTapped:(ItemDetailTVC *)controller;
+//@end
+@interface ItemDetailTVC :AddItemTVC
 
--(void)theSaveButtonOnItemDetailTVCWasTapped:(ItemDetailTVC *)controller;
-
-@end
-@interface ItemDetailTVC : UITableViewController
-
-@property (strong,nonatomic)NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic)Item *currentItem;
-@property (weak,nonatomic)id<ItemDetailTVCDelegate> delegate;
+
 @end
