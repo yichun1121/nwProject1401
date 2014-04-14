@@ -117,8 +117,9 @@
         addItemTVC.delegate=self;
     }else if([segue.identifier isEqualToString:@"Item Segue From ItemList"]){
         NSLog(@"Setting %@ as a delegate of ItemDetailTVC",self.class);
-        NSIndexPath *indexPath=[self.tableView indexPathForCell:sender];
-        Item *selectedItem=[self.fetchedResultsController objectAtIndexPath:indexPath];
+        //因為自己寫的tableview:didSelectRowAtIndexPath:裡傳來的sender是indexPath，不是一般的cell，所以不用從cell轉成indexPath。
+        //（搜尋didSelectRowAtIndexPath可以看到）
+        Item *selectedItem=[self.fetchedResultsController objectAtIndexPath:sender];
         ItemDetailTVC *itemDetailTVC=[segue destinationViewController];
         itemDetailTVC.managedObjectContext=self.managedObjectContext;
         itemDetailTVC.currentItem=selectedItem;
@@ -190,7 +191,7 @@
 
 #pragma mark - 事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self performSegueWithIdentifier:@"Item Segue From ItemList" sender:nil];
+    [self performSegueWithIdentifier:@"Item Segue From ItemList" sender:indexPath];
 }
 
 #pragma mark - delegation

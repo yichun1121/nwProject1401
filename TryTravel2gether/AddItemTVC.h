@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Receipt.h"
 #import "SelectCategoryCDTVC.h"
+#import "Trip.h"
 
 @class AddItemTVC;
 @protocol AddItemTVCDelegate <NSObject>
@@ -22,4 +23,10 @@
 @property (strong,nonatomic) id<AddItemTVCDelegate> delegate;
 
 @property (strong,nonatomic) Receipt *currentReceipt;
+
+
+-(CatInTrip *)getCatInTripWithCategory:(Itemcategory *)category AndTrip:(Trip *)trip;
+-(Itemcategory *)getCategoryWithName:(NSString *)name;
+
+-(void)textFieldEditingChanged:(UITextField *)textField;
 @end
