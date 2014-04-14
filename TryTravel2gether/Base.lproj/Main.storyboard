@@ -724,6 +724,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="f57-t3-MmB" kind="push" identifier="Select Guy Segue From Trip Detail" id="WFw-Rt-NXt"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -743,6 +746,7 @@
                     <connections>
                         <outlet property="currency" destination="1MO-S1-LMu" id="H96-0G-DeZ"/>
                         <outlet property="endDate" destination="x8k-ts-brj" id="fa9-h2-YTM"/>
+                        <outlet property="guysCell" destination="L4E-qL-Q4a" id="o3n-aL-CP5"/>
                         <outlet property="startDate" destination="vtA-Kr-3an" id="ZA6-EM-iIp"/>
                         <outlet property="tripName" destination="psH-lQ-ipe" id="GPR-SZ-wfu"/>
                     </connections>
@@ -858,7 +862,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6oH-3C-uAn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1826" y="-922"/>
+            <point key="canvasLocation" x="1850" y="-954"/>
         </scene>
         <!--Add DayTVC-->
         <scene sceneID="ci2-yL-RUv">
@@ -1941,7 +1945,9 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="WFw-Rt-NXt"/>
         <segue reference="wJe-84-bVr"/>
+        <segue reference="sp3-cC-l9s"/>
         <segue reference="moX-HC-O6P"/>
         <segue reference="r1V-Ci-7uc"/>
         <segue reference="4yc-3i-Tb3"/>
