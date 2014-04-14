@@ -7,14 +7,17 @@
 //
 
 #import "TripDetailTVC.h"
-
+#import "GuyInTrip.h"
+#import "Group.h"
 
 @interface TripDetailTVC ()
 @property NSDateFormatter *dateFormatter;
 @property (weak, nonatomic) IBOutlet UITableViewCell *currency;
+@property (weak, nonatomic) IBOutlet UITableViewCell *guysCell;
 @property (strong,nonatomic) Currency *currentCurrency;
 @property (strong, nonatomic) UIDatePicker *endPicker;
 @property (strong, nonatomic) UIDatePicker *startPicker;
+@property (strong,nonatomic) NSMutableSet *SelectedGuys;
 @end
 
 @implementation TripDetailTVC
@@ -45,6 +48,7 @@
     return _endPicker;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -60,6 +64,18 @@
     self.endDate.detailTextLabel.text=[self.dateFormatter stringFromDate:self.trip.endDate];
     self.currentCurrency=self.trip.mainCurrency;
     self.currency.detailTextLabel.text=self.currentCurrency.standardSign;
+    
+    
+    //-----顯示Guy資訊-----------
+    self.SelectedGuys=[NSMutableSet new];
+    self.guysCell.textLabel.text=@"Selected Guys";
+    for (GuyInTrip * guyInTrip in self.trip.guysInTrip) {
+        NSLog(@"guys name=%@",guyInTrip.guy.name);
+    [self.SelectedGuys addObject:guyInTrip.guy];
+    }
+    int guyscount=(int)[self.SelectedGuys count];
+    self.guysCell.detailTextLabel.text=[NSString stringWithFormat:@"%i Guys",guyscount];
+    
 
 }
 
@@ -76,6 +92,8 @@
     self.trip.mainCurrency=self.currentCurrency;
     
     [self.managedObjectContext save:nil];  // write to database
+    [self createDefaultGroupWithGuy:self.SelectedGuys InCurrentTrip:self.trip];
+    [self createDefaultGroupWithShareTogetherInCurrentTrip:self.trip];
     
     //發射按下的訊號，讓有實做theSaveButtonOnTheAddTripTVCWasTapped這個method的程式（監聽add的程式）知道。
     [self.delegate theSaveButtonOnTheTripDetailTVCWasTapped:self];
@@ -200,8 +218,54 @@
         currencyCDTVC.delegate=self;
         currencyCDTVC.managedObjectContext=self.managedObjectContext;
         currencyCDTVC.selectedCurrency=self.currentCurrency;
+    }else if([segue.identifier isEqualToString:@"Select Guy Segue From Trip Detail"]){
+        NSLog(@"Setting TripDetailTVC as a delegate of SelectGuysCDTVC");
+        SelectGuysCDTVC *selectGuysCDTVC=segue.destinationViewController;
+        selectGuysCDTVC.delegate=self;
+        selectGuysCDTVC.managedObjectContext=self.managedObjectContext;
+        selectGuysCDTVC.SelectedGuys=self.SelectedGuys;
     }
 }
+
+#pragma mark - Group&GuyInTrip
+//把每個參與者都視為一個Group
+-(void)createDefaultGroupWithGuy:(NSSet *)selectedGuy InCurrentTrip:(Trip *)trip{
+    
+    for (Guy* guy in selectedGuy) {
+        Group *group = [NSEntityDescription insertNewObjectForEntityForName:@"Group"
+                                                     inManagedObjectContext:self.managedObjectContext];
+        group.name=guy.name;
+        group.inTrip=trip;
+        [self.managedObjectContext save:nil];
+        
+        GuyInTrip *guyInTrip = [NSEntityDescription insertNewObjectForEntityForName:@"GuyInTrip"
+                                                             inManagedObjectContext:self.managedObjectContext];
+        guyInTrip.realInTrip=[NSNumber numberWithBool:YES];
+        guyInTrip.inTrip=trip;
+        guyInTrip.groups=[NSSet setWithObject:group];
+        guyInTrip.guy=guy;
+        
+        [self.managedObjectContext save:nil];
+        
+    }
+}
+
+//所有參與者平均分攤預設為一組
+-(void)createDefaultGroupWithShareTogetherInCurrentTrip:(Trip *)trip{
+    
+    int guyscount=(int)[trip.guysInTrip count];
+    
+    //參與者為兩人以上才有設立share_together群組的必要
+    if (guyscount>1) {
+        Group *group = [NSEntityDescription insertNewObjectForEntityForName:@"Group"
+                                                     inManagedObjectContext:self.managedObjectContext];
+        group.name=[NSString stringWithFormat:@"%i_Guys_Shared",guyscount];
+        group.inTrip=trip;
+        group.guysInTrip=trip.guysInTrip;
+        [self.managedObjectContext save:nil];
+    }    
+}
+
 
 #pragma mark - delegation
 #pragma mark 監測UITextFeild事件，按下return的時候會收鍵盤

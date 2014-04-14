@@ -33,12 +33,12 @@
     </entity>
     <entity name="Guy" representedClassName="Guy" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="guyInTrips" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GuyInTrip" inverseName="guy" inverseEntity="GuyInTrip" syncable="YES"/>
+        <relationship name="guyInTrips" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GuyInTrip" inverseName="guy" inverseEntity="GuyInTrip" syncable="YES"/>
     </entity>
     <entity name="GuyInTrip" representedClassName="GuyInTrip" syncable="YES">
         <attribute name="realInTrip" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="guysInTrip" inverseEntity="Group" syncable="YES"/>
-        <relationship name="guy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Guy" inverseName="guyInTrips" inverseEntity="Guy" syncable="YES"/>
+        <relationship name="guy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Guy" inverseName="guyInTrips" inverseEntity="Guy" syncable="YES"/>
         <relationship name="inTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="guysInTrip" inverseEntity="Trip" syncable="YES"/>
     </entity>
     <entity name="Item" representedClassName="Item" syncable="YES">

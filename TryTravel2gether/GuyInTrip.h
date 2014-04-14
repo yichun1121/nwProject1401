@@ -15,7 +15,7 @@
 
 @property (nonatomic, retain) NSNumber * realInTrip;
 @property (nonatomic, retain) NSSet *groups;
-@property (nonatomic, retain) NSSet *guy;
+@property (nonatomic, retain) Guy *guy;
 @property (nonatomic, retain) Trip *inTrip;
 @end
 
@@ -25,10 +25,5 @@
 - (void)removeGroupsObject:(Group *)value;
 - (void)addGroups:(NSSet *)values;
 - (void)removeGroups:(NSSet *)values;
-
-- (void)addGuyObject:(Guy *)value;
-- (void)removeGuyObject:(Guy *)value;
-- (void)addGuy:(NSSet *)values;
-- (void)removeGuy:(NSSet *)values;
 
 @end

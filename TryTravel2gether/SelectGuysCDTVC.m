@@ -10,7 +10,7 @@
 
 @interface SelectGuysCDTVC ()
 
-
+@property(strong, nonatomic)NSMutableArray *indexPathArray;
 
 
 @end
@@ -27,6 +27,7 @@
 {
     [super viewWillAppear:animated];
     [self setupFetchedResultsController];
+
 }
 
 
@@ -64,12 +65,19 @@
     self.tableView.allowsMultipleSelectionDuringEditing=YES;
     [self.tableView setEditing:YES animated:YES];
     
+    
 }
 -(NSMutableSet *)SelectedGuys{
     if (_SelectedGuys==nil) {
         _SelectedGuys=[NSMutableSet new];
     }
     return _SelectedGuys;
+}
+-(NSMutableArray *)indexPathArray{
+    if (_indexPathArray==nil) {
+        _indexPathArray=[NSMutableArray new];
+    }
+    return _indexPathArray;
 }
 
 #pragma mark - Table view data source
@@ -91,8 +99,17 @@
 -(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
     Guy *guy = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = guy.name;
+    cell.selected=YES;
+    
+    for (Guy* selectedGuy in self.SelectedGuys) {
+        if(guy==selectedGuy){
+            [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+            break;
+        }
+    }
     return cell;
 }
+
 
 #pragma mark - 每次點選row的時候會做的事
 //將點選的人名存進NSMutableSet
@@ -147,6 +164,7 @@
 }
 
 - (IBAction)done:(id)sender{
+
     [self.delegate guyWasSelectedInSelectGuysCDTVC:self];
 }
 

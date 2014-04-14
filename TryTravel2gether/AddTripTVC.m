@@ -259,7 +259,10 @@
         guyInTrip.realInTrip=[NSNumber numberWithBool:YES];
         guyInTrip.inTrip=trip;
         guyInTrip.groups=[NSSet setWithObject:group];
+        guyInTrip.guy=guy;
+        
         [self.managedObjectContext save:nil];
+        
     }
 }
 

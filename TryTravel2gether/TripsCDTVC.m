@@ -114,6 +114,7 @@
         
         NSLog(@"Passing selected trip (%@) to TripDetailTVC", self.selectedTrip.name);
         tripDetailTVC.trip = self.selectedTrip;
+    
     }else if ([segue.identifier isEqualToString:@"Days List Segue"])
     {
         DaysCDTVC *daysCDTVC = segue.destinationViewController;

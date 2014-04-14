@@ -2,7 +2,7 @@
 //  Guy.h
 //  TryTravel2gether
 //
-//  Created by YICHUN on 2014/4/12.
+//  Created by apple on 2014/4/12.
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 
@@ -14,6 +14,14 @@
 @interface Guy : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) GuyInTrip *guyInTrips;
+@property (nonatomic, retain) NSSet *guyInTrips;
+@end
+
+@interface Guy (CoreDataGeneratedAccessors)
+
+- (void)addGuyInTripsObject:(GuyInTrip *)value;
+- (void)removeGuyInTripsObject:(GuyInTrip *)value;
+- (void)addGuyInTrips:(NSSet *)values;
+- (void)removeGuyInTrips:(NSSet *)values;
 
 @end
