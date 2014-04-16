@@ -9,6 +9,7 @@
 #import "TripsCDTVC.h"
 #import "DaysCDTVC.h"
 #import "SettingsTVC.h"
+#import "SettingMenuRVC.h"
 
 @interface TripsCDTVC()
 @property NSDateFormatter *dateFormatter;
@@ -55,6 +56,21 @@
 -(void)viewDidLoad{
     self.dateFormatter=[[NSDateFormatter alloc]init];
     [self.dateFormatter setDateFormat:@"yyyy/MM/dd"];
+    
+    //------Set Sidebar Menu--------
+    [self setSidebarMenuAction];
+
+}
+-(void)setSidebarMenuAction{
+    // Change button color
+    _sidebarButton.tintColor = [UIColor colorWithWhite:0.1f alpha:0.9f];
+    
+    // Set the side bar button action. When it's tapped, it'll show up the sidebar.
+    _sidebarButton.target = self.revealViewController;
+    _sidebarButton.action = @selector(revealToggle:);
+    
+    // Set the gesture
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

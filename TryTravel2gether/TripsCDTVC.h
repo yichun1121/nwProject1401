@@ -24,4 +24,6 @@
 
 @property (strong, nonatomic) Trip *selectedTrip;   //取出選擇的trip物件，方便傳給Detail頁面
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+
 @end
