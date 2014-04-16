@@ -9,6 +9,8 @@
 #import "SidebarViewController.h"
 #import "SettingMenuRVC.h"
 #import "CoreDataTableViewController.h"
+#import "TripsCDTVC.h"
+
 
 @interface SidebarViewController ()
 
@@ -66,12 +68,18 @@
 - (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender
 {
     // Set the title of navigation bar by using the menu items
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    UINavigationController *destViewController = (UINavigationController*)segue.destinationViewController;
-    destViewController.title = [[menuItems objectAtIndex:indexPath.row] capitalizedString];
+    //NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    //UINavigationController *destViewController = (UINavigationController*)segue.destinationViewController;
+    //destViewController.title = [[menuItems objectAtIndex:indexPath.row] capitalizedString];
     
     
     if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] ) {
+        
+        if ([segue.identifier isEqualToString:@"Trip List Segue From Sidebar Menu"]) {
+            TripsCDTVC *tripsCDTVC=segue.destinationViewController;
+            tripsCDTVC.managedObjectContext=self.managedObjectContext;
+        }
+        
         SWRevealViewControllerSegue *swSegue = (SWRevealViewControllerSegue*) segue;
         swSegue.performBlock = ^(SWRevealViewControllerSegue* rvc_segue, UIViewController* svc, UIViewController* dvc) {
             
