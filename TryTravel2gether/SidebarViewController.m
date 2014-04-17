@@ -10,7 +10,8 @@
 #import "SettingMenuRVC.h"
 #import "CoreDataTableViewController.h"
 #import "TripsCDTVC.h"
-
+#import "CategoriesCDTVC.h"
+#import "GuysCDTVC.h"
 
 @interface SidebarViewController ()
 
@@ -78,6 +79,15 @@
         if ([segue.identifier isEqualToString:@"Trip List Segue From Sidebar Menu"]) {
             TripsCDTVC *tripsCDTVC=segue.destinationViewController;
             tripsCDTVC.managedObjectContext=self.managedObjectContext;
+            NSLog(@"Translate managedObjectContext to TripsCDTVC @%@",self.class);
+        }else if ([segue.identifier isEqualToString:@"Category List Segue From Sidebar Menu"]){
+            CategoriesCDTVC *categoriesCDTVC=segue.destinationViewController;
+            categoriesCDTVC.managedObjectContext=self.managedObjectContext;
+            NSLog(@"Translate managedObjectContext to CategoriesCDTVC @%@",self.class);
+        }else if ([segue.identifier isEqualToString:@"Guy List Segue From Sidebar Menu"]){
+            GuysCDTVC *guysCDTVC=segue.destinationViewController;
+            guysCDTVC.managedObjectContext=self.managedObjectContext;
+            NSLog(@"Translate managedObjectContext to GuysCDTVC @%@",self.class);
         }
         
         SWRevealViewControllerSegue *swSegue = (SWRevealViewControllerSegue*) segue;

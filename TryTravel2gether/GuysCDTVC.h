@@ -21,5 +21,6 @@
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 // 因為繼承CoreDataTableViewController，所以需要有這兩個property：fetchedResultsController和managedObjectContext
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
 @end
