@@ -108,7 +108,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     //判斷是哪條連線（會對應Segue的名稱）
-	if ([segue.identifier isEqualToString:@"Add Trip Segue"])
+	if ([segue.identifier isEqualToString:@"Add Trip Segue From Trip List"])
 	{
         NSLog(@"Setting TripCDTVC as a delegate of AddTripTVC");
         

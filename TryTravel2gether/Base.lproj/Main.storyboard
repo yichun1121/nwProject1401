@@ -139,104 +139,6 @@
             </objects>
             <point key="canvasLocation" x="617" y="1350"/>
         </scene>
-        <!--SettingsTVC - Settings-->
-        <scene sceneID="1Lz-MW-xKG">
-            <objects>
-                <tableViewController id="ZQi-1k-SUK" customClass="SettingsTVC" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="zcA-gk-mdk">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <sections>
-                            <tableViewSection headerTitle="Category" id="lvI-Kg-iMs">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="URb-rZ-0ph" style="IBUITableViewCellStyleDefault" id="A0M-5j-nE3">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A0M-5j-nE3" id="bEp-kx-c5U">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Item Category" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="URb-rZ-0ph">
-                                                    <rect key="frame" x="15" y="0.0" width="270" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="leW-vj-ml8">
-                                        <rect key="frame" x="0.0" y="66" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="leW-vj-ml8" id="fRs-fK-awD">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="8Zc-gl-RZR">
-                                        <rect key="frame" x="0.0" y="110" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Zc-gl-RZR" id="rQb-O2-Re8">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle="Participant" id="SY1-mx-lGo">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="6G0-Yf-74d" style="IBUITableViewCellStyleDefault" id="Iix-M6-1gr">
-                                        <rect key="frame" x="0.0" y="176" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Iix-M6-1gr" id="hww-zH-lpG">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Contact" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6G0-Yf-74d">
-                                                    <rect key="frame" x="15" y="0.0" width="270" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="kaO-sU-JOU" kind="push" identifier="Guys List Segue" id="XJC-77-AaP"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="qgb-Uf-Z51">
-                                        <rect key="frame" x="0.0" y="220" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qgb-Uf-Z51" id="14V-PR-Mr4">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="hqZ-XG-53G">
-                                        <rect key="frame" x="0.0" y="264" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hqZ-XG-53G" id="ZtH-QZ-pWB">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="ZQi-1k-SUK" id="tMc-NU-zWS"/>
-                            <outlet property="delegate" destination="ZQi-1k-SUK" id="Mxa-tJ-L66"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Settings" id="5ff-I3-WWn"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hvn-fT-HMy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="624" y="72"/>
-        </scene>
         <!--Select CategoryCDTVC - Select a Category-->
         <scene sceneID="sas-vf-Stt">
             <objects>
@@ -360,9 +262,27 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="EVl-Xe-lSg">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dyu-nU-39B">
+                                    <rect key="frame" x="20" y="7" width="280" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Add Trip">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <segue destination="adv-qI-M9G" kind="push" identifier="Add Trip Segue From Trip List" id="9Ed-IV-cNg"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Trips Cell" textLabel="HzE-SU-hk3" detailTextLabel="nWt-nh-HRe" style="IBUITableViewCellStyleSubtitle" id="AcJ-Mn-RZ8">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AcJ-Mn-RZ8" id="SkV-tC-luS">
                                     <rect key="frame" x="0.0" y="0.0" width="253" height="43"/>
@@ -397,11 +317,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Trips" id="Qwg-Kk-xiF">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="yLk-Ti-X7u"/>
-                        <barButtonItem key="rightBarButtonItem" title="＋Trip" id="i2H-PM-8wd">
-                            <connections>
-                                <segue destination="adv-qI-M9G" kind="push" identifier="Add Trip Segue" id="EXZ-Pt-r81"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
@@ -1365,7 +1280,7 @@
             </objects>
             <point key="canvasLocation" x="3099" y="562"/>
         </scene>
-        <!--DaysCDTVC-->
+        <!--DaysCDTVC - Days-->
         <scene sceneID="B8V-1y-TuX">
             <objects>
                 <tableViewController id="Klh-bt-8cM" customClass="DaysCDTVC" sceneMemberID="viewController">
@@ -1426,7 +1341,7 @@
                             <outlet property="delegate" destination="Klh-bt-8cM" id="jcz-v5-PUs"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="0KB-qW-TBK">
+                    <navigationItem key="navigationItem" title="Days" id="0KB-qW-TBK">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="VRh-Aa-hhB">
                             <connections>
                                 <segue destination="w8Y-PQ-8PV" kind="push" identifier="Add Receipt Segue" id="moX-HC-O6P"/>
@@ -1728,7 +1643,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                     <connections>
-                                                        <action selector="textFieldEditingChanged:" destination="8KR-sK-irC" eventType="editingDidEnd" id="Mbc-D5-nK5"/>
+                                                        <action selector="textFieldEditingChanged:" destination="8KR-sK-irC" eventType="editingChanged" id="AQI-d1-jma"/>
                                                     </connections>
                                                 </textField>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Unit Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dsj-tm-2cw">
@@ -1753,7 +1668,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     <connections>
-                                                        <action selector="textFieldEditingChanged:" destination="8KR-sK-irC" eventType="editingDidEnd" id="OLy-9v-SUb"/>
+                                                        <action selector="textFieldEditingChanged:" destination="8KR-sK-irC" eventType="editingChanged" id="xz9-06-vti"/>
                                                     </connections>
                                                 </textField>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Qantity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n3F-yZ-glf">
@@ -2201,14 +2116,13 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="uY8-M1-8nc"/>
-        <segue reference="5QA-QK-Xps"/>
         <segue reference="C6V-tt-ruz"/>
+        <segue reference="uY8-M1-8nc"/>
         <segue reference="TUs-AD-ywu"/>
-        <segue reference="WFw-Rt-NXt"/>
-        <segue reference="wJe-84-bVr"/>
         <segue reference="moX-HC-O6P"/>
-        <segue reference="jlX-mz-Yrp"/>
         <segue reference="r1V-Ci-7uc"/>
+        <segue reference="jlX-mz-Yrp"/>
+        <segue reference="wJe-84-bVr"/>
+        <segue reference="WFw-Rt-NXt"/>
     </inferredMetricsTieBreakers>
 </document>

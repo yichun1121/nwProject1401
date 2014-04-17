@@ -62,6 +62,10 @@
     
     self.dateFormatter.dateFormat=@"yyyy/MM/dd";
     self.timeFormatter.dateFormat=@"HH:mm";
+    
+    //-----設定下一頁時的back button的字（避免本頁的title太長）-----------
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Receipts" style:UIBarButtonItemStylePlain target:nil action:nil];
+
 }
 
 #pragma mark - Table view data source
