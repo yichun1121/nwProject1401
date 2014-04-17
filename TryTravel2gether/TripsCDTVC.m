@@ -68,10 +68,16 @@
     // Set the side bar button action. When it's tapped, it'll show up the sidebar.
     _sidebarButton.target = self.revealViewController;
     _sidebarButton.action = @selector(revealToggle:);
-    
+
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
+    #pragma mark 在sidebar menu下讓delete功能正常
+    self.revealViewController.panGestureRecognizer.delegate = self;
+    // Set the gesture （在下面delegation的地方）
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -201,5 +207,8 @@
     
     // close the delegated view
     [controller.navigationController popViewControllerAnimated:YES];
+}
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
 }
 @end

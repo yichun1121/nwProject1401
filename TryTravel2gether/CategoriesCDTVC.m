@@ -60,6 +60,11 @@
     
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
+    #pragma mark 在sidebar menu下讓delete功能正常
+    self.revealViewController.panGestureRecognizer.delegate = self;
+    // Set the gesture （在下面delegation的地方）
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 }
 
 
@@ -129,5 +134,8 @@
     [controller.navigationController popViewControllerAnimated:YES];
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
 @end
 

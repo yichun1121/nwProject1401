@@ -11,7 +11,7 @@
 #import "AddGuyTVC.h" // so this class can be a AddGuyTVCDelegate
 #import "Guy.h"
 
-@interface GuysCDTVC : CoreDataTableViewController <AddGuyTVCDelegate>
+@interface GuysCDTVC : CoreDataTableViewController <AddGuyTVCDelegate,UIGestureRecognizerDelegate>
 /*
  GuysTVC繼承UITableViewController（父類別只能有一個）
  後面的括號表示同時俱有AddGuyTVCDelegate的功能（也就是會實作Delegate裡面宣告的method，以便在監聽事件觸發後處理）
