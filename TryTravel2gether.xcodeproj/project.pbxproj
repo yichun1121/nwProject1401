@@ -286,6 +286,19 @@
 			name = Item;
 			sourceTree = "<group>";
 		};
+		C9AB71121901390700853F42 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				040A631D188ADB7B0084A3EC /* CoreDataTableViewCell.h */,
+				040A631E188ADB7B0084A3EC /* CoreDataTableViewCell.m */,
+				C9F804F8187A74DB00EE4EDE /* CoreDataTableViewController.h */,
+				C9F804F9187A74DB00EE4EDE /* CoreDataTableViewController.m */,
+				C9697B1418FCF8E1006148E0 /* SWRevealViewController.h */,
+				C9697B1518FCF8E1006148E0 /* SWRevealViewController.m */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
 		C9C4098218E8754000E1F3FE /* CustView */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,6 +337,7 @@
 				C9F804A2187A34EB00EE4EDE /* View */,
 				C9C4098218E8754000E1F3FE /* CustView */,
 				C9DB003B186B195800F3B008 /* CoreDataModel */,
+				C9AB71121901390700853F42 /* Libraries */,
 				C9F804A1187A34B400EE4EDE /* Controller */,
 				C9F64D3318E708D80005ED24 /* CustController */,
 				C90D483E18DADC1700367316 /* NWClass */,
@@ -422,12 +436,6 @@
 		C9F804A1187A34B400EE4EDE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				040A631D188ADB7B0084A3EC /* CoreDataTableViewCell.h */,
-				040A631E188ADB7B0084A3EC /* CoreDataTableViewCell.m */,
-				C9F804F8187A74DB00EE4EDE /* CoreDataTableViewController.h */,
-				C9F804F9187A74DB00EE4EDE /* CoreDataTableViewController.m */,
-				C9697B1418FCF8E1006148E0 /* SWRevealViewController.h */,
-				C9697B1518FCF8E1006148E0 /* SWRevealViewController.m */,
 				C9697B1718FCF97C006148E0 /* SidebarViewController.h */,
 				C9697B1818FCF97C006148E0 /* SidebarViewController.m */,
 				C913902D18F05EB20069EAC2 /* Trip */,
