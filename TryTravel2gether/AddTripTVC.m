@@ -239,6 +239,7 @@
         SelectGuysCDTVC *selectGuysCDTVC=segue.destinationViewController;
         selectGuysCDTVC.delegate=self;
         selectGuysCDTVC.managedObjectContext=self.managedObjectContext;
+        selectGuysCDTVC.SelectedGuys=[self.SelectedGuys mutableCopy];
         
     }
 }
@@ -275,7 +276,7 @@
     if (guyscount>1) {
     Group *group = [NSEntityDescription insertNewObjectForEntityForName:@"Group"
                                                  inManagedObjectContext:self.managedObjectContext];
-    group.name=[NSString stringWithFormat:@"%i_Guys_Shared",guyscount];
+    group.name=[NSString stringWithFormat:@"Share_All"];
     group.inTrip=trip;
     group.guysInTrip=trip.guysInTrip;
     [self.managedObjectContext save:nil];

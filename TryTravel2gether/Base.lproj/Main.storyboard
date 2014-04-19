@@ -234,6 +234,59 @@
             </objects>
             <point key="canvasLocation" x="632" y="4"/>
         </scene>
+        <!--Guys In TripCDTVC - Guys In Trip-->
+        <scene sceneID="TZ3-8R-Ngv">
+            <objects>
+                <tableViewController id="PPV-x7-GQH" customClass="GuysInTripCDTVC" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="0nI-ab-Zsa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="AX7-ld-GA4">
+                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V4B-ed-Z8x">
+                                    <rect key="frame" x="20" y="7" width="280" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Select Guy">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <segue destination="f57-t3-MmB" kind="push" identifier="Select Guy Segue From GuysInTripCDTVC" id="x1x-e5-6Ev"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="lV4-1z-5tP">
+                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lV4-1z-5tP" id="8rn-HH-yMD">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="PPV-x7-GQH" id="c8O-42-xuv"/>
+                            <outlet property="delegate" destination="PPV-x7-GQH" id="z4o-tK-idu"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Guys In Trip" id="DUf-Aj-clU">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="c1h-yd-iCI">
+                            <connections>
+                                <action selector="done:" destination="PPV-x7-GQH" id="z6P-cd-afF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nlJ-bD-cXs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1457" y="1963"/>
+        </scene>
         <!--Select CategoryCDTVC - Select a Category-->
         <scene sceneID="sas-vf-Stt">
             <objects>
@@ -725,7 +778,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="f57-t3-MmB" kind="push" identifier="Select Guy Segue From Trip Detail" id="WFw-Rt-NXt"/>
+                                            <segue destination="PPV-x7-GQH" kind="push" identifier="Guys In Trip Segue" id="Fw7-tp-NdD"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -2058,12 +2111,12 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="WFw-Rt-NXt"/>
         <segue reference="wJe-84-bVr"/>
+        <segue reference="x1x-e5-6Ev"/>
         <segue reference="sp3-cC-l9s"/>
         <segue reference="moX-HC-O6P"/>
-        <segue reference="r1V-Ci-7uc"/>
         <segue reference="jlX-mz-Yrp"/>
         <segue reference="4yc-3i-Tb3"/>
+        <segue reference="r1V-Ci-7uc"/>
     </inferredMetricsTieBreakers>
 </document>

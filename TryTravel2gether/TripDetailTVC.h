@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Trip.h"
 #import "CurrencyCDTVC.h"
-#import "SelectGuysCDTVC.h"
+#import "GuysInTripCDTVC.h"
 
 
 @class TripDetailTVC;
@@ -25,7 +25,7 @@
 @end
 
 
-@interface TripDetailTVC : UITableViewController<CurrencyCDTVCDelegate,SelectGuysCDTVCDelegate>
+@interface TripDetailTVC : UITableViewController<CurrencyCDTVCDelegate,GuysInTripCDTVCDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *tripName; //TODO: tripName不知道要weak還是strong
 @property (nonatomic, weak) id <TripDetailTVCDelegate> delegate;

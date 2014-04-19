@@ -65,7 +65,6 @@
     self.tableView.allowsMultipleSelectionDuringEditing=YES;
     [self.tableView setEditing:YES animated:YES];
     
-    
 }
 -(NSMutableSet *)SelectedGuys{
     if (_SelectedGuys==nil) {
@@ -99,8 +98,10 @@
 -(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
     Guy *guy = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = guy.name;
-    cell.selected=YES;
-    
+    UIView * selectedBackgroundView = [[UIView alloc] initWithFrame:self.tableView.frame];
+    [selectedBackgroundView setBackgroundColor:[UIColor whiteColor]]; // set color here
+    [cell setSelectedBackgroundView:selectedBackgroundView];
+
     for (Guy* selectedGuy in self.SelectedGuys) {
         if(guy==selectedGuy){
             [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
@@ -164,7 +165,6 @@
 }
 
 - (IBAction)done:(id)sender{
-
     [self.delegate guyWasSelectedInSelectGuysCDTVC:self];
 }
 
