@@ -63,8 +63,7 @@
     [self showDefaultDateValue];
     [self setAllCurrencyWithCurrency:self.currentTrip.mainCurrency];
     
-    
-    
+
 }
 
 
@@ -201,6 +200,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //每次點選row時清除所有的picker
     [self dismissPicker];
+    //點選row時關閉鍵盤
+    [self dismissKeyboard:self.view];
     
     UITableViewCell *clickCell=[self.tableView cellForRowAtIndexPath:indexPath];
     
@@ -226,6 +227,20 @@
     }
     
 }
+/*! 遞迴尋找底下所有的Textfeild，當UITextField不是游標焦點時關閉keyboard
+ */
+-(void)dismissKeyboard:(UIView *) tagView{
+    NSArray *subviews = [tagView subviews];
+    for (UIView *subview in subviews) {
+        [self dismissKeyboard:subview];
+        //找是不是TextField
+        if ([subview isKindOfClass:[UITextField class]]) {
+            //當UITextField不是游標焦點時，就關閉鍵盤
+            [subview resignFirstResponder];
+        }
+    }
+}
+
 //清除所有的picker
 -(void)dismissPicker{
     for (UIView *subview in [self.view subviews]) {
@@ -280,8 +295,15 @@
 #pragma mark - ➤ Navigation：Segue Settings
 // 內建，準備Segue的method
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    //每次Segue時清除所有的picker
+    [self dismissPicker];
+    //點選Segue時關閉鍵盤
+    [self dismissKeyboard:self.view];
+    
     if ([segue.identifier isEqualToString:@"Trip Day Segue"]) {
+        
         NSLog(@"Setting AddReceiptTVC as a delegate of TripDaysTVC...");
+        
         TripDaysTVC *TripDaysTVC=segue.destinationViewController;
         TripDaysTVC.delegate=self;
         
@@ -320,5 +342,7 @@
     [self setAllCurrencyWithCurrency:controller.selectedCurrency];
     [controller.navigationController popViewControllerAnimated:YES];
 }
+
+
 
 @end
