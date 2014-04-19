@@ -62,7 +62,12 @@
     //設定頁面初始的顯示狀態
     [self showDefaultDateValue];
     [self setAllCurrencyWithCurrency:self.currentTrip.mainCurrency];
+    
+    
+    
 }
+
+
 /*! 顯示預設日期，如果沒有指定的話預設顯示當天的Date和Time
  */
 -(void)showDefaultDateValue{
@@ -103,16 +108,11 @@
 }
 
 
-- (IBAction)pickerChanged:(UIDatePicker *)sender {
+- (void)pickerChanged:(UIDatePicker *)sender {
     if (sender==self.timePicker) {
         self.timeCell.detailTextLabel.text=[self.timeFormatter stringFromDate: sender.date];
     }
-//    else if(sender==self.datePicker){
-//        NSString *dateString=[self.dateFormatter stringFromDate:sender.date];
-//        self.dateCell.detailTextLabel.text=dateString;
-//        self.selectedDayString=dateString;
-//    }
-
+    
 }
 
 
@@ -200,13 +200,7 @@
 #pragma mark - 每次點選row的時候會做的事
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //每次點選row時清除所有的picker
-    for (UIView *subview in [self.view subviews]) {
-        if ([subview isKindOfClass:[UIDatePicker class]]) {
-            [subview removeFromSuperview];
-            self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height-[self.timePicker sizeThatFits:CGSizeZero].height);
-        }
-    }
-    
+    [self dismissPicker];
     
     UITableViewCell *clickCell=[self.tableView cellForRowAtIndexPath:indexPath];
     
@@ -220,17 +214,33 @@
         }else{
             
             self.actingDateCellIndexPath = indexPath;
-             [self setPickerFrame:self.timePicker  WithIndexPath:indexPath];
+            [self setPickerFrame:self.timePicker  WithIndexPath:indexPath];
             [self.view addSubview:self.timePicker ];
             [self animateToPlaceWithItemSize:[self.timePicker  sizeThatFits:CGSizeZero]];
             [self.timePicker  addTarget:self
-                             action:@selector(pickerChanged:)
-                   forControlEvents:UIControlEventValueChanged];
+                                 action:@selector(pickerChanged:)
+                       forControlEvents:UIControlEventValueChanged];
         }
     }else{
         self.actingDateCellIndexPath=nil;
     }
     
+}
+//清除所有的picker
+-(void)dismissPicker{
+    for (UIView *subview in [self.view subviews]) {
+        if ([subview isKindOfClass:[UIDatePicker class]]) {
+            [subview removeFromSuperview];
+            self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height-[self.timePicker sizeThatFits:CGSizeZero].height);
+        }
+    }
+}
+
+//開始編輯textField時做的事
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    //清除所有的picker
+    [self dismissPicker];
 }
 
 -(void)setPickerFrame:(UIDatePicker *)picker WithIndexPath:(NSIndexPath *)indexPath{
@@ -298,6 +308,8 @@
     [textField resignFirstResponder];
     return YES;
 }
+
+
 -(void)dayWasSelectedInTripDaysTVC:(TripDaysTVC *)controller{
     self.selectedDayString=controller.selectedDayString;
     self.dateCell.detailTextLabel.text=controller.selectedDayString;
