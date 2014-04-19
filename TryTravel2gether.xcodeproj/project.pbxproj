@@ -35,6 +35,9 @@
 		C964B92E18D42BBB002EF48C /* Day+Expend.m in Sources */ = {isa = PBXBuildFile; fileRef = C964B92D18D42BBB002EF48C /* Day+Expend.m */; };
 		C964B93118D42FDC002EF48C /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = C964B93018D42FDC002EF48C /* Currency.m */; };
 		C964B93418D43061002EF48C /* Day.m in Sources */ = {isa = PBXBuildFile; fileRef = C964B93318D43061002EF48C /* Day.m */; };
+		C9697B1618FCF8E1006148E0 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9697B1518FCF8E1006148E0 /* SWRevealViewController.m */; };
+		C9697B1918FCF97C006148E0 /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9697B1818FCF97C006148E0 /* SidebarViewController.m */; };
+		C9697B1C18FD39F9006148E0 /* SettingMenuRVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9697B1B18FD39F9006148E0 /* SettingMenuRVC.m */; };
 		C96AC7B318F10EBB0037DA8B /* AddCategoryTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C96AC7B218F10EBB0037DA8B /* AddCategoryTVC.m */; };
 		C96AC7B618F24D410037DA8B /* SelectCategoryCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C96AC7B518F24D410037DA8B /* SelectCategoryCDTVC.m */; };
 		C97365F218E6EA170060583A /* ItemsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C97365F118E6EA170060583A /* ItemsCDTVC.m */; };
@@ -136,6 +139,12 @@
 		C964B93018D42FDC002EF48C /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
 		C964B93218D43061002EF48C /* Day.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Day.h; sourceTree = "<group>"; };
 		C964B93318D43061002EF48C /* Day.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Day.m; sourceTree = "<group>"; };
+		C9697B1418FCF8E1006148E0 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		C9697B1518FCF8E1006148E0 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		C9697B1718FCF97C006148E0 /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
+		C9697B1818FCF97C006148E0 /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
+		C9697B1A18FD39F9006148E0 /* SettingMenuRVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingMenuRVC.h; sourceTree = "<group>"; };
+		C9697B1B18FD39F9006148E0 /* SettingMenuRVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingMenuRVC.m; sourceTree = "<group>"; };
 		C96AC7B118F10EBB0037DA8B /* AddCategoryTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCategoryTVC.h; sourceTree = "<group>"; };
 		C96AC7B218F10EBB0037DA8B /* AddCategoryTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCategoryTVC.m; sourceTree = "<group>"; };
 		C96AC7B418F24D410037DA8B /* SelectCategoryCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCategoryCDTVC.h; sourceTree = "<group>"; };
@@ -422,6 +431,10 @@
 				040A631E188ADB7B0084A3EC /* CoreDataTableViewCell.m */,
 				C9F804F8187A74DB00EE4EDE /* CoreDataTableViewController.h */,
 				C9F804F9187A74DB00EE4EDE /* CoreDataTableViewController.m */,
+				C9697B1418FCF8E1006148E0 /* SWRevealViewController.h */,
+				C9697B1518FCF8E1006148E0 /* SWRevealViewController.m */,
+				C9697B1718FCF97C006148E0 /* SidebarViewController.h */,
+				C9697B1818FCF97C006148E0 /* SidebarViewController.m */,
 				C913902D18F05EB20069EAC2 /* Trip */,
 				C913902F18F05ED90069EAC2 /* Day */,
 				040A6323188ADE480084A3EC /* TripDaysTVC.h */,
@@ -443,6 +456,8 @@
 				C96AC7B518F24D410037DA8B /* SelectCategoryCDTVC.m */,
 				C9C6258118F67A7800026CFA /* ItemDetailTVC.h */,
 				C9C6258218F67A7800026CFA /* ItemDetailTVC.m */,
+				C9697B1A18FD39F9006148E0 /* SettingMenuRVC.h */,
+				C9697B1B18FD39F9006148E0 /* SettingMenuRVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -562,6 +577,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9697B1918FCF97C006148E0 /* SidebarViewController.m in Sources */,
 				C90969CA18F9231D00D46859 /* Group.m in Sources */,
 				18B8143F18E6E9740089BF0B /* AddGuyTVC.m in Sources */,
 				C9F804AA187A4C9B00EE4EDE /* AddTripTVC.m in Sources */,
@@ -582,6 +598,7 @@
 				1859D0FE18F00AD200C93338 /* SelectGuysCDTVC.m in Sources */,
 				18DF963619024EF30051366D /* GuysInTripCDTVC.m in Sources */,
 				04858D4018AA63F000A81340 /* DayDetailTVC.m in Sources */,
+				C9697B1618FCF8E1006148E0 /* SWRevealViewController.m in Sources */,
 				C964B93118D42FDC002EF48C /* Currency.m in Sources */,
 				18DE117F18F97F72003F3083 /* Guy.m in Sources */,
 				0409B6F21892B763000C6DF6 /* Day+TripDay.m in Sources */,
@@ -606,6 +623,7 @@
 				C964B92E18D42BBB002EF48C /* Day+Expend.m in Sources */,
 				C964B93418D43061002EF48C /* Day.m in Sources */,
 				04A04665188A4B5D00D98809 /* AddReceiptTVC.m in Sources */,
+				C9697B1C18FD39F9006148E0 /* SettingMenuRVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

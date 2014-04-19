@@ -26,13 +26,14 @@
 {
     [super viewDidLoad];
     [self setItemDetail:self.currentItem];
+    self.navigationController.title=self.currentItem.name;
 }
 
 -(void)setItemDetail:(Item *)item{
     self.name.text=item.name;
     self.price.text=[NSString stringWithFormat:@"%@", item.price] ;
     self.qantity.text=[NSString stringWithFormat:@"%@", item.quantity] ;
-    self.totalPrice.text=[NSString stringWithFormat:@"%f", [item.price doubleValue]*[item.quantity intValue]] ;
+    self.totalPrice.text=[NSString stringWithFormat:@"%g", [item.price doubleValue]*[item.quantity intValue]] ;
 
     self.selectedCategory=item.catInTrip.category;
     self.categoryName.textLabel.text=item.catInTrip.category.name;
@@ -54,7 +55,7 @@
     [self.delegate theSaveButtonOnTheAddItemWasTapped:self];
     NSLog(@"Telling the Delegate that Save was tapped on the @%@",self.class);
 }
--(IBAction)textFieldEditingChanged:(UITextField *)sender{
+- (IBAction)textFieldEditingChanged:(UITextField *)sender {
     [super textFieldEditingChanged:sender];
 }
 

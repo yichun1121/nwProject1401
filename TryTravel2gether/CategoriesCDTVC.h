@@ -9,10 +9,11 @@
 #import "CoreDataTableViewController.h"
 #import "AddCategoryTVC.h"
 
-@interface CategoriesCDTVC : CoreDataTableViewController<AddCategoryTVCDelegate>
+@interface CategoriesCDTVC : CoreDataTableViewController<AddCategoryTVCDelegate,UIGestureRecognizerDelegate>
 
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
 -(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath;
 @end

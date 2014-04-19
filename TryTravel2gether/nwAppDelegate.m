@@ -10,6 +10,7 @@
 #import "TripsCDTVC.h"
 #import "Currency.h"
 #import "Itemcategory.h"
+#import "SettingMenuRVC.h"
 
 @implementation nwAppDelegate
 
@@ -130,9 +131,16 @@
 
     
     // Override point for customization after application launch.
-    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-    TripsCDTVC *controller = (TripsCDTVC *)navigationController.topViewController;
-    controller.managedObjectContext = self.managedObjectContext;
+    //UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+    //TripsCDTVC *controller = (TripsCDTVC *)navigationController.topViewController;
+    //controller.managedObjectContext = self.managedObjectContext;
+    SettingMenuRVC *settingMenuRVC=(SettingMenuRVC *)self.window.rootViewController;
+    settingMenuRVC.managedObjectContext=self.managedObjectContext;
+    
+//    SWRevealViewController *revelViewController=(SWRevealViewController *)self.window.rootViewController;
+//    UINavigationController *navigationController = (UINavigationController *)revelViewController.frontViewController;
+//    TripsCDTVC *controller=(TripsCDTVC *)navigationController.topViewController;
+//    controller.managedObjectContext=self.managedObjectContext;
     return YES;
 }
 							

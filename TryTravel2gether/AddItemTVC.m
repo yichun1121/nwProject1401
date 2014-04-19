@@ -62,6 +62,7 @@
     NSLog(@"Telling the AddItem Delegate that Save was tapped on the %@",[self class]);
 }
 
+
 - (IBAction)textFieldEditingChanged:(UITextField *)sender {
     double total=[self.price.text doubleValue]*[self.qantity.text integerValue];
     self.totalPrice.text=[NSString stringWithFormat:@"%g",total];

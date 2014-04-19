@@ -27,6 +27,9 @@
     [super viewWillAppear:animated];
     [self setupFetchedResultsController];
     //self.tableView.editing=YES;
+    
+    
+
 }
 
 #pragma mark - FetchedResultsController
@@ -68,7 +71,9 @@
     
     self.dateFormatter=[[NSDateFormatter alloc]init];
     [self.dateFormatter setDateFormat:@"yyyy/MM/dd"];
-
+    
+    //-----設定下一頁時的back button的字（避免本頁的title太長）-----------
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Days" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 

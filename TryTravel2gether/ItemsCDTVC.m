@@ -76,6 +76,9 @@
     //-----顯示未設定金額----------
     NSString *strCurrencySign=self.currentReceipt.dayCurrency.currency.sign;
     self.remaining.text=[NSString stringWithFormat:@"%@ %g",strCurrencySign,[self.currentReceipt getMoneyIsNotSet]];
+    
+    //-----設定下一頁時的back button的字（避免本頁的title太長）-----------
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Items" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

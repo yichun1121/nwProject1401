@@ -62,7 +62,11 @@
     //設定頁面初始的顯示狀態
     [self showDefaultDateValue];
     [self setAllCurrencyWithCurrency:self.currentTrip.mainCurrency];
+    
+
 }
+
+
 /*! 顯示預設日期，如果沒有指定的話預設顯示當天的Date和Time
  */
 -(void)showDefaultDateValue{
@@ -103,16 +107,11 @@
 }
 
 
-- (IBAction)pickerChanged:(UIDatePicker *)sender {
+- (void)pickerChanged:(UIDatePicker *)sender {
     if (sender==self.timePicker) {
         self.timeCell.detailTextLabel.text=[self.timeFormatter stringFromDate: sender.date];
     }
-//    else if(sender==self.datePicker){
-//        NSString *dateString=[self.dateFormatter stringFromDate:sender.date];
-//        self.dateCell.detailTextLabel.text=dateString;
-//        self.selectedDayString=dateString;
-//    }
-
+    
 }
 
 
@@ -200,13 +199,9 @@
 #pragma mark - 每次點選row的時候會做的事
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //每次點選row時清除所有的picker
-    for (UIView *subview in [self.view subviews]) {
-        if ([subview isKindOfClass:[UIDatePicker class]]) {
-            [subview removeFromSuperview];
-            self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height-[self.timePicker sizeThatFits:CGSizeZero].height);
-        }
-    }
-    
+    [self dismissPicker];
+    //點選row時關閉鍵盤
+    [self dismissKeyboard:self.view];
     
     UITableViewCell *clickCell=[self.tableView cellForRowAtIndexPath:indexPath];
     
@@ -220,17 +215,47 @@
         }else{
             
             self.actingDateCellIndexPath = indexPath;
-             [self setPickerFrame:self.timePicker  WithIndexPath:indexPath];
+            [self setPickerFrame:self.timePicker  WithIndexPath:indexPath];
             [self.view addSubview:self.timePicker ];
             [self animateToPlaceWithItemSize:[self.timePicker  sizeThatFits:CGSizeZero]];
             [self.timePicker  addTarget:self
-                             action:@selector(pickerChanged:)
-                   forControlEvents:UIControlEventValueChanged];
+                                 action:@selector(pickerChanged:)
+                       forControlEvents:UIControlEventValueChanged];
         }
     }else{
         self.actingDateCellIndexPath=nil;
     }
     
+}
+/*! 遞迴尋找底下所有的Textfeild，當UITextField不是游標焦點時關閉keyboard
+ */
+-(void)dismissKeyboard:(UIView *) tagView{
+    NSArray *subviews = [tagView subviews];
+    for (UIView *subview in subviews) {
+        [self dismissKeyboard:subview];
+        //找是不是TextField
+        if ([subview isKindOfClass:[UITextField class]]) {
+            //當UITextField不是游標焦點時，就關閉鍵盤
+            [subview resignFirstResponder];
+        }
+    }
+}
+
+//清除所有的picker
+-(void)dismissPicker{
+    for (UIView *subview in [self.view subviews]) {
+        if ([subview isKindOfClass:[UIDatePicker class]]) {
+            [subview removeFromSuperview];
+            self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height-[self.timePicker sizeThatFits:CGSizeZero].height);
+        }
+    }
+}
+
+//開始編輯textField時做的事
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    //清除所有的picker
+    [self dismissPicker];
 }
 
 -(void)setPickerFrame:(UIDatePicker *)picker WithIndexPath:(NSIndexPath *)indexPath{
@@ -270,8 +295,15 @@
 #pragma mark - ➤ Navigation：Segue Settings
 // 內建，準備Segue的method
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    //每次Segue時清除所有的picker
+    [self dismissPicker];
+    //點選Segue時關閉鍵盤
+    [self dismissKeyboard:self.view];
+    
     if ([segue.identifier isEqualToString:@"Trip Day Segue"]) {
+        
         NSLog(@"Setting AddReceiptTVC as a delegate of TripDaysTVC...");
+        
         TripDaysTVC *TripDaysTVC=segue.destinationViewController;
         TripDaysTVC.delegate=self;
         
@@ -298,6 +330,8 @@
     [textField resignFirstResponder];
     return YES;
 }
+
+
 -(void)dayWasSelectedInTripDaysTVC:(TripDaysTVC *)controller{
     self.selectedDayString=controller.selectedDayString;
     self.dateCell.detailTextLabel.text=controller.selectedDayString;
@@ -308,5 +342,7 @@
     [self setAllCurrencyWithCurrency:controller.selectedCurrency];
     [controller.navigationController popViewControllerAnimated:YES];
 }
+
+
 
 @end
