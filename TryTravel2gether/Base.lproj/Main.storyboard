@@ -2037,7 +2037,7 @@
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="travel" translatesAutoresizingMaskIntoConstraints="NO" id="sjg-eT-Sdh">
-                                            <rect key="frame" x="23.5" y="6.5" width="31" height="31"/>
+                                            <rect key="frame" x="24" y="7" width="31" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
@@ -2060,7 +2060,7 @@
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="folder" translatesAutoresizingMaskIntoConstraints="NO" id="yMk-ni-Lwf">
-                                            <rect key="frame" x="23.5" y="6.5" width="31" height="31"/>
+                                            <rect key="frame" x="24" y="7" width="31" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
@@ -2083,7 +2083,7 @@
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="guys-1" translatesAutoresizingMaskIntoConstraints="NO" id="8tP-XC-MPL">
-                                            <rect key="frame" x="23.5" y="6.5" width="31" height="31"/>
+                                            <rect key="frame" x="24" y="7" width="31" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
@@ -2116,13 +2116,13 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="C6V-tt-ruz"/>
         <segue reference="uY8-M1-8nc"/>
-        <segue reference="TUs-AD-ywu"/>
         <segue reference="moX-HC-O6P"/>
-        <segue reference="r1V-Ci-7uc"/>
         <segue reference="jlX-mz-Yrp"/>
-        <segue reference="wJe-84-bVr"/>
+        <segue reference="dk3-o7-VGh"/>
+        <segue reference="4bK-FK-wew"/>
         <segue reference="WFw-Rt-NXt"/>
+        <segue reference="C6V-tt-ruz"/>
+        <segue reference="TUs-AD-ywu"/>
     </inferredMetricsTieBreakers>
 </document>
