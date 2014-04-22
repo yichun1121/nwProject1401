@@ -62,12 +62,7 @@
     //設定頁面初始的顯示狀態
     [self showDefaultDateValue];
     [self setAllCurrencyWithCurrency:self.currentTrip.mainCurrency];
-    
-    
-    
 }
-
-
 /*! 顯示預設日期，如果沒有指定的話預設顯示當天的Date和Time
  */
 -(void)showDefaultDateValue{
