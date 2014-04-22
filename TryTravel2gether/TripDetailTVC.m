@@ -10,15 +10,18 @@
 #import "GuyInTrip.h"
 #import "Group.h"
 #import "Guy.h"
+#import "GroupAndGuyInTripCDTVC.h"
 
 @interface TripDetailTVC ()
 @property NSDateFormatter *dateFormatter;
 @property (weak, nonatomic) IBOutlet UITableViewCell *currency;
 @property (weak, nonatomic) IBOutlet UITableViewCell *guysCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *groupsCell;
 @property (strong,nonatomic) Currency *currentCurrency;
 @property (strong, nonatomic) UIDatePicker *endPicker;
 @property (strong, nonatomic) UIDatePicker *startPicker;
 @property (strong,nonatomic) NSMutableSet *SelectedGuys;
+@property (strong,nonatomic)Group *selectedGroup;
 @end
 
 @implementation TripDetailTVC
@@ -224,6 +227,12 @@
         guysInTripCDTVC.managedObjectContext=self.managedObjectContext;
         guysInTripCDTVC.SelectedGuys=self.SelectedGuys;
         guysInTripCDTVC.currentTrip=self.trip;
+    }else if([segue.identifier isEqualToString:@"Group List Segue From Trip Detail"]){
+        GroupAndGuyInTripCDTVC *groupCDTVC=segue.destinationViewController;
+        groupCDTVC.managedObjectContext=self.managedObjectContext;
+        groupCDTVC.selectedGroup=self.selectedGroup;
+        groupCDTVC.currentTrip=self.trip;
+        //TODO:group的delegate，然後要顯示group數量
     }
 }
 

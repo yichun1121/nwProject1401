@@ -126,6 +126,7 @@
         Item *selectedItem=[self.fetchedResultsController objectAtIndexPath:sender];
         ItemDetailTVC *itemDetailTVC=[segue destinationViewController];
         itemDetailTVC.managedObjectContext=self.managedObjectContext;
+        itemDetailTVC.currentReceipt=self.currentReceipt;
         itemDetailTVC.currentItem=selectedItem;
         itemDetailTVC.delegate=self;
     }
