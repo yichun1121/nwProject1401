@@ -9,10 +9,13 @@
 #import "DaysCDTVC.h"
 #import "ReceiptsCDTVC.m"
 #import "Day+TripDay.h"
+#import "NWCustCellTitleSubDetail.h"
+#import "Day+Expend.h"
 
 
 @interface DaysCDTVC ()
 @property NSDateFormatter *dateFormatter;
+@property Currency *showingCurrency;
 @end
 
 @implementation DaysCDTVC
@@ -72,8 +75,13 @@
     self.dateFormatter=[[NSDateFormatter alloc]init];
     [self.dateFormatter setDateFormat:@"yyyy/MM/dd"];
     
+    //-----註冊CustomCell----------
+    UINib* myCellNib = [UINib nibWithNibName:@"NWCustCellTitleSubDetail" bundle:nil];
+    [self.tableView registerNib:myCellNib forCellReuseIdentifier:@"Cell"];
     //-----設定下一頁時的back button的字（避免本頁的title太長）-----------
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Days" style:UIBarButtonItemStylePlain target:nil action:nil];
+    //-----預設顯示幣別----------
+    self.showingCurrency=self.currentTrip.mainCurrency;
 }
 
 
@@ -81,10 +89,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Day Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"Cell";
+    NWCustCellTitleSubDetail *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[NWCustCellTitleSubDetail alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     // Configure the cell...
     cell=[self configureCell:cell AtIndexPath:indexPath];
@@ -93,12 +101,15 @@
 }
 /*!組合TableViewCell的顯示內容
  */
--(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
-        Day *day=[self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text =[day DayNumberStringOfTripdayInTrip]; //ex:Day 2 or Prepare;
+-(NWCustCellTitleSubDetail *)configureCell:(NWCustCellTitleSubDetail *)cell AtIndexPath:(NSIndexPath *)indexPath{
+    cell.accessoryType=UITableViewCellAccessoryDetailDisclosureButton;
+    Day *day=[self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.titleTextLabel.text =[day DayNumberStringOfTripdayInTrip]; //ex:Day 2 or Prepare;
     NSString *strDate=[self.dateFormatter stringFromDate:day.date];
     NSString *shortDate=[strDate substringFromIndex:5];
-    cell.detailTextLabel.text=[NSString stringWithFormat:@"%@：%@",shortDate,day.name];    //ex:2013/11/29：關西國際機場、高台寺
+    cell.subtitleTextLabel.text=[NSString stringWithFormat:@"(%@) %@",shortDate,day.name];    //ex:2013/11/29：關西國際機場、高台寺
+    cell.detailTextLabel.text=[NSString stringWithFormat:@"%@ %@",self.showingCurrency.sign,[day dayExpendUsing:self.showingCurrency]];
+    
     return cell;
 }
 /*! 判斷某天是該次旅程的第幾天（startDate當天回傳1，前一天回傳-1，不應該有0） */
@@ -163,7 +174,7 @@
         receiptsCDTVC.managedObjectContext=self.managedObjectContext;
         
         // Store selected Role in selectedRole property
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];  //或是用sender也可以，didSelectRowAtIndexPath傳來的是indexPath
         //可以直接用indexPath找到CoreData裡的實際物件，然後pass給Detail頁
         self.selectedDay = [self.fetchedResultsController objectAtIndexPath:indexPath];
         
@@ -183,13 +194,21 @@
         dayDetailTVC.delegate=self;
         dayDetailTVC.managedObjectContext=self.managedObjectContext;
         
-        NSIndexPath *indexPath=[self.tableView indexPathForCell:sender];;
+        //NSIndexPath *indexPath=[self.tableView indexPathForCell:sender];
+        NSIndexPath *indexPath=(NSIndexPath *)sender;   //因為在accessoryButtonTappedForRowWithIndexPath事件裡傳indexPath過來
         self.selectedDay=[self.fetchedResultsController objectAtIndexPath:indexPath];
         dayDetailTVC.day=self.selectedDay;
         
     }
 }
 
+#pragma mark - 事件
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:@"Receipts List Segue" sender:indexPath];
+}
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:@"Day Detail Segue" sender:indexPath];
+}
 
 #pragma mark - Delegation
 -(void)theSaveButtonOnTheAddReceiptWasTapped:(AddReceiptTVC *)controller{
