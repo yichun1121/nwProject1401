@@ -83,7 +83,7 @@
 /*!組合TableViewCell的顯示內容
  */
 -(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
-        Receipt *receipt=[self.fetchedResultsController objectAtIndexPath:indexPath];
+    Receipt *receipt=[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text=receipt.desc;
     NSString *moneyTypeSign=receipt.dayCurrency.currency.sign;
     cell.detailTextLabel.text=[NSString stringWithFormat:@"%@ %@",moneyTypeSign,receipt.total];

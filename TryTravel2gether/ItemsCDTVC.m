@@ -97,6 +97,7 @@
 /*!組合TableViewCell的顯示內容
  */
 -(NWCustCellTitleSubDetail *)configureCell:(NWCustCellTitleSubDetail *)cell AtIndexPath:(NSIndexPath *)indexPath{
+    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     Item *item=[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.titleTextLabel.text=item.name;
     cell.subtitleTextLabel.text=[NSString stringWithFormat:@"%@ x %@",item.price,item.quantity];
