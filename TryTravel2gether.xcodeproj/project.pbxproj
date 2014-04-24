@@ -42,6 +42,8 @@
 		C96AC7B618F24D410037DA8B /* SelectCategoryCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C96AC7B518F24D410037DA8B /* SelectCategoryCDTVC.m */; };
 		C97365F218E6EA170060583A /* ItemsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C97365F118E6EA170060583A /* ItemsCDTVC.m */; };
 		C980686718E0B4C200841064 /* ReceiptDetailTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C980686618E0B4C200841064 /* ReceiptDetailTVC.m */; };
+		C981340C190769BF00CF43CC /* ShareMainPageCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C981340B190769BF00CF43CC /* ShareMainPageCDTVC.m */; };
+		C981340F19078D0800CF43CC /* SelectTripCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C981340E19078D0800CF43CC /* SelectTripCDTVC.m */; };
 		C9AAED8E19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED8D19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.m */; };
 		C9AAED9119067A87002D3BAB /* GroupAndGuyInTripCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED9019067A87002D3BAB /* GroupAndGuyInTripCDTVC.m */; };
 		C9AAED941906A361002D3BAB /* Group+TripGuys.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED931906A361002D3BAB /* Group+TripGuys.m */; };
@@ -62,6 +64,8 @@
 		C9DB002D186B187E00F3B008 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9DB002B186B187E00F3B008 /* InfoPlist.strings */; };
 		C9DB002F186B187E00F3B008 /* TryTravel2getherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DB002E186B187E00F3B008 /* TryTravel2getherTests.m */; };
 		C9DB003E186B197400F3B008 /* TourModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C9DB003C186B197400F3B008 /* TourModel.xcdatamodeld */; };
+		C9EE94DB1908C0B600E599C1 /* TripsCDTVCWithSidebar.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EE94DA1908C0B600E599C1 /* TripsCDTVCWithSidebar.m */; };
+		C9EE94E11908F2D100E599C1 /* GuyInTrip+Expend.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EE94E01908F2D100E599C1 /* GuyInTrip+Expend.m */; };
 		C9F64D3618E709A00005ED24 /* NWCustCellTitleSubDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F64D3518E709A00005ED24 /* NWCustCellTitleSubDetail.m */; };
 		C9F80494187A333D00EE4EDE /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C9F80492187A333D00EE4EDE /* Model.xcdatamodeld */; };
 		C9F804A4187A355900EE4EDE /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F804A3187A355900EE4EDE /* CoreData.framework */; };
@@ -156,6 +160,10 @@
 		C97365F118E6EA170060583A /* ItemsCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsCDTVC.m; sourceTree = "<group>"; };
 		C980686518E0B4C200841064 /* ReceiptDetailTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptDetailTVC.h; sourceTree = "<group>"; };
 		C980686618E0B4C200841064 /* ReceiptDetailTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptDetailTVC.m; sourceTree = "<group>"; };
+		C981340A190769BF00CF43CC /* ShareMainPageCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareMainPageCDTVC.h; sourceTree = "<group>"; };
+		C981340B190769BF00CF43CC /* ShareMainPageCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareMainPageCDTVC.m; sourceTree = "<group>"; };
+		C981340D19078D0800CF43CC /* SelectTripCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTripCDTVC.h; sourceTree = "<group>"; };
+		C981340E19078D0800CF43CC /* SelectTripCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectTripCDTVC.m; sourceTree = "<group>"; };
 		C9AAED8C19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGroupAndGuyCDTVC.h; sourceTree = "<group>"; };
 		C9AAED8D19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectGroupAndGuyCDTVC.m; sourceTree = "<group>"; };
 		C9AAED8F19067A87002D3BAB /* GroupAndGuyInTripCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupAndGuyInTripCDTVC.h; sourceTree = "<group>"; };
@@ -187,6 +195,10 @@
 		C9DB002C186B187E00F3B008 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C9DB002E186B187E00F3B008 /* TryTravel2getherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TryTravel2getherTests.m; sourceTree = "<group>"; };
 		C9DB003D186B197400F3B008 /* TourModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TourModel.xcdatamodel; sourceTree = "<group>"; };
+		C9EE94D91908C0B600E599C1 /* TripsCDTVCWithSidebar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripsCDTVCWithSidebar.h; sourceTree = "<group>"; };
+		C9EE94DA1908C0B600E599C1 /* TripsCDTVCWithSidebar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripsCDTVCWithSidebar.m; sourceTree = "<group>"; };
+		C9EE94DF1908F2D100E599C1 /* GuyInTrip+Expend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GuyInTrip+Expend.h"; sourceTree = "<group>"; };
+		C9EE94E01908F2D100E599C1 /* GuyInTrip+Expend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GuyInTrip+Expend.m"; sourceTree = "<group>"; };
 		C9F64D3418E709A00005ED24 /* NWCustCellTitleSubDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWCustCellTitleSubDetail.h; path = NWCust/NWCustCellTitleSubDetail.h; sourceTree = "<group>"; };
 		C9F64D3518E709A00005ED24 /* NWCustCellTitleSubDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWCustCellTitleSubDetail.m; path = NWCust/NWCustCellTitleSubDetail.m; sourceTree = "<group>"; };
 		C9F80493187A333D00EE4EDE /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -246,6 +258,8 @@
 				C9F804FC187AA42C00EE4EDE /* TripDetailTVC.m */,
 				C9F804A8187A4C9B00EE4EDE /* AddTripTVC.h */,
 				C9F804A9187A4C9B00EE4EDE /* AddTripTVC.m */,
+				C9EE94D91908C0B600E599C1 /* TripsCDTVCWithSidebar.h */,
+				C9EE94DA1908C0B600E599C1 /* TripsCDTVCWithSidebar.m */,
 			);
 			name = Trip;
 			sourceTree = "<group>";
@@ -423,6 +437,8 @@
 				18DE117D18F97F72003F3083 /* Guy.h */,
 				18DE117E18F97F72003F3083 /* Guy.m */,
 				18DE117A18F97F72003F3083 /* GuyInTrip.h */,
+				C9EE94DF1908F2D100E599C1 /* GuyInTrip+Expend.h */,
+				C9EE94E01908F2D100E599C1 /* GuyInTrip+Expend.m */,
 				18DE117B18F97F72003F3083 /* GuyInTrip.m */,
 				C90969C218F91B2A00D46859 /* Item.h */,
 				C90969C318F91B2A00D46859 /* Item.m */,
@@ -489,6 +505,10 @@
 				C96AC7B518F24D410037DA8B /* SelectCategoryCDTVC.m */,
 				C9C6258118F67A7800026CFA /* ItemDetailTVC.h */,
 				C9C6258218F67A7800026CFA /* ItemDetailTVC.m */,
+				C981340A190769BF00CF43CC /* ShareMainPageCDTVC.h */,
+				C981340B190769BF00CF43CC /* ShareMainPageCDTVC.m */,
+				C981340D19078D0800CF43CC /* SelectTripCDTVC.h */,
+				C981340E19078D0800CF43CC /* SelectTripCDTVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -608,6 +628,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C981340C190769BF00CF43CC /* ShareMainPageCDTVC.m in Sources */,
 				C9697B1918FCF97C006148E0 /* SidebarViewController.m in Sources */,
 				C90969CA18F9231D00D46859 /* Group.m in Sources */,
 				18B8143F18E6E9740089BF0B /* AddGuyTVC.m in Sources */,
@@ -636,12 +657,15 @@
 				18DE117F18F97F72003F3083 /* Guy.m in Sources */,
 				0409B6F21892B763000C6DF6 /* Day+TripDay.m in Sources */,
 				C9F80494187A333D00EE4EDE /* Model.xcdatamodeld in Sources */,
+				C9EE94E11908F2D100E599C1 /* GuyInTrip+Expend.m in Sources */,
 				C9F804A7187A4C7800EE4EDE /* TripsCDTVC.m in Sources */,
 				C913902918F01D060069EAC2 /* SettingsTVC.m in Sources */,
 				C9AAED8E19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.m in Sources */,
 				040A6325188ADE480084A3EC /* TripDaysTVC.m in Sources */,
 				C909F35318D00FE600E02B8D /* CurrencyCDTVC.m in Sources */,
+				C9EE94DB1908C0B600E599C1 /* TripsCDTVCWithSidebar.m in Sources */,
 				040A631F188ADB7B0084A3EC /* CoreDataTableViewCell.m in Sources */,
+				C981340F19078D0800CF43CC /* SelectTripCDTVC.m in Sources */,
 				BF1B4EC418E08128004841FE /* CatInTrip.m in Sources */,
 				C909F36E18D0125800E02B8D /* DayCurrency.m in Sources */,
 				C9F804F7187A733000EE4EDE /* nwAppDelegate.m in Sources */,

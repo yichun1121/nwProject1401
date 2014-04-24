@@ -13,7 +13,7 @@
 #import "Trip.h"
 
 
-@interface TripsCDTVC : CoreDataTableViewController <AddTripTVCDelegate, TripDetailTVCDelegate,UIGestureRecognizerDelegate>
+@interface TripsCDTVC : CoreDataTableViewController <AddTripTVCDelegate, TripDetailTVCDelegate>
 /*  
     TripsTVC繼承UITableViewController（父類別只能有一個）
     後面的括號表示同時俱有AddTripTVCDelegate的功能（也就是會實作Delegate裡面宣告的method，以便在監聽事件觸發後處理）
@@ -25,6 +25,6 @@
 
 @property (strong, nonatomic) Trip *selectedTrip;   //取出選擇的trip物件，方便傳給Detail頁面
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
+-(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath;
 @end

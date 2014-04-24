@@ -11,6 +11,7 @@
 #import "Currency.h"
 #import "Itemcategory.h"
 #import "SettingMenuRVC.h"
+#import "ShareMainPageCDTVC.h"
 
 @implementation nwAppDelegate
 
@@ -142,6 +143,13 @@
     UITabBarController *tabBarController=(UITabBarController *)self.window.rootViewController;
     SettingMenuRVC *settingMenuRVC=(SettingMenuRVC *) tabBarController.viewControllers[0];
     settingMenuRVC.managedObjectContext=self.managedObjectContext;
+    
+    UINavigationController *navigationControllerToShare=(UINavigationController *)tabBarController.viewControllers[1];
+    if ([navigationControllerToShare.topViewController isKindOfClass:[ShareMainPageCDTVC class]]) {
+        ShareMainPageCDTVC *shareMainPageCDTVC=(ShareMainPageCDTVC *)navigationControllerToShare.topViewController;
+        shareMainPageCDTVC.managedObjectContext=self.managedObjectContext;
+    }
+    
     
 //    SWRevealViewController *revelViewController=(SWRevealViewController *)self.window.rootViewController;
 //    UINavigationController *navigationController = (UINavigationController *)revelViewController.frontViewController;
