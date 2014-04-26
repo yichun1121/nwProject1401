@@ -11,6 +11,7 @@
 #import "Group.h"
 #import "Guy.h"
 #import "GroupAndGuyInTripCDTVC.h"
+#import "Trip+Group.h"
 
 @interface TripDetailTVC ()
 @property NSDateFormatter *dateFormatter;
@@ -21,7 +22,7 @@
 @property (strong, nonatomic) UIDatePicker *endPicker;
 @property (strong, nonatomic) UIDatePicker *startPicker;
 @property (strong,nonatomic) NSMutableSet *SelectedGuys;
-@property (strong,nonatomic)Group *selectedGroup;
+
 @end
 
 @implementation TripDetailTVC
@@ -70,14 +71,16 @@
     self.currency.detailTextLabel.text=self.currentCurrency.standardSign;
     
     
-    //-----顯示Guy資訊-----------
+    //-----顯示Guy&Group資訊-----------
     self.SelectedGuys=[NSMutableSet new];
-    self.guysCell.textLabel.text=@"Selected Guys";
+    self.guysCell.textLabel.text=@"Guys";
+    
     for (GuyInTrip * guyInTrip in self.trip.guysInTrip) {
     [self.SelectedGuys addObject:guyInTrip.guy];
     }
     int guyscount=(int)[self.SelectedGuys count];
     self.guysCell.detailTextLabel.text=[NSString stringWithFormat:@"%i Guys",guyscount];
+    self.groupsCell.detailTextLabel.text=[NSString stringWithFormat:@"%@ Groups",self.trip.countRealGroups];
     
 
 }
@@ -225,13 +228,12 @@
         GuysInTripCDTVC *guysInTripCDTVC=segue.destinationViewController;
         guysInTripCDTVC.delegate=self;
         guysInTripCDTVC.managedObjectContext=self.managedObjectContext;
-        guysInTripCDTVC.SelectedGuys=self.SelectedGuys;
         guysInTripCDTVC.currentTrip=self.trip;
     }else if([segue.identifier isEqualToString:@"Group List Segue From Trip Detail"]){
         GroupAndGuyInTripCDTVC *groupCDTVC=segue.destinationViewController;
         groupCDTVC.managedObjectContext=self.managedObjectContext;
-        groupCDTVC.selectedGroup=self.selectedGroup;
         groupCDTVC.currentTrip=self.trip;
+        groupCDTVC.delegate=self;
         //TODO:group的delegate，然後要顯示group數量
     }
 }
@@ -259,6 +261,8 @@
     self.guysCell.detailTextLabel.text=[NSString stringWithFormat:@"%i Guys",guyscount];
     [controller.navigationController popViewControllerAnimated:YES];
 }
-
-
+-(void)groupListCheckedInGroupAndGuyInTripCDTVC:(GroupAndGuyInTripCDTVC *)controller;{
+    self.groupsCell.detailTextLabel.text=[NSString stringWithFormat:@"%@ Groups",self.trip.countRealGroups];
+    [controller.navigationController popViewControllerAnimated:YES];
+}
 @end
