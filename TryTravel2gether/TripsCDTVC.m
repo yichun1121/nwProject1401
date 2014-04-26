@@ -9,7 +9,6 @@
 #import "TripsCDTVC.h"
 #import "DaysCDTVC.h"
 #import "SettingsTVC.h"
-#import "SettingMenuRVC.h"
 
 @interface TripsCDTVC()
 @property NSDateFormatter *dateFormatter;
@@ -21,6 +20,12 @@
 @synthesize selectedTrip=_selectedTrip;
 @synthesize dateFormatter=_dateFormatter;
 
+-(void)viewDidLoad{
+    self.dateFormatter=[[NSDateFormatter alloc]init];
+    [self.dateFormatter setDateFormat:@"yyyy/MM/dd"];
+    
+    
+}
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -51,31 +56,6 @@
                                                                           sectionNameKeyPath:nil
                                                                                    cacheName:nil];
     [self performFetch];
-}
-
--(void)viewDidLoad{
-    self.dateFormatter=[[NSDateFormatter alloc]init];
-    [self.dateFormatter setDateFormat:@"yyyy/MM/dd"];
-    
-    //------Set Sidebar Menu--------
-    [self setSidebarMenuAction];
-
-}
--(void)setSidebarMenuAction{
-    // Change button color
-    _sidebarButton.tintColor = [UIColor colorWithWhite:0.1f alpha:0.9f];
-    
-    // Set the side bar button action. When it's tapped, it'll show up the sidebar.
-    _sidebarButton.target = self.revealViewController;
-    _sidebarButton.action = @selector(revealToggle:);
-
-    // Set the gesture
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    
-    #pragma mark 在sidebar menu下讓delete功能正常
-    self.revealViewController.panGestureRecognizer.delegate = self;
-    // Set the gesture （在下面delegation的地方）
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 }
 
 

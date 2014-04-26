@@ -17,7 +17,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *qantity;
 @property (weak, nonatomic) IBOutlet UILabel *totalPrice;
 @property (strong,nonatomic) Itemcategory *selectedCategory;
+@property (strong,nonatomic) Group *selectedGroupOrGuy;
 @property (weak, nonatomic) IBOutlet UITableViewCell *categoryName;
+@property (weak, nonatomic) IBOutlet UITableViewCell *groupCell;
 
 @end
 
@@ -37,6 +39,7 @@
 
     self.selectedCategory=item.catInTrip.category;
     self.categoryName.textLabel.text=item.catInTrip.category.name;
+    [super showGroupInfo:item.group];
 }
 
 #pragma mark - 事件
@@ -49,6 +52,7 @@
         self.selectedCategory=[super getCategoryWithName:@"Uncategorized"];
     }
     self.currentItem.catInTrip=[super getCatInTripWithCategory:self.selectedCategory AndTrip:self.currentItem.receipt.day.inTrip];
+    self.currentItem.group=self.selectedGroupOrGuy;
     
     [self.managedObjectContext save:nil];  // write to database
     NSLog(@"Save Item @%@",self.class);
@@ -71,6 +75,13 @@
         selectCategoryCDTVC.managedObjectContext=self.managedObjectContext;
         selectCategoryCDTVC.selectedCategory=self.selectedCategory;
         selectCategoryCDTVC.delegate=self;
+    }else if ([segue.identifier isEqualToString:@"Select Group Segue From Item Detail"]){
+        NSLog(@"Setting %@ as a delegate of SelectGroupAndGuyCDTVC",self.class);
+        SelectGroupAndGuyCDTVC *selectGroupAndGuyCDTVC=[segue destinationViewController];
+        selectGroupAndGuyCDTVC.managedObjectContext=self.managedObjectContext;
+        selectGroupAndGuyCDTVC.currentTrip=self.currentReceipt.day.inTrip;
+        selectGroupAndGuyCDTVC.selectedGroup=self.selectedGroupOrGuy;
+        selectGroupAndGuyCDTVC.delegate=self;
     }
 }
 

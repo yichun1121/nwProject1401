@@ -12,6 +12,8 @@
 #import "CatInTrip.h"
 #import "Day.h"
 #import "Receipt+Calculate.h"
+#import "Group.h"
+#import "Group+TripGuys.h"
 
 @interface AddItemTVC ()
 @property (weak, nonatomic) IBOutlet UITextField *name;
@@ -19,7 +21,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *qantity;
 @property (weak, nonatomic) IBOutlet UILabel *totalPrice;
 @property (strong,nonatomic) Itemcategory *selectedCategory;
+@property (strong,nonatomic) Group *selectedGroupOrGuy;
 @property (weak, nonatomic) IBOutlet UITableViewCell *categoryName;
+@property (weak, nonatomic) IBOutlet UITableViewCell *groupCell;
 
 @end
 
@@ -41,6 +45,8 @@
     self.name.delegate=self;
     self.price.delegate=self;
     self.qantity.delegate=self;
+    
+    [self showGroupInfo:self.selectedGroupOrGuy];
 }
 #pragma mark - 事件
 - (IBAction)save:(UIBarButtonItem *)sender {
@@ -55,6 +61,7 @@
     }
     item.catInTrip=[self getCatInTripWithCategory:self.selectedCategory AndTrip:self.currentReceipt.day.inTrip];
     item.itemIndex=self.currentReceipt.getNextItemSerialNumberInReceipt;
+    item.group=self.selectedGroupOrGuy;
     
     [self.managedObjectContext save:nil];  // write to database
     NSLog(@"Save new Item in %@",self.class);
@@ -77,8 +84,6 @@
     return YES;
 }
 
-
-
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -90,7 +95,22 @@
     }   
 }
 
-
+-(void)showGroupInfo:(Group *)group{
+    if (group) {
+        self.groupCell.textLabel.text=group.name;
+        self.groupCell.imageView.image=[UIImage imageNamed:group.groupImageName];
+        
+        //大於一人再顯示群組中人員名單
+        if (group.guysInTrip.count>1) {
+            self.groupCell.detailTextLabel.text=[group guysNameSplitBy:@","];
+        }else{
+            self.groupCell.detailTextLabel.text=@"";
+        }
+    }else{
+        self.groupCell.detailTextLabel.text=@"";
+        self.groupCell.textLabel.text=@"Unspecified";
+    }
+}
 
 #pragma mark - ▣ CRUD_CatInTrip+ItemCategory
 -(CatInTrip *)getCatInTripWithCategory:(Itemcategory *)category AndTrip:(Trip *)trip{
@@ -172,6 +192,13 @@
         selectCategoryCDTVC.managedObjectContext=self.managedObjectContext;
         selectCategoryCDTVC.selectedCategory=self.selectedCategory;
         selectCategoryCDTVC.delegate=self;
+    }else if ([segue.identifier isEqualToString:@"Select Group Segue From Add Item"]){
+        NSLog(@"Setting %@ as a delegate of selectGroupAndGuyCDTVC",self.class);
+        SelectGroupAndGuyCDTVC *selectGroupAndGuyCDTVC=[segue destinationViewController];
+        selectGroupAndGuyCDTVC.managedObjectContext=self.managedObjectContext;
+        selectGroupAndGuyCDTVC.currentTrip=self.currentReceipt.day.inTrip;
+        selectGroupAndGuyCDTVC.selectedGroup=self.selectedGroupOrGuy;
+        selectGroupAndGuyCDTVC.delegate=self;
     }
 }
 
@@ -191,6 +218,11 @@
         self.categoryName.textLabel.text=@"Uncategorized";
     }
 
+    [controller.navigationController popViewControllerAnimated:YES];
+}
+-(void)theGroupCellOnTheSelectGroupAndGuyCDTVCWasTapped:(SelectGroupAndGuyCDTVC *)controller{
+    self.selectedGroupOrGuy=controller.selectedGroup;
+    [self showGroupInfo:controller.selectedGroup];
     [controller.navigationController popViewControllerAnimated:YES];
 }
 @end

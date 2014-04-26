@@ -81,6 +81,7 @@
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Items" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
+#pragma mark - Table view data source
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString * CellIdentifier=@"Cell";
@@ -97,6 +98,7 @@
 /*!組合TableViewCell的顯示內容
  */
 -(NWCustCellTitleSubDetail *)configureCell:(NWCustCellTitleSubDetail *)cell AtIndexPath:(NSIndexPath *)indexPath{
+    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     Item *item=[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.titleTextLabel.text=item.name;
     cell.subtitleTextLabel.text=[NSString stringWithFormat:@"%@ x %@",item.price,item.quantity];
@@ -125,6 +127,7 @@
         Item *selectedItem=[self.fetchedResultsController objectAtIndexPath:sender];
         ItemDetailTVC *itemDetailTVC=[segue destinationViewController];
         itemDetailTVC.managedObjectContext=self.managedObjectContext;
+        itemDetailTVC.currentReceipt=self.currentReceipt;
         itemDetailTVC.currentItem=selectedItem;
         itemDetailTVC.delegate=self;
     }

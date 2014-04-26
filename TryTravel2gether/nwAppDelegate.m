@@ -11,6 +11,7 @@
 #import "Currency.h"
 #import "Itemcategory.h"
 #import "SettingMenuRVC.h"
+#import "ShareMainPageCDTVC.h"
 
 @implementation nwAppDelegate
 
@@ -131,11 +132,24 @@
 
     
     // Override point for customization after application launch.
+    ////-------這是第一版還沒加sidebar menu的時候由uinavigationController進入實用的--------------
     //UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     //TripsCDTVC *controller = (TripsCDTVC *)navigationController.topViewController;
     //controller.managedObjectContext = self.managedObjectContext;
-    SettingMenuRVC *settingMenuRVC=(SettingMenuRVC *)self.window.rootViewController;
+    ////-------這是第二版，由SWRevealViewController進入時用的--------------------
+    //SettingMenuRVC *settingMenuRVC=(SettingMenuRVC *)self.window.rootViewController;
+    //settingMenuRVC.managedObjectContext=self.managedObjectContext;
+    //-------這是第三版，由tabBarController進入時使用---------------------
+    UITabBarController *tabBarController=(UITabBarController *)self.window.rootViewController;
+    SettingMenuRVC *settingMenuRVC=(SettingMenuRVC *) tabBarController.viewControllers[0];
     settingMenuRVC.managedObjectContext=self.managedObjectContext;
+    
+    UINavigationController *navigationControllerToShare=(UINavigationController *)tabBarController.viewControllers[1];
+    if ([navigationControllerToShare.topViewController isKindOfClass:[ShareMainPageCDTVC class]]) {
+        ShareMainPageCDTVC *shareMainPageCDTVC=(ShareMainPageCDTVC *)navigationControllerToShare.topViewController;
+        shareMainPageCDTVC.managedObjectContext=self.managedObjectContext;
+    }
+    
     
 //    SWRevealViewController *revelViewController=(SWRevealViewController *)self.window.rootViewController;
 //    UINavigationController *navigationController = (UINavigationController *)revelViewController.frontViewController;

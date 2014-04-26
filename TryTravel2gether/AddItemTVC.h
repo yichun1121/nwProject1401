@@ -10,6 +10,7 @@
 #import "Receipt.h"
 #import "SelectCategoryCDTVC.h"
 #import "Trip.h"
+#import "SelectGroupAndGuyCDTVC.h"
 
 @class AddItemTVC;
 @protocol AddItemTVCDelegate <NSObject>
@@ -17,7 +18,7 @@
 -(void)theSaveButtonOnTheAddItemWasTapped:(AddItemTVC *)controller;
 
 @end
-@interface AddItemTVC : UITableViewController<UITextFieldDelegate,SelectCategoryCDTVCDelegate>
+@interface AddItemTVC : UITableViewController<UITextFieldDelegate,SelectCategoryCDTVCDelegate,SelectGroupAndGuyCDTVCDelegate>
 
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic) id<AddItemTVCDelegate> delegate;
@@ -27,6 +28,7 @@
 
 -(CatInTrip *)getCatInTripWithCategory:(Itemcategory *)category AndTrip:(Trip *)trip;
 -(Itemcategory *)getCategoryWithName:(NSString *)name;
+-(void)showGroupInfo:(Group *)group;
 
 -(void)textFieldEditingChanged:(UITextField *)textField;
 @end

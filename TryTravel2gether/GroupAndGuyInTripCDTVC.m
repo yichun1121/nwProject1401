@@ -1,19 +1,22 @@
 //
-//  CategoriesCDTVC.m
+//  GroupAndGuyInTripCDTVC.m
 //  TryTravel2gether
 //
-//  Created by YICHUN on 2014/4/5.
+//  Created by YICHUN on 2014/4/22.
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 
-#import "CategoriesCDTVC.h"
-#import "Itemcategory.h"
-#import "SWRevealViewController.h"
+#import "GroupAndGuyInTripCDTVC.h"
+#import "Group.h"
+#import "Guy.h"
+#import "Trip.h"
 
-@interface CategoriesCDTVC ()
+@interface GroupAndGuyInTripCDTVC ()
+
 @end
 
-@implementation CategoriesCDTVC
+@implementation GroupAndGuyInTripCDTVC
+
 @synthesize managedObjectContext=_managedObjectContext;
 @synthesize fetchedResultsController=_fetchedResultsController;
 
@@ -26,12 +29,12 @@
 
 -(void)setupFetchedResultController{
     
-    NSString *entityName=@"Itemcategory";
+    NSString *entityName=@"Group";
     NSLog(@"Setting up a Fetched Results Controller for the Entity named %@",entityName);
     
     NSFetchRequest *request=[NSFetchRequest fetchRequestWithEntityName:entityName];
     
-    //request.predicate=nil;
+    request.predicate = [NSPredicate predicateWithFormat:@"(inTrip = %@)AND(guysInTrip.@count > 1)",self.currentTrip];
     
     request.sortDescriptors=[NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"name"
                                                                                     ascending:YES
@@ -46,27 +49,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //------Set Sidebar Menu--------
-    [self setSidebarMenuAction];
-    
-}
--(void)setSidebarMenuAction{
-    // Change button color
-    _sidebarButton.tintColor = [UIColor colorWithWhite:0.1f alpha:0.9f];
-    
-    // Set the side bar button action. When it's tapped, it'll show up the sidebar.
-    _sidebarButton.target = self.revealViewController;
-    _sidebarButton.action = @selector(revealToggle:);
-    
-    // Set the gesture
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    
-    #pragma mark 在sidebar menu下讓delete功能正常
-    self.revealViewController.panGestureRecognizer.delegate = self;
-    // Set the gesture （在下面delegation的地方）
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-}
 
+}
 
 #pragma mark - Table view data source
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -83,8 +67,8 @@
 /*!組合TableViewCell的顯示內容
  */
 -(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
-    Itemcategory *itemCategory=[self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text=itemCategory.name;
+    Group *group=[self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text=group.name;
     return cell;
 }
 - (void)didReceiveMemoryWarning
@@ -98,10 +82,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"Add Cat Segue From Cat List"]) {
-        AddCategoryTVC * addCategoryTVC=segue.destinationViewController;
-        addCategoryTVC.delegate=self;
-        addCategoryTVC.managedObjectContext=self.managedObjectContext;
+    if ([segue.identifier isEqualToString:@""]) {
     }
 }
 #pragma mark - Deleting（紅➖）+Inserting(綠➕）
@@ -112,9 +93,9 @@
         [self.tableView beginUpdates]; // Avoid  NSInternalInconsistencyException
         
         // Delete the role object that was swiped
-        Itemcategory *category = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        NSLog(@"Deleting %@", category.name);
-        [self.managedObjectContext deleteObject:category];
+        Group *group = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        NSLog(@"Deleting %@ in %@", group.name,group.inTrip.name);
+        [self.managedObjectContext deleteObject:group];
         [self.managedObjectContext save:nil];
         
         // Delete the (now empty) row on the table
@@ -127,14 +108,6 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
 }
-#pragma mark - delegation
--(void)theSaveButtonOnTheAddCategoryWasTapped:(AddCategoryTVC *)controller
-{
-    [controller.navigationController popViewControllerAnimated:YES];
-}
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-    return YES;
-}
+
 @end
-
