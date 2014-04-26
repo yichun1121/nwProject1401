@@ -11,6 +11,7 @@
 #import "Guy.h"
 #import "Trip.h"
 
+
 @interface GroupAndGuyInTripCDTVC ()
 
 @end
@@ -20,12 +21,14 @@
 @synthesize managedObjectContext=_managedObjectContext;
 @synthesize fetchedResultsController=_fetchedResultsController;
 
+
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self setupFetchedResultController];
 }
 
-#pragma mark - FetchedResultsController
+#pragma mark - FetchedResultsControllera
 
 -(void)setupFetchedResultController{
     
@@ -49,6 +52,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    UIImage *buttonImage = [UIImage imageNamed:@"backButton"];
+    UIBarButtonItem *backBtn=[[UIBarButtonItem alloc]initWithImage:buttonImage style:UIBarButtonItemStyleBordered target:self action:@selector(replaceBackBarBtn:)];
+    backBtn.title=@"Detail";
+    self.navigationItem.leftBarButtonItem=backBtn;
+   
 
 }
 
@@ -85,6 +93,13 @@
     if ([segue.identifier isEqualToString:@""]) {
     }
 }
+/*回到上一頁時直接delegate
+*/
+-(void) replaceBackBarBtn:(UIBarButtonItem *)sender {
+    
+    [self.delegate groupListCheckedInGroupAndGuyInTripCDTVC:self];
+
+}
 #pragma mark - Deleting（紅➖）+Inserting(綠➕）
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -108,6 +123,7 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
 }
+
 
 
 @end
