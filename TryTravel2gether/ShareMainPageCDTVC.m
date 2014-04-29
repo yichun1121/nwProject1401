@@ -28,10 +28,6 @@
     self.dateFormatter=[[NSDateFormatter alloc]init];
     self.dateFormatter.dateFormat=@"yyyy/MM/dd";
     
-    if (!self.currentTrip) {
-        self.currentTrip=[self getDefaultTrip];
-    }
-    [self showTripInfo:self.currentTrip];
     
     //-----註冊CustomCell----------
     //UINib* myCellNib = [UINib nibWithNibName:@"NWCustCellTitleSubDetail" bundle:nil];
@@ -42,6 +38,11 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    if (!self.currentTrip) {
+        self.currentTrip=[self getDefaultTrip];
+    }
+    [self showTripInfo:self.currentTrip];
+    
     [self setupFetchedResultController];
 }
 

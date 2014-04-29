@@ -33,6 +33,7 @@
 		C90D484118DADC7500367316 /* NWUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = C90D484018DADC7500367316 /* NWUserSettings.m */; };
 		C913902918F01D060069EAC2 /* SettingsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C913902818F01D060069EAC2 /* SettingsTVC.m */; };
 		C913902C18F034420069EAC2 /* CategoriesCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C913902B18F034420069EAC2 /* CategoriesCDTVC.m */; };
+		C92ABB27190E11EF00BEA584 /* Item+Expend.m in Sources */ = {isa = PBXBuildFile; fileRef = C92ABB26190E11EF00BEA584 /* Item+Expend.m */; };
 		C95AFA031886733B00DF057E /* DaysCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C95AFA021886733B00DF057E /* DaysCDTVC.m */; };
 		C964B92E18D42BBB002EF48C /* Day+Expend.m in Sources */ = {isa = PBXBuildFile; fileRef = C964B92D18D42BBB002EF48C /* Day+Expend.m */; };
 		C964B93118D42FDC002EF48C /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = C964B93018D42FDC002EF48C /* Currency.m */; };
@@ -144,6 +145,8 @@
 		C913902818F01D060069EAC2 /* SettingsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTVC.m; sourceTree = "<group>"; };
 		C913902A18F034420069EAC2 /* CategoriesCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesCDTVC.h; sourceTree = "<group>"; };
 		C913902B18F034420069EAC2 /* CategoriesCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesCDTVC.m; sourceTree = "<group>"; };
+		C92ABB25190E11EF00BEA584 /* Item+Expend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Item+Expend.h"; sourceTree = "<group>"; };
+		C92ABB26190E11EF00BEA584 /* Item+Expend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Item+Expend.m"; sourceTree = "<group>"; };
 		C94BF2C3189118940039C6CC /* ReceiptsCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptsCDTVC.h; sourceTree = "<group>"; };
 		C94BF2C4189118940039C6CC /* ReceiptsCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptsCDTVC.m; sourceTree = "<group>"; };
 		C95AFA011886733B00DF057E /* DaysCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaysCDTVC.h; sourceTree = "<group>"; };
@@ -439,9 +442,6 @@
 		C9DB003B186B195800F3B008 /* CoreDataModel */ = {
 			isa = PBXGroup;
 			children = (
-				1863F9CE190BAFC80033AECF /* Trip+Group.h */,
-				1863F9CF190BAFC80033AECF /* Trip+Group.m */,
-				C9F80492187A333D00EE4EDE /* Model.xcdatamodeld */,
 				BF1B4EC218E08128004841FE /* CatInTrip.h */,
 				BF1B4EC318E08128004841FE /* CatInTrip.m */,
 				C964B92F18D42FDC002EF48C /* Currency.h */,
@@ -454,18 +454,23 @@
 				C964B93318D43061002EF48C /* Day.m */,
 				C909F36C18D0125800E02B8D /* DayCurrency.h */,
 				C909F36D18D0125800E02B8D /* DayCurrency.m */,
+				C9AAED921906A361002D3BAB /* Group+TripGuys.h */,
+				C9AAED931906A361002D3BAB /* Group+TripGuys.m */,
 				C90969C818F9231D00D46859 /* Group.h */,
 				C90969C918F9231D00D46859 /* Group.m */,
 				18DE117D18F97F72003F3083 /* Guy.h */,
 				18DE117E18F97F72003F3083 /* Guy.m */,
-				18DE117A18F97F72003F3083 /* GuyInTrip.h */,
 				C9EE94DF1908F2D100E599C1 /* GuyInTrip+Expend.h */,
 				C9EE94E01908F2D100E599C1 /* GuyInTrip+Expend.m */,
+				18DE117A18F97F72003F3083 /* GuyInTrip.h */,
 				18DE117B18F97F72003F3083 /* GuyInTrip.m */,
 				C90969C218F91B2A00D46859 /* Item.h */,
+				C92ABB25190E11EF00BEA584 /* Item+Expend.h */,
+				C92ABB26190E11EF00BEA584 /* Item+Expend.m */,
 				C90969C318F91B2A00D46859 /* Item.m */,
 				BF1B4EBF18E08127004841FE /* Itemcategory.h */,
 				BF1B4EC018E08127004841FE /* Itemcategory.m */,
+				C9F80492187A333D00EE4EDE /* Model.xcdatamodeld */,
 				C9C4097C18E73D6700E1F3FE /* Receipt+Calculate.h */,
 				C9C4097D18E73D6700E1F3FE /* Receipt+Calculate.m */,
 				C9D28AF418E00B9E00304370 /* Receipt.h */,
@@ -473,10 +478,10 @@
 				C9DB003C186B197400F3B008 /* TourModel.xcdatamodeld */,
 				04ED46EE18A64CAF004EA22E /* Trip+Days.h */,
 				04ED46EF18A64CAF004EA22E /* Trip+Days.m */,
+				1863F9CE190BAFC80033AECF /* Trip+Group.h */,
+				1863F9CF190BAFC80033AECF /* Trip+Group.m */,
 				C90969C518F9231C00D46859 /* Trip.h */,
 				C90969C618F9231C00D46859 /* Trip.m */,
-				C9AAED921906A361002D3BAB /* Group+TripGuys.h */,
-				C9AAED931906A361002D3BAB /* Group+TripGuys.m */,
 			);
 			name = CoreDataModel;
 			sourceTree = "<group>";
@@ -503,36 +508,36 @@
 		C9F804A1187A34B400EE4EDE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				1863F9CB190B681D0033AECF /* AddGroupTVC.h */,
-				1863F9CC190B681D0033AECF /* AddGroupTVC.m */,
-				C9AAED8B19066CA8002D3BAB /* Setting */,
-				C913902D18F05EB20069EAC2 /* Trip */,
-				C913902F18F05ED90069EAC2 /* Day */,
-				040A6323188ADE480084A3EC /* TripDaysTVC.h */,
-				040A6324188ADE480084A3EC /* TripDaysTVC.m */,
-				1859D0FC18F00AD200C93338 /* SelectGuysCDTVC.h */,
-				1859D0FD18F00AD200C93338 /* SelectGuysCDTVC.m */,
-				C9AAED8C19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.h */,
-				C9AAED8D19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.m */,
-				C9AAED8F19067A87002D3BAB /* GroupAndGuyInTripCDTVC.h */,
-				C9AAED9019067A87002D3BAB /* GroupAndGuyInTripCDTVC.m */,
-				C913903018F05F320069EAC2 /* Receipt */,
-				C913903118F05F580069EAC2 /* Item */,
-				C909F35118D00FE600E02B8D /* CurrencyCDTVC.h */,
-				C909F35218D00FE600E02B8D /* CurrencyCDTVC.m */,
-				C913902A18F034420069EAC2 /* CategoriesCDTVC.h */,
-				C913902B18F034420069EAC2 /* CategoriesCDTVC.m */,
-				C913902E18F05EC60069EAC2 /* Guy */,
 				C96AC7B118F10EBB0037DA8B /* AddCategoryTVC.h */,
 				C96AC7B218F10EBB0037DA8B /* AddCategoryTVC.m */,
-				C96AC7B418F24D410037DA8B /* SelectCategoryCDTVC.h */,
-				C96AC7B518F24D410037DA8B /* SelectCategoryCDTVC.m */,
+				1863F9CB190B681D0033AECF /* AddGroupTVC.h */,
+				1863F9CC190B681D0033AECF /* AddGroupTVC.m */,
+				C913902A18F034420069EAC2 /* CategoriesCDTVC.h */,
+				C913902B18F034420069EAC2 /* CategoriesCDTVC.m */,
+				C909F35118D00FE600E02B8D /* CurrencyCDTVC.h */,
+				C909F35218D00FE600E02B8D /* CurrencyCDTVC.m */,
+				C913902F18F05ED90069EAC2 /* Day */,
+				C9AAED8F19067A87002D3BAB /* GroupAndGuyInTripCDTVC.h */,
+				C9AAED9019067A87002D3BAB /* GroupAndGuyInTripCDTVC.m */,
+				C913902E18F05EC60069EAC2 /* Guy */,
+				C913903118F05F580069EAC2 /* Item */,
 				C9C6258118F67A7800026CFA /* ItemDetailTVC.h */,
 				C9C6258218F67A7800026CFA /* ItemDetailTVC.m */,
-				C981340A190769BF00CF43CC /* ShareMainPageCDTVC.h */,
-				C981340B190769BF00CF43CC /* ShareMainPageCDTVC.m */,
+				C913903018F05F320069EAC2 /* Receipt */,
+				C96AC7B418F24D410037DA8B /* SelectCategoryCDTVC.h */,
+				C96AC7B518F24D410037DA8B /* SelectCategoryCDTVC.m */,
+				C9AAED8C19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.h */,
+				C9AAED8D19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.m */,
+				1859D0FC18F00AD200C93338 /* SelectGuysCDTVC.h */,
+				1859D0FD18F00AD200C93338 /* SelectGuysCDTVC.m */,
 				C981340D19078D0800CF43CC /* SelectTripCDTVC.h */,
 				C981340E19078D0800CF43CC /* SelectTripCDTVC.m */,
+				C9AAED8B19066CA8002D3BAB /* Setting */,
+				C981340A190769BF00CF43CC /* ShareMainPageCDTVC.h */,
+				C981340B190769BF00CF43CC /* ShareMainPageCDTVC.m */,
+				C913902D18F05EB20069EAC2 /* Trip */,
+				040A6323188ADE480084A3EC /* TripDaysTVC.h */,
+				040A6324188ADE480084A3EC /* TripDaysTVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -658,6 +663,7 @@
 				C9697B1918FCF97C006148E0 /* SidebarViewController.m in Sources */,
 				C90969CA18F9231D00D46859 /* Group.m in Sources */,
 				18B8143F18E6E9740089BF0B /* AddGuyTVC.m in Sources */,
+				C92ABB27190E11EF00BEA584 /* Item+Expend.m in Sources */,
 				C9F804AA187A4C9B00EE4EDE /* AddTripTVC.m in Sources */,
 				C95AFA031886733B00DF057E /* DaysCDTVC.m in Sources */,
 				C90D484118DADC7500367316 /* NWUserSettings.m in Sources */,
