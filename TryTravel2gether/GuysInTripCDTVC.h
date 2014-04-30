@@ -22,7 +22,7 @@
 @property (strong,nonatomic)id delegate;
 @property (strong,nonatomic)NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic)NSFetchedResultsController *fetchedResultsController;
-@property (strong,nonatomic)NSMutableSet *SelectedGuys;
+@property (strong,nonatomic)NSMutableSet *selectedGuys;
 @property (strong,nonatomic)Trip *currentTrip;
 
 @end

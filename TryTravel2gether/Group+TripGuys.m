@@ -17,7 +17,7 @@
     for (GuyInTrip *guyInTrip in self.guysInTrip) {
         strGuys=[NSString stringWithFormat:@"%@%@%@",strGuys,guyInTrip.guy.name,sign];
     }
-    return [strGuys substringToIndex:strGuys.length-(sign.length+1)];
+    return [strGuys substringToIndex:strGuys.length-(sign.length)];
 }
 -(NSString *)groupImageName{
     if (self.guysInTrip.count>1) {

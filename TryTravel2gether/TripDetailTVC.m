@@ -21,7 +21,7 @@
 @property (strong,nonatomic) Currency *currentCurrency;
 @property (strong, nonatomic) UIDatePicker *endPicker;
 @property (strong, nonatomic) UIDatePicker *startPicker;
-@property (strong,nonatomic) NSMutableSet *SelectedGuys;
+@property (strong,nonatomic) NSMutableSet *selectedGuys;
 
 @end
 
@@ -78,13 +78,13 @@
     
     
     //-----顯示Guy&Group資訊-----------
-    self.SelectedGuys=[NSMutableSet new];
+    self.selectedGuys=[NSMutableSet new];
     self.guysCell.textLabel.text=@"Guys";
     
     for (GuyInTrip * guyInTrip in self.trip.guysInTrip) {
-    [self.SelectedGuys addObject:guyInTrip.guy];
+    [self.selectedGuys addObject:guyInTrip.guy];
     }
-    int guyscount=(int)[self.SelectedGuys count];
+    int guyscount=(int)[self.selectedGuys count];
     self.guysCell.detailTextLabel.text=[NSString stringWithFormat:@"%i Guys",guyscount];
     self.groupsCell.detailTextLabel.text=[NSString stringWithFormat:@"%@ Groups",self.trip.countRealGroups];
     
@@ -261,8 +261,8 @@
 }
 
 -(void)guyWasSelectedInGuysInTripCDTVC:(GuysInTripCDTVC *)controller{
-    self.SelectedGuys=controller.SelectedGuys;
-    int guyscount=(int)[self.SelectedGuys count];
+    self.selectedGuys=controller.selectedGuys;
+    int guyscount=(int)[self.selectedGuys count];
     self.guysCell.detailTextLabel.text=[NSString stringWithFormat:@"%i Guys",guyscount];
     [controller.navigationController popViewControllerAnimated:YES];
 }
