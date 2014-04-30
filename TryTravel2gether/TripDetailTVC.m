@@ -52,7 +52,13 @@
     }
     return _endPicker;
 }
-
+-(NSMutableSet *) SelectedGuys
+{
+    if (!_SelectedGuys) {
+        _SelectedGuys = [[NSMutableSet alloc] init];
+    }
+    return _SelectedGuys;
+}
 
 - (void)viewDidLoad
 {

@@ -8,13 +8,14 @@
 
 #import "CoreDataTableViewController.h"
 #import "Trip.h"
+#import "AddGroupTVC.h"
 
 @class GroupAndGuyInTripCDTVC;
 @protocol GroupAndGuyInTripCDTVCDelegate <NSObject>
 -(void)groupListCheckedInGroupAndGuyInTripCDTVC:(GroupAndGuyInTripCDTVC *)controller;
 @end
 
-@interface GroupAndGuyInTripCDTVC : CoreDataTableViewController
+@interface GroupAndGuyInTripCDTVC : CoreDataTableViewController<AddGroupTVCDelegate>
 
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic) NSFetchedResultsController *fetchedResultsController;

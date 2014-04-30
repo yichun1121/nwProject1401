@@ -24,5 +24,5 @@
 @property (strong,nonatomic)NSFetchedResultsController *fetchedResultsController;
 @property (strong,nonatomic)NSMutableSet *SelectedGuys;
 @property (strong,nonatomic)Trip *currentTrip;
-- (IBAction)done:(id)sender;
+
 @end

@@ -281,13 +281,7 @@
                             <outlet property="delegate" destination="PPV-x7-GQH" id="z4o-tK-idu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Guys In Trip" id="DUf-Aj-clU">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="c1h-yd-iCI">
-                            <connections>
-                                <action selector="done:" destination="PPV-x7-GQH" id="z6P-cd-afF"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Guys In Trip" id="DUf-Aj-clU"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nlJ-bD-cXs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -686,7 +680,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <segue destination="f57-t3-MmB" kind="push" id="azM-nM-gUu"/>
+                                        <segue destination="f57-t3-MmB" kind="push" identifier="Select Guy Segue From AddGroupTVC" id="4Ze-by-TDY"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -732,11 +726,20 @@
                             <outlet property="delegate" destination="6iS-LU-hsQ" id="naV-GG-14t"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Add Group" id="YSJ-z0-N6s"/>
+                    <navigationItem key="navigationItem" title="Add Group" id="YSJ-z0-N6s">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Vsu-ki-0II">
+                            <connections>
+                                <action selector="save:" destination="6iS-LU-hsQ" id="VDD-cB-yJm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="groupName" destination="SDk-b8-fmB" id="YnS-7K-1On"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pqc-T6-oHP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="688" y="1038"/>
+            <point key="canvasLocation" x="668" y="1003"/>
         </scene>
         <!--Group And Guy In TripCDTVC - Groups-->
         <scene sceneID="0sQ-cR-dlf">
@@ -758,7 +761,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <segue destination="6iS-LU-hsQ" kind="push" id="4KQ-bu-k1h"/>
+                                        <segue destination="6iS-LU-hsQ" kind="push" identifier="Add Group Segue" id="4KQ-bu-k1h"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -905,8 +908,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BBA-hF-jZO">
-                                                    <rect key="frame" x="15" y="11" width="33" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Guys" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BBA-hF-jZO">
+                                                    <rect key="frame" x="15" y="11" width="40" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -2686,13 +2689,13 @@
         <segue reference="uY8-M1-8nc"/>
         <segue reference="5QA-QK-Xps"/>
         <segue reference="bq2-7x-Hhd"/>
-        <segue reference="C6V-tt-ruz"/>
-        <segue reference="wJe-84-bVr"/>
-        <segue reference="azM-nM-gUu"/>
-        <segue reference="sp3-cC-l9s"/>
         <segue reference="moX-HC-O6P"/>
-        <segue reference="r1V-Ci-7uc"/>
         <segue reference="jlX-mz-Yrp"/>
         <segue reference="fuH-vh-HtH"/>
+        <segue reference="r1V-Ci-7uc"/>
+        <segue reference="wJe-84-bVr"/>
+        <segue reference="4Ze-by-TDY"/>
+        <segue reference="sp3-cC-l9s"/>
+        <segue reference="C6V-tt-ruz"/>
     </inferredMetricsTieBreakers>
 </document>
