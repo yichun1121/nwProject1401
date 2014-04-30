@@ -1410,13 +1410,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="＄" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wy7-yT-1DL">
-                                                    <rect key="frame" x="20" y="11" width="24" height="21"/>
+                                                    <rect key="frame" x="20" y="11" width="79" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q6B-v4-80B">
-                                                    <rect key="frame" x="52" y="7" width="248" height="30"/>
+                                                    <rect key="frame" x="107" y="7" width="193" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -1508,6 +1508,62 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="raU-KC-jGP">
+                                        <rect key="frame" x="0.0" y="286" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="raU-KC-jGP" id="dpN-aL-tEO">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ahH-X4-hUw">
+                                                    <rect key="frame" x="33" y="10" width="101" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="camera">
+                                                        <attributedString key="attributedTitle">
+                                                            <fragment content="take photo">
+                                                                <attributes>
+                                                                    <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="takePhoto:" destination="w8Y-PQ-8PV" eventType="touchUpInside" id="i5C-pe-Ipg"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6am-CR-YdZ">
+                                                    <rect key="frame" x="189" y="10" width="111" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="image">
+                                                        <attributedString key="attributedTitle">
+                                                            <fragment content="existing one">
+                                                                <attributes>
+                                                                    <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="existingOne:" destination="w8Y-PQ-8PV" eventType="touchUpInside" id="fqJ-1s-UQe"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="240" id="yjc-AP-GCY">
+                                        <rect key="frame" x="0.0" y="330" width="320" height="240"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yjc-AP-GCY" id="0pb-Kn-wdl">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RIX-MI-izH">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </scrollView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -1528,6 +1584,7 @@
                         <outlet property="currencySign" destination="wy7-yT-1DL" id="vK9-F8-TNV"/>
                         <outlet property="dateCell" destination="pFj-Uv-hq9" id="JtQ-Ug-oSj"/>
                         <outlet property="desc" destination="l2K-Lc-eaF" id="R9a-Ur-daf"/>
+                        <outlet property="scrollView" destination="RIX-MI-izH" id="lca-y0-D29"/>
                         <outlet property="timeCell" destination="D0d-Ge-1OH" id="jH1-UJ-gl6"/>
                         <outlet property="totalPrice" destination="q6B-v4-80B" id="HPR-Io-7qU"/>
                     </connections>
@@ -2668,9 +2725,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="camera" width="24" height="24"/>
         <image name="folder" width="48" height="48"/>
         <image name="group" width="48" height="48"/>
         <image name="guys-1" width="48" height="48"/>
+        <image name="image" width="24" height="24"/>
         <image name="list" width="24" height="24"/>
         <image name="menu" width="28" height="20"/>
         <image name="setting" width="48" height="48"/>
@@ -2684,15 +2743,15 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="uY8-M1-8nc"/>
-        <segue reference="5QA-QK-Xps"/>
         <segue reference="bq2-7x-Hhd"/>
+        <segue reference="5QA-QK-Xps"/>
         <segue reference="C6V-tt-ruz"/>
-        <segue reference="wJe-84-bVr"/>
         <segue reference="azM-nM-gUu"/>
         <segue reference="sp3-cC-l9s"/>
         <segue reference="moX-HC-O6P"/>
-        <segue reference="r1V-Ci-7uc"/>
-        <segue reference="jlX-mz-Yrp"/>
+        <segue reference="4bK-FK-wew"/>
+        <segue reference="dk3-o7-VGh"/>
         <segue reference="fuH-vh-HtH"/>
+        <segue reference="jlX-mz-Yrp"/>
     </inferredMetricsTieBreakers>
 </document>

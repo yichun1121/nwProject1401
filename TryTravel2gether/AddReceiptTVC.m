@@ -23,6 +23,9 @@
 @property (strong, nonatomic) IBOutlet UIDatePicker *timePicker;
 
 @property NSIndexPath * actingCellIndexPath;
+@property (nonatomic)  UIImagePickerController *imagePicker;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (nonatomic)  NSMutableArray *images;
 @end
 
 @implementation AddReceiptTVC
@@ -31,16 +34,9 @@
 @synthesize dateFormatter=_dateFormatter;
 @synthesize timeFormatter=_timeFormatter;
 @synthesize dateTimeFormatter=_dateTimeFormatter;
+@synthesize imagePicker=_imagePicker;
+@synthesize images=_images;
 
--(UIDatePicker *) timePicker
-{
-    if (!_timePicker) {
-        _timePicker = [[UIDatePicker alloc] init];
-        _timePicker.datePickerMode=UIDatePickerModeTime;
-        _timePicker.backgroundColor=[UIColor whiteColor];
-    }
-    return _timePicker;
-}
 
 - (void)viewDidLoad
 {
@@ -55,9 +51,11 @@
     self.timeFormatter.dateFormat=@"HH:mm";
     self.dateTimeFormatter.dateFormat=[NSString stringWithFormat:@"%@ %@",self.dateFormatter.dateFormat,self.timeFormatter.dateFormat];
     
-    //設定UITextFeild的delegate
+    //設定UITextFeild的delegate（按return縮keyboard）
     self.desc.delegate=self;
     self.totalPrice.delegate=self;
+    //設定scrollView的delegate（scroll功能）
+    self.scrollView.delegate=self;
     
     //設定頁面初始的顯示狀態
     [self showDefaultDateValue];
@@ -112,8 +110,56 @@
     
 }
 
+- (IBAction)takePhoto:(UIButton *)sender {
+    [self.imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+    [self presentViewController:self.imagePicker animated:YES completion:nil];
+    NSLog(@"show camera view @%@",self.class);
+}
+- (IBAction)existingOne:(UIButton *)sender {
+    [self.imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    [self presentViewController:self.imagePicker animated:YES completion:nil];
+    NSLog(@"show photoLibrary view @%@",self.class);
+}
 
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    UIImage * image=[info objectForKey:UIImagePickerControllerOriginalImage];
+    NSInteger imgCount=[self.images count];
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake((160+6)*imgCount+6, 10, 160, 220)];
+    imgView.image=image;
+    [self.scrollView addSubview:imgView];
+    CGSize scrollSize=CGSizeMake((160+6)*(imgCount+1), self.scrollView.frame.size.height);
+    self.scrollView.contentSize=scrollSize; //要把scrollView拉大，才能scroll
+    [self.images addObject:image];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"loaded a image @%@",self.class);
+}
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+#pragma mark - lazy instantiation
 
+-(UIDatePicker *) timePicker
+{
+    if (!_timePicker) {
+        _timePicker = [[UIDatePicker alloc] init];
+        _timePicker.datePickerMode=UIDatePickerModeTime;
+        _timePicker.backgroundColor=[UIColor whiteColor];
+    }
+    return _timePicker;
+}
+-(UIImagePickerController *)imagePicker{
+    if (!_imagePicker) {
+        _imagePicker=[[UIImagePickerController alloc]init];
+        _imagePicker.delegate=self;
+    }
+    return _imagePicker;
+}
+-(NSMutableArray *)images{
+    if (!_images) {
+        _images=[NSMutableArray new];
+    }
+    return _images;
+}
 #pragma mark - ▣ CRUD_TripDay+DayCurrency
 /*!以yyyy/MM/dd的日期字串取得本旅程中對應的Day，如果沒有這天，回傳nil
  */
