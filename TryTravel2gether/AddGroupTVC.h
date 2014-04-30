@@ -7,7 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SelectGuysCDTVC.h"
+#import "Trip.h"
 
-@interface AddGroupTVC : UITableViewController
+@class AddGroupTVC;
+@protocol AddGroupTVCDelegate <NSObject>
+-(void)theSaveButtonOnTheAddGroupWasTapped:(AddGroupTVC *)controller;
+@end
+@interface AddGroupTVC : UITableViewController<UITextFieldDelegate,SelectGuysCDTVCDelegate>
+@property NSManagedObjectContext *managedObjectContext;
+@property (weak,nonatomic)id<AddGroupTVCDelegate> delegate;
+
+
+@property (weak, nonatomic) IBOutlet UITextField *groupName;
+@property Trip *currentTrip;
+
+
+
 
 @end
