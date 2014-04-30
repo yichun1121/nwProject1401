@@ -38,9 +38,9 @@
     
     NSFetchRequest *request=[NSFetchRequest fetchRequestWithEntityName:entityName];
     
-//    request.predicate = [NSPredicate predicateWithFormat:@"(inTrip = %@)AND(guysInTrip.@count > 1)",self.currentTrip];
-    //TODO: 下面這句測試group顯示問題，所以trip裡所有群組都顯示，修正完要改為上面那句
-    request.predicate = [NSPredicate predicateWithFormat:@"inTrip = %@",self.currentTrip];
+    request.predicate = [NSPredicate predicateWithFormat:@"(inTrip = %@)AND(guysInTrip.@count > 1)",self.currentTrip];
+    
+    //request.predicate = [NSPredicate predicateWithFormat:@"inTrip = %@",self.currentTrip];
     
     request.sortDescriptors=[NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"name"
                                                                                     ascending:YES

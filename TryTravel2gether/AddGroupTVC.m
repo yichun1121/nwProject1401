@@ -72,7 +72,10 @@
         if ([objects count]>0) {
             for (int i=0; i<[objects count]; i++) {
                 GuyInTrip *guyInTrip=objects[i];
-                guyInTrip.groups=[NSSet setWithObject:group];
+                NSMutableSet *totalGroups=[NSMutableSet new];
+                totalGroups=[guyInTrip.groups mutableCopy];
+                [totalGroups addObject:group];
+                guyInTrip.groups=[totalGroups copy];
                 [self.managedObjectContext save:nil];
             }
         }
