@@ -54,10 +54,10 @@
 }
 -(NSMutableSet *) SelectedGuys
 {
-    if (!_SelectedGuys) {
-        _SelectedGuys = [[NSMutableSet alloc] init];
+    if (!_selectedGuys) {
+        _selectedGuys = [[NSMutableSet alloc] init];
     }
-    return _SelectedGuys;
+    return _selectedGuys;
 }
 
 - (void)viewDidLoad
