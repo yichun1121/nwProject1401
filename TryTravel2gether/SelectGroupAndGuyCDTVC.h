@@ -8,8 +8,6 @@
 
 #import "CoreDataTableViewController.h"
 #import "Trip.h"
-#import "AddGroupTVC.h"
-
 @class SelectGroupAndGuyCDTVC;
 @protocol SelectGroupAndGuyCDTVCDelegate <NSObject>
 

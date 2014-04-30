@@ -51,8 +51,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    //自建一個Done、Back二合一的button取代原先的BackButton
+    // Do any additional setup after loading the view.
     UIImage *buttonImage = [UIImage imageNamed:@"backButton"];
     UIBarButtonItem *backBtn=[[UIBarButtonItem alloc]initWithImage:buttonImage style:UIBarButtonItemStyleBordered target:self action:@selector(replaceBackBarBtn:)];
     backBtn.title=@"Detail";
@@ -91,22 +90,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"Add Group Segue"]) {
-        NSLog(@"Setting GroupAndGuyInTripCDTVC as a delegate of AddGroupTVC");
-        
-        AddGroupTVC *addGroupTVC = segue.destinationViewController;
-        addGroupTVC.delegate = self;
-        /*
-         已經在SelectGuysCDTVC裡宣告了一個delegate（是SelectGuysCDTVCDelegate）
-         selectGuysCDTVC.delegate=self的意思是：我要監控SelectGuysCDTVC
-         */
-        
-        addGroupTVC.managedObjectContext=self.managedObjectContext;
-        //把這個managedObjectContext傳過去，使用同一個managedObjectContext。（這樣新增東西才有反應吧？！）
-        addGroupTVC.currentTrip=self.currentTrip;
-	}
-    else {
-        NSLog(@"Unidentified Segue Attempted!");
+    if ([segue.identifier isEqualToString:@""]) {
     }
 }
 /*回到上一頁時直接delegate
@@ -140,9 +124,6 @@
     }
 }
 
-#pragma mark - delegation
--(void)theSaveButtonOnTheAddGroupWasTapped:(AddGroupTVC *)controller{
-    [controller.navigationController popViewControllerAnimated:YES];
-}
+
 
 @end

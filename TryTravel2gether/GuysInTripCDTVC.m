@@ -60,11 +60,8 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
-    //自建一個Done、Back二合一的button取代原先的BackButton
-    UIImage *buttonImage = [UIImage imageNamed:@"backButton"];
-    UIBarButtonItem *backBtn=[[UIBarButtonItem alloc]initWithImage:buttonImage style:UIBarButtonItemStyleBordered target:self action:@selector(replaceBackBarBtn:)];
-    backBtn.title=@"Detail";
-    self.navigationItem.leftBarButtonItem=backBtn;
+//    self.tableView.allowsMultipleSelectionDuringEditing=YES;
+//    [self.tableView setEditing:YES animated:YES];
     
 }
 -(NSMutableSet *)selectedGuys{
@@ -236,14 +233,9 @@
     
 }
 
-/*回到上一頁時直接delegate
- */
--(void) replaceBackBarBtn:(UIBarButtonItem *)sender {
-    
+- (IBAction)done:(id)sender{
     [self.delegate guyWasSelectedInGuysInTripCDTVC:self];
-    
 }
-
 
 
 
