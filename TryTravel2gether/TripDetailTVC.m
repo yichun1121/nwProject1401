@@ -97,21 +97,11 @@
     self.trip.endDate=[self.dateFormatter dateFromString:self.endDate.detailTextLabel.text];
     self.trip.mainCurrency=self.currentCurrency;
     
-    
     [self.managedObjectContext save:nil];  // write to database
-    [self saveGuyInTripWithCurrentTrip:self.trip and:self.SelectedGuys];
     //發射按下的訊號，讓有實做theSaveButtonOnTheAddTripTVCWasTapped這個method的程式（監聽add的程式）知道。
     [self.delegate theSaveButtonOnTheTripDetailTVCWasTapped:self];
 }
-/*存guyInTrip
- */
--(void)saveGuyInTripWithCurrentTrip:(Trip *)trip and:(NSSet *)selectedGuys{
-    for (GuyInTrip *guyInTrip in trip.guysInTrip) {
-        for (Guy *guyIn in selectedGuys) {
-            guyInTrip.guy=guyIn;
-        }
-    }
-}
+
 
 
 #pragma mark - 每次點選row的時候會做的事
