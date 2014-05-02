@@ -18,7 +18,7 @@
 
 @end
 
-@interface ReceiptDetailTVC : UITableViewController<UITextFieldDelegate,TripDaysTVCDelegate,CurrencyCDTVCDelegate>
+@interface ReceiptDetailTVC : UITableViewController<UITextFieldDelegate,TripDaysTVCDelegate,CurrencyCDTVCDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (weak,nonatomic)id <ReceiptDetailTVCDelegate> delegate;
 @property (strong,nonatomic)NSManagedObjectContext *managedObjectContext;

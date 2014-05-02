@@ -1,5 +1,5 @@
 //
-//  Itemcategory.m
+//  Itemcategory+Colorful.h
 //  TryTravel2gether
 //
 //  Created by YICHUN on 2014/5/1.
@@ -7,14 +7,7 @@
 //
 
 #import "Itemcategory.h"
-#import "CatInTrip.h"
 
-
-@implementation Itemcategory
-
-@dynamic name;
-@dynamic colorRGB;
-@dynamic iconName;
-@dynamic catInTrips;
-
+@interface Itemcategory (Colorful)
+-(UIColor *)color;
 @end

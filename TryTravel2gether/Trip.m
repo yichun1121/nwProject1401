@@ -2,7 +2,7 @@
 //  Trip.m
 //  TryTravel2gether
 //
-//  Created by YICHUN on 2014/4/12.
+//  Created by YICHUN on 2014/5/1.
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 
@@ -19,10 +19,11 @@
 @dynamic endDate;
 @dynamic name;
 @dynamic startDate;
+@dynamic tripIndex;
 @dynamic catsInTrip;
 @dynamic days;
 @dynamic groups;
-@dynamic mainCurrency;
 @dynamic guysInTrip;
+@dynamic mainCurrency;
 
 @end

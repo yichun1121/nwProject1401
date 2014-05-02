@@ -2418,6 +2418,62 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="IHf-fB-91Q">
+                                        <rect key="frame" x="0.0" y="286" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IHf-fB-91Q" id="wC2-11-oew">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E7X-Tz-GhJ">
+                                                    <rect key="frame" x="33" y="10" width="101" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="camera">
+                                                        <attributedString key="attributedTitle">
+                                                            <fragment content="take photo">
+                                                                <attributes>
+                                                                    <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="takePhoto:" destination="n4D-nU-zRC" eventType="touchUpInside" id="nBp-bl-AbA"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BxP-E1-JHH">
+                                                    <rect key="frame" x="189" y="10" width="111" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="image">
+                                                        <attributedString key="attributedTitle">
+                                                            <fragment content="existing one">
+                                                                <attributes>
+                                                                    <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="existingOne:" destination="n4D-nU-zRC" eventType="touchUpInside" id="YJj-hg-5AF"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="240" id="mbq-dK-A4y">
+                                        <rect key="frame" x="0.0" y="330" width="320" height="240"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mbq-dK-A4y" id="PuD-be-a3l">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tM6-M8-bOU">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </scrollView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -2438,6 +2494,7 @@
                         <outlet property="currencySign" destination="ZEg-tO-TvH" id="54V-0G-01T"/>
                         <outlet property="dateCell" destination="z8O-4W-hiP" id="iEK-8C-Xop"/>
                         <outlet property="desc" destination="jpx-D1-VJb" id="bGh-Hr-vJD"/>
+                        <outlet property="scrollView" destination="tM6-M8-bOU" id="KWT-bb-Cd5"/>
                         <outlet property="timeCell" destination="Bfx-7R-m3h" id="4Ol-9J-1EA"/>
                         <outlet property="totalPrice" destination="pae-gM-CWu" id="FxU-wL-hOF"/>
                     </connections>
@@ -2742,16 +2799,16 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="uY8-M1-8nc"/>
         <segue reference="bq2-7x-Hhd"/>
         <segue reference="5QA-QK-Xps"/>
-        <segue reference="C6V-tt-ruz"/>
-        <segue reference="azM-nM-gUu"/>
-        <segue reference="sp3-cC-l9s"/>
+        <segue reference="uY8-M1-8nc"/>
         <segue reference="moX-HC-O6P"/>
-        <segue reference="4bK-FK-wew"/>
-        <segue reference="dk3-o7-VGh"/>
+        <segue reference="fuU-qV-pe9"/>
+        <segue reference="r1V-Ci-7uc"/>
         <segue reference="fuH-vh-HtH"/>
         <segue reference="jlX-mz-Yrp"/>
+        <segue reference="azM-nM-gUu"/>
+        <segue reference="sp3-cC-l9s"/>
+        <segue reference="C6V-tt-ruz"/>
     </inferredMetricsTieBreakers>
 </document>

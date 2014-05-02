@@ -2,7 +2,7 @@
 //  Trip.h
 //  TryTravel2gether
 //
-//  Created by YICHUN on 2014/4/12.
+//  Created by YICHUN on 2014/5/1.
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 
@@ -16,11 +16,12 @@
 @property (nonatomic, retain) NSDate * endDate;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSDate * startDate;
+@property (nonatomic, retain) NSNumber * tripIndex;
 @property (nonatomic, retain) NSSet *catsInTrip;
 @property (nonatomic, retain) NSSet *days;
 @property (nonatomic, retain) NSSet *groups;
-@property (nonatomic, retain) Currency *mainCurrency;
 @property (nonatomic, retain) NSSet *guysInTrip;
+@property (nonatomic, retain) Currency *mainCurrency;
 @end
 
 @interface Trip (CoreDataGeneratedAccessors)

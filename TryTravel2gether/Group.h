@@ -2,7 +2,7 @@
 //  Group.h
 //  TryTravel2gether
 //
-//  Created by YICHUN on 2014/4/12.
+//  Created by YICHUN on 2014/5/1.
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 
@@ -14,6 +14,7 @@
 @interface Group : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * colorRGB;
 @property (nonatomic, retain) NSSet *guysInTrip;
 @property (nonatomic, retain) Trip *inTrip;
 @property (nonatomic, retain) NSSet *items;

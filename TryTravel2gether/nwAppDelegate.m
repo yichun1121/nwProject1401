@@ -32,11 +32,17 @@
     currency.standardSign=standardSign;
     [self.managedObjectContext save:nil];
 }
-- (void)insertCategoryWithName:(NSString *)categoryName
+- (void)insertCategoryName:(NSString *)categoryName WithDecimalColor:(NSString*)decimalColor IconName:(NSString *)iconName
 {
     Itemcategory *category = [NSEntityDescription insertNewObjectForEntityForName:@"Itemcategory"
                                                        inManagedObjectContext:self.managedObjectContext];
     category.name = categoryName;
+    category.colorRGB=decimalColor;
+    if ([@""isEqualToString:iconName]) {
+        category.iconName=nil;
+    }else{
+        category.iconName=iconName;
+    }
     [self.managedObjectContext save:nil];
 }
 
@@ -81,10 +87,15 @@
     
     NSLog(@"Importing Core Data Default Values for Item Categories...");
     NSString *readPlist=[[NSBundle mainBundle] pathForResource:@"ItemCategory" ofType:@"plist"];
-    NSArray *arrCurrency=[NSArray arrayWithContentsOfFile:readPlist];
-    for (int i=0; i<arrCurrency.count; i++) {
-        NSString *name=[[arrCurrency objectAtIndex:i] objectForKey:@"itemCategoryName"];
-        [self insertCategoryWithName:name];
+    NSArray *arrCategory=[NSArray arrayWithContentsOfFile:readPlist];
+    for (int i=0; i<arrCategory.count; i++) {
+        NSString *name=[[arrCategory objectAtIndex:i] objectForKey:@"itemCategoryName"];
+        NSString *iconName=[[arrCategory objectAtIndex:i] objectForKey:@"iconName"];
+        NSString *hexColorRGB=[[arrCategory objectAtIndex:i] objectForKey:@"hexColorRGB"];
+        int red, green, blue;
+        sscanf([hexColorRGB UTF8String], "%02X%02X%02X", &red, &green, &blue);
+        NSString *decimalColorRGB=[NSString stringWithFormat:@"%i%i%i",red,green,blue];
+        [self insertCategoryName:name WithDecimalColor:decimalColorRGB IconName:iconName];
     }
 
     NSLog(@"Importing Core Data Default Values for Item Categories Completed!");

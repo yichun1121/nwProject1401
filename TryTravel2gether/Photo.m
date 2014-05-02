@@ -1,21 +1,21 @@
 //
-//  CatInTrip.m
+//  Photo.m
 //  TryTravel2gether
 //
 //  Created by YICHUN on 2014/5/1.
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 
-#import "CatInTrip.h"
+#import "Photo.h"
 #import "Item.h"
-#import "Itemcategory.h"
-#import "Trip.h"
+#import "Receipt.h"
 
 
-@implementation CatInTrip
+@implementation Photo
 
-@dynamic category;
+@dynamic fileName;
+@dynamic fullPath;
+@dynamic receipts;
 @dynamic items;
-@dynamic trip;
 
 @end

@@ -11,6 +11,7 @@
 #import "TripDaysTVC.h"
 #import "DayCurrency.h"
 #import "Currency.h"
+#import "Photo.h"
 
 
 @interface AddReceiptTVC ()
@@ -81,14 +82,15 @@
     self.currency.detailTextLabel.text=currency.standardSign;
     self.currencySign.text=currency.sign;
 }
--(void)saveImage:(UIImage *)image{
+-(Photo *)saveImage:(UIImage *)image{
     NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString * basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
     
 //    NSData * binaryImageData = UIImagePNGRepresentation(image);
-    NSData * binaryImageData = UIImageJPEGRepresentation(image, 1);
+    NSData * binaryImageData = UIImageJPEGRepresentation(image, 1);     //數字是壓縮比<=1
     //TODO: Trip加了index以後，用tripIndex當資料夾名字
-    NSString *folderPath=[NSString stringWithFormat:@"%@/Potos/%@ %@",basePath,@"Trip ",self.currentTrip.name ];
+    NSString *folderPath=[NSString stringWithFormat:@"%@/Photos/%@ %@",basePath,@"Trip",self.currentTrip.name ];
+    //-----檢查預存放的資料夾路徑-------------------------
     if ([[NSFileManager defaultManager] fileExistsAtPath:folderPath]){
         NSLog(@"folder path exists.");
     }else{
@@ -100,14 +102,22 @@
             NSLog(@"fail to create folder, error: %@", [error localizedDescription]);
         }
     }
-    NSString *imagePath=[NSString stringWithFormat:@"%@/%lli.jpg",folderPath,[@(floor([[NSDate date] timeIntervalSince1970] * 1000)) longLongValue]];
-    //儲存檔案
+    NSString *fileName=[NSString stringWithFormat:@"%lli.jpg",[@(floor([[NSDate date] timeIntervalSince1970] * 1000)) longLongValue]];
+    NSString *imagePath=[NSString stringWithFormat:@"%@/%@",folderPath,fileName];
+    //-----儲存檔案-------------------------------------
     bool saveSuccess=[binaryImageData writeToFile:imagePath atomically:YES];
     if (saveSuccess) {
         NSLog(@"save photo to file:%@",imagePath);
     }else{
         NSLog(@"failed to save photo:%@",imagePath);
     }
+    //-----儲存entity:Photo-------------------------------------
+    Photo *photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo"
+                                                     inManagedObjectContext:self.managedObjectContext];
+    photo.fullPath=imagePath;
+    photo.fileName=fileName;
+    [self.managedObjectContext save:nil];  // write to database
+    return photo;
 }
 #pragma mark - 事件
 -(IBAction)save:(id)sender{
@@ -126,9 +136,14 @@
     [self.managedObjectContext save:nil];  // write to database
     NSLog(@"Save new Receipt in AddReceiptTVC");
     //儲存照片
+    NSMutableSet *mtbImages=[receipt.photos mutableCopy];
     for (UIImage *image in self.images) {
-        [self saveImage:image];
+        Photo *photo=[self saveImage:image];
+        [mtbImages addObject:photo];
     }
+    //把照片設給剛剛建好的receipt
+    receipt.photos=mtbImages;
+    [self.managedObjectContext save:nil];  // write to database
     
     [self.delegate theSaveButtonOnTheAddReceiptWasTapped:self];
     
@@ -156,21 +171,25 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     //1. 取得照片
     UIImage * image=[info objectForKey:UIImagePickerControllerOriginalImage];
-    //2. 計算這次imageView大小位置，並把照片放進去
+    //2. 載入ImageView 延伸scrollView
+    [self loadImageIntoScrollView:image];
+    
+    [self.images addObject:image];
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+}
+-(void)loadImageIntoScrollView:(UIImage *)image{
+    //1. 計算這次imageView大小位置，並把照片放進去
     NSInteger imgCount=[self.images count];
     double imgViewWidth=155;
     CGRect newImageRect=CGRectMake((imgViewWidth+5)*imgCount+5, 10, imgViewWidth, image.size.height/image.size.width*imgViewWidth);
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:newImageRect];
     imgView.image=image;
     NSLog(@"loaded a image @%@",self.class);
-    //3. 把imageView放進scrollView裡，並拉長scrollView
+    //2. 把imageView放進scrollView裡，並拉長scrollView
     [self.scrollView addSubview:imgView];
     CGSize scrollSize=CGSizeMake((imgViewWidth+5)*(imgCount+1), self.scrollView.frame.size.height);
     self.scrollView.contentSize=scrollSize; //要把scrollView拉大，才能scroll
-    
-    [self.images addObject:image];
-    [self dismissViewControllerAnimated:YES completion:nil];
-
 }
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [self dismissViewControllerAnimated:YES completion:nil];

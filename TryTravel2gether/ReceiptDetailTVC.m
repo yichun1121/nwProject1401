@@ -9,6 +9,9 @@
 #import "ReceiptDetailTVC.h"
 #import "Day.h"
 #import "DayCurrency.h"
+#import "Photo.h"
+#import "Photo+Image.h"
+#import "Receipt+Photo.h"
 @interface ReceiptDetailTVC ()
 
 @property NSDateFormatter *dateFormatter;
@@ -24,28 +27,17 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *timeCell;
 @property NSIndexPath * actingCellIndexPath;
 @property (strong,nonatomic) UIDatePicker *timePicker;
+@property (nonatomic)  UIImagePickerController *imagePicker;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (nonatomic)  NSMutableArray *images;
 
 @end
 
 @implementation ReceiptDetailTVC
 @synthesize timePicker=_timePicker;
+@synthesize imagePicker=_imagePicker;
+@synthesize images=_images;
 
--(UIDatePicker *)timePicker{
-    if(_timePicker == nil){
-        _timePicker = [[UIDatePicker alloc] init];
-        _timePicker.date=[self.dateFormatter dateFromString: self.selectedDayString];
-        
-        
-        [_timePicker addTarget:self
-                   action:@selector(pickerChanged:)
-         forControlEvents:UIControlEventValueChanged];
-        _timePicker.datePickerMode = UIDatePickerModeTime;
-        //NSString *datetimeString=[self.dateCell.detailTextLabel.text stringByAppendingString:self.timeCell.detailTextLabel.text];
-        _timePicker.date=[self.timeFormatter dateFromString:self.timeCell.detailTextLabel.text];
-        _timePicker.backgroundColor=[UIColor whiteColor];
-    }
-    return _timePicker;
-}
 
 - (void)viewDidLoad
 {
@@ -76,7 +68,7 @@
     self.receipt.day=selectedDay;
     
     self.receipt.dayCurrency=[self getDayCurrencyWithTripDay:selectedDay Currency:self.currentCurrency];
-    
+    //TODO: 存照片需要另外判斷
     
     [self.managedObjectContext save:nil];  // write to database
     NSLog(@"Save new Receipt in AddReceiptTVC");
@@ -88,6 +80,47 @@
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     UITableViewCell *clickCell=[self.tableView cellForRowAtIndexPath:indexPath];
     clickCell.detailTextLabel.text=[self.timeFormatter stringFromDate:paramDatePicker.date];
+}
+
+- (IBAction)takePhoto:(UIButton *)sender {
+    [self.imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+    [self presentViewController:self.imagePicker animated:YES completion:nil];
+    NSLog(@"show camera view @%@",self.class);
+}
+- (IBAction)existingOne:(UIButton *)sender {
+    [self.imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    [self presentViewController:self.imagePicker animated:YES completion:nil];
+    NSLog(@"show photoLibrary view @%@",self.class);
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    //1. 取得照片
+    UIImage * image=[info objectForKey:UIImagePickerControllerOriginalImage];
+    //2. 載入ImageView 延伸scrollView
+    [self loadImageIntoScrollView:image];
+    
+    [self.images addObject:image];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+/*! 載入ImageView，配合已存在的照片放置新位置並延伸scrollView為適當寬度
+ */
+-(void)loadImageIntoScrollView:(UIImage *)image{
+    //1. 計算這次imageView大小位置，並把照片放進去
+    NSInteger imgCount=[self.images count];
+    double imgViewWidth=155;
+    CGRect newImageRect=CGRectMake((imgViewWidth+5)*imgCount+5, 10, imgViewWidth, image.size.height/image.size.width*imgViewWidth);
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:newImageRect];
+    imgView.image=image;
+    NSLog(@"loaded a image @%@",self.class);
+    //2. 把imageView放進scrollView裡，並拉長scrollView
+    [self.scrollView addSubview:imgView];
+    CGSize scrollSize=CGSizeMake((imgViewWidth+5)*(imgCount+1), self.scrollView.frame.size.height);
+    self.scrollView.contentSize=scrollSize; //要把scrollView拉大，才能scroll
+    
 }
 /*!設定currentCurrency還有頁面相關顯示
  */
@@ -131,6 +164,37 @@
                      completion:^(BOOL finished) {} ];
 }
 
+#pragma mark - lazy instantiation
+
+-(UIDatePicker *)timePicker{
+    if(_timePicker == nil){
+        _timePicker = [[UIDatePicker alloc] init];
+        _timePicker.date=[self.dateFormatter dateFromString: self.selectedDayString];
+        
+        
+        [_timePicker addTarget:self
+                        action:@selector(pickerChanged:)
+              forControlEvents:UIControlEventValueChanged];
+        _timePicker.datePickerMode = UIDatePickerModeTime;
+        //NSString *datetimeString=[self.dateCell.detailTextLabel.text stringByAppendingString:self.timeCell.detailTextLabel.text];
+        _timePicker.date=[self.timeFormatter dateFromString:self.timeCell.detailTextLabel.text];
+        _timePicker.backgroundColor=[UIColor whiteColor];
+    }
+    return _timePicker;
+}
+-(UIImagePickerController *)imagePicker{
+    if (!_imagePicker) {
+        _imagePicker=[[UIImagePickerController alloc]init];
+        _imagePicker.delegate=self;
+    }
+    return _imagePicker;
+}
+-(NSMutableArray *)images{
+    if (!_images) {
+        _images=[NSMutableArray new];
+    }
+    return _images;
+}
 #pragma mark - Table view data source
 -(void)configureTheCell{
     [self setAllCurrencyWithCurrency:self.receipt.dayCurrency.currency];
@@ -139,6 +203,11 @@
     self.dateCell.detailTextLabel.text=[self.dateFormatter stringFromDate:self.receipt.day.date];
     self.timeCell.detailTextLabel.text=[self.timeFormatter stringFromDate:self.receipt.time];
     self.selectedDayString=[self.dateFormatter stringFromDate: self.receipt.day.date];
+    for (Photo * photo in self.receipt.photosOrdered) {
+        UIImage *image=photo.image;
+        [self loadImageIntoScrollView:image];   //要先load再add，不然位置會計算錯
+        [self.images addObject:image];
+    }
 }
 #pragma mark - ▣ CRUD_TripDay+DayCurrency
 /*!以yyyy/MM/dd的日期字串取得本旅程中對應的Day，如果沒有這天，回傳nil
@@ -287,10 +356,10 @@
         //[self.tableView endUpdates];
     }
 }
-//下面這個目前沒有使用
-#pragma mark 負責長cell的高度，也在這設定actingPicker（每次會因為tableView beginUpdates和endUpdates重畫）
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat height=self.tableView.rowHeight;
-    return height;
-}
+////下面這個目前沒有使用
+//#pragma mark 負責長cell的高度，也在這設定actingPicker（每次會因為tableView beginUpdates和endUpdates重畫）
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    CGFloat height=self.tableView.rowHeight;
+//    return height;
+//}
 @end

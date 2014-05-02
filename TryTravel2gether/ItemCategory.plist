@@ -5,30 +5,58 @@
 	<dict>
 		<key>itemCategoryName</key>
 		<string>Food</string>
+		<key>hexColorRGB</key>
+		<string>FEF390</string>
+		<key>iconName</key>
+		<string>food</string>
 	</dict>
 	<dict>
 		<key>itemCategoryName</key>
 		<string>Transport</string>
+		<key>hexColorRGB</key>
+		<string>C8DA9C</string>
+		<key>iconName</key>
+		<string></string>
 	</dict>
 	<dict>
 		<key>itemCategoryName</key>
 		<string>Entertainment</string>
+		<key>hexColorRGB</key>
+		<string>E59CA7</string>
+		<key>iconName</key>
+		<string>game</string>
 	</dict>
 	<dict>
 		<key>itemCategoryName</key>
 		<string>Room</string>
+		<key>hexColorRGB</key>
+		<string>BE74A9</string>
+		<key>iconName</key>
+		<string>house</string>
 	</dict>
 	<dict>
 		<key>itemCategoryName</key>
 		<string>Goods</string>
+		<key>hexColorRGB</key>
+		<string>ABC2E5</string>
+		<key>iconName</key>
+		<string></string>
 	</dict>
 	<dict>
 		<key>itemCategoryName</key>
 		<string>Gift</string>
+		<key>hexColorRGB</key>
+		<string>7BBEB8</string>
+		<key>iconName</key>
+		<string></string>
 	</dict>
 	<dict>
 		<key>itemCategoryName</key>
 		<string>Uncategorized</string>
+		<key>hexColorRGB</key>
+		<string>FFFFFF</string>
+		<key>iconName</key>
+		<string></string>
 	</dict>
 </array>
 </plist>

@@ -9,6 +9,7 @@
 #import "CategoriesCDTVC.h"
 #import "Itemcategory.h"
 #import "SWRevealViewController.h"
+#import "Itemcategory+Colorful.h"
 
 @interface CategoriesCDTVC ()
 @end
@@ -17,6 +18,14 @@
 @synthesize managedObjectContext=_managedObjectContext;
 @synthesize fetchedResultsController=_fetchedResultsController;
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    //------Set Sidebar Menu--------
+    [self setSidebarMenuAction];
+    
+}
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self setupFetchedResultController];
@@ -41,14 +50,6 @@
                                                                        sectionNameKeyPath:nil
                                                                                 cacheName:nil];
     [self performFetch];
-}
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    //------Set Sidebar Menu--------
-    [self setSidebarMenuAction];
-    
 }
 -(void)setSidebarMenuAction{
     // Change button color
@@ -85,6 +86,7 @@
 -(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
     Itemcategory *itemCategory=[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text=itemCategory.name;
+    cell.backgroundColor=itemCategory.color;
     return cell;
 }
 - (void)didReceiveMemoryWarning
