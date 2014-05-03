@@ -16,7 +16,7 @@
 		<key>hexColorRGB</key>
 		<string>C8DA9C</string>
 		<key>iconName</key>
-		<string></string>
+		<string>bus</string>
 	</dict>
 	<dict>
 		<key>itemCategoryName</key>
@@ -36,11 +36,11 @@
 	</dict>
 	<dict>
 		<key>itemCategoryName</key>
-		<string>Goods</string>
+		<string>Shopping</string>
 		<key>hexColorRGB</key>
 		<string>ABC2E5</string>
 		<key>iconName</key>
-		<string></string>
+		<string>shopping</string>
 	</dict>
 	<dict>
 		<key>itemCategoryName</key>
@@ -48,7 +48,7 @@
 		<key>hexColorRGB</key>
 		<string>7BBEB8</string>
 		<key>iconName</key>
-		<string></string>
+		<string>gift</string>
 	</dict>
 	<dict>
 		<key>itemCategoryName</key>

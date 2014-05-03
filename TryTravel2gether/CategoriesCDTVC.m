@@ -86,7 +86,17 @@
 -(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
     Itemcategory *itemCategory=[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text=itemCategory.name;
-    cell.backgroundColor=itemCategory.color;
+    cell.imageView.image=itemCategory.image;
+//    cell.backgroundColor=itemCategory.color;
+    cell.imageView.backgroundColor=itemCategory.color;
+    cell.imageView.layer.borderColor=[itemCategory.color CGColor];
+    cell.imageView.layer.borderWidth=0;
+    [cell.imageView.layer setMasksToBounds:YES];
+    [cell.imageView.layer setCornerRadius:4.0];
+//    cell.imageView.layer.shadowColor=[[UIColor blackColor] CGColor];
+//    [cell.imageView.layer setShadowOffset:CGSizeMake(-5.0, 5.0)];
+//    [cell.imageView.layer setShadowRadius:3.0];
+//    [cell.imageView.layer setShadowOpacity:1.0];
     return cell;
 }
 - (void)didReceiveMemoryWarning

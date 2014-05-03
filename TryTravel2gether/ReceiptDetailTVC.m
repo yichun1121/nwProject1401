@@ -203,6 +203,11 @@
     self.dateCell.detailTextLabel.text=[self.dateFormatter stringFromDate:self.receipt.day.date];
     self.timeCell.detailTextLabel.text=[self.timeFormatter stringFromDate:self.receipt.time];
     self.selectedDayString=[self.dateFormatter stringFromDate: self.receipt.day.date];
+//    for (int i=0; i<self.receipt.photos.count; i++) {
+//        Photo *photo=self.receipt.photos[i];
+//        UIImage *image=
+//    }
+    //TODO: 顯示的照片沒有照順序出現
     for (Photo * photo in self.receipt.photosOrdered) {
         UIImage *image=photo.image;
         [self loadImageIntoScrollView:image];   //要先load再add，不然位置會計算錯

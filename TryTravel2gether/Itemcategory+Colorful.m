@@ -15,4 +15,13 @@
     float blue=[[self.colorRGB substringWithRange:NSMakeRange(6, 3)]floatValue] ;
     return [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1];
 }
+-(UIImage *)image{
+    NSString *imageName;
+    if (self.iconName) {
+        imageName=self.iconName;
+    }else{
+        imageName=@"empty";
+    }
+    return [UIImage imageNamed:imageName];
+}
 @end

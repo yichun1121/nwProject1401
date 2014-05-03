@@ -10,4 +10,5 @@
 
 @interface Itemcategory (Colorful)
 -(UIColor *)color;
+-(UIImage *)image;
 @end
