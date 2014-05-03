@@ -10,6 +10,8 @@
 #import "Group.h"
 #import "Guy.h"
 #import "Trip.h"
+#import "Group+TripGuys.h"
+
 
 @interface GroupAndGuyInTripCDTVC ()
 
@@ -20,12 +22,14 @@
 @synthesize managedObjectContext=_managedObjectContext;
 @synthesize fetchedResultsController=_fetchedResultsController;
 
+
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self setupFetchedResultController];
 }
 
-#pragma mark - FetchedResultsController
+#pragma mark - FetchedResultsControllera
 
 -(void)setupFetchedResultController{
     
@@ -35,6 +39,8 @@
     NSFetchRequest *request=[NSFetchRequest fetchRequestWithEntityName:entityName];
     
     request.predicate = [NSPredicate predicateWithFormat:@"(inTrip = %@)AND(guysInTrip.@count > 1)",self.currentTrip];
+    
+    //request.predicate = [NSPredicate predicateWithFormat:@"inTrip = %@",self.currentTrip];
     
     request.sortDescriptors=[NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"name"
                                                                                     ascending:YES
@@ -48,7 +54,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    //自建一個Done、Back二合一的button取代原先的BackButton
+    UIImage *buttonImage = [UIImage imageNamed:@"backButton"];
+    UIBarButtonItem *backBtn=[[UIBarButtonItem alloc]initWithImage:buttonImage style:UIBarButtonItemStyleBordered target:self action:@selector(replaceBackBarBtn:)];
+    backBtn.title=@"Detail";
+    self.navigationItem.leftBarButtonItem=backBtn;
+   
 
 }
 
@@ -69,6 +81,7 @@
 -(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
     Group *group=[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text=group.name;
+    cell.detailTextLabel.text=[group guysNameSplitBy:@","];
     return cell;
 }
 - (void)didReceiveMemoryWarning
@@ -82,8 +95,30 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@""]) {
+    if ([segue.identifier isEqualToString:@"Add Group Segue"]) {
+        NSLog(@"Setting GroupAndGuyInTripCDTVC as a delegate of AddGroupTVC");
+        
+        AddGroupTVC *addGroupTVC = segue.destinationViewController;
+        addGroupTVC.delegate = self;
+        /*
+         已經在SelectGuysCDTVC裡宣告了一個delegate（是SelectGuysCDTVCDelegate）
+         selectGuysCDTVC.delegate=self的意思是：我要監控SelectGuysCDTVC
+         */
+        
+        addGroupTVC.managedObjectContext=self.managedObjectContext;
+        //把這個managedObjectContext傳過去，使用同一個managedObjectContext。（這樣新增東西才有反應吧？！）
+        addGroupTVC.currentTrip=self.currentTrip;
+	}
+    else {
+        NSLog(@"Unidentified Segue Attempted!");
     }
+}
+/*回到上一頁時直接delegate
+*/
+-(void) replaceBackBarBtn:(UIBarButtonItem *)sender {
+    
+    [self.delegate groupListCheckedInGroupAndGuyInTripCDTVC:self];
+
 }
 #pragma mark - Deleting（紅➖）+Inserting(綠➕）
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -109,5 +144,9 @@
     }
 }
 
+#pragma mark - delegation
+-(void)theSaveButtonOnTheAddGroupWasTapped:(AddGroupTVC *)controller{
+    [controller.navigationController popViewControllerAnimated:YES];
+}
 
 @end

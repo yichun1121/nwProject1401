@@ -23,8 +23,8 @@
 @property (strong,nonatomic) Currency *currentCurrency;
 @property (strong, nonatomic) UIDatePicker *endPicker;
 @property (strong, nonatomic) UIDatePicker *startPicker;
-@property (strong,nonatomic) NSMutableSet *SelectedGuys;
-@property (strong,nonatomic)Group *selectedGroup;
+@property (strong,nonatomic) NSMutableSet *selectedGuys;
+
 @end
 
 @implementation TripDetailTVC
@@ -54,7 +54,13 @@
     }
     return _endPicker;
 }
-
+-(NSMutableSet *) SelectedGuys
+{
+    if (!_selectedGuys) {
+        _selectedGuys = [[NSMutableSet alloc] init];
+    }
+    return _selectedGuys;
+}
 
 - (void)viewDidLoad
 {
@@ -73,14 +79,16 @@
     self.currency.detailTextLabel.text=self.currentCurrency.standardSign;
     
     
-    //-----顯示Guy資訊-----------
-    self.SelectedGuys=[NSMutableSet new];
-    self.guysCell.textLabel.text=@"Selected Guys";
+    //-----顯示Guy&Group資訊-----------
+    self.selectedGuys=[NSMutableSet new];
+    self.guysCell.textLabel.text=@"Guys";
+    
     for (GuyInTrip * guyInTrip in self.trip.guysInTrip) {
-    [self.SelectedGuys addObject:guyInTrip.guy];
+    [self.selectedGuys addObject:guyInTrip.guy];
     }
-    int guyscount=(int)[self.SelectedGuys count];
+    int guyscount=(int)[self.selectedGuys count];
     self.guysCell.detailTextLabel.text=[NSString stringWithFormat:@"%i Guys",guyscount];
+    self.groupsCell.detailTextLabel.text=[NSString stringWithFormat:@"%@ Groups",self.trip.countRealGroups];
     
 
 }
@@ -96,13 +104,12 @@
     self.trip.startDate=[self.dateFormatter dateFromString:self.startDate.detailTextLabel.text];
     self.trip.endDate=[self.dateFormatter dateFromString:self.endDate.detailTextLabel.text];
     self.trip.mainCurrency=self.currentCurrency;
-    self.trip.guysInTrip=self.SelectedGuys;
     
     [self.managedObjectContext save:nil];  // write to database
-    
     //發射按下的訊號，讓有實做theSaveButtonOnTheAddTripTVCWasTapped這個method的程式（監聽add的程式）知道。
     [self.delegate theSaveButtonOnTheTripDetailTVCWasTapped:self];
 }
+
 
 
 #pragma mark - 每次點選row的時候會做的事
@@ -202,13 +209,12 @@
         GuysInTripCDTVC *guysInTripCDTVC=segue.destinationViewController;
         guysInTripCDTVC.delegate=self;
         guysInTripCDTVC.managedObjectContext=self.managedObjectContext;
-        guysInTripCDTVC.SelectedGuys=self.SelectedGuys;
         guysInTripCDTVC.currentTrip=self.trip;
     }else if([segue.identifier isEqualToString:@"Group List Segue From Trip Detail"]){
         GroupAndGuyInTripCDTVC *groupCDTVC=segue.destinationViewController;
         groupCDTVC.managedObjectContext=self.managedObjectContext;
-        groupCDTVC.selectedGroup=self.selectedGroup;
         groupCDTVC.currentTrip=self.trip;
+        groupCDTVC.delegate=self;
         //TODO:group的delegate，然後要顯示group數量
     }
 }
@@ -237,11 +243,13 @@
 }
 
 -(void)guyWasSelectedInGuysInTripCDTVC:(GuysInTripCDTVC *)controller{
-    self.SelectedGuys=controller.SelectedGuys;
-    int guyscount=(int)[self.SelectedGuys count];
+    self.selectedGuys=controller.selectedGuys;
+    int guyscount=(int)[self.selectedGuys count];
     self.guysCell.detailTextLabel.text=[NSString stringWithFormat:@"%i Guys",guyscount];
     [controller.navigationController popViewControllerAnimated:YES];
 }
-
-
+-(void)groupListCheckedInGroupAndGuyInTripCDTVC:(GroupAndGuyInTripCDTVC *)controller;{
+    self.groupsCell.detailTextLabel.text=[NSString stringWithFormat:@"%@ Groups",self.trip.countRealGroups];
+    [controller.navigationController popViewControllerAnimated:YES];
+}
 @end

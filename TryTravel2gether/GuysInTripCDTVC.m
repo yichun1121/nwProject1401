@@ -17,7 +17,7 @@
 @synthesize managedObjectContext=_managedObjectContext;
 @synthesize fetchedResultsController=_fetchedResultsController;
 @synthesize delegate;
-@synthesize SelectedGuys=_SelectedGuys;
+@synthesize selectedGuys=_selectedGuys;
 
 
 
@@ -60,15 +60,18 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
-//    self.tableView.allowsMultipleSelectionDuringEditing=YES;
-//    [self.tableView setEditing:YES animated:YES];
+    //自建一個Done、Back二合一的button取代原先的BackButton
+    UIImage *buttonImage = [UIImage imageNamed:@"backButton"];
+    UIBarButtonItem *backBtn=[[UIBarButtonItem alloc]initWithImage:buttonImage style:UIBarButtonItemStyleBordered target:self action:@selector(replaceBackBarBtn:)];
+    backBtn.title=@"Detail";
+    self.navigationItem.leftBarButtonItem=backBtn;
     
 }
--(NSMutableSet *)SelectedGuys{
-    if (_SelectedGuys==nil) {
-        _SelectedGuys=[NSMutableSet new];
+-(NSMutableSet *)selectedGuys{
+    if (_selectedGuys==nil) {
+        _selectedGuys=[NSMutableSet new];
     }
-    return _SelectedGuys;
+    return _selectedGuys;
 }
 -(NSMutableArray *)indexPathArray{
     if (_indexPathArray==nil) {
@@ -96,7 +99,7 @@
 -(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
     GuyInTrip *guyInTrip = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = [NSString stringWithFormat:@"%@",guyInTrip.guy.name];
-    [self.SelectedGuys addObject:guyInTrip.guy];
+    [self.selectedGuys addObject:guyInTrip.guy];
     return cell;
 }
 
@@ -121,7 +124,7 @@
         
         selectGuysCDTVC.managedObjectContext=self.managedObjectContext;
         //把這個managedObjectContext傳過去，使用同一個managedObjectContext。（這樣新增東西才有反應吧？！）
-        selectGuysCDTVC.SelectedGuys=[self.SelectedGuys mutableCopy];
+        selectGuysCDTVC.SelectedGuys=[self.selectedGuys mutableCopy];
         
 	}
     else {
@@ -219,23 +222,28 @@
  */
 -(void)guyWasSelectedInSelectGuysCDTVC:(SelectGuysCDTVC *)controller
 {
-    NSMutableSet *minusGuys=[self.SelectedGuys mutableCopy];
+    NSMutableSet *minusGuys=[self.selectedGuys mutableCopy];
     [minusGuys minusSet:controller.SelectedGuys];
     NSMutableSet *plusGuys=[controller.SelectedGuys mutableCopy];
-    [plusGuys minusSet:self.SelectedGuys];
+    [plusGuys minusSet:self.selectedGuys];
     
-    //self.SelectedGuys=controller.SelectedGuys;
+    //self.selectedGuys=controller.SelectedGuys;
     [self deleteGuysAndGroups:minusGuys inCurrentTrip:self.currentTrip];
     [self createDefaultGroupWithGuy:plusGuys InCurrentTrip:self.currentTrip];
-    self.SelectedGuys=controller.SelectedGuys;
+    self.selectedGuys=controller.SelectedGuys;
     [controller.navigationController popViewControllerAnimated:YES];
     
     
 }
 
-- (IBAction)done:(id)sender{
+/*回到上一頁時直接delegate
+ */
+-(void) replaceBackBarBtn:(UIBarButtonItem *)sender {
+    
     [self.delegate guyWasSelectedInGuysInTripCDTVC:self];
+    
 }
+
 
 
 

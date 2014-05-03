@@ -63,26 +63,31 @@
 #pragma mark - 3. Default Data：創建預設的資訊寫在這裡一個一個設定
 - (void)importCoreDataDefaultMoneyTypes {
     
-    // TODO: 把幣別資訊寫在plist裡面再讀出來用
-    NSLog(@"Importing Core Data Default Values for Roles...");
-    [self insertMoneyWithTypeName:@"Taiwan Dollar" useMoneySign:@"NT" standardMoneySign:@"TWD"];
-    [self insertMoneyWithTypeName:@"Japanese Yen" useMoneySign:@"￥" standardMoneySign:@"JPY"];
-    [self insertMoneyWithTypeName:@"U.S.Dollar" useMoneySign:@"＄" standardMoneySign:@"USD"];
-    NSLog(@"Importing Core Data Default Values for Roles Completed!");
+    NSLog(@"Importing Core Data Default Values for Currencies...");
+//    [self insertMoneyWithTypeName:@"Taiwan Dollar" useMoneySign:@"NT" standardMoneySign:@"TWD"];
+//    [self insertMoneyWithTypeName:@"Japanese Yen" useMoneySign:@"￥" standardMoneySign:@"JPY"];
+//    [self insertMoneyWithTypeName:@"U.S.Dollar" useMoneySign:@"＄" standardMoneySign:@"USD"];
+    NSString *readPlist=[[NSBundle mainBundle] pathForResource:@"Currency" ofType:@"plist"];
+    NSArray *arrCurrency=[NSArray arrayWithContentsOfFile:readPlist];
+    for (int i=0; i<arrCurrency.count; i++) {
+        NSString *name=[[arrCurrency objectAtIndex:i] objectForKey:@"currencyName"];
+        NSString *sign=[[arrCurrency objectAtIndex:i] objectForKey:@"currencySign"];
+        NSString *standarSign=[[arrCurrency objectAtIndex:i] objectForKey:@"currencyStandardSign"];
+        [self insertMoneyWithTypeName:name useMoneySign:sign standardMoneySign:standarSign];
+    }
+    NSLog(@"Importing Core Data Default Values for Currencies Completed!");
 }
 - (void)importCoreDataDefaultCategories {
     
-    // TODO: 把物品類別資訊寫在plist裡面再讀出來用
-    NSLog(@"Importing Core Data Default Values for Roles...");
-    [self insertCategoryWithName:@"Food"];
-    [self insertCategoryWithName:@"Transport"];
-    [self insertCategoryWithName:@"Entertainment"];
-    [self insertCategoryWithName:@"Room"];
-    [self insertCategoryWithName:@"Buy"];
-    [self insertCategoryWithName:@"Gift"];
-    [self insertCategoryWithName:@"Uncategorized"];
+    NSLog(@"Importing Core Data Default Values for Item Categories...");
+    NSString *readPlist=[[NSBundle mainBundle] pathForResource:@"ItemCategory" ofType:@"plist"];
+    NSArray *arrCurrency=[NSArray arrayWithContentsOfFile:readPlist];
+    for (int i=0; i<arrCurrency.count; i++) {
+        NSString *name=[[arrCurrency objectAtIndex:i] objectForKey:@"itemCategoryName"];
+        [self insertCategoryWithName:name];
+    }
 
-    NSLog(@"Importing Core Data Default Values for Roles Completed!");
+    NSLog(@"Importing Core Data Default Values for Item Categories Completed!");
 }
 
 -(void)checkDefaultData:(NSString *)entityName By:(NSString *)attributeName{

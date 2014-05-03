@@ -11,6 +11,7 @@
 #import "Day+TripDay.h"
 #import "NWCustCellTitleSubDetail.h"
 #import "Day+Expend.h"
+#import "ShareMainPageCDTVC.h"
 
 
 @interface DaysCDTVC ()
@@ -82,6 +83,10 @@
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Days" style:UIBarButtonItemStylePlain target:nil action:nil];
     //-----預設顯示幣別----------
     self.showingCurrency=self.currentTrip.mainCurrency;
+    //-----記錄目前檢視中的Trip--------（讓切換share的tab時可以知道顯示哪個trip）
+    UINavigationController *navigationCTL=self.tabBarController.childViewControllers[1];
+    ShareMainPageCDTVC * sharePage=(ShareMainPageCDTVC *)navigationCTL.topViewController;
+    sharePage.currentTrip=self.currentTrip;
 }
 
 
