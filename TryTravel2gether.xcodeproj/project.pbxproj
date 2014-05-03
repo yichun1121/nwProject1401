@@ -22,6 +22,9 @@
 		18DF963619024EF30051366D /* GuysInTripCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DF963519024EF30051366D /* GuysInTripCDTVC.m */; };
 		BF1B4EC118E08127004841FE /* Itemcategory.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1B4EC018E08127004841FE /* Itemcategory.m */; };
 		BF1B4EC418E08128004841FE /* CatInTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = BF1B4EC318E08128004841FE /* CatInTrip.m */; };
+		BFC6CCFC190B888F0071D99E /* NWKeyboardUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CCFB190B888F0071D99E /* NWKeyboardUtils.m */; };
+		BFC6CCFF190B98AB0071D99E /* NWPickerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CCFE190B98AB0071D99E /* NWPickerUtils.m */; };
+		BFC6CD05190BD38B0071D99E /* NWUIScrollViewMovePostition.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CD04190BD38B0071D99E /* NWUIScrollViewMovePostition.m */; };
 		C903A89B18D46D76009708C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C903A89A18D46D76009708C6 /* Images.xcassets */; };
 		C90969C418F91B2A00D46859 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = C90969C318F91B2A00D46859 /* Item.m */; };
 		C90969C718F9231C00D46859 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = C90969C618F9231C00D46859 /* Trip.m */; };
@@ -119,6 +122,12 @@
 		BF1B4EC018E08127004841FE /* Itemcategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Itemcategory.m; sourceTree = "<group>"; };
 		BF1B4EC218E08128004841FE /* CatInTrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatInTrip.h; sourceTree = "<group>"; };
 		BF1B4EC318E08128004841FE /* CatInTrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatInTrip.m; sourceTree = "<group>"; };
+		BFC6CCFA190B888F0071D99E /* NWKeyboardUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWKeyboardUtils.h; sourceTree = "<group>"; };
+		BFC6CCFB190B888F0071D99E /* NWKeyboardUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWKeyboardUtils.m; sourceTree = "<group>"; };
+		BFC6CCFD190B98AB0071D99E /* NWPickerUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWPickerUtils.h; sourceTree = "<group>"; };
+		BFC6CCFE190B98AB0071D99E /* NWPickerUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWPickerUtils.m; sourceTree = "<group>"; };
+		BFC6CD03190BD38B0071D99E /* NWUIScrollViewMovePostition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWUIScrollViewMovePostition.h; sourceTree = "<group>"; };
+		BFC6CD04190BD38B0071D99E /* NWUIScrollViewMovePostition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWUIScrollViewMovePostition.m; sourceTree = "<group>"; };
 		C903A89A18D46D76009708C6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C90969C218F91B2A00D46859 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		C90969C318F91B2A00D46859 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
@@ -243,8 +252,14 @@
 		C90D483E18DADC1700367316 /* NWClass */ = {
 			isa = PBXGroup;
 			children = (
+				BFC6CCFA190B888F0071D99E /* NWKeyboardUtils.h */,
+				BFC6CCFB190B888F0071D99E /* NWKeyboardUtils.m */,
 				C90D483F18DADC7500367316 /* NWUserSettings.h */,
 				C90D484018DADC7500367316 /* NWUserSettings.m */,
+				BFC6CCFD190B98AB0071D99E /* NWPickerUtils.h */,
+				BFC6CCFE190B98AB0071D99E /* NWPickerUtils.m */,
+				BFC6CD03190BD38B0071D99E /* NWUIScrollViewMovePostition.h */,
+				BFC6CD04190BD38B0071D99E /* NWUIScrollViewMovePostition.m */,
 			);
 			name = NWClass;
 			sourceTree = "<group>";
@@ -634,6 +649,7 @@
 				18B8143F18E6E9740089BF0B /* AddGuyTVC.m in Sources */,
 				C9F804AA187A4C9B00EE4EDE /* AddTripTVC.m in Sources */,
 				C95AFA031886733B00DF057E /* DaysCDTVC.m in Sources */,
+				BFC6CCFC190B888F0071D99E /* NWKeyboardUtils.m in Sources */,
 				C90D484118DADC7500367316 /* NWUserSettings.m in Sources */,
 				C90969C718F9231C00D46859 /* Trip.m in Sources */,
 				C97365F218E6EA170060583A /* ItemsCDTVC.m in Sources */,
@@ -657,6 +673,7 @@
 				18DE117F18F97F72003F3083 /* Guy.m in Sources */,
 				0409B6F21892B763000C6DF6 /* Day+TripDay.m in Sources */,
 				C9F80494187A333D00EE4EDE /* Model.xcdatamodeld in Sources */,
+				BFC6CCFF190B98AB0071D99E /* NWPickerUtils.m in Sources */,
 				C9EE94E11908F2D100E599C1 /* GuyInTrip+Expend.m in Sources */,
 				C9F804A7187A4C7800EE4EDE /* TripsCDTVC.m in Sources */,
 				C913902918F01D060069EAC2 /* SettingsTVC.m in Sources */,
@@ -666,6 +683,7 @@
 				C9EE94DB1908C0B600E599C1 /* TripsCDTVCWithSidebar.m in Sources */,
 				040A631F188ADB7B0084A3EC /* CoreDataTableViewCell.m in Sources */,
 				C981340F19078D0800CF43CC /* SelectTripCDTVC.m in Sources */,
+				BFC6CD05190BD38B0071D99E /* NWUIScrollViewMovePostition.m in Sources */,
 				BF1B4EC418E08128004841FE /* CatInTrip.m in Sources */,
 				C909F36E18D0125800E02B8D /* DayCurrency.m in Sources */,
 				C9F804F7187A733000EE4EDE /* nwAppDelegate.m in Sources */,
