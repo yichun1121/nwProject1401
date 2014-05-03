@@ -11,6 +11,9 @@
 #import "TripDaysTVC.h"
 #import "DayCurrency.h"
 #import "Currency.h"
+#import "NWKeyboardUtils.h"
+#import "NWPickerUtils.h"
+#import "NWUIScrollViewMovePostition.h"
 
 
 @interface AddReceiptTVC ()
@@ -197,9 +200,9 @@
 #pragma mark - 每次點選row的時候會做的事
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //每次點選row時清除所有的picker
-    [self dismissPicker];
+    [NWPickerUtils dismissPicker:tableView];
     //點選row時關閉鍵盤
-    [self dismissKeyboard:self.view];
+    [NWKeyboardUtils  dismissKeyboard4TextField:self.view];
     
     UITableViewCell *clickCell=[self.tableView cellForRowAtIndexPath:indexPath];
     
@@ -213,9 +216,13 @@
         }else{
             
             self.actingDateCellIndexPath = indexPath;
-            [self setPickerFrame:self.timePicker  WithIndexPath:indexPath];
+            [NWPickerUtils setPickerInTableView:self.timePicker tableView:tableView didSelectRowAtIndexPath:indexPath];
+            
             [self.view addSubview:self.timePicker ];
-            [self animateToPlaceWithItemSize:[self.timePicker  sizeThatFits:CGSizeZero]];
+            
+             [NWUIScrollViewMovePostition autoContentOffsetToTableViewCenter:tableView didSelectRowAtIndexPath:indexPath withTagItemSize:[self.timePicker sizeThatFits:CGSizeZero]];
+     
+
             [self.timePicker  addTarget:self
                                  action:@selector(pickerChanged:)
                        forControlEvents:UIControlEventValueChanged];
@@ -225,68 +232,6 @@
     }
     
 }
-/*! 遞迴尋找底下所有的Textfeild，當UITextField不是游標焦點時關閉keyboard
- */
--(void)dismissKeyboard:(UIView *) tagView{
-    NSArray *subviews = [tagView subviews];
-    for (UIView *subview in subviews) {
-        [self dismissKeyboard:subview];
-        //找是不是TextField
-        if ([subview isKindOfClass:[UITextField class]]) {
-            //當UITextField不是游標焦點時，就關閉鍵盤
-            [subview resignFirstResponder];
-        }
-    }
-}
-
-//清除所有的picker
--(void)dismissPicker{
-    for (UIView *subview in [self.view subviews]) {
-        if ([subview isKindOfClass:[UIDatePicker class]]) {
-            [subview removeFromSuperview];
-            self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height-[self.timePicker sizeThatFits:CGSizeZero].height);
-        }
-    }
-}
-
-//開始編輯textField時做的事
-- (void)textFieldDidBeginEditing:(UITextField *)textField{
-    
-    //清除所有的picker
-    [self dismissPicker];
-}
-
--(void)setPickerFrame:(UIDatePicker *)picker WithIndexPath:(NSIndexPath *)indexPath{
-    //find the current table view size
-    CGRect screenRect = [self.view bounds];
-    CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPath];
-    //find the date picker size
-    CGSize pickerSize = [picker sizeThatFits:CGSizeZero];
-    
-    //set the picker frame
-    NSLog(@"screenRect.y=%f,lastcell.y=%f",screenRect.origin.y,cellRect.origin.y);
-    CGRect pickerRect = CGRectMake(0.0,
-                                   cellRect.origin.y+cellRect.size.height,
-                                   pickerSize.width,
-                                   pickerSize.height);
-    picker.frame = pickerRect;
-}
-
-/*!動畫設定，讓某大小之物件，動作流暢呈現至畫面最底
- */
--(void)animateToPlaceWithItemSize:(CGSize)itemSize{
-    //下面這是動畫設定，讓動作流暢到位：[UIView animateWithDuration: animations: completion: ];
-    [UIView animateWithDuration: 0.4f
-                     animations:^{
-                         //animations裡面是終點位置
-                         self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height+itemSize.height);
-                         if (self.tableView.contentSize.height > self.tableView.frame.size.height) {
-                             self.tableView.contentOffset=CGPointMake(0, self.tableView.contentSize.height-self.tableView.frame.size.height);
-                         }
-                     }
-                     completion:^(BOOL finished) {} ];
-}
-
 
 
 
@@ -294,9 +239,9 @@
 // 內建，準備Segue的method
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     //每次Segue時清除所有的picker
-    [self dismissPicker];
+    [NWPickerUtils dismissPicker:self.tableView];
     //點選Segue時關閉鍵盤
-    [self dismissKeyboard:self.view];
+    [NWKeyboardUtils  dismissKeyboard4TextField:self.view];
     
     if ([segue.identifier isEqualToString:@"Trip Day Segue"]) {
         
@@ -327,6 +272,13 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
+}
+
+//開始編輯textField時做的事
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    //清除所有的picker
+    [NWPickerUtils dismissPicker:self.tableView];
 }
 
 

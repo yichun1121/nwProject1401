@@ -13,7 +13,9 @@
 @interface DayDetailTVC ()
 @property NSDateFormatter *dateFormatter;
 @end
-
+/*!
+   目前Day Detail不開放修改日期，所以不用加picker。
+ */
 @implementation DayDetailTVC
 
 - (void)viewDidLoad
