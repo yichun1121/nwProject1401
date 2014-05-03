@@ -82,7 +82,7 @@
     }
   
 }
-//不在trip的人新增GuyInTrip
+//不在trip的人新增GuyInTrip & 以個人為單位的group
 -(void)setGroup:(Group *)group forGuys:(NSSet *)selectedGuys NotRealInTrip:(Trip *)trip{
     NSMutableArray *guyInTripArray=[NSMutableArray new];
     for (GuyInTrip * guyInTrip in trip.guysInTrip) {
@@ -91,14 +91,24 @@
 
     for (Guy *guy in selectedGuys) {
         if (![guyInTripArray containsObject:guy]) {
+           
+            Group *groupForEachGuy = [NSEntityDescription insertNewObjectForEntityForName:@"Group"
+                                                                   inManagedObjectContext:self.managedObjectContext];
+            groupForEachGuy.name=guy.name;
+            groupForEachGuy.inTrip=trip;
+            [self.managedObjectContext save:nil];
+            
+            
             GuyInTrip *guyInTrip = [NSEntityDescription insertNewObjectForEntityForName:@"GuyInTrip"
                                                                  inManagedObjectContext:self.managedObjectContext];
             guyInTrip.realInTrip=[NSNumber numberWithBool:NO];
             guyInTrip.inTrip=trip;
-            guyInTrip.groups=[NSSet setWithObject:group];
+            guyInTrip.groups=[NSSet setWithObjects:group,groupForEachGuy,nil];
             guyInTrip.guy=guy;
             
             [self.managedObjectContext save:nil];
+            
+            
             
         }
     }

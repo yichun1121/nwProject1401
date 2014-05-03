@@ -7,6 +7,7 @@
 //
 
 #import "GuysInTripCDTVC.h"
+#import "NWCustCellSwitch.h"
 
 @interface GuysInTripCDTVC ()
 @property(strong, nonatomic)NSMutableArray *indexPathArray;
@@ -44,7 +45,7 @@
     request.predicate = [NSPredicate predicateWithFormat:@"inTrip = %@",self.currentTrip];
     
     // 4 - Sort it if you want
-    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"guy"
+    request.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"realInTrip"
                                                                                      ascending:NO
                                                                                       selector:@selector(localizedCaseInsensitiveCompare:)]];
     // 5 - Fetch it
@@ -66,6 +67,10 @@
     backBtn.title=@"Detail";
     self.navigationItem.leftBarButtonItem=backBtn;
     
+    //-----註冊CustomCell----------
+    UINib* myCellNib = [UINib nibWithNibName:@"NWCustCellSwitch" bundle:nil];
+    [self.tableView registerNib:myCellNib forCellReuseIdentifier:@"Cell"];
+
 }
 -(NSMutableSet *)selectedGuys{
     if (_selectedGuys==nil) {
@@ -82,13 +87,13 @@
 
 #pragma mark - Table view data source
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (NWCustCellSwitch *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+     NWCustCellSwitch *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[NWCustCellSwitch alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...
@@ -96,13 +101,38 @@
     
     return cell;
 }
--(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
+-(NWCustCellSwitch *)configureCell:(NWCustCellSwitch *)cell AtIndexPath:(NSIndexPath *)indexPath{
     GuyInTrip *guyInTrip = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = [NSString stringWithFormat:@"%@",guyInTrip.guy.name];
     [self.selectedGuys addObject:guyInTrip.guy];
+    
+    if ([guyInTrip.realInTrip boolValue]==NO) {
+        cell.switchControl.on=NO;
+    }else{
+        cell.switchControl.on=YES;
+    }
+    [cell.switchControl addTarget:self action:@selector(switchChanged:) forControlEvents:UIControlEventValueChanged];
     return cell;
 }
 
+-(void)switchChanged:(id)sender{
+    UISwitch *switchcontrol=(UISwitch *)sender;
+    id parentCell=[switchcontrol superview];
+    while (![parentCell isKindOfClass:[NWCustCellSwitch class]]) {
+        parentCell=[parentCell superview];
+        if (parentCell==nil) {
+            break;
+        }
+    }
+    NSIndexPath *indexPath=[self.tableView indexPathForCell:parentCell];
+    GuyInTrip *guyInTrip = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    if (switchcontrol.on==YES) {
+        guyInTrip.realInTrip=[NSNumber numberWithBool:YES];
+    }else{
+        guyInTrip.realInTrip=[NSNumber numberWithBool:NO];
+    }
+    [self.managedObjectContext save:nil];
+}
 
 
 #pragma mark - ➤ Navigation：Segue Settings
