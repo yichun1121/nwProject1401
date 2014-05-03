@@ -149,25 +149,6 @@
 }
 
 
-
-/*!動畫設定，讓某大小之物件，動作流暢呈現至畫面最底
- */
--(void)animateToPlaceWithItemSize:(CGSize)itemSize{
-    //下面這是動畫設定，讓動作流暢到位：[UIView animateWithDuration: animations: completion: ];
-    [UIView animateWithDuration: 0.4f
-                     animations:^{
-                         //animations裡面是終點位置
-//                         self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height+itemSize.height);
-         
-     NSLog(@"contentSize.height=%f,frame.size.height=%f",self.tableView.contentSize.height,self.tableView.frame.size.height);
-         
-         if (self.tableView.contentSize.height > self.tableView.frame.size.height) {
-             self.tableView.contentOffset=CGPointMake(0, self.tableView.contentSize.height-self.tableView.frame.size.height);
-         }
-     }
-     completion:^(BOOL finished) {} ];
-}
-
 #pragma mark - Picker的事件
 - (void)pickerChanged:(UIDatePicker *)sender {
     if (sender==self.startPicker) {
