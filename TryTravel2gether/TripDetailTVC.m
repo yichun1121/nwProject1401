@@ -11,6 +11,7 @@
 #import "Group.h"
 #import "Guy.h"
 #import "GroupAndGuyInTripCDTVC.h"
+#import "Trip+Group.h"
 #import "NWKeyboardUtils.h"
 #import "NWPickerUtils.h"
 #import "NWUIScrollViewMovePostition.h"

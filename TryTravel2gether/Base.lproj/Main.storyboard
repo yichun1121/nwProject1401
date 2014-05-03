@@ -2702,20 +2702,16 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="uY8-M1-8nc"/>
+        <segue reference="lbP-ID-Nb3"/>
+        <segue reference="XJC-77-AaP"/>
         <segue reference="C6V-tt-ruz"/>
-        <segue reference="6Sz-8Y-kfc"/>
-        <segue reference="sp3-cC-l9s"/>
-        <segue reference="wJe-84-bVr"/>
+        <segue reference="uY8-M1-8nc"/>
         <segue reference="moX-HC-O6P"/>
-        <segue reference="dk3-o7-VGh"/>
-        <segue reference="ZIy-n6-9Hi"/>
+        <segue reference="r1V-Ci-7uc"/>
         <segue reference="jlX-mz-Yrp"/>
         <segue reference="fuH-vh-HtH"/>
-        <segue reference="r1V-Ci-7uc"/>
         <segue reference="wJe-84-bVr"/>
         <segue reference="4Ze-by-TDY"/>
         <segue reference="sp3-cC-l9s"/>
-        <segue reference="C6V-tt-ruz"/>
     </inferredMetricsTieBreakers>
 </document>
