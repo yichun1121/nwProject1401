@@ -9,6 +9,9 @@
 #import "AddDayTVC.h"
 #import "Day.h"
 #import "Trip+Days.h"
+#import "NWKeyboardUtils.h"
+#import "NWPickerUtils.h"
+#import "NWUIScrollViewMovePostition.h"
 
 @interface AddDayTVC ()
 @property NSDateFormatter *dateFormatter;
@@ -43,21 +46,9 @@
 -(UIDatePicker *)datePicker{
     
     if (!_datePicker) {
-        _datePicker=[UIDatePicker new];
-
-//        _datePicker.backgroundColor=[UIColor redColor];
-//        _datePicker.alpha=0;
-        
-        CGRect screenRect=self.view.bounds; //要使用bounds，不能用frame
-        float picker_height=_datePicker.frame.size.height;
-        float picker_width=_datePicker.frame.size.width;
-        CGRect rect=CGRectMake(0.0, screenRect.origin.y+screenRect.size.height-picker_height, picker_width, picker_height);
-        
-        //CGRect rect=CGRectMake(screenRect.origin.x, screenRect.origin.y, picker_width, picker_height);
-
-        
-        _datePicker=[[UIDatePicker alloc]initWithFrame:rect];
-        [_datePicker addTarget:self action:@selector(pickerChanged:) forControlEvents:UIControlEventValueChanged];
+        _datePicker = [[UIDatePicker alloc] init];
+        _datePicker.datePickerMode=UIDatePickerModeDate;
+        _datePicker.backgroundColor=[UIColor whiteColor];
     }
     
     return _datePicker;
@@ -75,32 +66,36 @@
 
 
 #pragma mark - PickerChange事件
-- (IBAction)pickerChanged:(UIDatePicker *)sender {
-    self.dateCell.detailTextLabel.text=[self.dateFormatter stringFromDate:sender.date];
+- (void)pickerChanged{
+    self.dateCell.detailTextLabel.text=[self.dateFormatter stringFromDate:self.datePicker.date];
 
-    [self showResultOfTheDate:sender.date];
-//    if ([self.currentTrip hadThisDate:sender.date]) {
-//        self.navigationItem.rightBarButtonItem.enabled=NO;
-//        self.dayResultString.textLabel.text=@"Existed Day";
-//    }else{
-//        self.navigationItem.rightBarButtonItem.enabled=YES;
-//        self.dayResultString.textLabel.text=@"";
-//    }
+    [self showResultOfTheDate:self.datePicker.date];
     
 }
 
 #pragma mark - 每次點選row的時候會做的事
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *clickedCell=[self.tableView cellForRowAtIndexPath:indexPath];
+    
+    //每次Segue時清除所有的picker
+    [NWPickerUtils dismissPicker:self.tableView];
+    //點選Segue時關閉鍵盤
+    [NWKeyboardUtils  dismissKeyboard4TextField:self.view];
+    
     if (clickedCell==self.dateCell) {
         BOOL hasBeTapped=(indexPath.row==self.actingDateCellIndexPath.row);
         if (hasBeTapped) {
-            [self.datePicker removeFromSuperview];
+
             self.actingDateCellIndexPath=nil;
         }else{
             self.actingDateCellIndexPath=indexPath;
-            self.datePicker.datePickerMode=UIDatePickerModeDate;
-            [self.tableView addSubview:self.datePicker];
+            
+            [NWPickerUtils setPickerInTableView:self.datePicker tableView:tableView didSelectRowAtIndexPath:indexPath];
+            [self.view addSubview:self.datePicker];
+            [NWUIScrollViewMovePostition autoContentOffsetToTableViewCenter:tableView didSelectRowAtIndexPath:indexPath withTagItemSize:[self.datePicker sizeThatFits:CGSizeZero]];
+            
+            [self.datePicker addTarget:self action:@selector(pickerChanged) forControlEvents:UIControlEventValueChanged];
+
         }
     }
 }
@@ -127,6 +122,12 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
+}
+//開始編輯textField時做的事
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    //清除所有的picker
+    [NWPickerUtils dismissPicker:self.tableView];
 }
 
 @end

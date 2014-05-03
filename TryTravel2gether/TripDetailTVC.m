@@ -11,6 +11,9 @@
 #import "Group.h"
 #import "Guy.h"
 #import "GroupAndGuyInTripCDTVC.h"
+#import "NWKeyboardUtils.h"
+#import "NWPickerUtils.h"
+#import "NWUIScrollViewMovePostition.h"
 
 @interface TripDetailTVC ()
 @property NSDateFormatter *dateFormatter;
@@ -105,13 +108,9 @@
 #pragma mark - 每次點選row的時候會做的事
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //每次點選row時清除所有的picker
-    for (UIView *subview in [self.view subviews]) {
-        if ([subview isKindOfClass:[UIDatePicker class]]) {
-            [subview removeFromSuperview];
-            self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height-[self.endPicker sizeThatFits:CGSizeZero].height);
-        }
-    }
-
+    [NWPickerUtils dismissPicker:tableView];
+    //點選row時關閉鍵盤
+    [NWKeyboardUtils  dismissKeyboard4TextField:self.view];
     
     UITableViewCell *clickCell=[self.tableView cellForRowAtIndexPath:indexPath];
     
@@ -133,10 +132,13 @@
             }
             self.actingDateCellIndexPath=indexPath;
             
-            [self setPickerFrame:targetPicker WithIndexPath:indexPath];
+            [NWPickerUtils setPickerInTableView:targetPicker tableView:tableView didSelectRowAtIndexPath:indexPath];
             
             [self.view addSubview:targetPicker];
-            [self animateToPlaceWithItemSize:[targetPicker sizeThatFits:CGSizeZero]];
+            
+            [NWUIScrollViewMovePostition autoContentOffsetToTableViewCenter:tableView didSelectRowAtIndexPath:indexPath withTagItemSize:[targetPicker sizeThatFits:CGSizeZero]];
+            
+
             [targetPicker addTarget:self
                              action:@selector(pickerChanged:)
                    forControlEvents:UIControlEventValueChanged];
@@ -147,21 +149,6 @@
 }
 
 
--(void)setPickerFrame:(UIDatePicker *)picker WithIndexPath:(NSIndexPath *)indexPath{
-    //find the current table view size
-    CGRect screenRect = [self.view bounds];
-    CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPath];
-    //find the date picker size
-    CGSize pickerSize = [picker sizeThatFits:CGSizeZero];
-    
-    //set the picker frame
-    NSLog(@"screenRect.y=%f,lastcell.y=%f",screenRect.origin.y,cellRect.origin.y);
-    CGRect pickerRect = CGRectMake(0.0,
-                                   cellRect.origin.y+cellRect.size.height,
-                                   pickerSize.width,
-                                   pickerSize.height);
-    picker.frame = pickerRect;
-}
 
 /*!動畫設定，讓某大小之物件，動作流暢呈現至畫面最底
  */
@@ -170,12 +157,15 @@
     [UIView animateWithDuration: 0.4f
                      animations:^{
                          //animations裡面是終點位置
-                         self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height+itemSize.height);
-                         if (self.tableView.contentSize.height > self.tableView.frame.size.height) {
-                             self.tableView.contentOffset=CGPointMake(0, self.tableView.contentSize.height-self.tableView.frame.size.height);
-                         }
-                     }
-                     completion:^(BOOL finished) {} ];
+//                         self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height+itemSize.height);
+         
+     NSLog(@"contentSize.height=%f,frame.size.height=%f",self.tableView.contentSize.height,self.tableView.frame.size.height);
+         
+         if (self.tableView.contentSize.height > self.tableView.frame.size.height) {
+             self.tableView.contentOffset=CGPointMake(0, self.tableView.contentSize.height-self.tableView.frame.size.height);
+         }
+     }
+     completion:^(BOOL finished) {} ];
 }
 
 #pragma mark - Picker的事件
@@ -213,6 +203,12 @@
 #pragma mark - ➤ Navigation：Segue Settings
 // 內建，準備Segue的method
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+   
+    //每次點選row時清除所有的picker
+    [NWPickerUtils dismissPicker:self.tableView];
+    //點選row時關閉鍵盤
+    [NWKeyboardUtils  dismissKeyboard4TextField:self.view];
+    
     if([segue.identifier isEqualToString:@"Currency Segue"]){
         NSLog(@"Setting TripDetailTVC as a delegate of currencyCDTVC");
         CurrencyCDTVC *currencyCDTVC=segue.destinationViewController;
@@ -247,6 +243,12 @@
     return YES;
 }
 
+//開始編輯textField時做的事
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    //清除所有的picker
+    [NWPickerUtils dismissPicker:self.tableView];
+}
 -(void)currencyWasSelectedInCurrencyCDTVC:(CurrencyCDTVC *)controller{
     self.currentCurrency=controller.selectedCurrency;
     self.currency.detailTextLabel.text=self.currentCurrency.standardSign;
