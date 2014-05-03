@@ -29,7 +29,12 @@
 @property (strong,nonatomic) UIDatePicker *timePicker;
 @property (nonatomic)  UIImagePickerController *imagePicker;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (nonatomic)  NSMutableArray *images;
+/*!舊照片+新增照片的uiimage
+ */
+@property (nonatomic) NSMutableArray *images;
+/*!
+ 記錄已存的照片資訊（檔名路徑）*/
+@property (nonatomic) NSMutableArray *imagePath;
 
 @end
 
@@ -59,6 +64,43 @@
     //-----顯示day資訊-----------
     [self configureTheCell];
 }
+-(Photo *)saveImage:(UIImage *)image{
+    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    
+    //    NSData * binaryImageData = UIImagePNGRepresentation(image);
+    NSData * binaryImageData = UIImageJPEGRepresentation(image, 1);     //數字是壓縮比<=1
+    //TODO: Trip加了index以後，用tripIndex當資料夾名字
+    NSString *folderPath=[NSString stringWithFormat:@"%@/Photos/%@ %@",basePath,@"Trip",self.receipt.day.inTrip.name ];
+    //-----檢查預存放的資料夾路徑-------------------------
+    if ([[NSFileManager defaultManager] fileExistsAtPath:folderPath]){
+        NSLog(@"folder path exists.");
+    }else{
+        NSLog(@"creating folder...");
+        NSError *error=nil;
+        //建立資料夾
+        [[NSFileManager defaultManager]createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:&error];
+        if (error) {
+            NSLog(@"fail to create folder, error: %@", [error localizedDescription]);
+        }
+    }
+    NSString *fileName=[NSString stringWithFormat:@"%lli.jpg",[@(floor([[NSDate date] timeIntervalSince1970] * 1000)) longLongValue]];
+    NSString *imagePath=[NSString stringWithFormat:@"%@/%@",folderPath,fileName];
+    //-----儲存檔案-------------------------------------
+    bool saveSuccess=[binaryImageData writeToFile:imagePath atomically:YES];
+    if (saveSuccess) {
+        NSLog(@"save photo to file:%@",imagePath);
+    }else{
+        NSLog(@"failed to save photo:%@",imagePath);
+    }
+    //-----儲存entity:Photo-------------------------------------
+    Photo *photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo"
+                                                 inManagedObjectContext:self.managedObjectContext];
+    photo.fullPath=imagePath;
+    photo.fileName=fileName;
+    [self.managedObjectContext save:nil];  // write to database
+    return photo;
+}
 #pragma mark - 事件
 -(void)save:(id)sender{
     Day *selectedDay=[self getTripDayByDate:self.selectedDayString];
@@ -69,6 +111,14 @@
     
     self.receipt.dayCurrency=[self getDayCurrencyWithTripDay:selectedDay Currency:self.currentCurrency];
     //TODO: 存照片需要另外判斷
+    NSMutableSet *mtbImages=[self.receipt.photos mutableCopy];
+    int countExistingPhoto=(int)self.imagePath.count;
+    for (int i=countExistingPhoto; i<self.images.count; i++) {
+        UIImage *image=self.images[i];
+        Photo *photo=[self saveImage:image];
+        [mtbImages addObject:photo];
+    }
+    self.receipt.photos=mtbImages;
     
     [self.managedObjectContext save:nil];  // write to database
     NSLog(@"Save new Receipt in AddReceiptTVC");
@@ -195,6 +245,12 @@
     }
     return _images;
 }
+-(NSMutableArray *)imagePath{
+    if (!_imagePath) {
+        _imagePath=[NSMutableArray new];
+    }
+    return _imagePath;
+}
 #pragma mark - Table view data source
 -(void)configureTheCell{
     [self setAllCurrencyWithCurrency:self.receipt.dayCurrency.currency];
@@ -203,15 +259,12 @@
     self.dateCell.detailTextLabel.text=[self.dateFormatter stringFromDate:self.receipt.day.date];
     self.timeCell.detailTextLabel.text=[self.timeFormatter stringFromDate:self.receipt.time];
     self.selectedDayString=[self.dateFormatter stringFromDate: self.receipt.day.date];
-//    for (int i=0; i<self.receipt.photos.count; i++) {
-//        Photo *photo=self.receipt.photos[i];
-//        UIImage *image=
-//    }
-    //TODO: 顯示的照片沒有照順序出現
+
     for (Photo * photo in self.receipt.photosOrdered) {
         UIImage *image=photo.image;
         [self loadImageIntoScrollView:image];   //要先load再add，不然位置會計算錯
         [self.images addObject:image];
+        [self.imagePath addObject:photo.fullPath];
     }
 }
 #pragma mark - ▣ CRUD_TripDay+DayCurrency

@@ -9,10 +9,13 @@
 #import "Receipt+Photo.h"
 
 @implementation Receipt (Photo)
--(NSOrderedSet *)photosOrdered{
+-(NSArray *)photosOrdered{
 //    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"fileName" ascending:YES]];
 //    NSArray *sortedPhotos = [[_photos allObjects] sortedArrayUsingDescriptors:sortDescriptors];
-    NSOrderedSet *orderedSet=[NSOrderedSet orderedSetWithSet:self.photos];
-    return orderedSet;
+    NSSortDescriptor *sortDescriptor=[[NSSortDescriptor alloc]initWithKey:@"fileName" ascending:YES];
+    NSArray *sortDescriptors=[NSArray arrayWithObject:sortDescriptor];
+    NSArray *sortedArray=[self.photos sortedArrayUsingDescriptors:sortDescriptors];
+
+    return sortedArray;
 }
 @end
