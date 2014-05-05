@@ -14,6 +14,10 @@
 #import "Group.h"
 #import "Guy.h"
 #import "GuyInTrip.h"
+#import "NWKeyboardUtils.h"
+#import "NWPickerUtils.h"
+#import "NWUIScrollViewMovePostition.h"
+
 
 @interface AddTripTVC ()
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
@@ -97,14 +101,10 @@
 #pragma mark - 每次點選row的時候會做的事
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //TODO:不知道為什麼要用row判斷，不用row會錯
-    //每一次選擇
-    for (UIView *subview in [self.view subviews]) {
-        if ([subview isKindOfClass:[UIDatePicker class]]) {
-            [subview removeFromSuperview];
-            self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height-[self.endPicker sizeThatFits:CGSizeZero].height);
-        }
-    }
+    //每次Segue時清除所有的picker
+    [NWPickerUtils dismissPicker:self.tableView];
+    //點選Segue時關閉鍵盤
+    [NWKeyboardUtils  dismissKeyboard4TextField:self.view];
     
     bool hasBeTapped=(indexPath.row==self.actingDateCellIndexPath.row);
     UITableViewCell *clickCell=[self.tableView cellForRowAtIndexPath:indexPath];
@@ -123,10 +123,10 @@
             }
             
             self.actingDateCellIndexPath = indexPath;
-            [self setPickerFrame:targetPicker WithIndexPath:indexPath];
-            
+            [NWPickerUtils setPickerInTableView:targetPicker tableView:tableView didSelectRowAtIndexPath:indexPath];
+
             [self.view addSubview:targetPicker];
-            [self animateToPlaceWithItemSize:[targetPicker sizeThatFits:CGSizeZero]];
+            [NWUIScrollViewMovePostition autoContentOffsetToTableViewCenter:tableView didSelectRowAtIndexPath:indexPath withTagItemSize:[targetPicker sizeThatFits:CGSizeZero]];
             [targetPicker addTarget:self
                                  action:@selector(pickerChanged:)
                        forControlEvents:UIControlEventValueChanged];
@@ -136,36 +136,6 @@
     }
 }
 
--(void)setPickerFrame:(UIDatePicker *)picker WithIndexPath:(NSIndexPath *)indexPath{
-    //find the current table view size
-    CGRect screenRect = [self.view bounds];
-    CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPath];
-    //find the date picker size
-    CGSize pickerSize = [picker sizeThatFits:CGSizeZero];
-    
-    //set the picker frame
-    NSLog(@"screenRect.y=%f,lastcell.y=%f",screenRect.origin.y,cellRect.origin.y);
-    CGRect pickerRect = CGRectMake(0.0,
-                                   cellRect.origin.y+cellRect.size.height,
-                                   pickerSize.width,
-                                   pickerSize.height);
-    picker.frame = pickerRect;
-}
-
-/*!動畫設定，讓某大小之物件，動作流暢呈現至畫面最底
- */
--(void)animateToPlaceWithItemSize:(CGSize)itemSize{
-    //下面這是動畫設定，讓動作流暢到位：[UIView animateWithDuration: animations: completion: ];
-    [UIView animateWithDuration: 0.4f
-                     animations:^{
-                         //animations裡面是終點位置
-                         self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height+itemSize.height);
-                         if (self.tableView.contentSize.height > self.tableView.frame.size.height) {
-                             self.tableView.contentOffset=CGPointMake(0, self.tableView.contentSize.height-self.tableView.frame.size.height);
-                         }
-                     }
-                     completion:^(BOOL finished) {} ];
-}
 
 #pragma mark - Picker的事件
 -(void)pickerChanged:(UIDatePicker *) targetPicker{
@@ -228,6 +198,12 @@
 #pragma mark - ➤ Navigation：Segue Settings
 // 內建，準備Segue的method
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    //每次Segue時清除所有的picker
+    [NWPickerUtils dismissPicker:self.tableView];
+    //點選Segue時關閉鍵盤
+    [NWKeyboardUtils  dismissKeyboard4TextField:self.view];
+    
     if([segue.identifier isEqualToString:@"Currency Segue"]){
         NSLog(@"Setting AddTripTVC as a delegate of CurrencyCDTVC");
         CurrencyCDTVC *currencyCDTVC=segue.destinationViewController;
@@ -290,6 +266,13 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
+}
+
+//開始編輯textField時做的事
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    //清除所有的picker
+    [NWPickerUtils dismissPicker:self.tableView];
 }
 
 -(void)currencyWasSelectedInCurrencyCDTVC:(CurrencyCDTVC *)controller{

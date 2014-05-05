@@ -10,6 +10,7 @@
 #import "Group.h"
 #import "Guy.h"
 #import "Trip.h"
+#import "Group+TripGuys.h"
 
 
 @interface GroupAndGuyInTripCDTVC ()
@@ -38,6 +39,8 @@
     NSFetchRequest *request=[NSFetchRequest fetchRequestWithEntityName:entityName];
     
     request.predicate = [NSPredicate predicateWithFormat:@"(inTrip = %@)AND(guysInTrip.@count > 1)",self.currentTrip];
+    
+    //request.predicate = [NSPredicate predicateWithFormat:@"inTrip = %@",self.currentTrip];
     
     request.sortDescriptors=[NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"name"
                                                                                     ascending:YES
@@ -77,6 +80,7 @@
 -(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
     Group *group=[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text=group.name;
+    cell.detailTextLabel.text=[group guysNameSplitBy:@","];
     return cell;
 }
 - (void)didReceiveMemoryWarning
