@@ -12,6 +12,9 @@
 #import "DayCurrency.h"
 #import "Currency.h"
 #import "Photo.h"
+#import "NWKeyboardUtils.h"
+#import "NWPickerUtils.h"
+#import "NWUIScrollViewMovePostition.h"
 
 
 @interface AddReceiptTVC ()
@@ -381,7 +384,6 @@
     //清除所有的picker
     [NWPickerUtils dismissPicker:self.tableView];
 }
-
 
 -(void)dayWasSelectedInTripDaysTVC:(TripDaysTVC *)controller{
     self.selectedDayString=controller.selectedDayString;

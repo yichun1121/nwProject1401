@@ -12,7 +12,6 @@
 #import "TripDaysTVC.h"
 #import "CurrencyCDTVC.h"
 
-
 @class AddReceiptTVC;
 
 @protocol AddReceiptTVCDelegate <NSObject>

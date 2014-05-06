@@ -18,7 +18,6 @@
 #import "NWPickerUtils.h"
 #import "NWUIScrollViewMovePostition.h"
 
-
 @interface AddTripTVC ()
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (weak, nonatomic) IBOutlet UITableViewCell *currency;

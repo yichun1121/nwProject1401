@@ -213,6 +213,9 @@
         groupCDTVC.delegate=self;
         //TODO:group的delegate，然後要顯示group數量
     }
+    else {
+        NSLog(@"Unidentified Segue Attempted! @%@",self.class);
+    }
 }
 
 

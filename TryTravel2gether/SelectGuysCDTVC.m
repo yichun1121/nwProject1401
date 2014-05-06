@@ -145,7 +145,7 @@
         //把這個managedObjectContext傳過去，使用同一個managedObjectContext。（這樣新增東西才有反應吧？！）
 	}
     else {
-        NSLog(@"Unidentified Segue Attempted!");
+        NSLog(@"Unidentified Segue Attempted! @%@",self.class);
     }
 }
 
