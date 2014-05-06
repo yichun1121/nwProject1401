@@ -11,17 +11,18 @@
 #import "GuyInTrip.h"
 
 @interface AddGroupTVC ()
-@property (strong,nonatomic) NSMutableSet *SelectedGuys;
+@property (strong,nonatomic) NSMutableSet *selectedGuys;
 @end
 
 @implementation AddGroupTVC
+@synthesize selectedGuys=_selectedGuys;
 
--(NSMutableSet *) SelectedGuys
+-(NSMutableSet *) selectedGuys
 {
-    if (!_SelectedGuys) {
-        _SelectedGuys = [[NSMutableSet alloc] init];
+    if (!_selectedGuys) {
+        _selectedGuys = [[NSMutableSet alloc] init];
     }
-    return _SelectedGuys;
+    return _selectedGuys;
 }
 - (void)viewDidLoad
 {
@@ -47,8 +48,8 @@
     group.name = self.groupName.text;
     group.inTrip=self.currentTrip;
     [self.managedObjectContext save:nil];  // write to database
-    [self setGroup:group forGuys:self.SelectedGuys RealInTrip:self.currentTrip];
-    [self setGroup:group forGuys:self.SelectedGuys NotRealInTrip:self.currentTrip];
+    [self setGroup:group forGuys:self.selectedGuys RealInTrip:self.currentTrip];
+    [self setGroup:group forGuys:self.selectedGuys NotRealInTrip:self.currentTrip];
     [self.delegate theSaveButtonOnTheAddGroupWasTapped:self];
 }
 
@@ -146,7 +147,7 @@
     return YES;
 }
 -(void)guyWasSelectedInSelectGuysCDTVC:(SelectGuysCDTVC *)controller{
-    self.SelectedGuys=controller.SelectedGuys;
+    self.selectedGuys=controller.selectedGuys;
     [controller.navigationController popViewControllerAnimated:YES];
 }
 

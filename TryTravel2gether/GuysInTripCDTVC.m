@@ -154,7 +154,7 @@
         
         selectGuysCDTVC.managedObjectContext=self.managedObjectContext;
         //把這個managedObjectContext傳過去，使用同一個managedObjectContext。（這樣新增東西才有反應吧？！）
-        selectGuysCDTVC.SelectedGuys=[self.selectedGuys mutableCopy];
+        selectGuysCDTVC.selectedGuys=[self.selectedGuys mutableCopy];
         
 	}
     else {
@@ -253,14 +253,14 @@
 -(void)guyWasSelectedInSelectGuysCDTVC:(SelectGuysCDTVC *)controller
 {
     NSMutableSet *minusGuys=[self.selectedGuys mutableCopy];
-    [minusGuys minusSet:controller.SelectedGuys];
-    NSMutableSet *plusGuys=[controller.SelectedGuys mutableCopy];
+    [minusGuys minusSet:controller.selectedGuys];
+    NSMutableSet *plusGuys=[controller.selectedGuys mutableCopy];
     [plusGuys minusSet:self.selectedGuys];
     
-    //self.selectedGuys=controller.SelectedGuys;
+    //self.selectedGuys=controller.selectedGuys;
     [self deleteGuysAndGroups:minusGuys inCurrentTrip:self.currentTrip];
     [self createDefaultGroupWithGuy:plusGuys InCurrentTrip:self.currentTrip];
-    self.selectedGuys=controller.SelectedGuys;
+    self.selectedGuys=controller.selectedGuys;
     [controller.navigationController popViewControllerAnimated:YES];
     
     

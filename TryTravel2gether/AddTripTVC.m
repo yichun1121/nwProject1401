@@ -30,7 +30,7 @@
 @synthesize delegate;
 @synthesize managedObjectContext=_managedObjectContext;
 @synthesize dateFormatter=_dateFormatter;
-@synthesize SelectedGuys=_SelectedGuys;
+@synthesize selectedGuys=_selectedGuys;
 
 -(UIDatePicker *) startPicker
 {
@@ -74,9 +74,9 @@
     
     //-----設定參與者，以及顯示人數
     self.guysCell.textLabel.text=@"Select Guys";
-    int guyscount=(int)[self.SelectedGuys count];
+    int guyscount=(int)[self.selectedGuys count];
     self.guysCell.detailTextLabel.text=[NSString stringWithFormat:@"%i",guyscount];
-    self.SelectedGuys=[NSSet new];
+    self.selectedGuys=[NSSet new];
 }
 -(void) save:(id)sender{
     
@@ -91,7 +91,7 @@
     trip.days=[self creatDefaultDaysFromStartDate:trip.startDate ToEndDate:trip.endDate];
     trip.mainCurrency=self.currentCurrency;
     [self.managedObjectContext save:nil];  // write to database
-    [self createDefaultGroupWithGuy:self.SelectedGuys InCurrentTrip:trip];
+    [self createDefaultGroupWithGuy:self.selectedGuys InCurrentTrip:trip];
     [self createDefaultGroupWithShareTogetherInCurrentTrip:trip];
     //發射按下的訊號，讓有實做theSaveButtonOnTheAddTripTVCWasTapped這個method的程式（監聽add的程式）知道。
     [self.delegate theSaveButtonOnTheAddTripTVCWasTapped:self];
@@ -214,7 +214,7 @@
         SelectGuysCDTVC *selectGuysCDTVC=segue.destinationViewController;
         selectGuysCDTVC.delegate=self;
         selectGuysCDTVC.managedObjectContext=self.managedObjectContext;
-        selectGuysCDTVC.SelectedGuys=[self.SelectedGuys mutableCopy];
+        selectGuysCDTVC.selectedGuys=[self.selectedGuys mutableCopy];
         
     }
 }
@@ -281,8 +281,8 @@
 }
 
 -(void)guyWasSelectedInSelectGuysCDTVC:(SelectGuysCDTVC *)controller{
-    self.SelectedGuys=controller.SelectedGuys;
-    int guyscount=(int)[self.SelectedGuys count];
+    self.selectedGuys=controller.selectedGuys;
+    int guyscount=(int)[self.selectedGuys count];
     self.guysCell.detailTextLabel.text=[NSString stringWithFormat:@"%i Guys",guyscount];
     [controller.navigationController popViewControllerAnimated:YES];
 }

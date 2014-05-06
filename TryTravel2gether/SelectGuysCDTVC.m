@@ -19,7 +19,7 @@
 @synthesize managedObjectContext=_managedObjectContext;
 @synthesize fetchedResultsController=_fetchedResultsController;
 @synthesize delegate;
-@synthesize SelectedGuys=_SelectedGuys;
+@synthesize selectedGuys=_selectedGuys;
 
 
 
@@ -66,11 +66,11 @@
     [self.tableView setEditing:YES animated:YES];
     
 }
--(NSMutableSet *)SelectedGuys{
-    if (_SelectedGuys==nil) {
-        _SelectedGuys=[NSMutableSet new];
+-(NSMutableSet *)selectedGuys{
+    if (_selectedGuys==nil) {
+        _selectedGuys=[NSMutableSet new];
     }
-    return _SelectedGuys;
+    return _selectedGuys;
 }
 -(NSMutableArray *)indexPathArray{
     if (_indexPathArray==nil) {
@@ -102,7 +102,7 @@
     [selectedBackgroundView setBackgroundColor:[UIColor whiteColor]]; // set color here
     [cell setSelectedBackgroundView:selectedBackgroundView];
 
-    for (Guy* selectedGuy in self.SelectedGuys) {
+    for (Guy* selectedGuy in self.selectedGuys) {
         if(guy==selectedGuy){
             [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
             break;
@@ -116,11 +116,11 @@
 //將點選的人名存進NSMutableSet
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
    Guy *guy=[self.fetchedResultsController objectAtIndexPath:indexPath];
-   [self.SelectedGuys addObject:guy];
+   [self.selectedGuys addObject:guy];
 }
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
     Guy *guy=[self.fetchedResultsController objectAtIndexPath:indexPath];
-    [self.SelectedGuys removeObject:guy];
+    [self.selectedGuys removeObject:guy];
 }
 
 
