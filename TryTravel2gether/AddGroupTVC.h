@@ -19,7 +19,6 @@
 @property (weak,nonatomic)id<AddGroupTVCDelegate> delegate;
 
 
-@property (weak, nonatomic) IBOutlet UITextField *groupName;
 @property Trip *currentTrip;
 
 

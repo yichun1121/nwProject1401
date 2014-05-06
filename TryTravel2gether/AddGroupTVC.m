@@ -12,6 +12,7 @@
 
 @interface AddGroupTVC ()
 @property (strong,nonatomic) NSMutableSet *selectedGuys;
+@property (weak, nonatomic) IBOutlet UITextField *groupName;
 @end
 
 @implementation AddGroupTVC

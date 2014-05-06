@@ -726,7 +726,16 @@
                             <outlet property="delegate" destination="6iS-LU-hsQ" id="naV-GG-14t"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Add Group" id="YSJ-z0-N6s"/>
+                    <navigationItem key="navigationItem" title="Add Group" id="YSJ-z0-N6s">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="JIt-bx-iMP">
+                            <connections>
+                                <action selector="save:" destination="6iS-LU-hsQ" id="UKs-mH-dDa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="groupName" destination="SDk-b8-fmB" id="Ix4-iB-OnE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pqc-T6-oHP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
