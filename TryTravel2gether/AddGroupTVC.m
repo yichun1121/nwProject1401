@@ -9,14 +9,20 @@
 #import "AddGroupTVC.h"
 #import "Group.h"
 #import "GuyInTrip.h"
+#import "Guy.h"
+
 
 @interface AddGroupTVC ()
 @property (strong,nonatomic) NSMutableSet *selectedGuys;
-@property (weak, nonatomic) IBOutlet UITextField *groupName;
+@property (strong, nonatomic) UITextField *groupTextField;
+@property (nonatomic,strong) NSIndexPath *addGuyIndexPath;
 @end
 
 @implementation AddGroupTVC
 @synthesize selectedGuys=_selectedGuys;
+@synthesize managedObjectContext=_managedObjectContext;
+@synthesize fetchedResultsController=_fetchedResultsController;
+@synthesize addGuyIndexPath;
 
 -(NSMutableSet *) selectedGuys
 {
@@ -28,8 +34,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.groupName.delegate=self; //要加delegate=self，監聽textfield，才能在return時收鍵盤（textFieldShouldReturn）
     
+    NSError *error;
+    if (![self.fetchedResultsController performFetch:&error])
+    {
+        /*
+         Replace this implementation with code to handle the error appropriately.
+         
+         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+         */
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		abort();
+	}
+    self.tableView.delegate=self;
+    self.tableView.dataSource=self;
+    self.groupTextField.delegate=self; //要加delegate=self，監聽textfield，才能在return時收鍵盤（textFieldShouldReturn）
+    self.navigationItem.rightBarButtonItem.enabled=NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,15 +58,198 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return 2;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSInteger returnNumber = 0;
+    if (section==0) {
+        returnNumber=1;
+    } else if(section==1) {
+        id<NSFetchedResultsSectionInfo>sectionInfo=[[self.fetchedResultsController sections] objectAtIndex:0];
+        NSInteger count=[sectionInfo numberOfObjects];
+        returnNumber=count+1;
+        //如果count+1,可以多生一行cell連別的controller
+    }
+    
+    return returnNumber;
+}
+
+#pragma mark - FetchedResultsController
+
+- (NSFetchedResultsController *)fetchedResultsController
+{
+    if (_fetchedResultsController != nil)
+    {
+        return _fetchedResultsController;
+    }
+    
+    //self.fetchedResultsController=self.currentTrip.days;
+    // 1 - Decide what Entity you want
+    NSString *entityName = @"Guy"; // Put your entity name here
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext];
+    NSLog(@"Setting up a Fetched Results Controller for the Entity named %@", entityName);
+    
+    // 2 - Request that Entity
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entity];
+    [request setFetchBatchSize:20];
+    
+    // 3 - Filter it if you want
+    //request.predicate = [NSPredicate predicateWithFormat:@"inTrip=%@",self.group.inTrip];
+    
+    // 4 - Sort it if you want
+    NSSortDescriptor *sortDescriptors = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    
+    [request setSortDescriptors:@[sortDescriptors]];
+    // 5 - Fetch it
+    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                    managedObjectContext:self.managedObjectContext
+                                                                      sectionNameKeyPath:nil
+                                                                               cacheName:nil];
+    _fetchedResultsController.delegate = self;
+    
+	return _fetchedResultsController;
+    
+    
+}
+
+#pragma mark - Table view data source
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell;
+    cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    
+    // Configure the cell...
+    if (indexPath.section==0) {
+        self.groupTextField= [[UITextField alloc] initWithFrame:CGRectMake(85, 7, 215, 30)];
+        self.groupTextField.borderStyle=UITextBorderStyleRoundedRect;
+        cell.textLabel.text=@"";
+        UILabel *nameLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, 11, 56, 21)];
+        nameLabel.text=@"Named";
+        UILabel *message=[[UILabel alloc]initWithFrame:CGRectMake(85, 45, 215, 10)];
+        message.font=[UIFont systemFontOfSize:10.0];
+        message.text=@"To make a group, at least choose 2 guys.";
+        message.textColor=[UIColor lightGrayColor];
+        [cell addSubview:self.groupTextField];
+        [cell addSubview:nameLabel];
+        [cell addSubview:message];
+    }else if (indexPath.section==1){
+        id<NSFetchedResultsSectionInfo>sectionInfo=[[self.fetchedResultsController sections] objectAtIndex:0];
+        NSInteger count=[sectionInfo numberOfObjects];
+        if (indexPath.row<count) {
+            Guy *guy=[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
+            cell.textLabel.text = [NSString stringWithFormat:@"%@",guy.name];
+
+        }else{
+            //可以多生一行cell，連Add Guy 的controller
+            cell.textLabel.text = @"Add Guy";
+            cell.textLabel.textColor=[UIColor grayColor];
+            cell.detailTextLabel.text= @"PUSH";
+            self.addGuyIndexPath=indexPath;
+        }
+        
+    }
+    
+    
+    return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionName;
+    
+    if (section==0) {
+        sectionName = @"Group Name";
+    }else if (section==1){
+        sectionName=[NSString stringWithFormat:@"Guys"];
+    }
+    return sectionName;
+}
+//被選起來就打勾勾，有打勾勾的存進NSSet
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell=[self.tableView cellForRowAtIndexPath:indexPath];
+    //可以多生一行cell，連Add Guy 的controller
+    if (self.addGuyIndexPath&&(indexPath.row==self.addGuyIndexPath.row)) {
+        cell.accessoryType=UITableViewCellAccessoryNone;
+        [self moveToAddGuyTVC];
+        
+    }else{
+        Guy *guy=[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
+        
+        if(cell.accessoryType==UITableViewCellAccessoryCheckmark){
+            cell.accessoryType=UITableViewCellAccessoryNone;
+            [self.selectedGuys removeObject:guy];
+        }else{
+            cell.accessoryType=UITableViewCellAccessoryCheckmark;
+            [self.selectedGuys addObject:guy];
+        }
+        if ([self.selectedGuys count]>1) {
+            self.navigationItem.rightBarButtonItem.enabled=YES;
+        }else{
+            self.navigationItem.rightBarButtonItem.enabled=NO;
+        }
+    }
+    
+    
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section==0) {
+        return 64.0f;
+    }else {
+        return 44.0f;
+    }
+    
+}
+
+#pragma mark - ➤ Navigation：Segue Settings
+
+/*手動移到下一頁：selectGuysCDTVC
+ */
+- (void)moveToAddGuyTVC{
+    UIStoryboard*  storyboard = [UIStoryboard storyboardWithName:@"Main"
+                                                          bundle:nil];
+    AddGuyTVC *addGuyTVC=[storyboard instantiateViewControllerWithIdentifier:@"AddGuyTVC"];
+    addGuyTVC.managedObjectContext=self.managedObjectContext;
+    addGuyTVC.delegate=self;
+    NSMutableArray *viewcontrollers=[self.navigationController.viewControllers mutableCopy];
+    [viewcontrollers addObject:addGuyTVC];
+    self.navigationController.viewControllers=[viewcontrollers copy];
+    [self.navigationController popToViewController:addGuyTVC animated:YES];
+}
 
 
+#pragma mark - Delegation
+-(void)theSaveButtonOnTheAddGuyWasTapped:(AddGuyTVC *)controller
+{
+    // do something here like refreshing the table or whatever
+    
+    // close the delegated view
+    [controller.navigationController popViewControllerAnimated:YES];
+    NSError *error;
+    if (![self.fetchedResultsController performFetch:&error]){
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+		abort();
+    };
+    [self.tableView reloadData];
+    
+}
 
 - (IBAction)save:(UIBarButtonItem *)sender {
     
     Group *group = [NSEntityDescription insertNewObjectForEntityForName:@"Group"
                                              inManagedObjectContext:self.managedObjectContext];
     
-    group.name = self.groupName.text;
+    group.name = self.groupTextField.text;
     group.inTrip=self.currentTrip;
     [self.managedObjectContext save:nil];  // write to database
     [self setGroup:group forGuys:self.selectedGuys RealInTrip:self.currentTrip];
@@ -114,28 +317,7 @@
 
 }
 
-#pragma mark - ➤ Navigation：Segue Settings
-// 內建，準備Segue的method
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    //判斷是哪條連線（會對應Segue的名稱）
-	if ([segue.identifier isEqualToString:@"Select Guy Segue From AddGroupTVC"])
-	{
-        NSLog(@"Setting AddGroupTVC as a delegate of SelectGuysCDTVC");
-        
-        SelectGuysCDTVC *selectGuysCDTVC = segue.destinationViewController;
-        selectGuysCDTVC.delegate = self;
-        /*
-         已經在SelectGuysCDTVC裡宣告了一個delegate（是SelectGuysCDTVCDelegate）
-         selectGuysCDTVC.delegate=self的意思是：我要監控SelectGuysCDTVC
-         */
-        
-        selectGuysCDTVC.managedObjectContext=self.managedObjectContext;
-        //把這個managedObjectContext傳過去，使用同一個managedObjectContext。（這樣新增東西才有反應吧？！）
-	}else {
-        NSLog(@"Unidentified Segue Attempted! @%@",self.class);
-    }
-}
+
 
 #pragma mark - delegation
 #pragma mark - 監測UITextFeild事件，按下return的時候會收鍵盤
@@ -144,10 +326,7 @@
     [textField resignFirstResponder];
     return YES;
 }
--(void)guyWasSelectedInSelectGuysCDTVC:(SelectGuysCDTVC *)controller{
-    self.selectedGuys=controller.selectedGuys;
-    [controller.navigationController popViewControllerAnimated:YES];
-}
+
 
 
 
