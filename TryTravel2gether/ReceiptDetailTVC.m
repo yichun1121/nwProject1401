@@ -12,6 +12,10 @@
 #import "Photo.h"
 #import "Photo+Image.h"
 #import "Receipt+Photo.h"
+#import "NWKeyboardUtils.h"
+#import "NWPickerUtils.h"
+#import "NWUIScrollViewMovePostition.h"
+
 @interface ReceiptDetailTVC ()
 
 @property NSDateFormatter *dateFormatter;
@@ -179,54 +183,12 @@
     self.currency.detailTextLabel.text=currency.standardSign;
     self.currencySign.text=currency.sign;
 }
--(void)setPickerFrame:(UIDatePicker *)picker WithIndexPath:(NSIndexPath *)indexPath{
-    //find the current table view size
-    CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPath];
-    //find the date picker size
-    CGSize pickerSize = [self.timePicker sizeThatFits:CGSizeZero];
-    
-    self.timePicker.frame = CGRectMake(0.0,
-                                       cellRect.origin.y+cellRect.size.height,
-                                       pickerSize.width,
-                                       pickerSize.height);
-}
-
-/*!動畫設定，讓某大小之物件，動作流暢呈現至畫面最底
- */
--(void)animateToPlaceWithItemSize:(CGSize)itemSize{
-    //下面這是動畫設定，讓動作流暢到位：[UIView animateWithDuration: animations: completion: ];
-    [UIView animateWithDuration: 0.4f
-                     animations:^{
-                         //animations裡面是終點位置
-                         
-                         //TODO: picker的移位目前還是有問題，需測試tableviewcell很多行但picker從中間生成的時候
-                         
-                         
-                         //先改變contentSize，底下需多撐一個picker的高度
-                         self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height+itemSize.height);
-                         //如果加了picker之後的content高度大於螢幕高度，才需要移到最下面
-                         if (self.tableView.contentSize.height>self.tableView.frame.size.height) {
-                             self.tableView.contentOffset=CGPointMake(0, self.tableView.contentSize.height-self.tableView.frame.size.height);
-                         }
-                         
-                        
-                     }
-                     completion:^(BOOL finished) {} ];
-}
-
 #pragma mark - lazy instantiation
 
 -(UIDatePicker *)timePicker{
     if(_timePicker == nil){
         _timePicker = [[UIDatePicker alloc] init];
-        _timePicker.date=[self.dateFormatter dateFromString: self.selectedDayString];
-        
-        
-        [_timePicker addTarget:self
-                        action:@selector(pickerChanged:)
-              forControlEvents:UIControlEventValueChanged];
         _timePicker.datePickerMode = UIDatePickerModeTime;
-        //NSString *datetimeString=[self.dateCell.detailTextLabel.text stringByAppendingString:self.timeCell.detailTextLabel.text];
         _timePicker.date=[self.timeFormatter dateFromString:self.timeCell.detailTextLabel.text];
         _timePicker.backgroundColor=[UIColor whiteColor];
     }
@@ -349,6 +311,10 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    //每次Segue時清除所有的picker
+    [NWPickerUtils dismissPicker:self.tableView];
+    //點選Segue時關閉鍵盤
+    [NWKeyboardUtils  dismissKeyboard4TextField:self.view];
     if ([segue.identifier isEqualToString:@"Trip Day Segue From Receipt Detail"]) {
         NSLog(@"Setting AddReceiptTVC as a delegate of TripDaysTVC...");
         TripDaysTVC *TripDaysTVC=segue.destinationViewController;
@@ -388,9 +354,22 @@
     [self setAllCurrencyWithCurrency:controller.selectedCurrency];
     [controller.navigationController popViewControllerAnimated:YES];
 }
+
+//開始編輯textField時做的事
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    //清除所有的picker
+    [NWPickerUtils dismissPicker:self.tableView];
+}
 #pragma mark 監測點選row時候的事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *clickCell=[self.tableView cellForRowAtIndexPath:indexPath];
+    
+    //每次點選row時清除所有的picker
+    [NWPickerUtils dismissPicker:tableView];
+    //點選row時關閉鍵盤
+    [NWKeyboardUtils  dismissKeyboard4TextField:self.view];
+    
     if (clickCell==self.timeCell) {
         bool hasBeTapped=NO;
         if(indexPath.row==self.actingCellIndexPath.row){
@@ -398,20 +377,23 @@
         }
         if (hasBeTapped) {
             self.actingCellIndexPath=nil;
-            //把剛剛加的picker高度扣回去
-            self.tableView.contentSize=CGSizeMake(self.tableView.contentSize.width, self.tableView.contentSize.height-[self.timePicker sizeThatFits:CGSizeZero].height);
-            [self.timePicker removeFromSuperview];
-
         }else{
             self.actingCellIndexPath=indexPath;
-            [self setPickerFrame:self.timePicker WithIndexPath:indexPath];
-            //add the picker to the view
-            [self.view addSubview:self.timePicker];
-            [self animateToPlaceWithItemSize:[self.timePicker sizeThatFits:CGSizeZero]];
+            
+            [NWPickerUtils setPickerInTableView:self.timePicker tableView:tableView didSelectRowAtIndexPath:indexPath];
+            
+            [self.view addSubview:self.timePicker ];
+            [NWUIScrollViewMovePostition autoContentOffsetToTableViewCenter:tableView didSelectRowAtIndexPath:indexPath withTagItemSize:[self.timePicker sizeThatFits:CGSizeZero]];
+            [self.timePicker  addTarget:self
+                                 action:@selector(pickerChanged:)
+                       forControlEvents:UIControlEventValueChanged];
+            
         }
         // 想要改變cell高度，需要重新整理tableView，beginUpdates和endUpdates
         //[self.tableView beginUpdates];
         //[self.tableView endUpdates];
+    }else{
+        self.actingCellIndexPath=nil;
     }
 }
 ////下面這個目前沒有使用

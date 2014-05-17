@@ -40,7 +40,7 @@
     
     request.predicate = [NSPredicate predicateWithFormat:@"(inTrip = %@)AND(guysInTrip.@count > 1)",self.currentTrip];
     
-    //request.predicate = [NSPredicate predicateWithFormat:@"inTrip = %@",self.currentTrip];
+//    request.predicate = [NSPredicate predicateWithFormat:@"inTrip = %@",self.currentTrip];
     
     request.sortDescriptors=[NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"name"
                                                                                     ascending:YES
@@ -108,7 +108,19 @@
         addGroupTVC.managedObjectContext=self.managedObjectContext;
         //把這個managedObjectContext傳過去，使用同一個managedObjectContext。（這樣新增東西才有反應吧？！）
         addGroupTVC.currentTrip=self.currentTrip;
-	}else {
+	}else if ([segue.identifier isEqualToString:@"Group Detail Segue"]){
+        NSLog(@"Setting GroupAndGuyInTripCDTVC as a delegate of GroupDetailTVC");
+        
+        GroupDetailTVC *groupDetailTVC = segue.destinationViewController;
+        groupDetailTVC.delegate = self;
+        
+        groupDetailTVC.managedObjectContext=self.managedObjectContext;
+        //把這個managedObjectContext傳過去，使用同一個managedObjectContext。（這樣新增東西才有反應吧？！）
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        Group *group=[self.fetchedResultsController objectAtIndexPath:indexPath];
+        groupDetailTVC.group=group;
+    }
+    else {
         NSLog(@"Unidentified Segue Attempted! @%@",self.class);
     }
 }
@@ -147,5 +159,7 @@
 -(void)theSaveButtonOnTheAddGroupWasTapped:(AddGroupTVC *)controller{
     [controller.navigationController popViewControllerAnimated:YES];
 }
-
+-(void)theSaveButtonOnTheGroupDetailTVCWasTapped:(GroupDetailTVC *)controller{
+    [controller.navigationController popViewControllerAnimated:YES];
+}
 @end

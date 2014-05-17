@@ -99,8 +99,6 @@
     self.trip.startDate=[self.dateFormatter dateFromString:self.startDate.detailTextLabel.text];
     self.trip.endDate=[self.dateFormatter dateFromString:self.endDate.detailTextLabel.text];
     self.trip.mainCurrency=self.currentCurrency;
-    self.trip.guysInTrip=[self.selectedGuys copy];
-    
     [self.managedObjectContext save:nil];  // write to database
     
     //發射按下的訊號，讓有實做theSaveButtonOnTheAddTripTVCWasTapped這個method的程式（監聽add的程式）知道。

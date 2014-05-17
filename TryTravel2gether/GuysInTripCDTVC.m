@@ -192,13 +192,10 @@
                                                              inManagedObjectContext:self.managedObjectContext];
         guyInTrip.realInTrip=[NSNumber numberWithBool:YES];
         guyInTrip.inTrip=trip;
-        NSMutableSet *mutableGroups=[NSMutableSet new];
-        [mutableGroups addObject:group];
+        [guyInTrip addGroupsObject:group];
         if (groupAll) {
-            [mutableGroups addObject:groupAll];
+            [guyInTrip addGroupsObject:groupAll];
         }
-        guyInTrip.groups=[mutableGroups mutableCopy];
-        
         guyInTrip.guy=guy;
         
         [self.managedObjectContext save:nil];
