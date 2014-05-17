@@ -40,6 +40,7 @@
 		C9558F8E191893D500B6C430 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = C9558F8D191893D500B6C430 /* Item.m */; };
 		C9558F901918970200B6C430 /* TripDetailTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9558F8F1918970200B6C430 /* TripDetailTVC.m */; };
 		C95AFA031886733B00DF057E /* DaysCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C95AFA021886733B00DF057E /* DaysCDTVC.m */; };
+		C95C792A19279DBB00F073EF /* testMergeFrom.plist in Resources */ = {isa = PBXBuildFile; fileRef = C95C792919279DBB00F073EF /* testMergeFrom.plist */; };
 		C964B92E18D42BBB002EF48C /* Day+Expend.m in Sources */ = {isa = PBXBuildFile; fileRef = C964B92D18D42BBB002EF48C /* Day+Expend.m */; };
 		C964B93118D42FDC002EF48C /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = C964B93018D42FDC002EF48C /* Currency.m */; };
 		C964B93418D43061002EF48C /* Day.m in Sources */ = {isa = PBXBuildFile; fileRef = C964B93318D43061002EF48C /* Day.m */; };
@@ -171,6 +172,7 @@
 		C9558F8F1918970200B6C430 /* TripDetailTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripDetailTVC.m; sourceTree = "<group>"; };
 		C95AFA011886733B00DF057E /* DaysCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaysCDTVC.h; sourceTree = "<group>"; };
 		C95AFA021886733B00DF057E /* DaysCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaysCDTVC.m; sourceTree = "<group>"; };
+		C95C792919279DBB00F073EF /* testMergeFrom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = testMergeFrom.plist; sourceTree = "<group>"; };
 		C964B92C18D42BBB002EF48C /* Day+Expend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Day+Expend.h"; sourceTree = "<group>"; };
 		C964B92D18D42BBB002EF48C /* Day+Expend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Day+Expend.m"; sourceTree = "<group>"; };
 		C964B92F18D42FDC002EF48C /* Currency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Currency.h; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 			children = (
 				C96F0615190B92AD0072899E /* Currency.plist */,
 				C96F0617190BD34D0072899E /* ItemCategory.plist */,
+				C95C792919279DBB00F073EF /* testMergeFrom.plist */,
 			);
 			name = Resource;
 			sourceTree = "<group>";
@@ -695,6 +698,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				180A506A1914EFE40053A9F0 /* NWCustCellSwitch.xib in Resources */,
+				C95C792A19279DBB00F073EF /* testMergeFrom.plist in Resources */,
 				C9C4098418E8758900E1F3FE /* NWCustCellTitleSubDetail.xib in Resources */,
 				C96F0618190BD34D0072899E /* ItemCategory.plist in Resources */,
 				C96F0616190B92AD0072899E /* Currency.plist in Resources */,
