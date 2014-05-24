@@ -17,7 +17,7 @@
     CGFloat itemHeight = cellRect.size.height+itemSize.height;
     CGFloat  movePostitionY= cellRect.origin.y+cellRect.size.height;
     CGFloat itemPostitionPoint = cellRect.origin.y+itemHeight;
-    CGFloat frameHeight = tableView.frame.size.height;
+    CGFloat frameHeight = tableView.frame.size.height-88.0;
     CGFloat coefficient =44.0+frameHeight/5;
     
     //自動判斷tableView點選到的cell高加上要長成的item高是否有超過畫面，即判斷點選的cell與加上item的位置在畫面範圍內。
