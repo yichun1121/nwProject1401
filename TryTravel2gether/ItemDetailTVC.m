@@ -38,6 +38,7 @@
     self.totalPrice.text=[NSString stringWithFormat:@"%g", [item.price doubleValue]*[item.quantity intValue]] ;
 
     self.selectedCategory=item.catInTrip.category;
+    self.selectedGroupOrGuy=item.group;
     self.categoryName.textLabel.text=item.catInTrip.category.name;
     [super showGroupInfo:item.group];
 }
