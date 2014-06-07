@@ -12,6 +12,9 @@
 #import "Guy.h"
 #import "Group+TripGuys.h"
 
+@interface SelectGroupAndGuyCDTVC()
+@property (strong,nonatomic)NSArray *fetchedObjects;
+@end
 @implementation SelectGroupAndGuyCDTVC
 
 
@@ -69,13 +72,13 @@
 /*!組合TableViewCell的顯示內容
  */
 -(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
-    NSArray *fetchedObjects = [self.fetchedResultsController fetchedObjects];
+    self.fetchedObjects = [self.fetchedResultsController fetchedObjects];
     NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"guysInTrip.@count" ascending:NO];
     NSArray *sortArray=[[NSArray alloc]initWithObjects:sort, nil];
-    fetchedObjects=[fetchedObjects sortedArrayUsingDescriptors:sortArray];
+    self.fetchedObjects=[self.fetchedObjects sortedArrayUsingDescriptors:sortArray];
 
     
-    Group *group=[fetchedObjects objectAtIndex:indexPath.row];
+    Group *group=[self.fetchedObjects objectAtIndex:indexPath.row];
     cell.textLabel.text=group.name;
     if ([group.guysInTrip count]==1) {
         
@@ -92,7 +95,8 @@
 }
 #pragma mark - 事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.selectedGroup=[self.fetchedResultsController objectAtIndexPath:indexPath];
+//    self.selectedGroup=[self.fetchedResultsController objectAtIndexPath:indexPath];
+    self.selectedGroup=self.fetchedObjects[indexPath.row];
     [self.delegate theGroupCellOnTheSelectGroupAndGuyCDTVCWasTapped:self];
 }
 
