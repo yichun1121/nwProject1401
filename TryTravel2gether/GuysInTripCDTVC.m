@@ -8,6 +8,7 @@
 
 #import "GuysInTripCDTVC.h"
 #import "NWCustCellSwitch.h"
+#import "Group+Special.h"
 
 @interface GuysInTripCDTVC ()
 @property(strong, nonatomic)NSMutableArray *indexPathArray;
@@ -165,25 +166,28 @@
 /*!把每個參與者都視為一個Group
  */
 -(void)createDefaultGroupWithGuy:(NSSet *)selectedGuy InCurrentTrip:(Trip *)trip{
-    NSEntityDescription *entityDesc =
-    [NSEntityDescription entityForName:@"Group" inManagedObjectContext:self.managedObjectContext];
-    
-    
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityDesc];
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name=%@) AND (inTrip=%@)",@"Share_All",trip];
-    [request setPredicate:pred];
-    
-    NSError *error;
-    NSArray *objects = [self.managedObjectContext executeFetchRequest:request error:&error];
     Group *groupAll;
-    if ([objects count]>0) {
-        groupAll=objects[0];
+    //檢查Share_All存不存在，已存在的話，就設為groupAll丟GuyInTrip進去；不存在就新增。
+    for (Group * group in trip.groups) {
+        if (group.isShareAll==YES) {
+            groupAll=group;
+            break;
+        }
+    }
+    //如果Share_All不存在就建一個
+    if (groupAll==nil) {
+        Group *group = [NSEntityDescription insertNewObjectForEntityForName:@"Group"
+                                                     inManagedObjectContext:self.managedObjectContext];
+        group.name=@"Share_All";
+        group.inTrip=trip;
+        groupAll=group;
+        [self.managedObjectContext save:nil];
     }
     
     for (Guy* guy in selectedGuy) {
         Group *group = [NSEntityDescription insertNewObjectForEntityForName:@"Group"
                                                      inManagedObjectContext:self.managedObjectContext];
+        //把每個參與者都視為一個Group
         group.name=guy.name;
         group.inTrip=trip;
         [self.managedObjectContext save:nil];
