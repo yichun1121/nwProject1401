@@ -20,7 +20,7 @@
 
 @synthesize managedObjectContext=_managedObjectContext;
 @synthesize fetchedResultsController=_fetchedResultsController;
-
+@synthesize fetchedObjects=_fetchedObjects;
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self setupFetchedResultController];
@@ -57,6 +57,17 @@
     
 }
 
+
+-(NSArray *)fetchedObjects{
+    if(!_fetchedObjects){
+        _fetchedObjects = [self.fetchedResultsController fetchedObjects];
+        NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"guysInTrip.@count" ascending:NO];
+        NSArray *sortArray=[[NSArray alloc]initWithObjects:sort, nil];
+        _fetchedObjects=[_fetchedObjects sortedArrayUsingDescriptors:sortArray];
+    }
+    return _fetchedObjects;
+}
+
 #pragma mark - Table view data source
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -72,10 +83,6 @@
 /*!組合TableViewCell的顯示內容
  */
 -(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
-    self.fetchedObjects = [self.fetchedResultsController fetchedObjects];
-    NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"guysInTrip.@count" ascending:NO];
-    NSArray *sortArray=[[NSArray alloc]initWithObjects:sort, nil];
-    self.fetchedObjects=[self.fetchedObjects sortedArrayUsingDescriptors:sortArray];
 
     
     Group *group=[self.fetchedObjects objectAtIndex:indexPath.row];
