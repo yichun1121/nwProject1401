@@ -243,6 +243,7 @@
     self.selectedGuys=controller.selectedGuys;
     int guyscount=(int)[self.selectedGuys count];
     self.guysCell.detailTextLabel.text=[NSString stringWithFormat:@"%i Guys",guyscount];
+    self.groupsCell.detailTextLabel.text=[NSString stringWithFormat:@"%@ Groups",self.trip.countRealGroups];
     [controller.navigationController popViewControllerAnimated:YES];
 }
 -(void)groupListCheckedInGroupAndGuyInTripCDTVC:(GroupAndGuyInTripCDTVC *)controller;{

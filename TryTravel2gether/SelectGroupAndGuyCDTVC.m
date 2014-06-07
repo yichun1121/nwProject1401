@@ -31,18 +31,21 @@
     NSLog(@"Setting up a Fetched Results Controller for the Entity named %@",entityName);
     
     NSFetchRequest *request=[NSFetchRequest fetchRequestWithEntityName:entityName];
-    
-    request.predicate = [NSPredicate predicateWithFormat:@"inTrip = %@",self.currentTrip];
-    
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"inTrip = %@",self.currentTrip];
+    NSArray *predicatesArray=[NSArray arrayWithObjects:predicate,nil];
+    NSPredicate *mutiplePredicate=[NSCompoundPredicate orPredicateWithSubpredicates:predicatesArray];
+    request.predicate =mutiplePredicate;
     request.sortDescriptors=[NSArray arrayWithObjects:
                              [NSSortDescriptor sortDescriptorWithKey:@"name"
-                                                           ascending:YES
-                                                            selector:@selector(localizedCaseInsensitiveCompare:)], nil];
+                                                           ascending:YES], nil];
     self.fetchedResultsController=[[NSFetchedResultsController alloc]initWithFetchRequest:request
                                                                      managedObjectContext:self.managedObjectContext
                                                                        sectionNameKeyPath:nil
                                                                                 cacheName:nil];
+
+ 
     [self performFetch];
+    
 }
 - (void)viewDidLoad
 {
@@ -66,9 +69,16 @@
 /*!組合TableViewCell的顯示內容
  */
 -(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
-    Group *group=[self.fetchedResultsController objectAtIndexPath:indexPath];
+    NSArray *fetchedObjects = [self.fetchedResultsController fetchedObjects];
+    NSSortDescriptor *sort=[NSSortDescriptor sortDescriptorWithKey:@"guysInTrip.@count" ascending:NO];
+    NSArray *sortArray=[[NSArray alloc]initWithObjects:sort, nil];
+    fetchedObjects=[fetchedObjects sortedArrayUsingDescriptors:sortArray];
+
+    
+    Group *group=[fetchedObjects objectAtIndex:indexPath.row];
     cell.textLabel.text=group.name;
     if ([group.guysInTrip count]==1) {
+        
         cell.imageView.image=[UIImage imageNamed:group.groupImageName];
         cell.detailTextLabel.text=@"";
     }else {
@@ -85,4 +95,5 @@
     self.selectedGroup=[self.fetchedResultsController objectAtIndexPath:indexPath];
     [self.delegate theGroupCellOnTheSelectGroupAndGuyCDTVCWasTapped:self];
 }
+
 @end
