@@ -42,6 +42,8 @@
 		BFC6CCFF190B98AB0071D99E /* NWPickerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CCFE190B98AB0071D99E /* NWPickerUtils.m */; };
 		BFC6CD05190BD38B0071D99E /* NWUIScrollViewMovePostition.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CD04190BD38B0071D99E /* NWUIScrollViewMovePostition.m */; };
 		C903A89B18D46D76009708C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C903A89A18D46D76009708C6 /* Images.xcassets */; };
+		C907B72E194C4438001A4C53 /* NWCustCellImageTitleSubDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C907B72C194C4438001A4C53 /* NWCustCellImageTitleSubDetail.m */; };
+		C907B72F194C4438001A4C53 /* NWCustCellImageTitleSubDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = C907B72D194C4438001A4C53 /* NWCustCellImageTitleSubDetail.xib */; };
 		C909F35318D00FE600E02B8D /* CurrencyCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C909F35218D00FE600E02B8D /* CurrencyCDTVC.m */; };
 		C909F36E18D0125800E02B8D /* DayCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = C909F36D18D0125800E02B8D /* DayCurrency.m */; };
 		C90D484118DADC7500367316 /* NWUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = C90D484018DADC7500367316 /* NWUserSettings.m */; };
@@ -189,6 +191,9 @@
 		BFC6CD03190BD38B0071D99E /* NWUIScrollViewMovePostition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWUIScrollViewMovePostition.h; sourceTree = "<group>"; };
 		BFC6CD04190BD38B0071D99E /* NWUIScrollViewMovePostition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWUIScrollViewMovePostition.m; sourceTree = "<group>"; };
 		C903A89A18D46D76009708C6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C907B72B194C4438001A4C53 /* NWCustCellImageTitleSubDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWCustCellImageTitleSubDetail.h; path = NWCust/NWCustCellImageTitleSubDetail.h; sourceTree = "<group>"; };
+		C907B72C194C4438001A4C53 /* NWCustCellImageTitleSubDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWCustCellImageTitleSubDetail.m; path = NWCust/NWCustCellImageTitleSubDetail.m; sourceTree = "<group>"; };
+		C907B72D194C4438001A4C53 /* NWCustCellImageTitleSubDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NWCustCellImageTitleSubDetail.xib; path = NWCust/NWCustCellImageTitleSubDetail.xib; sourceTree = "<group>"; };
 		C909F35118D00FE600E02B8D /* CurrencyCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyCDTVC.h; sourceTree = "<group>"; };
 		C909F35218D00FE600E02B8D /* CurrencyCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyCDTVC.m; sourceTree = "<group>"; };
 		C909F36C18D0125800E02B8D /* DayCurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayCurrency.h; sourceTree = "<group>"; };
@@ -478,6 +483,7 @@
 			children = (
 				180A50691914EFE40053A9F0 /* NWCustCellSwitch.xib */,
 				C9C4098318E8758900E1F3FE /* NWCustCellTitleSubDetail.xib */,
+				C907B72D194C4438001A4C53 /* NWCustCellImageTitleSubDetail.xib */,
 			);
 			name = CustView;
 			sourceTree = "<group>";
@@ -639,6 +645,8 @@
 				1869ACF21914F19600BF8547 /* NWCustCellSwitch.m */,
 				C9F64D3418E709A00005ED24 /* NWCustCellTitleSubDetail.h */,
 				C9F64D3518E709A00005ED24 /* NWCustCellTitleSubDetail.m */,
+				C907B72B194C4438001A4C53 /* NWCustCellImageTitleSubDetail.h */,
+				C907B72C194C4438001A4C53 /* NWCustCellImageTitleSubDetail.m */,
 			);
 			name = CustController;
 			sourceTree = "<group>";
@@ -775,6 +783,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C907B72F194C4438001A4C53 /* NWCustCellImageTitleSubDetail.xib in Resources */,
 				180A506A1914EFE40053A9F0 /* NWCustCellSwitch.xib in Resources */,
 				BF88EBDB19431B6E006E3E60 /* README.txt in Resources */,
 				C95C792A19279DBB00F073EF /* testMergeFrom.plist in Resources */,
@@ -808,6 +817,7 @@
 				C92ABB27190E11EF00BEA584 /* Item+Expend.m in Sources */,
 				C9F804AA187A4C9B00EE4EDE /* AddTripTVC.m in Sources */,
 				C95AFA031886733B00DF057E /* DaysCDTVC.m in Sources */,
+				C907B72E194C4438001A4C53 /* NWCustCellImageTitleSubDetail.m in Sources */,
 				BFC6CCFC190B888F0071D99E /* NWKeyboardUtils.m in Sources */,
 				BF6179B71930A3560016D235 /* NWCustAdMobTabBarController.m in Sources */,
 				C90D484118DADC7500367316 /* NWUserSettings.m in Sources */,

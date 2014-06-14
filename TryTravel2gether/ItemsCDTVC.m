@@ -8,10 +8,13 @@
 
 #import "ItemsCDTVC.h"
 #import "Item.h"
-#import "NWCustCellTitleSubDetail.h"
+#import "NWCustCellImageTitleSubDetail.h"
 #import "Receipt+Calculate.h"
 #import "DayCurrency.h"
 #import "Currency.h"
+#import "CatInTrip.h"
+#import "Itemcategory.h"
+#import "Itemcategory+Colorful.h"
 
 @interface ItemsCDTVC ()
 @property NSDateFormatter *dateFormatter;
@@ -70,7 +73,7 @@
     self.timeFormatter.dateFormat=@"HH:mm";
     
     //-----註冊CustomCell----------
-    UINib* myCellNib = [UINib nibWithNibName:@"NWCustCellTitleSubDetail" bundle:nil];
+    UINib* myCellNib = [UINib nibWithNibName:@"NWCustCellImageTitleSubDetail" bundle:nil];
     [self.tableView registerNib:myCellNib forCellReuseIdentifier:@"Cell"];
     
     //-----顯示未設定金額----------
@@ -86,9 +89,9 @@
 {
     static NSString * CellIdentifier=@"Cell";
 
-    NWCustCellTitleSubDetail *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    NWCustCellImageTitleSubDetail *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[NWCustCellTitleSubDetail alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[NWCustCellImageTitleSubDetail alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...
@@ -97,7 +100,7 @@
 }
 /*!組合TableViewCell的顯示內容
  */
--(NWCustCellTitleSubDetail *)configureCell:(NWCustCellTitleSubDetail *)cell AtIndexPath:(NSIndexPath *)indexPath{
+-(NWCustCellImageTitleSubDetail *)configureCell:(NWCustCellImageTitleSubDetail *)cell AtIndexPath:(NSIndexPath *)indexPath{
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     Item *item=[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.titleTextLabel.text=item.name;
@@ -105,6 +108,13 @@
     double totalPrice=[item.price doubleValue]*[item.quantity integerValue];
     NSString *strCurrencySign=item.receipt.dayCurrency.currency.sign;
     cell.detailTextLabel.text=[NSString stringWithFormat:@"%@ %g",strCurrencySign,totalPrice];
+    
+    cell.imageView.image=item.catInTrip.category.image;
+    cell.imageView.backgroundColor=item.catInTrip.category.color;
+    cell.imageView.layer.borderColor=[item.catInTrip.category.color CGColor];
+    cell.imageView.layer.borderWidth=0;
+    [cell.imageView.layer setMasksToBounds:YES];
+    [cell.imageView.layer setCornerRadius:4.0];
     
     return cell;
 }
