@@ -255,4 +255,14 @@
     //TODO: 如果選了Picker日期，但是沒有點上方的cell而直接上一頁，就無法設定時間
 }
 
+#pragma mark - Table view set AdMob banner
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    //-----self.tableView.frame 的高度剪掉AdMob Banner高度-------(讓Banner不會擋到TableView的資訊)
+    [self.tableView setFrame:CGRectMake(self.tableView.frame.origin.x
+                                        , self.tableView.frame.origin.y
+                                        , self.tableView.frame.size.width
+                                        , self.tableView.frame.size.height-50)];
+}
+
 @end
