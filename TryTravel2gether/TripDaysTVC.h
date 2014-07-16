@@ -8,13 +8,14 @@
 
 #import "CoreDataTableViewController.h"
 #import "Trip.h"
+#import "NWAdShiftTableViewController.h"
 
 @class TripDaysTVC;
 @protocol TripDaysTVCDelegate <NSObject>
 -(void)dayWasSelectedInTripDaysTVC:(TripDaysTVC *)controller;
 @end
 
-@interface TripDaysTVC : UITableViewController<NSFetchedResultsControllerDelegate>
+@interface TripDaysTVC : NWAdShiftTableViewController<NSFetchedResultsControllerDelegate>
 @property (strong,nonatomic)id delegate;
 
 

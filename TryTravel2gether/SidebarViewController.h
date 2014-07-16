@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NWAdShiftTableViewController.h"
 
-@interface SidebarViewController : UITableViewController
+@interface SidebarViewController : NWAdShiftTableViewController
 
 @property (strong,nonatomic)NSManagedObjectContext *managedObjectContext;
 

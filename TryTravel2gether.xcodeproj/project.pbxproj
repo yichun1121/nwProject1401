@@ -41,6 +41,7 @@
 		BFC6CCFC190B888F0071D99E /* NWKeyboardUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CCFB190B888F0071D99E /* NWKeyboardUtils.m */; };
 		BFC6CCFF190B98AB0071D99E /* NWPickerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CCFE190B98AB0071D99E /* NWPickerUtils.m */; };
 		BFC6CD05190BD38B0071D99E /* NWUIScrollViewMovePostition.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CD04190BD38B0071D99E /* NWUIScrollViewMovePostition.m */; };
+		BFDB512E19766CAF00DFFF55 /* NWAdShiftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFDB512D19766CAF00DFFF55 /* NWAdShiftTableViewController.m */; };
 		C903A89B18D46D76009708C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C903A89A18D46D76009708C6 /* Images.xcassets */; };
 		C909F35318D00FE600E02B8D /* CurrencyCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C909F35218D00FE600E02B8D /* CurrencyCDTVC.m */; };
 		C909F36E18D0125800E02B8D /* DayCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = C909F36D18D0125800E02B8D /* DayCurrency.m */; };
@@ -188,6 +189,8 @@
 		BFC6CCFE190B98AB0071D99E /* NWPickerUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWPickerUtils.m; sourceTree = "<group>"; };
 		BFC6CD03190BD38B0071D99E /* NWUIScrollViewMovePostition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWUIScrollViewMovePostition.h; sourceTree = "<group>"; };
 		BFC6CD04190BD38B0071D99E /* NWUIScrollViewMovePostition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWUIScrollViewMovePostition.m; sourceTree = "<group>"; };
+		BFDB512C19766CAF00DFFF55 /* NWAdShiftTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWAdShiftTableViewController.h; sourceTree = "<group>"; };
+		BFDB512D19766CAF00DFFF55 /* NWAdShiftTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWAdShiftTableViewController.m; sourceTree = "<group>"; };
 		C903A89A18D46D76009708C6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C909F35118D00FE600E02B8D /* CurrencyCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyCDTVC.h; sourceTree = "<group>"; };
 		C909F35218D00FE600E02B8D /* CurrencyCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyCDTVC.m; sourceTree = "<group>"; };
@@ -639,6 +642,8 @@
 				1869ACF21914F19600BF8547 /* NWCustCellSwitch.m */,
 				C9F64D3418E709A00005ED24 /* NWCustCellTitleSubDetail.h */,
 				C9F64D3518E709A00005ED24 /* NWCustCellTitleSubDetail.m */,
+				BFDB512C19766CAF00DFFF55 /* NWAdShiftTableViewController.h */,
+				BFDB512D19766CAF00DFFF55 /* NWAdShiftTableViewController.m */,
 			);
 			name = CustController;
 			sourceTree = "<group>";
@@ -847,6 +852,7 @@
 				18DF963619024EF30051366D /* GuysInTripCDTVC.m in Sources */,
 				04858D4018AA63F000A81340 /* DayDetailTVC.m in Sources */,
 				C97DAE6B19136FAA009B7E6C /* Receipt+Photo.m in Sources */,
+				BFDB512E19766CAF00DFFF55 /* NWAdShiftTableViewController.m in Sources */,
 				186C1B2B1927395D00C87DE7 /* Group+Special.m in Sources */,
 				C9697B1618FCF8E1006148E0 /* SWRevealViewController.m in Sources */,
 				C964B93118D42FDC002EF48C /* Currency.m in Sources */,

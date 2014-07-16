@@ -28,23 +28,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-//    self.tabBarController.view.autoresizesSubviews=YES;
-//    self.tabBarController.view.autoresizingMask=UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-//    UIView *transitionView = [[self.tabBarController.view subviews] objectAtIndex:0];
-//    transitionView.frame.size.height=transitionView.frame.size.height-44.0;
-//    [transitionView setFrame:CGRect(320,44)];
-//    UIView *transitionView = [[self.tabBarController.view subviews] objectAtIndex:0];
-//    self.tabBarController.view.frame=CGRectMake(0, 0, 320, 300);
-//    [self.tabBarController.tabBar addSubview:admobBannerView];
-
-    
-//    transitionView.frame = CGRectMake(0, 0, 320, 460);
-
-    
-    
-//    [self.tabBar.superview setBounds:CGRectMake(self.tabBar.bounds.origin.x, self.tabBar.bounds.origin.y+49, 320, 49)];
     
     [self.tabBar setFrame:CGRectMake(self.tabBar.frame.origin.x, self.tabBar.frame.origin.y-50, 320, 49)];
     NSLog(@"%@",[self.tabBar subviews]);
@@ -59,7 +42,6 @@
     
     [self.tabBar addSubview:admobBannerView];
     [self.admobBannerView loadRequest:[self request]];
-    NSLog(@"%@",[self.view subviews]);
     
 }
 
@@ -81,17 +63,7 @@
                                   bannerView.frame.size.width,
                                   bannerView.frame.size.height);
     [UIView commitAnimations];
-    
-//    
-//    for(UIView *view in self.view.subviews){
-//
-//        if(![view isKindOfClass:[UITabBar class]]){
-//            view.frame = CGRectMake(0, 0, 320, 470);
-//            break;
-//        }
-//        
-//    }
-    NSLog(@"%@",[self.view subviews]);
+
 }
 
 - (void)adView:(GADBannerView *)bannerView

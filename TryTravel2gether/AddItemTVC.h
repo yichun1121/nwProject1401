@@ -11,6 +11,7 @@
 #import "SelectCategoryCDTVC.h"
 #import "Trip.h"
 #import "SelectGroupAndGuyCDTVC.h"
+#import "NWAdShiftTableViewController.h"
 
 @class AddItemTVC;
 @protocol AddItemTVCDelegate <NSObject>
@@ -18,7 +19,7 @@
 -(void)theSaveButtonOnTheAddItemWasTapped:(AddItemTVC *)controller;
 
 @end
-@interface AddItemTVC : UITableViewController<UITextFieldDelegate,SelectCategoryCDTVCDelegate,SelectGroupAndGuyCDTVCDelegate>
+@interface AddItemTVC : NWAdShiftTableViewController<UITextFieldDelegate,SelectCategoryCDTVCDelegate,SelectGroupAndGuyCDTVCDelegate>
 
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic) id<AddItemTVCDelegate> delegate;
