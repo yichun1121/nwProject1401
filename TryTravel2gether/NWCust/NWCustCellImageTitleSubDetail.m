@@ -17,8 +17,6 @@
     if (self) {
         self.detailTextLabel=super.detailTextLabel;
         self.titleTextLabel=super.textLabel;
-        self.imageView=super.imageView;
-        self.imageView.hidden=NO;
     }
     return self;
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="APq-vG-lDE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="APq-vG-lDE">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -2009,7 +2009,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Item List" id="22b-OU-3Gn">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="PkI-m0-YXY"/>
+                        <barButtonItem key="rightBarButtonItem" image="image" id="PkI-m0-YXY">
+                            <connections>
+                                <action selector="viewPhotos:" destination="HSh-dX-UJh" id="fvg-Fj-mkJ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="remaining" destination="2dC-dZ-hEA" id="TSa-CT-P1k"/>
@@ -2250,6 +2254,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rhp-y2-at4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2305" y="1540"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="Cor-vW-wqr">
+            <objects>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="99G-3D-jLr" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mpM-Dq-vaA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1977" y="533"/>
+        </scene>
+        <!--Photo ContentVC-->
+        <scene sceneID="yy3-Ph-NMI">
+            <objects>
+                <viewController storyboardIdentifier="PhotoContent" id="b7C-4o-XBq" customClass="PhotoContentVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Kgb-JI-Fq2"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Us-hB-M5t"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qHm-nV-sUr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uP7-ZO-OLq">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundImage" destination="uP7-ZO-OLq" id="WX0-vq-c7e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H2r-S3-mbz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2331" y="443"/>
         </scene>
         <!--ReceiptsCDTVC-->
         <scene sceneID="WhL-wY-V2F">
@@ -2849,16 +2888,16 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="IWa-Ty-2Zl"/>
+        <segue reference="dk3-o7-VGh"/>
+        <segue reference="moX-HC-O6P"/>
         <segue reference="uY8-M1-8nc"/>
         <segue reference="bq2-7x-Hhd"/>
         <segue reference="5QA-QK-Xps"/>
         <segue reference="C6V-tt-ruz"/>
         <segue reference="x1x-e5-6Ev"/>
         <segue reference="sp3-cC-l9s"/>
-        <segue reference="moX-HC-O6P"/>
-        <segue reference="r1V-Ci-7uc"/>
-        <segue reference="fuU-qV-pe9"/>
+        <segue reference="IWa-Ty-2Zl"/>
         <segue reference="fuH-vh-HtH"/>
+        <segue reference="4bK-FK-wew"/>
     </inferredMetricsTieBreakers>
 </document>
