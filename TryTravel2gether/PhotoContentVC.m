@@ -26,6 +26,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor=[UIColor blackColor];
+    //下面這句是讓圖片顯示等比例
+    self.backgroundImage.contentMode = UIViewContentModeScaleAspectFit;
     self.backgroundImage.image=self.image;
 }
 
