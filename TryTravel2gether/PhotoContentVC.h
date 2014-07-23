@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface PhotoContentVC : UIViewController
+@class PhotoContentVC;
+@protocol PhotoContentVCDelegate <NSObject>
+-(void)changeTopBarStatus:(BOOL)toShow;
+@end
+@interface PhotoContentVC : UIViewController<UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 @property NSUInteger pageIndex;
 @property UIImage *image;
+@property (weak,nonatomic) id<PhotoContentVCDelegate> delegate;
 @end

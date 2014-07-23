@@ -55,7 +55,7 @@
     Photo * photo=self.currentReceipt.photosOrdered[index];
     photoContentVC.image = photo.image;
     photoContentVC.pageIndex = index;
-    
+    photoContentVC.delegate=self;
     return photoContentVC;
 }
 #pragma mark - Page View Controller Data Source
@@ -97,6 +97,14 @@
     return _pageViewController;
 }
 
+#pragma mark - delegation
+-(void)changeTopBarStatus:(BOOL)toShow{
+    if (toShow) {
+        [self.navigationController setNavigationBarHidden:NO];
+    }else{
+        [self.navigationController setNavigationBarHidden:YES];
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {

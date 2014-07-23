@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Receipt.h"
-@interface ReceiptPhotoVC : UIViewController<UIPageViewControllerDataSource>
+#import "PhotoContentVC.h"
+@interface ReceiptPhotoVC : UIViewController<UIPageViewControllerDataSource,PhotoContentVCDelegate>
 
 @property (strong, nonatomic) UIPageViewController *pageViewController; //拿來檢視照片的容器
 @property (strong,nonatomic)Receipt *currentReceipt;
