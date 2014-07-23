@@ -9,11 +9,11 @@
 #import "PhotoContentVC.h"
 
 @interface PhotoContentVC ()
-
+@property BOOL zoomCheck;
 @end
 
 @implementation PhotoContentVC
-
+@synthesize zoomCheck=_zoomCheck;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -30,8 +30,33 @@
     //下面這句是讓圖片顯示等比例
     self.backgroundImage.contentMode = UIViewContentModeScaleAspectFit;
     self.backgroundImage.image=self.image;
+//    self.backgroundImage.userInteractionEnabled = YES;
 }
-
+//- (void)handleDoubleTap:(UIGestureRecognizer *)recognizer {
+//    if(self.zoomCheck){
+//        CGPoint Pointview=[recognizer locationInView:self];
+//        CGFloat newZoomscal=3.0;
+//        
+//        newZoomscal=MIN(newZoomscal, self.maximumZoomScale);
+//        
+//        CGSize scrollViewSize=self.bounds.size;
+//        
+//        CGFloat w=scrollViewSize.width/newZoomscal;
+//        CGFloat h=scrollViewSize.height /newZoomscal;
+//        CGFloat x= Pointview.x-(w/2.0);
+//        CGFloat y = Pointview.y-(h/2.0);
+//        
+//        CGRect rectTozoom=CGRectMake(x, y, w, h);
+//        [self zoomToRect:rectTozoom animated:YES];
+//        
+//        [self setZoomScale:3.0 animated:YES];
+//        zoomCheck=NO;
+//    }
+//    else{
+//        [self setZoomScale:1.0 animated:YES];
+//        zoomCheck=YES;
+//    }
+//}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

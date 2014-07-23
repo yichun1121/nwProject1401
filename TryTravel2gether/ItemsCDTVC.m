@@ -15,10 +15,7 @@
 #import "CatInTrip.h"
 #import "Itemcategory.h"
 #import "Itemcategory+Colorful.h"
-#import "PhotoContentVC.h"
-#import "Receipt+Photo.h"
-#import "Photo.h"
-#import "Photo+Image.h"
+#import "ReceiptPhotoVC.h"
 
 @interface ItemsCDTVC ()
 @property NSDateFormatter *dateFormatter;
@@ -33,7 +30,6 @@
 @synthesize currentReceipt=_currentReceipt;
 @synthesize dateFormatter=_dateFormatter;
 @synthesize timeFormatter=_timeFormatter;
-@synthesize pageViewController=_pageViewController;
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -87,71 +83,6 @@
     
     //-----設定下一頁時的back button的字（避免本頁的title太長）-----------
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Items" style:UIBarButtonItemStylePlain target:nil action:nil];
-}
-- (IBAction)viewPhotos:(UIBarButtonItem *)sender {
-    
-    PhotoContentVC *startingViewController = [self viewControllerAtIndex:0];
-    NSArray *viewControllers = @[startingViewController];
-    [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-    
-    // Change the size of page view controller
-    self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 30);
-    
-    [self addChildViewController:_pageViewController];
-    [self.view addSubview:_pageViewController.view];
-    [self.pageViewController didMoveToParentViewController:self];
-}
-- (PhotoContentVC *)viewControllerAtIndex:(NSUInteger)index
-{
-    if (([self.currentReceipt.photosOrdered count] == 0) || (index >= [self.currentReceipt.photosOrdered count])) {
-        return nil;
-    }
-    
-    // Create a new view controller and pass suitable data.
-    PhotoContentVC *photoContentVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PhotoContent"];
-    Photo * photo=self.currentReceipt.photosOrdered[index];
-    photoContentVC.image = photo.image;
-    photoContentVC.pageIndex = index;
-    
-    return photoContentVC;
-}
-#pragma mark - Page View Controller Data Source
-
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
-{
-    NSUInteger index = ((PhotoContentVC*) viewController).pageIndex;
-    
-    if ((index == 0) || (index == NSNotFound)) {
-        return nil;
-    }
-    
-    index--;
-    return [self viewControllerAtIndex:index];
-}
-
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
-{
-    NSUInteger index = ((PhotoContentVC*) viewController).pageIndex;
-    
-    if (index == NSNotFound) {
-        return nil;
-    }
-    
-    index++;
-    if (index == [self.currentReceipt.photos count]) {
-        return nil;
-    }
-    return [self viewControllerAtIndex:index];
-}
-#pragma mark - lazy instantiation
--(UIPageViewController *)pageViewController{
-    
-    // Create page view controller
-    if(!_pageViewController){
-        self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
-        self.pageViewController.dataSource = self;
-    }
-    return _pageViewController;
 }
 
 #pragma mark - Table view data source
@@ -210,6 +141,11 @@
         itemDetailTVC.currentReceipt=self.currentReceipt;
         itemDetailTVC.currentItem=selectedItem;
         itemDetailTVC.delegate=self;
+    }else if ([segue.identifier isEqualToString:@"Photo Gallery Segue From Item List"]){
+        NSLog(@"Setting %@ as a delegate of ReceiptPhotoVC",self.class);
+        ReceiptPhotoVC *addItemTVC=[segue destinationViewController];
+        addItemTVC.currentReceipt=self.currentReceipt;
+//        addItemTVC.delegate=self;
     }
     
 }

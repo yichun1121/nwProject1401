@@ -1030,6 +1030,25 @@
             </objects>
             <point key="canvasLocation" x="1466" y="749"/>
         </scene>
+        <!--Receipt PhotoVC-->
+        <scene sceneID="vMk-L9-8tc">
+            <objects>
+                <viewController id="J9x-aW-akf" customClass="ReceiptPhotoVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rde-Cc-Feh"/>
+                        <viewControllerLayoutGuide type="bottom" id="P06-tc-KnN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KEB-R1-Q0o">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="iuA-fk-MB6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GTR-Lj-RaE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1775" y="809"/>
+        </scene>
         <!--Add GuyTVC - Add Guy-->
         <scene sceneID="bHi-cv-pNt">
             <objects>
@@ -2011,7 +2030,7 @@
                     <navigationItem key="navigationItem" title="Item List" id="22b-OU-3Gn">
                         <barButtonItem key="rightBarButtonItem" image="image" id="PkI-m0-YXY">
                             <connections>
-                                <action selector="viewPhotos:" destination="HSh-dX-UJh" id="fvg-Fj-mkJ"/>
+                                <segue destination="J9x-aW-akf" kind="push" identifier="Photo Gallery Segue From Item List" id="gEa-ZK-CtC"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2021,7 +2040,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xby-0E-NJS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1870" y="1132"/>
+            <point key="canvasLocation" x="1717" y="1199"/>
         </scene>
         <!--Select Group And GuyCDTVC - Owner-->
         <scene sceneID="23h-Qn-cP5">

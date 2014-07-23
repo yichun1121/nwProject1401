@@ -11,10 +11,9 @@
 #import "AddItemTVC.h"
 #import "ItemDetailTVC.h"
 
-@interface ItemsCDTVC : CoreDataTableViewController<AddItemTVCDelegate,UIPageViewControllerDataSource>
+@interface ItemsCDTVC : CoreDataTableViewController<AddItemTVCDelegate>
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong,nonatomic) Receipt *currentReceipt;
 
-@property (strong, nonatomic) UIPageViewController *pageViewController; //拿來檢視照片的容器
 @end
