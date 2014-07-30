@@ -1039,7 +1039,7 @@
                         <viewControllerLayoutGuide type="bottom" id="P06-tc-KnN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="KEB-R1-Q0o">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -2030,11 +2030,12 @@
                     <navigationItem key="navigationItem" title="Item List" id="22b-OU-3Gn">
                         <barButtonItem key="rightBarButtonItem" image="image" id="PkI-m0-YXY">
                             <connections>
-                                <segue destination="J9x-aW-akf" kind="modal" identifier="Photo Gallery Segue From Item List" modalTransitionStyle="coverVertical" id="gEa-ZK-CtC"/>
+                                <segue destination="J9x-aW-akf" kind="push" identifier="Photo Gallery Segue From Item List" id="gEa-ZK-CtC"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="btnGallery" destination="PkI-m0-YXY" id="reX-pK-RT2"/>
                         <outlet property="remaining" destination="2dC-dZ-hEA" id="TSa-CT-P1k"/>
                     </connections>
                 </tableViewController>

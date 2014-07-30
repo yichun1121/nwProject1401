@@ -43,13 +43,6 @@
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
-    
-    UISwipeGestureRecognizer* swipeDownGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDown:)];
-    swipeDownGestureRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
-    [self.view addGestureRecognizer:swipeDownGestureRecognizer];
-}
-- (void)handleSwipeDown:(UIGestureRecognizer*)recognizer {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (PhotoContentVC *)viewControllerAtIndex:(NSUInteger)index
 {
@@ -60,8 +53,6 @@
     // Create a new view controller and pass suitable data.
     PhotoContentVC *photoContentVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PhotoContent"];
     Photo * photo=self.currentReceipt.photosOrdered[index];
-    photoContentVC.navigationController.parentViewController.tabBarController.hidesBottomBarWhenPushed=YES;
-
     photoContentVC.image = photo.image;
     photoContentVC.pageIndex = index;
     photoContentVC.delegate=self;
@@ -95,17 +86,6 @@
     }
     return [self viewControllerAtIndex:index];
 }
-
-- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController
-{
-    return [self.currentReceipt.photosOrdered count];
-}
-
-- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
-{
-    return 0;
-}
-
 #pragma mark - lazy instantiation
 -(UIPageViewController *)pageViewController{
     

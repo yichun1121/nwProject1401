@@ -20,6 +20,8 @@
 @interface ItemsCDTVC ()
 @property NSDateFormatter *dateFormatter;
 @property NSDateFormatter *timeFormatter;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *btnGallery;
+
 @property (weak, nonatomic) IBOutlet UILabel *remaining;
 @end
 
@@ -30,6 +32,7 @@
 @synthesize currentReceipt=_currentReceipt;
 @synthesize dateFormatter=_dateFormatter;
 @synthesize timeFormatter=_timeFormatter;
+@synthesize btnGallery=_btnGallery;
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -38,6 +41,13 @@
     //計算未設定剩餘款
     NSString *strCurrencySign=self.currentReceipt.dayCurrency.currency.sign;
     self.remaining.text=[NSString stringWithFormat:@"%@ %g",strCurrencySign,[self.currentReceipt getMoneyIsNotSet]];
+    
+    //如果receipt裡沒有照片，就不顯示照片按鈕
+    if ([self.currentReceipt.photos count]<=0) {
+        self.btnGallery.enabled=NO;
+    }else{
+        self.btnGallery.enabled=YES;
+    }
 }
 
 #pragma mark - FetchedResultsController
@@ -84,6 +94,7 @@
     //-----設定下一頁時的back button的字（避免本頁的title太長）-----------
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Items" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
+
 
 #pragma mark - Table view data source
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
