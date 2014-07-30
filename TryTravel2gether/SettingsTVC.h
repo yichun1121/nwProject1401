@@ -7,8 +7,9 @@
 //
 //目前沒使用這個class
 #import <UIKit/UIKit.h>
+#import "NWAdShiftTableViewController.h"
 
-@interface SettingsTVC : UITableViewController
+@interface SettingsTVC : NWAdShiftTableViewController
 
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
 @end

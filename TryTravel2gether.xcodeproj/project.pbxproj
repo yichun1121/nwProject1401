@@ -41,6 +41,7 @@
 		BFC6CCFC190B888F0071D99E /* NWKeyboardUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CCFB190B888F0071D99E /* NWKeyboardUtils.m */; };
 		BFC6CCFF190B98AB0071D99E /* NWPickerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CCFE190B98AB0071D99E /* NWPickerUtils.m */; };
 		BFC6CD05190BD38B0071D99E /* NWUIScrollViewMovePostition.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CD04190BD38B0071D99E /* NWUIScrollViewMovePostition.m */; };
+		BFDB512E19766CAF00DFFF55 /* NWAdShiftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFDB512D19766CAF00DFFF55 /* NWAdShiftTableViewController.m */; };
 		C903A89B18D46D76009708C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C903A89A18D46D76009708C6 /* Images.xcassets */; };
 		C907B72E194C4438001A4C53 /* NWCustCellImageTitleSubDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C907B72C194C4438001A4C53 /* NWCustCellImageTitleSubDetail.m */; };
 		C907B72F194C4438001A4C53 /* NWCustCellImageTitleSubDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = C907B72D194C4438001A4C53 /* NWCustCellImageTitleSubDetail.xib */; };
@@ -192,6 +193,8 @@
 		BFC6CCFE190B98AB0071D99E /* NWPickerUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWPickerUtils.m; sourceTree = "<group>"; };
 		BFC6CD03190BD38B0071D99E /* NWUIScrollViewMovePostition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWUIScrollViewMovePostition.h; sourceTree = "<group>"; };
 		BFC6CD04190BD38B0071D99E /* NWUIScrollViewMovePostition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWUIScrollViewMovePostition.m; sourceTree = "<group>"; };
+		BFDB512C19766CAF00DFFF55 /* NWAdShiftTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWAdShiftTableViewController.h; sourceTree = "<group>"; };
+		BFDB512D19766CAF00DFFF55 /* NWAdShiftTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWAdShiftTableViewController.m; sourceTree = "<group>"; };
 		C903A89A18D46D76009708C6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C907B72B194C4438001A4C53 /* NWCustCellImageTitleSubDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWCustCellImageTitleSubDetail.h; path = NWCust/NWCustCellImageTitleSubDetail.h; sourceTree = "<group>"; };
 		C907B72C194C4438001A4C53 /* NWCustCellImageTitleSubDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWCustCellImageTitleSubDetail.m; path = NWCust/NWCustCellImageTitleSubDetail.m; sourceTree = "<group>"; };
@@ -736,6 +739,7 @@
 				C9DBFFFC186B187D00F3B008 /* Sources */,
 				C9DBFFFD186B187D00F3B008 /* Frameworks */,
 				C9DBFFFE186B187D00F3B008 /* Resources */,
+				BF744919196E721100515C63 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -808,6 +812,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		BF744919196E721100515C63 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate\nif [ \"${PLATFORM_NAME}\" == \"iphoneos\" ] || [ \"${PLATFORM_NAME}\" == \"ipados\" ]; then\n/Applications/Xcode.app/Contents/Developer/iphoneentitlements/gen_entitlements.py \"my.company.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\ncodesign -f -s \"iPhone Developer\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C9DB001D186B187E00F3B008 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -851,6 +871,7 @@
 				18DF963619024EF30051366D /* GuysInTripCDTVC.m in Sources */,
 				04858D4018AA63F000A81340 /* DayDetailTVC.m in Sources */,
 				C97DAE6B19136FAA009B7E6C /* Receipt+Photo.m in Sources */,
+				BFDB512E19766CAF00DFFF55 /* NWAdShiftTableViewController.m in Sources */,
 				186C1B2B1927395D00C87DE7 /* Group+Special.m in Sources */,
 				C9697B1618FCF8E1006148E0 /* SWRevealViewController.m in Sources */,
 				C964B93118D42FDC002EF48C /* Currency.m in Sources */,
@@ -950,7 +971,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -966,7 +987,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -988,7 +1009,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -998,7 +1019,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1009,6 +1030,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TryTravel2gether/TryTravel2gether-Prefix.pch";
 				INFOPLIST_FILE = "TryTravel2gether/TryTravel2gether-Info.plist";
@@ -1018,6 +1040,7 @@
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1036,6 +1059,7 @@
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

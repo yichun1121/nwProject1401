@@ -87,8 +87,8 @@
     UINavigationController *navigationCTL=self.tabBarController.childViewControllers[1];
     ShareMainPageCDTVC * sharePage=(ShareMainPageCDTVC *)navigationCTL.topViewController;
     sharePage.currentTrip=self.currentTrip;
+  
 }
-
 
 #pragma mark - Table view data source
 

@@ -395,7 +395,4 @@
     [self setAllCurrencyWithCurrency:controller.selectedCurrency];
     [controller.navigationController popViewControllerAnimated:YES];
 }
-
-
-
 @end

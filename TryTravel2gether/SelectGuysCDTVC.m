@@ -167,9 +167,4 @@
 - (IBAction)done:(id)sender{
     [self.delegate guyWasSelectedInSelectGuysCDTVC:self];
 }
-
-
-
-
-
 @end

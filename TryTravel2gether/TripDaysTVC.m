@@ -254,5 +254,4 @@
     self.selectedDayString=clickCell.detailTextLabel.text;
     //TODO: 如果選了Picker日期，但是沒有點上方的cell而直接上一頁，就無法設定時間
 }
-
 @end

@@ -225,4 +225,5 @@
     [self showGroupInfo:controller.selectedGroup];
     [controller.navigationController popViewControllerAnimated:YES];
 }
+
 @end

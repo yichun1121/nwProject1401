@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "Group.h"
 #import "SelectGuysCDTVC.h"
+#import "NWAdShiftTableViewController.h"
 
 @class GroupDetailTVC;
 
@@ -17,7 +18,7 @@
 - (void)theSaveButtonOnTheGroupDetailTVCWasTapped:(GroupDetailTVC *)controller;
 @end
 
-@interface GroupDetailTVC : UITableViewController<NSFetchedResultsControllerDelegate,SelectGuysCDTVCDelegate>
+@interface GroupDetailTVC : NWAdShiftTableViewController<NSFetchedResultsControllerDelegate,SelectGuysCDTVCDelegate>
 
 @property (nonatomic, weak) id <GroupDetailTVCDelegate>delegate;
 @property (nonatomic, strong)NSManagedObjectContext *managedObjectContext;

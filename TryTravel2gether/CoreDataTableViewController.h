@@ -18,8 +18,9 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "NWAdShiftTableViewController.h"
 
-@interface CoreDataTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface CoreDataTableViewController : NWAdShiftTableViewController <NSFetchedResultsControllerDelegate>
 
 // The controller (this class fetches nothing if this is not set).
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
