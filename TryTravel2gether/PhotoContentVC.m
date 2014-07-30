@@ -10,14 +10,14 @@
 
 @interface PhotoContentVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-//@property BOOL zoomCheck;
+@property BOOL zoomCheck;
 @property (nonatomic) BOOL showTopBar;
 @end
 
 @implementation PhotoContentVC
 @synthesize scrollView=_scrollView;
 @synthesize showTopBar=_showTopBar;
-//@synthesize zoomCheck=_zoomCheck;
+@synthesize zoomCheck=_zoomCheck;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -33,10 +33,12 @@
     //下面這句是讓圖片顯示等比例
     self.backgroundImage.contentMode = UIViewContentModeScaleAspectFit;
     self.backgroundImage.image=self.image;
+
 //    self.backgroundImage.userInteractionEnabled = YES;
     self.showTopBar=NO;
     [self.delegate changeTopBarStatus:NO];
     [self setTabGesture];
+
 }
 -(void)setTabGesture{
     UITapGestureRecognizer *tapOnce =
@@ -72,6 +74,34 @@
 }
 - (void)tapTwice:(UIGestureRecognizer *)gesture
 {
+//    if(self.zoomCheck){
+//        CGPoint Pointview=[gesture locationInView:self.scrollView];
+//        CGFloat newZoomscal=3.0;
+//        
+//        newZoomscal=MIN(newZoomscal, self.scrollView.maximumZoomScale);
+//        
+//        CGSize scrollViewSize=self.scrollView.bounds.size;
+//        
+//        CGFloat w=scrollViewSize.width/newZoomscal;
+//        CGFloat h=scrollViewSize.height /newZoomscal;
+//        CGFloat x= Pointview.x-(w/2.0);
+//        CGFloat y = Pointview.y-(h/2.0);
+//        
+//        CGRect rectTozoom=CGRectMake(x, y, w, h);
+//        [self.scrollView zoomToRect:rectTozoom animated:YES];
+//        
+//        [self.scrollView setZoomScale:3.0 animated:YES];
+//        self.zoomCheck=NO;
+//    }
+//    else{
+//        [self.scrollView setZoomScale:1.0 animated:YES];
+//        self.zoomCheck=YES;
+//    }
+    //TODO:點兩下時可以放大照片
+    if (self.scrollView.zoomScale >= 1)
+        [self.scrollView setZoomScale:0.3 animated:YES];
+    else
+        [self.scrollView setZoomScale:2.0 animated:YES];
     NSLog(@"tapTwice");
     //on a double tap, call zoomToRect in UIScrollView
 //    [self.scrollView zoomToRect:rectToZoomOutTo animated:NO];
@@ -106,7 +136,15 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return _scrollView.subviews.firstObject;
+}
 
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale
+{
+    
+}
 /*
 #pragma mark - Navigation
 
