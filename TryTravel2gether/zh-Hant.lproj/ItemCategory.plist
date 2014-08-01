@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>itemCategoryName</key>
+		<string>食物</string>
+		<key>hexColorRGB</key>
+		<string>FEF390</string>
+		<key>iconName</key>
+		<string>food</string>
+	</dict>
+	<dict>
+		<key>itemCategoryName</key>
+		<string>交通</string>
+		<key>hexColorRGB</key>
+		<string>C8DA9C</string>
+		<key>iconName</key>
+		<string>bus</string>
+	</dict>
+	<dict>
+		<key>itemCategoryName</key>
+		<string>娛樂</string>
+		<key>hexColorRGB</key>
+		<string>E59CA7</string>
+		<key>iconName</key>
+		<string>game</string>
+	</dict>
+	<dict>
+		<key>itemCategoryName</key>
+		<string>住宿</string>
+		<key>hexColorRGB</key>
+		<string>BE74A9</string>
+		<key>iconName</key>
+		<string>house</string>
+	</dict>
+	<dict>
+		<key>itemCategoryName</key>
+		<string>採購</string>
+		<key>hexColorRGB</key>
+		<string>ABC2E5</string>
+		<key>iconName</key>
+		<string>shopping</string>
+	</dict>
+	<dict>
+		<key>itemCategoryName</key>
+		<string>禮物</string>
+		<key>hexColorRGB</key>
+		<string>7BBEB8</string>
+		<key>iconName</key>
+		<string>gift</string>
+	</dict>
+	<dict>
+		<key>itemCategoryName</key>
+		<string>未分類</string>
+		<key>hexColorRGB</key>
+		<string>FFFFFF</string>
+		<key>iconName</key>
+		<string></string>
+	</dict>
+</array>
+</plist>
