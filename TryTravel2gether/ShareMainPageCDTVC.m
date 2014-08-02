@@ -14,12 +14,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *tripName;
 @property (weak, nonatomic) IBOutlet UILabel *tripDate;
 @property (strong,nonatomic)NSDateFormatter * dateFormatter;
+@property BOOL interstitialShow;
 @end
 
 @implementation ShareMainPageCDTVC
 @synthesize managedObjectContext=_managedObjectContext;
 @synthesize fetchedResultsController=_fetchedResultsController;
 @synthesize currentTrip=_currentTrip;
+@synthesize interstitialShow = _interstitialShow;
 
 - (void)viewDidLoad
 {
@@ -36,6 +38,8 @@
     
     //-----設定下一頁時的back button的字（避免本頁的title太長）-----------
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"ShareMain" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
+    
 }
 
 
@@ -49,6 +53,7 @@
     NSLog(@"Failed to receive ad with error: %@", [error localizedFailureReason]);
 }
 
+
 #pragma mark GADRequest generation
 - (GADRequest *)request {
     GADRequest *request = [GADRequest request];
@@ -58,17 +63,29 @@
     request.testDevices = @[
                             // TODO: Add your device/simulator test identifiers here. Your device identifier is printed to
                             // the console when the app is launched.
-                            GAD_SIMULATOR_ID,@"cdd84c3116ff45f45c60b034313f9e568762647c"
+                            GAD_SIMULATOR_ID
                             ];
     return request;
 }
+
+
+
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    //-----google AdMob插頁廣告----------
-    _interstitial = [[GADInterstitial alloc] init];
-    _interstitial.delegate = self;
-    _interstitial.adUnitID = @"ca-app-pub-1412142430031740/6151567713";
-    [_interstitial loadRequest:[self request]];
+    
+
+    if (!self.interstitialShow) {
+        //-----google AdMob插頁廣告----------
+        _interstitial = [[GADInterstitial alloc] init];
+        _interstitial.delegate = self;
+        _interstitial.adUnitID = @"ca-app-pub-1412142430031740/6151567713";
+        [_interstitial loadRequest:[self request]];
+        self.interstitialShow = TRUE;
+    }else{
+       self.interstitialShow = FALSE;
+    }
+
     
     if (!self.currentTrip) {
         self.currentTrip=[self getDefaultTrip];
@@ -77,6 +94,7 @@
     
     [self setupFetchedResultController];
 }
+
 
 #pragma mark - FetchedResultsController
 
