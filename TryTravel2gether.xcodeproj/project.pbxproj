@@ -63,8 +63,6 @@
 		C9697B1C18FD39F9006148E0 /* SettingMenuRVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9697B1B18FD39F9006148E0 /* SettingMenuRVC.m */; };
 		C96AC7B318F10EBB0037DA8B /* AddCategoryTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C96AC7B218F10EBB0037DA8B /* AddCategoryTVC.m */; };
 		C96AC7B618F24D410037DA8B /* SelectCategoryCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C96AC7B518F24D410037DA8B /* SelectCategoryCDTVC.m */; };
-		C96F0616190B92AD0072899E /* Currency.plist in Resources */ = {isa = PBXBuildFile; fileRef = C96F0615190B92AD0072899E /* Currency.plist */; };
-		C96F0618190BD34D0072899E /* ItemCategory.plist in Resources */ = {isa = PBXBuildFile; fileRef = C96F0617190BD34D0072899E /* ItemCategory.plist */; };
 		C97365F218E6EA170060583A /* ItemsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C97365F118E6EA170060583A /* ItemsCDTVC.m */; };
 		C977812C19123298008F07F9 /* CatInTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = C977812B19123298008F07F9 /* CatInTrip.m */; };
 		C977813519123299008F07F9 /* Receipt.m in Sources */ = {isa = PBXBuildFile; fileRef = C977813419123299008F07F9 /* Receipt.m */; };
@@ -73,6 +71,8 @@
 		C977815619129D9E008F07F9 /* Itemcategory+Colorful.m in Sources */ = {isa = PBXBuildFile; fileRef = C977815519129D9E008F07F9 /* Itemcategory+Colorful.m */; };
 		C977815919129DFB008F07F9 /* Itemcategory.m in Sources */ = {isa = PBXBuildFile; fileRef = C977815819129DFB008F07F9 /* Itemcategory.m */; };
 		C977815C19129DFC008F07F9 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = C977815B19129DFC008F07F9 /* Group.m */; };
+		C9789D90198BB37A00C4B1E6 /* Currency.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9789D92198BB37A00C4B1E6 /* Currency.plist */; };
+		C9789D94198BB98100C4B1E6 /* ItemCategory.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9789D96198BB98100C4B1E6 /* ItemCategory.plist */; };
 		C97DAE6819135626009B7E6C /* Photo+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = C97DAE6719135626009B7E6C /* Photo+Image.m */; };
 		C97DAE6B19136FAA009B7E6C /* Receipt+Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = C97DAE6A19136FAA009B7E6C /* Receipt+Photo.m */; };
 		C980686718E0B4C200841064 /* ReceiptDetailTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C980686618E0B4C200841064 /* ReceiptDetailTVC.m */; };
@@ -235,8 +235,6 @@
 		C96AC7B218F10EBB0037DA8B /* AddCategoryTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCategoryTVC.m; sourceTree = "<group>"; };
 		C96AC7B418F24D410037DA8B /* SelectCategoryCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCategoryCDTVC.h; sourceTree = "<group>"; };
 		C96AC7B518F24D410037DA8B /* SelectCategoryCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCategoryCDTVC.m; sourceTree = "<group>"; };
-		C96F0615190B92AD0072899E /* Currency.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Currency.plist; sourceTree = "<group>"; };
-		C96F0617190BD34D0072899E /* ItemCategory.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ItemCategory.plist; sourceTree = "<group>"; };
 		C97365F018E6EA170060583A /* ItemsCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsCDTVC.h; sourceTree = "<group>"; };
 		C97365F118E6EA170060583A /* ItemsCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsCDTVC.m; sourceTree = "<group>"; };
 		C9778129191228CC008F07F9 /* Model 5_ColorAndPhotos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 5_ColorAndPhotos.xcdatamodel"; sourceTree = "<group>"; };
@@ -254,6 +252,13 @@
 		C977815819129DFB008F07F9 /* Itemcategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Itemcategory.m; sourceTree = "<group>"; };
 		C977815A19129DFC008F07F9 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		C977815B19129DFC008F07F9 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		C9789D8D198BB28600C4B1E6 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		C9789D8E198BB28600C4B1E6 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		C9789D8F198BB28600C4B1E6 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		C9789D91198BB37A00C4B1E6 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "zh-Hant"; path = "zh-Hant.lproj/Currency.plist"; sourceTree = "<group>"; };
+		C9789D97198BB98F00C4B1E6 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "zh-Hant"; path = "zh-Hant.lproj/ItemCategory.plist"; sourceTree = "<group>"; };
+		C9789D98198BFEDA00C4B1E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Currency.plist; sourceTree = "<group>"; };
+		C9789D99198BFEE700C4B1E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/ItemCategory.plist; sourceTree = "<group>"; };
 		C97DAE6619135626009B7E6C /* Photo+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Photo+Image.h"; sourceTree = "<group>"; };
 		C97DAE6719135626009B7E6C /* Photo+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Photo+Image.m"; sourceTree = "<group>"; };
 		C97DAE6919136FAA009B7E6C /* Receipt+Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Receipt+Photo.h"; sourceTree = "<group>"; };
@@ -280,7 +285,7 @@
 		C9C6258118F67A7800026CFA /* ItemDetailTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDetailTVC.h; sourceTree = "<group>"; };
 		C9C6258218F67A7800026CFA /* ItemDetailTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemDetailTVC.m; sourceTree = "<group>"; };
 		C9D28ADB18DFFFC200304370 /* Model 4_ItemCategoryGuyGroup.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 4_ItemCategoryGuyGroup.xcdatamodel"; sourceTree = "<group>"; };
-		C9DB0000186B187D00F3B008 /* TryTravel2gether.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TryTravel2gether.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9DB0000186B187D00F3B008 /* Travel2gether.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Travel2gether.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9DB0003186B187D00F3B008 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C9DB0005186B187D00F3B008 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C9DB0007186B187D00F3B008 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -454,8 +459,8 @@
 		C96F0614190B926C0072899E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				C96F0615190B92AD0072899E /* Currency.plist */,
-				C96F0617190BD34D0072899E /* ItemCategory.plist */,
+				C9789D92198BB37A00C4B1E6 /* Currency.plist */,
+				C9789D96198BB98100C4B1E6 /* ItemCategory.plist */,
 				C95C792919279DBB00F073EF /* testMergeFrom.plist */,
 			);
 			name = Resource;
@@ -500,7 +505,7 @@
 		C9DB0001186B187D00F3B008 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C9DB0000186B187D00F3B008 /* TryTravel2gether.app */,
+				C9DB0000186B187D00F3B008 /* Travel2gether.app */,
 				C9DB0021186B187E00F3B008 /* TryTravel2getherTests.xctest */,
 			);
 			name = Products;
@@ -741,7 +746,6 @@
 				C9DBFFFC186B187D00F3B008 /* Sources */,
 				C9DBFFFD186B187D00F3B008 /* Frameworks */,
 				C9DBFFFE186B187D00F3B008 /* Resources */,
-				BF744919196E721100515C63 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -749,7 +753,7 @@
 			);
 			name = TryTravel2gether;
 			productName = TryTravel2gether;
-			productReference = C9DB0000186B187D00F3B008 /* TryTravel2gether.app */;
+			productReference = C9DB0000186B187D00F3B008 /* Travel2gether.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -777,6 +781,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hant",
 			);
 			mainGroup = C9DBFFF7186B187D00F3B008;
 			productRefGroup = C9DB0001186B187D00F3B008 /* Products */;
@@ -807,8 +812,8 @@
 				BF88EBDB19431B6E006E3E60 /* README.txt in Resources */,
 				C95C792A19279DBB00F073EF /* testMergeFrom.plist in Resources */,
 				C9C4098418E8758900E1F3FE /* NWCustCellTitleSubDetail.xib in Resources */,
-				C96F0618190BD34D0072899E /* ItemCategory.plist in Resources */,
-				C96F0616190B92AD0072899E /* Currency.plist in Resources */,
+				C9789D94198BB98100C4B1E6 /* ItemCategory.plist in Resources */,
+				C9789D90198BB37A00C4B1E6 /* Currency.plist in Resources */,
 				C9DB000E186B187E00F3B008 /* InfoPlist.strings in Resources */,
 				C903A89B18D46D76009708C6 /* Images.xcassets in Resources */,
 				C9DB0017186B187E00F3B008 /* Main.storyboard in Resources */,
@@ -816,22 +821,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		BF744919196E721100515C63 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export CODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate\nif [ \"${PLATFORM_NAME}\" == \"iphoneos\" ] || [ \"${PLATFORM_NAME}\" == \"ipados\" ]; then\n/Applications/Xcode.app/Contents/Developer/iphoneentitlements/gen_entitlements.py \"my.company.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\ncodesign -f -s \"iPhone Developer\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\nfi";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C9DB001D186B187E00F3B008 /* Sources */ = {
@@ -933,10 +922,29 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		C9789D92198BB37A00C4B1E6 /* Currency.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9789D91198BB37A00C4B1E6 /* zh-Hant */,
+				C9789D98198BFEDA00C4B1E6 /* Base */,
+			);
+			name = Currency.plist;
+			sourceTree = "<group>";
+		};
+		C9789D96198BB98100C4B1E6 /* ItemCategory.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9789D97198BB98F00C4B1E6 /* zh-Hant */,
+				C9789D99198BFEE700C4B1E6 /* Base */,
+			);
+			name = ItemCategory.plist;
+			sourceTree = "<group>";
+		};
 		C9DB000C186B187E00F3B008 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				C9DB000D186B187E00F3B008 /* en */,
+				C9789D8E198BB28600C4B1E6 /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -945,6 +953,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				C9DB0016186B187E00F3B008 /* Base */,
+				C9789D8D198BB28600C4B1E6 /* zh-Hant */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -953,6 +962,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				C9DB002C186B187E00F3B008 /* en */,
+				C9789D8F198BB28600C4B1E6 /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

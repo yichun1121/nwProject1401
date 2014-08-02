@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+<dict><key>currencyName</key><string>New Taiwan dollar</string><key>currencySign</key><string>$</string><key>currencyStandardSign</key><string>TWD</string></dict>
+<dict><key>currencyName</key><string>Japanese yen</string><key>currencySign</key><string>¥</string><key>currencyStandardSign</key><string>JPY</string></dict>
+<dict><key>currencyName</key><string>United States dollar</string><key>currencySign</key><string>$</string><key>currencyStandardSign</key><string>USD</string></dict>
+<dict><key>currencyName</key><string>Hong Kong dollar</string><key>currencySign</key><string>$</string><key>currencyStandardSign</key><string>HKD</string></dict>
+<dict><key>currencyName</key><string>British pound</string><key>currencySign</key><string>£</string><key>currencyStandardSign</key><string>GBP</string></dict>
+<dict><key>currencyName</key><string>Australian dollar</string><key>currencySign</key><string>$</string><key>currencyStandardSign</key><string>AUD</string></dict>
+<dict><key>currencyName</key><string>Canadian dollar</string><key>currencySign</key><string>$</string><key>currencyStandardSign</key><string>CAD</string></dict>
+<dict><key>currencyName</key><string>Singapore dollar</string><key>currencySign</key><string>$</string><key>currencyStandardSign</key><string>SGD</string></dict>
+<dict><key>currencyName</key><string>Swiss franc</string><key>currencySign</key><string>Fr</string><key>currencyStandardSign</key><string>CHF</string></dict>
+<dict><key>currencyName</key><string>South African rand</string><key>currencySign</key><string>R</string><key>currencyStandardSign</key><string>ZAR</string></dict>
+<dict><key>currencyName</key><string>Swedish krona</string><key>currencySign</key><string>kr</string><key>currencyStandardSign</key><string>SEK</string></dict>
+<dict><key>currencyName</key><string>New Zealand dollar</string><key>currencySign</key><string>$</string><key>currencyStandardSign</key><string>NZD</string></dict>
+<dict><key>currencyName</key><string>Thai baht</string><key>currencySign</key><string>฿</string><key>currencyStandardSign</key><string>THB</string></dict>
+<dict><key>currencyName</key><string>Philippine peso</string><key>currencySign</key><string>₱</string><key>currencyStandardSign</key><string>PHP</string></dict>
+<dict><key>currencyName</key><string>Indonesian rupiah</string><key>currencySign</key><string>Rp</string><key>currencyStandardSign</key><string>IDR</string></dict>
+<dict><key>currencyName</key><string>Euro</string><key>currencySign</key><string>€</string><key>currencyStandardSign</key><string>EUR</string></dict>
+<dict><key>currencyName</key><string>South Korean won</string><key>currencySign</key><string>₩</string><key>currencyStandardSign</key><string>KRW</string></dict>
+<dict><key>currencyName</key><string>Vietnamese đồng</string><key>currencySign</key><string>₫</string><key>currencyStandardSign</key><string>VND</string></dict>
+<dict><key>currencyName</key><string>Malaysian ringgit</string><key>currencySign</key><string>RM</string><key>currencyStandardSign</key><string>MYR</string></dict>
+<dict><key>currencyName</key><string>Chinese yuan</string><key>currencySign</key><string>元</string><key>currencyStandardSign</key><string>CNY</string></dict>
+</array>
+</plist>
