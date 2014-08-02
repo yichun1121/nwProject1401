@@ -20,6 +20,7 @@
 		1863F9CD190B681D0033AECF /* AddGroupTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1863F9CC190B681D0033AECF /* AddGroupTVC.m */; };
 		1863F9D0190BAFC80033AECF /* Trip+Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 1863F9CF190BAFC80033AECF /* Trip+Group.m */; };
 		1869ACF31914F19600BF8547 /* NWCustCellSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 1869ACF21914F19600BF8547 /* NWCustCellSwitch.m */; };
+		186A2CBE198B79DA00C01B74 /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 186A2CBD198B79DA00C01B74 /* Calculator.m */; };
 		186C1B281927378E00C87DE7 /* GuyInTrip+Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C1B271927378E00C87DE7 /* GuyInTrip+Group.m */; };
 		186C1B2B1927395D00C87DE7 /* Group+Special.m in Sources */ = {isa = PBXBuildFile; fileRef = 186C1B2A1927395D00C87DE7 /* Group+Special.m */; };
 		18B8143F18E6E9740089BF0B /* AddGuyTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B8143E18E6E9740089BF0B /* AddGuyTVC.m */; };
@@ -143,6 +144,8 @@
 		1863F9CF190BAFC80033AECF /* Trip+Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Trip+Group.m"; sourceTree = "<group>"; };
 		1869ACF11914F19600BF8547 /* NWCustCellSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWCustCellSwitch.h; path = NWCust/NWCustCellSwitch.h; sourceTree = "<group>"; };
 		1869ACF21914F19600BF8547 /* NWCustCellSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWCustCellSwitch.m; path = NWCust/NWCustCellSwitch.m; sourceTree = "<group>"; };
+		186A2CBC198B79DA00C01B74 /* Calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculator.h; sourceTree = "<group>"; };
+		186A2CBD198B79DA00C01B74 /* Calculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Calculator.m; sourceTree = "<group>"; };
 		186C1B261927378E00C87DE7 /* GuyInTrip+Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GuyInTrip+Group.h"; path = "../GuyInTrip+Group.h"; sourceTree = "<group>"; };
 		186C1B271927378E00C87DE7 /* GuyInTrip+Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GuyInTrip+Group.m"; path = "../GuyInTrip+Group.m"; sourceTree = "<group>"; };
 		186C1B291927395D00C87DE7 /* Group+Special.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Group+Special.h"; sourceTree = "<group>"; };
@@ -422,6 +425,8 @@
 				04A04664188A4B5D00D98809 /* AddReceiptTVC.m */,
 				C980686518E0B4C200841064 /* ReceiptDetailTVC.h */,
 				C980686618E0B4C200841064 /* ReceiptDetailTVC.m */,
+				186A2CBC198B79DA00C01B74 /* Calculator.h */,
+				186A2CBD198B79DA00C01B74 /* Calculator.m */,
 			);
 			name = Receipt;
 			sourceTree = "<group>";
@@ -861,6 +866,7 @@
 				C96AC7B318F10EBB0037DA8B /* AddCategoryTVC.m in Sources */,
 				1863F9D0190BAFC80033AECF /* Trip+Group.m in Sources */,
 				C9F64D3618E709A00005ED24 /* NWCustCellTitleSubDetail.m in Sources */,
+				186A2CBE198B79DA00C01B74 /* Calculator.m in Sources */,
 				18B8144218E6E9B80089BF0B /* GuysCDTVC.m in Sources */,
 				C980686718E0B4C200841064 /* ReceiptDetailTVC.m in Sources */,
 				C9DB003E186B197400F3B008 /* TourModel.xcdatamodeld in Sources */,

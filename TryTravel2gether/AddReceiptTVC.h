@@ -11,6 +11,7 @@
 #import "Day.h"
 #import "TripDaysTVC.h"
 #import "CurrencyCDTVC.h"
+#import "Calculator.h"
 
 @class AddReceiptTVC;
 
@@ -20,7 +21,7 @@
 
 @end
 
-@interface AddReceiptTVC : UITableViewController<UITextFieldDelegate,TripDaysTVCDelegate,CurrencyCDTVCDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIScrollViewDelegate>
+@interface AddReceiptTVC : UITableViewController<UITextFieldDelegate,TripDaysTVCDelegate,CurrencyCDTVCDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIScrollViewDelegate,CalculatorDelegate>
 
 @property (weak,nonatomic)id <AddReceiptTVCDelegate> delegate;
 @property (strong,nonatomic)NSManagedObjectContext *managedObjectContext;
@@ -34,8 +35,8 @@
 
 @property (strong,nonatomic) NSString *selectedDayString;
 @property (strong,nonatomic) Trip *currentTrip;
-
-
+//計算機算出來的結果
+@property(strong, nonatomic) NSNumber *result;
 -(IBAction)save:(id)sender;
 
 #pragma mark - 新增加的內容for picker action

@@ -30,6 +30,10 @@
 @property (nonatomic)  UIImagePickerController *imagePicker;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic)  NSMutableArray *images;
+
+@property (weak, nonatomic) IBOutlet UIButton *showResult;
+@property (strong,nonatomic)Calculator *calculator;
+@property BOOL isCalculatorOpened;
 @end
 
 @implementation AddReceiptTVC
@@ -40,6 +44,19 @@
 @synthesize dateTimeFormatter=_dateTimeFormatter;
 @synthesize imagePicker=_imagePicker;
 @synthesize images=_images;
+@synthesize calculator=_calculator;
+@synthesize result=_result;
+@synthesize showResult;
+
+-(Calculator *)calculator{
+    if(_calculator==nil){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        _calculator=[storyboard instantiateViewControllerWithIdentifier:@"calculator"];
+        _calculator.delegate=self;
+        [_calculator setModalPresentationStyle:UIModalPresentationFullScreen];
+    }
+    return _calculator;
+}
 
 
 - (void)viewDidLoad
@@ -64,9 +81,36 @@
     //設定頁面初始的顯示狀態
     [self showDefaultDateValue];
     [self setAllCurrencyWithCurrency:self.currentTrip.mainCurrency];
+    self.result=0;
+    [self.showResult setTitle:@"0" forState:UIControlStateNormal];
     
 
 }
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (!self.isCalculatorOpened) {
+        [self showCalculator];
+        self.isCalculatorOpened=YES;
+    }else{
+        self.isCalculatorOpened=NO;
+    }
+}
+
+/*!show計算機
+ */
+-(void)showCalculator{
+    [self presentViewController:self.calculator animated:YES completion:nil];
+    
+    
+}
+- (IBAction)click:(UIButton *)sender {
+    [self showCalculator];
+    self.isCalculatorOpened=YES;
+    
+}
+
 /*! 顯示預設日期，如果沒有指定的話預設顯示當天的Date和Time
  */
 -(void)showDefaultDateValue{
@@ -396,6 +440,16 @@
     [controller.navigationController popViewControllerAnimated:YES];
 }
 
+-(void)theCancelOrOkButtonOnCalcultorWasTapped:(Calculator *)controller{
+    //TODO:controller和self怎麼沒差別
+    [controller dismissViewControllerAnimated:YES completion:Nil];
+    
+    if ([controller.btnCurrentTitle isEqualToString:@"Ok"]) {
+        self.result=controller.result;
+        [self.showResult setTitle:[NSString stringWithFormat:@"%@",self.result] forState:UIControlStateNormal];
+    
+    }
+}
 
 
 @end
