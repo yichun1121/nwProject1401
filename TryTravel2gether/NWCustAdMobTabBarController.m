@@ -80,8 +80,7 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
     request.testDevices = @[
                             // TODO: Add your device/simulator test identifiers here. Your device identifier is printed to
                             // the console when the app is launched.
-                            GAD_SIMULATOR_ID,@"cdd84c3116ff45f45c60b034313f9e568762647c"
-                            ];
+                            GAD_SIMULATOR_ID                            ];
     return request;
 }
 
