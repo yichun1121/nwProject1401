@@ -1,21 +1,21 @@
 
 /* Class = "IBUINavigationItem"; title = "Add Guy"; ObjectID = "03x-bS-cjp"; */
-"03x-bS-cjp.title" = "Add Guy1";
+"03x-bS-cjp.title" = "新增參與者";
 
 /* Class = "IBUINavigationItem"; title = "Days"; ObjectID = "0KB-qW-TBK"; */
 "0KB-qW-TBK.title" = "Days1";
 
 /* Class = "IBUITableViewSection"; headerTitle = "New Day"; ObjectID = "0pq-SU-wkf"; */
-"0pq-SU-wkf.headerTitle" = "New Day1";
+"0pq-SU-wkf.headerTitle" = "新的一天";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "0sb-6w-4Ex"; */
 "0sb-6w-4Ex.text" = "Title1";
 
 /* Class = "IBUINavigationItem"; title = "Add Receipt"; ObjectID = "1Kp-jp-a6m"; */
-"1Kp-jp-a6m.title" = "Add Receipt1";
+"1Kp-jp-a6m.title" = "新增收據";
 
 /* Class = "IBUINavigationItem"; title = "Owner"; ObjectID = "1O6-2s-lvK"; */
-"1O6-2s-lvK.title" = "Owner1";
+"1O6-2s-lvK.title" = "選擇歸屬";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "1QV-4V-Zc1"; */
 "1QV-4V-Zc1.text" = "Title2";
@@ -27,7 +27,7 @@
 "22b-OU-3Gn.title" = "Item List1";
 
 /* Class = "IBUITableViewSection"; headerTitle = "Trip Info"; ObjectID = "2Se-Op-6hh"; */
-"2Se-Op-6hh.headerTitle" = "Trip Info1";
+"2Se-Op-6hh.headerTitle" = "旅遊資訊";
 
 /* Class = "IBUINavigationItem"; title = "Categories"; ObjectID = "2bz-fI-Tl1"; */
 "2bz-fI-Tl1.title" = "消費分類";
@@ -36,7 +36,7 @@
 "2dC-dZ-hEA.text" = "Detail2";
 
 /* Class = "IBUITableViewSection"; headerTitle = "New Receipt"; ObjectID = "2u4-xm-HHm"; */
-"2u4-xm-HHm.headerTitle" = "New Receipt1";
+"2u4-xm-HHm.headerTitle" = "新收據";
 
 /* Class = "IBUITableViewController"; title = "Sidebar"; ObjectID = "3Qd-4e-IT5"; */
 "3Qd-4e-IT5.title" = "Sidebar1";
@@ -45,10 +45,10 @@
 "3UO-wm-E9W.text" = "Detail3";
 
 /* Class = "IBUILabel"; text = "Starts"; ObjectID = "3lm-t0-QWZ"; */
-"3lm-t0-QWZ.text" = "Starts1";
+"3lm-t0-QWZ.text" = "開始日期";
 
 /* Class = "IBUILabel"; text = "Date"; ObjectID = "40j-2a-3Qu"; */
-"40j-2a-3Qu.text" = "Date1";
+"40j-2a-3Qu.text" = "日期";
 
 /* Class = "IBUITextField"; text = "1"; ObjectID = "4Ch-8H-Q0J"; */
 "4Ch-8H-Q0J.text" = "1";
@@ -57,10 +57,10 @@
 "4Vz-8F-1WO.text" = "Detail4";
 
 /* Class = "IBUINavigationItem"; title = "Detail"; ObjectID = "4dU-TT-6Q9"; */
-"4dU-TT-6Q9.title" = "Detail5";
+"4dU-TT-6Q9.title" = "編輯旅程";
 
 /* Class = "IBUILabel"; text = "Date"; ObjectID = "5AL-Tu-59E"; */
-"5AL-Tu-59E.text" = "Date2";
+"5AL-Tu-59E.text" = "消費日期";
 
 /* Class = "IBUINavigationItem"; title = "Settings"; ObjectID = "5ff-I3-WWn"; */
 "5ff-I3-WWn.title" = "Settings1";
@@ -69,13 +69,13 @@
 "5hg-Xd-i9g.text" = "Detail6";
 
 /* Class = "IBUILabel"; text = "Time"; ObjectID = "5mp-uu-722"; */
-"5mp-uu-722.text" = "Time1";
+"5mp-uu-722.text" = "消費時間";
 
 /* Class = "IBUILabel"; text = "Contact"; ObjectID = "6G0-Yf-74d"; */
 "6G0-Yf-74d.text" = "Contact1";
 
 /* Class = "IBUILabel"; text = "Trips"; ObjectID = "6Xp-8X-agr"; */
-"6Xp-8X-agr.text" = "Trips1";
+"6Xp-8X-agr.text" = "旅遊列表";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "78B-ux-Y33"; */
 "78B-ux-Y33.text" = "Title3";
@@ -84,61 +84,61 @@
 "80j-vh-gHd.text" = "Detail7";
 
 /* Class = "IBUILabel"; text = "Description"; ObjectID = "81l-vK-1Qs"; */
-"81l-vK-1Qs.text" = "Description1";
+"81l-vK-1Qs.text" = "簡要說明";
 
 /* Class = "IBUILabel"; text = "0"; ObjectID = "84x-tc-Wvl"; */
 "84x-tc-Wvl.text" = "0";
 
 /* Class = "IBUIButton"; normalTitle = "Add Guy"; ObjectID = "85i-ge-79Z"; */
-"85i-ge-79Z.normalTitle" = "Add Guy2";
+"85i-ge-79Z.normalTitle" = "新增參與者";
 
 /* Class = "IBUILabel"; text = "Day Result"; ObjectID = "8oL-ZJ-1Mj"; */
 "8oL-ZJ-1Mj.text" = "Day Result1";
 
 /* Class = "IBUILabel"; text = "Currency"; ObjectID = "A66-Cw-JWK"; */
-"A66-Cw-JWK.text" = "Currency1";
+"A66-Cw-JWK.text" = "收據幣別";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "BBA-hF-jZO"; */
 "BBA-hF-jZO.text" = "Title4";
 
 /* Class = "IBUILabel"; text = "Remaining"; ObjectID = "BSN-sh-vqs"; */
-"BSN-sh-vqs.text" = "Remaining1";
+"BSN-sh-vqs.text" = "未設定餘額";
 
 /* Class = "IBUILabel"; text = "Named"; ObjectID = "BdY-TA-l5W"; */
-"BdY-TA-l5W.text" = "Named1";
+"BdY-TA-l5W.text" = "名稱";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "Bpm-IE-yfY"; */
 "Bpm-IE-yfY.text" = "Title5";
 
 /* Class = "IBUITableViewSection"; headerTitle = "Owner"; ObjectID = "ByZ-ek-Db4"; */
-"ByZ-ek-Db4.headerTitle" = "Owner2";
+"ByZ-ek-Db4.headerTitle" = "歸屬設定";
 
 /* Class = "IBUILabel"; text = "Owner Group"; ObjectID = "Bzp-5k-pbH"; */
-"Bzp-5k-pbH.text" = "Owner Group";
+"Bzp-5k-pbH.text" = "Owner Group1";
 
 /* Class = "IBUINavigationItem"; title = "Guys"; ObjectID = "DMq-bI-8hG"; */
-"DMq-bI-8hG.title" = "Guys";
+"DMq-bI-8hG.title" = "系統參與者列表";
 
 /* Class = "IBUINavigationItem"; title = "Guys In Trip"; ObjectID = "DUf-Aj-clU"; */
-"DUf-Aj-clU.title" = "Guys In Trip";
+"DUf-Aj-clU.title" = "本旅程參與者";
 
 /* Class = "IBUILabel"; text = "Date"; ObjectID = "DmP-02-cd7"; */
-"DmP-02-cd7.text" = "Date3";
+"DmP-02-cd7.text" = "選擇日期";
 
 /* Class = "IBUILabel"; text = "Unit Price"; ObjectID = "Dsj-tm-2cw"; */
-"Dsj-tm-2cw.text" = "Unit Price";
+"Dsj-tm-2cw.text" = "單價";
 
 /* Class = "IBUIButton"; normalTitle = "Add Trip"; ObjectID = "Dyu-nU-39B"; */
-"Dyu-nU-39B.normalTitle" = "Add Trip";
+"Dyu-nU-39B.normalTitle" = "新增旅程";
 
 /* Class = "IBUILabel"; text = "Categories"; ObjectID = "E5K-Lb-9HX"; */
 "E5K-Lb-9HX.text" = "消費分類";
 
 /* Class = "IBUITabBarItem"; title = "Share"; ObjectID = "ELt-D4-hN9"; */
-"ELt-D4-hN9.title" = "Share";
+"ELt-D4-hN9.title" = "分攤計算";
 
 /* Class = "IBUILabel"; text = "Subtitle"; ObjectID = "FNa-6f-KEa"; */
-"FNa-6f-KEa.text" = "Subtitle";
+"FNa-6f-KEa.text" = "Subtitle1";
 
 /* Class = "IBUILabel"; text = "0"; ObjectID = "GEW-fG-DtC"; */
 "GEW-fG-DtC.text" = "0";
@@ -147,49 +147,49 @@
 "GLf-9h-1RC.text" = "Detail8";
 
 /* Class = "IBUILabel"; text = "Owner Group"; ObjectID = "Gls-Wr-oFt"; */
-"Gls-Wr-oFt.text" = "Owner Group";
+"Gls-Wr-oFt.text" = "Owner Group2";
 
 /* Class = "IBUIButton"; normalTitle = "Add Day"; ObjectID = "GtX-If-pfV"; */
-"GtX-If-pfV.normalTitle" = "Add Day";
+"GtX-If-pfV.normalTitle" = "新增旅遊日";
 
 /* Class = "IBUINavigationItem"; title = "Share"; ObjectID = "HDn-rJ-ffc"; */
-"HDn-rJ-ffc.title" = "Share";
+"HDn-rJ-ffc.title" = "Share2";
 
 /* Class = "IBUILabel"; text = "Uncategorized"; ObjectID = "HXO-Rt-qOj"; */
-"HXO-Rt-qOj.text" = "Uncategorized";
+"HXO-Rt-qOj.text" = "未設定消費分類";
 
 /* Class = "IBUINavigationItem"; title = "Trip Days"; ObjectID = "HhL-ww-W80"; */
-"HhL-ww-W80.title" = "Trip Days";
+"HhL-ww-W80.title" = "旅遊日列表";
 
 /* Class = "IBUILabel"; text = "Named"; ObjectID = "HuK-ks-5FO"; */
-"HuK-ks-5FO.text" = "Named2";
+"HuK-ks-5FO.text" = "名稱";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "HzE-SU-hk3"; */
 "HzE-SU-hk3.text" = "Title6";
 
 /* Class = "IBUILabel"; text = "Trip Name"; ObjectID = "IQf-3b-ppn"; */
-"IQf-3b-ppn.text" = "Trip Name";
+"IQf-3b-ppn.text" = "Trip Name1";
 
 /* Class = "IBUIButton"; normalTitle = "Add Item"; ObjectID = "Iak-hL-pUF"; */
-"Iak-hL-pUF.normalTitle" = "Add Item";
+"Iak-hL-pUF.normalTitle" = "新增商品明細";
 
 /* Class = "IBUINavigationItem"; title = "Select Guys"; ObjectID = "Iy2-Sb-AX8"; */
-"Iy2-Sb-AX8.title" = "Select Guys";
+"Iy2-Sb-AX8.title" = "選擇參與者";
 
 /* Class = "IBUINavigationItem"; title = "Group Detail"; ObjectID = "J44-cZ-Bev"; */
-"J44-cZ-Bev.title" = "Group Detail";
+"J44-cZ-Bev.title" = "1Group Detail";
 
 /* Class = "IBUILabel"; text = "Uncategorized"; ObjectID = "JEV-zI-ZDj"; */
-"JEV-zI-ZDj.text" = "Uncategorized";
+"JEV-zI-ZDj.text" = "Uncategorized2";
 
 /* Class = "IBUINavigationItem"; title = "Item Detail"; ObjectID = "JRU-MR-9L5"; */
-"JRU-MR-9L5.title" = "Item Detail";
+"JRU-MR-9L5.title" = "商品編輯";
 
 /* Class = "IBUITableViewSection"; headerTitle = "Detail"; ObjectID = "JTN-eb-4NW"; */
-"JTN-eb-4NW.headerTitle" = "Detail9";
+"JTN-eb-4NW.headerTitle" = "商品資訊";
 
 /* Class = "IBUILabel"; text = "Name"; ObjectID = "JZo-ai-nIx"; */
-"JZo-ai-nIx.text" = "Name";
+"JZo-ai-nIx.text" = "姓名";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "M3Z-ko-hho"; */
 "M3Z-ko-hho.text" = "Title7";
@@ -198,22 +198,22 @@
 "N03-8R-Qe3.text" = "Detail10";
 
 /* Class = "IBUITableViewSection"; headerTitle = "Detail"; ObjectID = "N3N-Ax-zrD"; */
-"N3N-Ax-zrD.headerTitle" = "Detail11";
+"N3N-Ax-zrD.headerTitle" = "商品資訊";
 
 /* Class = "IBUILabel"; text = "SETTINGS"; ObjectID = "NFb-7i-CK6"; */
-"NFb-7i-CK6.text" = "SETTINGS2";
+"NFb-7i-CK6.text" = "設定";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "O41-Ei-f6a"; */
 "O41-Ei-f6a.text" = "Title8";
 
 /* Class = "IBUIButton"; normalTitle = "Add Group"; ObjectID = "OlY-nI-Zsa"; */
-"OlY-nI-Zsa.normalTitle" = "Add Group";
+"OlY-nI-Zsa.normalTitle" = "新增旅遊群組";
 
 /* Class = "IBUILabel"; text = "Currency"; ObjectID = "Ope-Xp-tpH"; */
-"Ope-Xp-tpH.text" = "Currency2";
+"Ope-Xp-tpH.text" = "收據幣別";
 
 /* Class = "IBUITableViewSection"; headerTitle = "Calculate"; ObjectID = "PBq-Zw-QzL"; */
-"PBq-Zw-QzL.headerTitle" = "Calculate";
+"PBq-Zw-QzL.headerTitle" = "總計";
 
 /* Class = "IBUILabel"; text = "0"; ObjectID = "PZJ-88-aGI"; */
 "PZJ-88-aGI.text" = "0";
@@ -222,76 +222,76 @@
 "QiX-eH-7mW.text" = "2013/10/30~2013/11/21";
 
 /* Class = "IBUINavigationItem"; title = "Trips"; ObjectID = "Qwg-Kk-xiF"; */
-"Qwg-Kk-xiF.title" = "Trips2";
+"Qwg-Kk-xiF.title" = "旅遊列表";
 
 /* Class = "IBUITableViewSection"; headerTitle = "Calculate"; ObjectID = "RX1-F7-IJj"; */
-"RX1-F7-IJj.headerTitle" = "Calculate";
+"RX1-F7-IJj.headerTitle" = "總計";
 
 /* Class = "IBUINavigationItem"; title = "Day Detail"; ObjectID = "Rlc-vY-1Nz"; */
-"Rlc-vY-1Nz.title" = "Day Detail";
+"Rlc-vY-1Nz.title" = "編輯旅遊日";
 
 /* Class = "IBUINavigationItem"; title = "Add Catecory"; ObjectID = "SNy-NJ-73s"; */
-"SNy-NJ-73s.title" = "Add Catecory";
+"SNy-NJ-73s.title" = "新增消費分類";
 
 /* Class = "IBUINavigationItem"; title = "Groups"; ObjectID = "SRw-a2-ROw"; */
-"SRw-a2-ROw.title" = "Groups";
+"SRw-a2-ROw.title" = "旅程群組設定";
 
 /* Class = "IBUILabel"; text = "Ends"; ObjectID = "SXb-Vg-Ex1"; */
-"SXb-Vg-Ex1.text" = "Ends";
+"SXb-Vg-Ex1.text" = "結束日期";
 
 /* Class = "IBUITableViewSection"; headerTitle = "Participant"; ObjectID = "SY1-mx-lGo"; */
-"SY1-mx-lGo.headerTitle" = "Participant";
+"SY1-mx-lGo.headerTitle" = "1Participant";
 
 /* Class = "IBUILabel"; text = "Groups"; ObjectID = "T7v-wk-iE9"; */
-"T7v-wk-iE9.text" = "Groups";
+"T7v-wk-iE9.text" = "群組設定";
 
 /* Class = "IBUILabel"; text = "Subtitle"; ObjectID = "TMH-Ph-N9i"; */
-"TMH-Ph-N9i.text" = "Subtitle";
+"TMH-Ph-N9i.text" = "Subtitle2";
 
 /* Class = "IBUILabel"; text = "Time"; ObjectID = "Tc2-Jd-db9"; */
-"Tc2-Jd-db9.text" = "Time2";
+"Tc2-Jd-db9.text" = "消費時間";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "UNf-S4-joF"; */
 "UNf-S4-joF.text" = "Title9";
 
 /* Class = "IBUILabel"; text = "Item Category"; ObjectID = "URb-rZ-0ph"; */
-"URb-rZ-0ph.text" = "Item Category";
+"URb-rZ-0ph.text" = "1Item Category";
 
 /* Class = "IBUIButton"; normalTitle = "Set Guy"; ObjectID = "V4B-ed-Z8x"; */
-"V4B-ed-Z8x.normalTitle" = "Set Guy";
+"V4B-ed-Z8x.normalTitle" = "設定參與者";
 
 /* Class = "IBUILabel"; text = "Named"; ObjectID = "VBn-zd-2Hu"; */
-"VBn-zd-2Hu.text" = "Named3";
+"VBn-zd-2Hu.text" = "名稱";
 
 /* Class = "IBUILabel"; text = "Main Currency"; ObjectID = "VCV-jk-6LF"; */
-"VCV-jk-6LF.text" = "Main Currency";
+"VCV-jk-6LF.text" = "主要使用貨幣";
 
 /* Class = "IBUILabel"; text = "Qantity"; ObjectID = "VIJ-UO-OpH"; */
-"VIJ-UO-OpH.text" = "Qantity";
+"VIJ-UO-OpH.text" = "數量";
 
 /* Class = "IBUITextField"; text = "1"; ObjectID = "Vq5-Sj-5pC"; */
 "Vq5-Sj-5pC.text" = "1";
 
 /* Class = "IBUIButton"; normalTitle = "Add Category"; ObjectID = "WLf-gy-Q6M"; */
-"WLf-gy-Q6M.normalTitle" = "Add Category";
+"WLf-gy-Q6M.normalTitle" = "新增消費分類";
 
 /* Class = "IBUILabel"; text = "Subtitle"; ObjectID = "WfP-PD-6uV"; */
-"WfP-PD-6uV.text" = "Subtitle";
+"WfP-PD-6uV.text" = "Subtitle3";
 
 /* Class = "IBUILabel"; text = "Subtitle"; ObjectID = "X3C-p0-Jxk"; */
-"X3C-p0-Jxk.text" = "Subtitle";
+"X3C-p0-Jxk.text" = "Subtitle4";
 
 /* Class = "IBUIButton"; normalTitle = "Add Receipt"; ObjectID = "Y9X-Cv-ZW6"; */
-"Y9X-Cv-ZW6.normalTitle" = "Add Receipt2";
+"Y9X-Cv-ZW6.normalTitle" = "新增收據";
 
 /* Class = "IBUINavigationItem"; title = "Add Group"; ObjectID = "YSJ-z0-N6s"; */
-"YSJ-z0-N6s.title" = "Add Group";
+"YSJ-z0-N6s.title" = "新增旅遊群組";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "YY0-YL-I8P"; */
 "YY0-YL-I8P.text" = "Title10";
 
 /* Class = "IBUILabel"; text = "Named"; ObjectID = "Yxl-uc-hBV"; */
-"Yxl-uc-hBV.text" = "Named4";
+"Yxl-uc-hBV.text" = "名稱";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "Z03-6h-UZk"; */
 "Z03-6h-UZk.text" = "Title11";
@@ -303,22 +303,22 @@
 "Zs0-ZY-d4n.text" = "Detail12";
 
 /* Class = "IBUITableViewSection"; headerTitle = "Participants"; ObjectID = "b9K-bZ-la9"; */
-"b9K-bZ-la9.headerTitle" = "Participants";
+"b9K-bZ-la9.headerTitle" = "參與者";
 
 /* Class = "IBUITableViewSection"; headerTitle = "New Receipt"; ObjectID = "bDd-dx-b1r"; */
-"bDd-dx-b1r.headerTitle" = "New Receipt2";
+"bDd-dx-b1r.headerTitle" = "收據資訊";
 
 /* Class = "IBUINavigationItem"; title = "Select a Category"; ObjectID = "bQe-uJ-GM7"; */
-"bQe-uJ-GM7.title" = "Select a Category";
+"bQe-uJ-GM7.title" = "選擇消費分類";
 
 /* Class = "IBUILabel"; text = "Detail"; ObjectID = "bgu-cp-EAw"; */
 "bgu-cp-EAw.text" = "Detail13";
 
 /* Class = "IBUITableViewSection"; headerTitle = "Item Name"; ObjectID = "bpQ-92-5IQ"; */
-"bpQ-92-5IQ.headerTitle" = "Item Name";
+"bpQ-92-5IQ.headerTitle" = "商品名稱";
 
 /* Class = "IBUILabel"; text = "Starts"; ObjectID = "cTb-O1-Fm5"; */
-"cTb-O1-Fm5.text" = "Starts2";
+"cTb-O1-Fm5.text" = "開始日期";
 
 /* Class = "IBUILabel"; text = "Detail"; ObjectID = "cWN-Ji-0cp"; */
 "cWN-Ji-0cp.text" = "Detail14";
@@ -339,13 +339,13 @@
 "eFI-on-RMj.text" = "Day Result2";
 
 /* Class = "IBUIButton"; normalTitle = "Add Guy"; ObjectID = "el6-22-NzE"; */
-"el6-22-NzE.normalTitle" = "Add Guy3";
+"el6-22-NzE.normalTitle" = "新增系統參與者";
 
 /* Class = "IBUIButton"; normalTitle = "Add Category"; ObjectID = "esp-4b-xNE"; */
-"esp-4b-xNE.normalTitle" = "Add Category";
+"esp-4b-xNE.normalTitle" = "新增消費分類";
 
 /* Class = "IBUILabel"; text = "Unit Price"; ObjectID = "ez9-qp-wHZ"; */
-"ez9-qp-wHZ.text" = "Unit Price";
+"ez9-qp-wHZ.text" = "單價";
 
 /* Class = "IBUILabel"; text = "Detail"; ObjectID = "f28-e1-Hx1"; */
 "f28-e1-Hx1.text" = "Detail19";
@@ -354,10 +354,10 @@
 "f8d-F4-lOO.text" = "Detail20";
 
 /* Class = "IBUILabel"; text = "guys"; ObjectID = "fQh-U7-GP8"; */
-"fQh-U7-GP8.text" = "guys";
+"fQh-U7-GP8.text" = "參與者";
 
 /* Class = "IBUILabel"; text = "Named"; ObjectID = "fvQ-aO-NYX"; */
-"fvQ-aO-NYX.text" = "Named5";
+"fvQ-aO-NYX.text" = "名稱";
 
 /* Class = "IBUILabel"; text = "Detail"; ObjectID = "hYR-DJ-80D"; */
 "hYR-DJ-80D.text" = "Detail21";
@@ -366,13 +366,13 @@
 "jHN-ZQ-CQk.text" = "Title13";
 
 /* Class = "IBUITableViewSection"; headerTitle = "New Trip"; ObjectID = "jvh-YY-Zaq"; */
-"jvh-YY-Zaq.headerTitle" = "New Trip";
+"jvh-YY-Zaq.headerTitle" = "新旅程";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "lO6-fW-Fvm"; */
 "lO6-fW-Fvm.text" = "Title14";
 
 /* Class = "IBUITableViewSection"; headerTitle = "Category"; ObjectID = "lvI-Kg-iMs"; */
-"lvI-Kg-iMs.headerTitle" = "Category";
+"lvI-Kg-iMs.headerTitle" = "1Category";
 
 /* Class = "IBUILabel"; text = "Detail"; ObjectID = "mQD-ZY-MgR"; */
 "mQD-ZY-MgR.text" = "Detail22";
@@ -381,19 +381,19 @@
 "ma6-da-bDg.text" = "Detail23";
 
 /* Class = "IBUILabel"; text = "Description"; ObjectID = "mhO-UY-hpY"; */
-"mhO-UY-hpY.text" = "Description2";
+"mhO-UY-hpY.text" = "簡要說明";
 
 /* Class = "IBUILabel"; text = "Qantity"; ObjectID = "n3F-yZ-glf"; */
-"n3F-yZ-glf.text" = "Qantity";
+"n3F-yZ-glf.text" = "數量";
 
 /* Class = "IBUILabel"; text = "Subtitle"; ObjectID = "nWt-nh-HRe"; */
-"nWt-nh-HRe.text" = "Subtitle";
+"nWt-nh-HRe.text" = "Subtitle5";
 
 /* Class = "IBUILabel"; text = "Detail"; ObjectID = "nh1-37-GfQ"; */
 "nh1-37-GfQ.text" = "Detail24";
 
 /* Class = "IBUILabel"; text = "Subtitle"; ObjectID = "nsR-fu-c5Q"; */
-"nsR-fu-c5Q.text" = "Subtitle";
+"nsR-fu-c5Q.text" = "Subtitle6";
 
 /* Class = "IBUILabel"; text = "Detail"; ObjectID = "oR1-OY-smi"; */
 "oR1-OY-smi.text" = "Detail25";
@@ -402,40 +402,40 @@
 "oUa-nA-fP9.text" = "Detail26";
 
 /* Class = "IBUITableViewSection"; headerTitle = "Owner"; ObjectID = "oYx-GT-Hr3"; */
-"oYx-GT-Hr3.headerTitle" = "Owner3";
+"oYx-GT-Hr3.headerTitle" = "歸屬設定";
 
 /* Class = "IBUILabel"; text = "Detail"; ObjectID = "og1-wN-DhY"; */
 "og1-wN-DhY.text" = "Detail27";
 
 /* Class = "IBUINavigationItem"; title = "Receipt Detail"; ObjectID = "pYm-PD-mAd"; */
-"pYm-PD-mAd.title" = "Receipt Detail";
+"pYm-PD-mAd.title" = "編輯收據";
 
 /* Class = "IBUILabel"; text = "Ends"; ObjectID = "qnV-RP-iou"; */
-"qnV-RP-iou.text" = "Ends";
+"qnV-RP-iou.text" = "結束日期";
 
 /* Class = "IBUITableViewSection"; headerTitle = "Day"; ObjectID = "rWc-h9-Je7"; */
-"rWc-h9-Je7.headerTitle" = "Day";
+"rWc-h9-Je7.headerTitle" = "單日資訊";
 
 /* Class = "IBUINavigationItem"; title = "Add Trip"; ObjectID = "u7R-9g-LS4"; */
-"u7R-9g-LS4.title" = "Add Trip";
+"u7R-9g-LS4.title" = "新增旅程";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "wbH-su-5Bk"; */
 "wbH-su-5Bk.text" = "Title15";
 
 /* Class = "IBUITableViewSection"; headerTitle = "Item Name"; ObjectID = "weP-Nv-PgQ"; */
-"weP-Nv-PgQ.headerTitle" = "Item Name";
+"weP-Nv-PgQ.headerTitle" = "商品名稱";
 
 /* Class = "IBUILabel"; text = "＄"; ObjectID = "wy7-yT-1DL"; */
 "wy7-yT-1DL.text" = "＄";
 
 /* Class = "IBUITabBarItem"; title = "List"; ObjectID = "x8U-ba-HDC"; */
-"x8U-ba-HDC.title" = "List";
+"x8U-ba-HDC.title" = "旅遊列表";
 
 /* Class = "IBUILabel"; text = "Date"; ObjectID = "ycs-sc-5Tf"; */
-"ycs-sc-5Tf.text" = "Date4";
+"ycs-sc-5Tf.text" = "消費日期";
 
 /* Class = "IBUITableViewSection"; headerTitle = "Participants"; ObjectID = "ywi-QZ-ynP"; */
-"ywi-QZ-ynP.headerTitle" = "Participants";
+"ywi-QZ-ynP.headerTitle" = "旅程參與設定";
 
 /* Class = "IBUILabel"; text = "Main Currency"; ObjectID = "zu0-AK-OZw"; */
-"zu0-AK-OZw.text" = "Main Currency";
+"zu0-AK-OZw.text" = "選擇主要貨幣";

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C9DBFFFF186B187D00F3B008"
-               BuildableName = "TryTravel2gether.app"
+               BuildableName = "Travel2gether.app"
                BlueprintName = "TryTravel2gether"
                ReferencedContainer = "container:TryTravel2gether.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C9DBFFFF186B187D00F3B008"
-            BuildableName = "TryTravel2gether.app"
+            BuildableName = "Travel2gether.app"
             BlueprintName = "TryTravel2gether"
             ReferencedContainer = "container:TryTravel2gether.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C9DBFFFF186B187D00F3B008"
-            BuildableName = "TryTravel2gether.app"
+            BuildableName = "Travel2gether.app"
             BlueprintName = "TryTravel2gether"
             ReferencedContainer = "container:TryTravel2gether.xcodeproj">
          </BuildableReference>
@@ -86,7 +86,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C9DBFFFF186B187D00F3B008"
-            BuildableName = "TryTravel2gether.app"
+            BuildableName = "Travel2gether.app"
             BlueprintName = "TryTravel2gether"
             ReferencedContainer = "container:TryTravel2gether.xcodeproj">
          </BuildableReference>
