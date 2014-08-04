@@ -388,13 +388,7 @@
                             <outlet property="delegate" destination="iZy-Dw-F0I" id="lvg-et-ldv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Select a Category" id="bQe-uJ-GM7">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="noq-ZJ-Nzq">
-                            <connections>
-                                <action selector="done:" destination="iZy-Dw-F0I" id="5CY-bd-2AX"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Select a Category" id="bQe-uJ-GM7"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b5j-2W-cd0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
