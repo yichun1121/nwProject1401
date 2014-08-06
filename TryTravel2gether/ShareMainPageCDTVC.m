@@ -9,12 +9,16 @@
 #import "ShareMainPageCDTVC.h"
 #import "SelectTripCDTVC.h"
 #import "GuyInTrip+Expend.h"
+#import "Trip+Currency.h"
 
 @interface ShareMainPageCDTVC ()
 @property (weak, nonatomic) IBOutlet UILabel *tripName;
 @property (weak, nonatomic) IBOutlet UILabel *tripDate;
 @property (strong,nonatomic)NSDateFormatter * dateFormatter;
 @property BOOL interstitialShow;
+@property (nonatomic) Currency *showingCurrency;
+@property int currencyIndex;
+@property (nonatomic)  UILabel *lblNavTitle;
 @end
 
 @implementation ShareMainPageCDTVC
@@ -22,7 +26,23 @@
 @synthesize fetchedResultsController=_fetchedResultsController;
 @synthesize currentTrip=_currentTrip;
 @synthesize interstitialShow = _interstitialShow;
-
+@synthesize showingCurrency=_showingCurrency;
+@synthesize lblNavTitle=_lblNavTitle;
+#pragma mark - lazy instantiation
+-(Currency *)showingCurrency{
+    if(!_showingCurrency){
+        _showingCurrency=self.currentTrip.mainCurrency;
+        self.currencyIndex=0;
+    }
+    return _showingCurrency;
+}
+-(UILabel *)lblNavTitle{
+    if (!_lblNavTitle) {
+        _lblNavTitle=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 60, 30)];
+        _lblNavTitle.textAlignment = NSTextAlignmentCenter;
+    }
+    return _lblNavTitle;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -39,7 +59,16 @@
     //-----設定下一頁時的back button的字（避免本頁的title太長）-----------
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"ShareMain" style:UIBarButtonItemStylePlain target:nil action:nil];
     
-    
+    //-----設定title + 註冊手勢-----------
+    //    self.navigationItem.title=self.currentTrip.name;
+    UITapGestureRecognizer* tapRecon = [[UITapGestureRecognizer alloc]
+                                        initWithTarget:self action:@selector(navigationTitleTapOnce:)];
+    tapRecon.numberOfTapsRequired = 1;
+    //    [self.navigationItem.titleView setUserInteractionEnabled:YES];
+    //    [self.navigationItem.titleView addGestureRecognizer:tapRecon];
+    [self.lblNavTitle addGestureRecognizer:tapRecon];
+    [self.lblNavTitle setUserInteractionEnabled:YES];
+    self.navigationItem.titleView=self.lblNavTitle;
 }
 
 
@@ -73,7 +102,10 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+
+    self.lblNavTitle.text=self.currentTrip.name;
+    self.showingCurrency=self.currentTrip.mainCurrency;
+    self.currencyIndex=0;
 
     if (!self.interstitialShow) {
         //-----google AdMob插頁廣告----------
@@ -137,7 +169,8 @@
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     GuyInTrip *guy=[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text=guy.guy.name;
-    cell.detailTextLabel.text=guy.totalExpendWithMainCurrencySign;
+    cell.detailTextLabel.text=[NSString stringWithFormat:@"%@ %@",self.showingCurrency.sign, [guy totalExpendUsingCurrency:self.showingCurrency]];
+//    cell.detailTextLabel.text=guy;
     
     return cell;
 }
@@ -192,6 +225,17 @@
     
 }
 - (IBAction)selectTripButton:(UIButton *)sender {[self performSegueWithIdentifier:@"Select Trip Segue From Share Main Page" sender:sender];
+}
+- (void)navigationTitleTapOnce:(UIGestureRecognizer *)gesture{
+    NSLog(@"navigationBarTapOnce");
+    NSOrderedSet *currencies=[self.currentTrip getAllCurrencies];
+    if ([currencies count]<=self.currencyIndex+1) {
+        self.currencyIndex=0;
+    }else{
+        self.currencyIndex++;
+    }
+    self.showingCurrency=currencies[self.currencyIndex];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Delegation
