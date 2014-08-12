@@ -9,6 +9,7 @@
 #import "GroupDetailTVC.h"
 #import "GuyInTrip.h"
 #import "Guy.h"
+#import "Group+Special.h"
 
 
 @interface GroupDetailTVC ()
@@ -16,6 +17,7 @@
 @property(nonatomic,strong) NSMutableSet *guysInTripOfGroup;
 @property(nonatomic,strong) NSMutableSet *selectedGuys;
 @property(nonatomic,strong) UITextField* groupTextField;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *btnSave;
 @end
 
 @implementation GroupDetailTVC
@@ -118,7 +120,9 @@
     self.tableView.dataSource=self;
 
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    self.navigationItem.title=[self.group namedLocalizable];
+}
 
 #pragma mark - Table view data source
 
@@ -133,11 +137,25 @@
 
     
     // Configure the cell...
+    cell=[self configureCell:cell AtIndexPath:indexPath];
+    return cell;
+}
+
+/*!組合TableViewCell的顯示內容
+ */
+-(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
         self.groupTextField= [[UITextField alloc] initWithFrame:CGRectMake(85, 7, 215, 30)];
         self.groupTextField.borderStyle=UITextBorderStyleRoundedRect;
-        cell.textLabel.text=@"Named";
-        self.groupTextField.text=self.group.name;
+        cell.textLabel.text=NSLocalizedString(@"Named", @"CellDesc");
+        if ([self.group isShareAll]) {
+            self.groupTextField.enabled=NO;
+            self.btnSave.enabled=NO;
+        }else{
+            self.groupTextField.enabled=YES;
+            self.btnSave.enabled=YES;
+        }
+        self.groupTextField.text=[self.group namedLocalizable];
         [cell addSubview:self.groupTextField];
     }else if (indexPath.section==1){
         id<NSFetchedResultsSectionInfo>sectionInfo=[[self.fetchedResultsController sections] objectAtIndex:0];
@@ -151,9 +169,9 @@
             }
         }else{
             //可以多生一行cell，連Add Guy 的controller
-            cell.textLabel.text = @"Add Guy";
+            cell.textLabel.text = NSLocalizedString(@"AddGuy", @"CellDesc");
             cell.textLabel.textColor=[UIColor grayColor];
-            cell.detailTextLabel.text= @"PUSH";
+            cell.detailTextLabel.text= NSLocalizedString(@"PUSH",@"ActiveTips");
             self.addGuyIndexPath=indexPath;
         }
         
@@ -161,8 +179,8 @@
     
     
     return cell;
-}
 
+}
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSString *sectionName;

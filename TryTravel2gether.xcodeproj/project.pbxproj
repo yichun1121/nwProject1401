@@ -51,6 +51,7 @@
 		C913902918F01D060069EAC2 /* SettingsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C913902818F01D060069EAC2 /* SettingsTVC.m */; };
 		C913902C18F034420069EAC2 /* CategoriesCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C913902B18F034420069EAC2 /* CategoriesCDTVC.m */; };
 		C92ABB27190E11EF00BEA584 /* Item+Expend.m in Sources */ = {isa = PBXBuildFile; fileRef = C92ABB26190E11EF00BEA584 /* Item+Expend.m */; };
+		C94FD1301998769E001910AC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C94FD1321998769E001910AC /* Localizable.strings */; };
 		C9558F8E191893D500B6C430 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = C9558F8D191893D500B6C430 /* Item.m */; };
 		C9558F901918970200B6C430 /* TripDetailTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9558F8F1918970200B6C430 /* TripDetailTVC.m */; };
 		C95AFA031886733B00DF057E /* DaysCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C95AFA021886733B00DF057E /* DaysCDTVC.m */; };
@@ -214,6 +215,8 @@
 		C92ABB26190E11EF00BEA584 /* Item+Expend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Item+Expend.m"; sourceTree = "<group>"; };
 		C94BF2C3189118940039C6CC /* ReceiptsCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptsCDTVC.h; sourceTree = "<group>"; };
 		C94BF2C4189118940039C6CC /* ReceiptsCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptsCDTVC.m; sourceTree = "<group>"; };
+		C94FD1311998769E001910AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C94FD133199876A8001910AC /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C9558F8C191893D500B6C430 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		C9558F8D191893D500B6C430 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		C9558F8F1918970200B6C430 /* TripDetailTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripDetailTVC.m; sourceTree = "<group>"; };
@@ -397,10 +400,10 @@
 		C913902D18F05EB20069EAC2 /* Trip */ = {
 			isa = PBXGroup;
 			children = (
+				C9F804FB187AA42C00EE4EDE /* TripDetailTVC.h */,
 				C9558F8F1918970200B6C430 /* TripDetailTVC.m */,
 				C9F804A5187A4C7800EE4EDE /* TripsCDTVC.h */,
 				C9F804A6187A4C7800EE4EDE /* TripsCDTVC.m */,
-				C9F804FB187AA42C00EE4EDE /* TripDetailTVC.h */,
 				C9F804A8187A4C9B00EE4EDE /* AddTripTVC.h */,
 				C9F804A9187A4C9B00EE4EDE /* AddTripTVC.m */,
 				C9EE94D91908C0B600E599C1 /* TripsCDTVCWithSidebar.h */,
@@ -465,6 +468,7 @@
 				C9789D92198BB37A00C4B1E6 /* Currency.plist */,
 				C9789D96198BB98100C4B1E6 /* ItemCategory.plist */,
 				C95C792919279DBB00F073EF /* testMergeFrom.plist */,
+				C94FD1321998769E001910AC /* Localizable.strings */,
 			);
 			name = Resource;
 			sourceTree = "<group>";
@@ -814,6 +818,7 @@
 			files = (
 				C907B72F194C4438001A4C53 /* NWCustCellImageTitleSubDetail.xib in Resources */,
 				180A506A1914EFE40053A9F0 /* NWCustCellSwitch.xib in Resources */,
+				C94FD1301998769E001910AC /* Localizable.strings in Resources */,
 				BF88EBDB19431B6E006E3E60 /* README.txt in Resources */,
 				C95C792A19279DBB00F073EF /* testMergeFrom.plist in Resources */,
 				C9C4098418E8758900E1F3FE /* NWCustCellTitleSubDetail.xib in Resources */,
@@ -928,6 +933,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		C94FD1321998769E001910AC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C94FD1311998769E001910AC /* Base */,
+				C94FD133199876A8001910AC /* zh-Hant */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		C9789D92198BB37A00C4B1E6 /* Currency.plist */ = {
 			isa = PBXVariantGroup;
 			children = (

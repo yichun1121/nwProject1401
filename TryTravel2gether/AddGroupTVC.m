@@ -129,15 +129,21 @@
     
     
     // Configure the cell...
+    cell=[self configureCell:cell AtIndexPath:indexPath];
+    return cell;
+}
+/*!組合TableViewCell的顯示內容
+ */
+-(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
         self.groupTextField= [[UITextField alloc] initWithFrame:CGRectMake(85, 7, 215, 30)];
         self.groupTextField.borderStyle=UITextBorderStyleRoundedRect;
         cell.textLabel.text=@"";
         UILabel *nameLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, 11, 56, 21)];
-        nameLabel.text=@"Named";
+        nameLabel.text=NSLocalizedString(@"Named", @"CellDesc");
         UILabel *message=[[UILabel alloc]initWithFrame:CGRectMake(85, 45, 215, 10)];
         message.font=[UIFont systemFontOfSize:10.0];
-        message.text=@"To make a group, at least choose 2 guys.";
+        message.text=NSLocalizedString(@"AddGroupMin2Tips", @"ActiveTips");
         message.textColor=[UIColor lightGrayColor];
         [cell addSubview:self.groupTextField];
         [cell addSubview:nameLabel];
@@ -148,18 +154,17 @@
         if (indexPath.row<count) {
             Guy *guy=[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
             cell.textLabel.text = [NSString stringWithFormat:@"%@",guy.name];
-
+            
         }else{
             //可以多生一行cell，連Add Guy 的controller
-            cell.textLabel.text = @"Add Guy";
+            cell.textLabel.text = NSLocalizedString(@"AddGuy", @"CellDesc");
             cell.textLabel.textColor=[UIColor grayColor];
-            cell.detailTextLabel.text= @"PUSH";
+            cell.detailTextLabel.text= NSLocalizedString(@"PUSH",@"ActiveTips");
             self.addGuyIndexPath=indexPath;
         }
         
     }
-    
-    
+
     return cell;
 }
 

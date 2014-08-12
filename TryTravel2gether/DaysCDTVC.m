@@ -104,7 +104,7 @@
     UINib* myCellNib = [UINib nibWithNibName:@"NWCustCellTitleSubDetail" bundle:nil];
     [self.tableView registerNib:myCellNib forCellReuseIdentifier:@"Cell"];
     //-----設定下一頁時的back button的字（避免本頁的title太長）-----------
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Days" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"NavBackString_Days", @"NavigationBackString") style:UIBarButtonItemStylePlain target:nil action:nil];
     //-----預設顯示幣別----------
     self.showingCurrency=self.currentTrip.mainCurrency;
     self.currencyIndex=0;

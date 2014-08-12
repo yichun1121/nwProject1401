@@ -185,6 +185,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="btnSave" destination="0fl-kw-doc" id="BMG-t6-aSE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JMD-Al-v1v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -790,11 +793,11 @@
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="1QV-4V-Zc1" detailTextLabel="TMH-Ph-N9i" style="IBUITableViewCellStyleSubtitle" id="MXJ-s7-1nR">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="1QV-4V-Zc1" detailTextLabel="TMH-Ph-N9i" style="IBUITableViewCellStyleSubtitle" id="MXJ-s7-1nR">
                                 <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MXJ-s7-1nR" id="9Sc-yd-bXu">
-                                    <rect key="frame" x="0.0" y="0.0" width="253" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1QV-4V-Zc1">
@@ -814,7 +817,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="rD3-Ku-nz7" kind="push" identifier="Group Detail Segue" trigger="accessoryAction" id="pTG-8n-YQW"/>
+                                    <segue destination="rD3-Ku-nz7" kind="push" identifier="Group Detail Segue" id="0a5-qO-VaC"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -827,7 +830,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bAQ-gn-1VB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1118" y="933"/>
+            <point key="canvasLocation" x="1096" y="969"/>
         </scene>
         <!--Trip DetailTVC - Detail-->
         <scene sceneID="EHd-iX-AGP">
@@ -2909,16 +2912,16 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="moX-HC-O6P"/>
+        <segue reference="sp3-cC-l9s"/>
+        <segue reference="6Sz-8Y-kfc"/>
         <segue reference="uY8-M1-8nc"/>
         <segue reference="5QA-QK-Xps"/>
         <segue reference="bq2-7x-Hhd"/>
-        <segue reference="6Sz-8Y-kfc"/>
-        <segue reference="sp3-cC-l9s"/>
-        <segue reference="fuH-vh-HtH"/>
+        <segue reference="moX-HC-O6P"/>
         <segue reference="IWa-Ty-2Zl"/>
+        <segue reference="fuH-vh-HtH"/>
         <segue reference="4yc-3i-Tb3"/>
         <segue reference="dk3-o7-VGh"/>
-        <segue reference="4bK-FK-wew"/>
+        <segue reference="wJe-84-bVr"/>
     </inferredMetricsTieBreakers>
 </document>

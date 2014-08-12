@@ -73,7 +73,8 @@
     self.currency.detailTextLabel.text=self.currentCurrency.standardSign;
     
     //-----設定參與者，以及顯示人數
-    self.guysCell.textLabel.text=@"Select Guys";
+//    self.guysCell.textLabel.text=@"Select Guys";
+    self.guysCell.textLabel.text=NSLocalizedString(@"SelectGuys", @"ActiveTips");
     int guyscount=(int)[self.selectedGuys count];
     self.guysCell.detailTextLabel.text=[NSString stringWithFormat:@"%i",guyscount];
     self.selectedGuys=[NSSet new];

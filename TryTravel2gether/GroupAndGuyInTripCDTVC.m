@@ -11,7 +11,7 @@
 #import "Guy.h"
 #import "Trip.h"
 #import "Group+TripGuys.h"
-
+#import "Group+Special.h"
 
 @interface GroupAndGuyInTripCDTVC ()
 
@@ -80,7 +80,7 @@
  */
 -(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
     Group *group=[self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text=group.name;
+    cell.textLabel.text=[group namedLocalizable];
     cell.detailTextLabel.text=[group guysNameSplitBy:@","];
     return cell;
 }

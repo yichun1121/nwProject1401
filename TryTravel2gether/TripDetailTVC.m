@@ -76,14 +76,15 @@
     
     //-----顯示Guy&Group資訊-----------
     self.selectedGuys=[NSMutableSet new];
-    self.guysCell.textLabel.text=@"Guys";
+//    self.guysCell.textLabel.text=@"Guys";
+    self.guysCell.textLabel.text=NSLocalizedString(@"Guys", @"CellDesc");
     
     for (GuyInTrip * guyInTrip in self.trip.guysInTrip) {
     [self.selectedGuys addObject:guyInTrip.guy];
     }
     int guyscount=(int)[self.selectedGuys count];
-    self.guysCell.detailTextLabel.text=[NSString stringWithFormat:@"%i Guys",guyscount];
-    self.groupsCell.detailTextLabel.text=[NSString stringWithFormat:@"%@ Groups",self.trip.countRealGroups];
+    self.guysCell.detailTextLabel.text=[NSString stringWithFormat:@"%i %@",guyscount,NSLocalizedString(@"GuysUnit", @"CellContent")];
+    self.groupsCell.detailTextLabel.text=[NSString stringWithFormat:@"%@ %@",self.trip.countRealGroups,NSLocalizedString(@"GroupsUnit", @"CellContent")];
     
 
 }

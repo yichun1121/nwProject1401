@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  TryTravel2gether
+
+  Created by YICHUN on 2014/8/11.
+  Copyright (c) 2014年 NW. All rights reserved.
+*/
+
+"SelectGuys" = "Select Guys";
+"Guys"="Guys";
+"GuysUnit"="Guys";
+"GroupsUnit"="Groups";
+"TripDay_Prepare"="Prepare";
+"TripDay_Review"="Review";
+"TripDayValidate_ExistedDay"="Existed Day";
+"NavBackString_Days"="Days";
+"NavBackString_Receipts"="Receipts";
+"NavBackString_Items"="Items";
+"ShareAllGroupName"="Share-All Group";
+"Named"="Named";
+"PUSH"="PUSH";
+"AddGuy"="Add Guy In This Trip";
+"AddGroupMin2Tips"="To make a group, at least choose 2 guys.";
+"GroupName"="Group Name";

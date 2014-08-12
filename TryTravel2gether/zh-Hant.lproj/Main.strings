@@ -258,7 +258,7 @@
 "URb-rZ-0ph.text" = "1Item Category";
 
 /* Class = "IBUIButton"; normalTitle = "Set Guy"; ObjectID = "V4B-ed-Z8x"; */
-"V4B-ed-Z8x.normalTitle" = "設定參與者";
+"V4B-ed-Z8x.normalTitle" = "設定本次參與者";
 
 /* Class = "IBUILabel"; text = "Named"; ObjectID = "VBn-zd-2Hu"; */
 "VBn-zd-2Hu.text" = "名稱";
