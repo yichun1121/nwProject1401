@@ -47,7 +47,6 @@
     NSLog(@"elements of array2 in calculator =%lu",(unsigned long)[self.arrayOfStack count]);
     self.userIsInTheMiddleofEnteringANumber=NO;
     if ([self.arrayOfStack count]!=0) {
-        
         [self calculatorBrian];
         [self descriptionOfCalculation];
     }
@@ -129,32 +128,45 @@
     self.operator=@"";
     self.userIsInTheMiddleofEnteringANumber=YES;
 }
+
 -(void)calculatorBrian{
-    
-    if ([self.arrayOfStack count]==1) {
-        self.result=[self.arrayOfStack objectAtIndex:0];
-    }else if(self.userIsInTheMiddleofEnteringANumber==YES){
-        double temp=0;
-        if ([self.operator isEqualToString:@"+"]) {
-            temp=[self.result doubleValue]+[self.display.text doubleValue];
-        }else if ([self.operator isEqualToString:@"-"]) {
-            temp=[self.result doubleValue]-[self.display.text doubleValue];
-        }else if ([self.operator isEqualToString:@"×"]) {
-            temp=[self.result doubleValue]*[self.display.text doubleValue];
-        }else if ([self.operator isEqualToString:@"÷"]) {
-            if([self.display.text doubleValue]!=0){
-                temp=[self.result doubleValue]/[self.display.text doubleValue];
-            }else{
-                temp=0;
-            }
+    NSString *operator;
+    NSNumber *value1;
+    NSNumber *value2;
+    double temp;
+    for (int i=0; i<[self.arrayOfStack count]; i++) {
+        if (value1==nil) {
+            value1=[self.arrayOfStack objectAtIndex:i];
+        }else if([@"+-×÷" rangeOfString:[self.arrayOfStack objectAtIndex:i]].location!=NSNotFound){
+            operator=[self.arrayOfStack objectAtIndex:i];
+        }else if(value2==nil){
+            value2=[self.arrayOfStack objectAtIndex:i];
         }
-        self.result=[NSNumber numberWithDouble:temp];
+        
+        
+        if (value1!=nil&&operator!=nil&&value2!=nil) {
+            if ([operator isEqualToString:@"+"]) {
+                temp=[value1 doubleValue]+[value2 doubleValue];
+            }else if ([operator isEqualToString:@"-"]) {
+                temp=[value1 doubleValue]-[value2 doubleValue];
+            }else if ([operator isEqualToString:@"×"]) {
+                temp=[value1 doubleValue]*[value2 doubleValue];
+            }else if ([operator isEqualToString:@"÷"]) {
+                if([value2 doubleValue]!=0){
+                    temp=[value1 doubleValue]/[value2 doubleValue];
+                }else{
+                    temp=0;
+                }
+            }
+            value1=[NSNumber numberWithDouble:temp];
+            value2=nil;
+            operator=nil;
+        }
+     
     }
-    
+    self.result=value1;
     self.display.text=[NSString stringWithFormat:@"%@",self.result];
-
 }
-
 
 
 -(void)descriptionOfCalculation{
