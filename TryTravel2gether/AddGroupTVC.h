@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "AddGuyTVC.h"
 #import "Trip.h"
+#import "NWAdShiftTableViewController.h"
 
 @class AddGroupTVC;
 @protocol AddGroupTVCDelegate <NSObject>
 -(void)theSaveButtonOnTheAddGroupWasTapped:(AddGroupTVC *)controller;
 @end
-@interface AddGroupTVC : UITableViewController<UITextFieldDelegate,NSFetchedResultsControllerDelegate,AddGuyTVCDelegate>
+@interface AddGroupTVC : NWAdShiftTableViewController<UITextFieldDelegate,NSFetchedResultsControllerDelegate,AddGuyTVCDelegate>
 @property NSManagedObjectContext *managedObjectContext;
 @property (weak,nonatomic)id<AddGroupTVCDelegate> delegate;
 @property (strong, nonatomic) NSFetchedResultsController *

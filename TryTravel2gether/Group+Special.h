@@ -10,4 +10,5 @@
 
 @interface Group (Special)
 -(BOOL)isShareAll;
+-(NSString *)namedLocalizable;
 @end

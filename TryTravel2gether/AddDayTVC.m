@@ -57,7 +57,7 @@
 -(void) showResultOfTheDate:(NSDate *)date{
     if ([self.currentTrip hadThisDate:date]) {
         self.navigationItem.rightBarButtonItem.enabled=NO;
-        self.dayResultString.textLabel.text=@"Existed Day";
+        self.dayResultString.textLabel.text=NSLocalizedString(@"TripDayValidate_ExistedDay",@"ValueValidate");
     }else{
         self.navigationItem.rightBarButtonItem.enabled=YES;
         self.dayResultString.textLabel.text=@"";
@@ -129,5 +129,6 @@
     //清除所有的picker
     [NWPickerUtils dismissPicker:self.tableView];
 }
+
 
 @end

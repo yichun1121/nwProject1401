@@ -8,14 +8,20 @@
 
 #import "ItemsCDTVC.h"
 #import "Item.h"
-#import "NWCustCellTitleSubDetail.h"
+#import "NWCustCellImageTitleSubDetail.h"
 #import "Receipt+Calculate.h"
 #import "DayCurrency.h"
 #import "Currency.h"
+#import "CatInTrip.h"
+#import "Itemcategory.h"
+#import "Itemcategory+Colorful.h"
+#import "ReceiptPhotoVC.h"
 
 @interface ItemsCDTVC ()
 @property NSDateFormatter *dateFormatter;
 @property NSDateFormatter *timeFormatter;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *btnGallery;
+
 @property (weak, nonatomic) IBOutlet UILabel *remaining;
 @end
 
@@ -26,6 +32,7 @@
 @synthesize currentReceipt=_currentReceipt;
 @synthesize dateFormatter=_dateFormatter;
 @synthesize timeFormatter=_timeFormatter;
+@synthesize btnGallery=_btnGallery;
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -34,6 +41,13 @@
     //計算未設定剩餘款
     NSString *strCurrencySign=self.currentReceipt.dayCurrency.currency.sign;
     self.remaining.text=[NSString stringWithFormat:@"%@ %g",strCurrencySign,[self.currentReceipt getMoneyIsNotSet]];
+    
+    //如果receipt裡沒有照片，就不顯示照片按鈕
+    if ([self.currentReceipt.photos count]<=0) {
+        self.btnGallery.enabled=NO;
+    }else{
+        self.btnGallery.enabled=YES;
+    }
 }
 
 #pragma mark - FetchedResultsController
@@ -70,7 +84,7 @@
     self.timeFormatter.dateFormat=@"HH:mm";
     
     //-----註冊CustomCell----------
-    UINib* myCellNib = [UINib nibWithNibName:@"NWCustCellTitleSubDetail" bundle:nil];
+    UINib* myCellNib = [UINib nibWithNibName:@"NWCustCellImageTitleSubDetail" bundle:nil];
     [self.tableView registerNib:myCellNib forCellReuseIdentifier:@"Cell"];
     
     //-----顯示未設定金額----------
@@ -78,17 +92,18 @@
     self.remaining.text=[NSString stringWithFormat:@"%@ %g",strCurrencySign,[self.currentReceipt getMoneyIsNotSet]];
     
     //-----設定下一頁時的back button的字（避免本頁的title太長）-----------
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Items" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"NavBackString_Items", @"NavigationBackString") style:UIBarButtonItemStylePlain target:nil action:nil];
 }
+
 
 #pragma mark - Table view data source
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString * CellIdentifier=@"Cell";
 
-    NWCustCellTitleSubDetail *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    NWCustCellImageTitleSubDetail *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[NWCustCellTitleSubDetail alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[NWCustCellImageTitleSubDetail alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...
@@ -97,7 +112,7 @@
 }
 /*!組合TableViewCell的顯示內容
  */
--(NWCustCellTitleSubDetail *)configureCell:(NWCustCellTitleSubDetail *)cell AtIndexPath:(NSIndexPath *)indexPath{
+-(NWCustCellImageTitleSubDetail *)configureCell:(NWCustCellImageTitleSubDetail *)cell AtIndexPath:(NSIndexPath *)indexPath{
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     Item *item=[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.titleTextLabel.text=item.name;
@@ -105,6 +120,13 @@
     double totalPrice=[item.price doubleValue]*[item.quantity integerValue];
     NSString *strCurrencySign=item.receipt.dayCurrency.currency.sign;
     cell.detailTextLabel.text=[NSString stringWithFormat:@"%@ %g",strCurrencySign,totalPrice];
+    
+    cell.imageView.image=item.catInTrip.category.image;
+    cell.imageView.backgroundColor=item.catInTrip.category.color;
+    cell.imageView.layer.borderColor=[item.catInTrip.category.color CGColor];
+    cell.imageView.layer.borderWidth=0;
+    [cell.imageView.layer setMasksToBounds:YES];
+    [cell.imageView.layer setCornerRadius:4.0];
     
     return cell;
 }
@@ -130,6 +152,11 @@
         itemDetailTVC.currentReceipt=self.currentReceipt;
         itemDetailTVC.currentItem=selectedItem;
         itemDetailTVC.delegate=self;
+    }else if ([segue.identifier isEqualToString:@"Photo Gallery Segue From Item List"]){
+        NSLog(@"Setting %@ as a delegate of ReceiptPhotoVC",self.class);
+        ReceiptPhotoVC *addItemTVC=[segue destinationViewController];
+        addItemTVC.currentReceipt=self.currentReceipt;
+//        addItemTVC.delegate=self;
     }
     
 }

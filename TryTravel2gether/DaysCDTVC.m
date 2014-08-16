@@ -12,11 +12,14 @@
 #import "NWCustCellTitleSubDetail.h"
 #import "Day+Expend.h"
 #import "ShareMainPageCDTVC.h"
+#import "Trip+Currency.h"
 
 
 @interface DaysCDTVC ()
 @property NSDateFormatter *dateFormatter;
 @property Currency *showingCurrency;
+@property int currencyIndex;
+@property (nonatomic)UILabel *lblNavTitle;
 @end
 
 @implementation DaysCDTVC
@@ -25,15 +28,23 @@
 @synthesize fetchedResultsController=_fetchedResultsController;
 @synthesize currentTrip=_currentTrip;
 @synthesize dateFormatter=_dateFormatter;
+@synthesize currencyIndex=_currencyIndex;
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self setupFetchedResultsController];
     //self.tableView.editing=YES;
-    
-    
+}
 
+#pragma mark - lazy instantiation
+
+-(UILabel *)lblNavTitle{
+    if (!_lblNavTitle) {
+        _lblNavTitle=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 60, 30)];
+        _lblNavTitle.textAlignment = NSTextAlignmentCenter;
+    }
+    return _lblNavTitle;
 }
 
 #pragma mark - FetchedResultsController
@@ -71,8 +82,21 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.navigationItem.title=self.currentTrip.name;
+
+    //-----設定title + 註冊手勢-----------
+//    self.navigationItem.title=self.currentTrip.name;
+    self.lblNavTitle.text=self.currentTrip.name;
+    UITapGestureRecognizer* tapRecon = [[UITapGestureRecognizer alloc]
+                                        initWithTarget:self action:@selector(navigationTitleTapOnce:)];
+    tapRecon.numberOfTapsRequired = 1;
+//    [self.navigationItem.titleView setUserInteractionEnabled:YES];
+//    [self.navigationItem.titleView addGestureRecognizer:tapRecon];
+    [self.lblNavTitle addGestureRecognizer:tapRecon];
+    [self.lblNavTitle setUserInteractionEnabled:YES];
+    self.navigationItem.titleView=self.lblNavTitle;
     
+    
+    //-----Date Formatter----------
     self.dateFormatter=[[NSDateFormatter alloc]init];
     [self.dateFormatter setDateFormat:@"yyyy/MM/dd"];
     
@@ -80,16 +104,19 @@
     UINib* myCellNib = [UINib nibWithNibName:@"NWCustCellTitleSubDetail" bundle:nil];
     [self.tableView registerNib:myCellNib forCellReuseIdentifier:@"Cell"];
     //-----設定下一頁時的back button的字（避免本頁的title太長）-----------
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Days" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"NavBackString_Days", @"NavigationBackString") style:UIBarButtonItemStylePlain target:nil action:nil];
     //-----預設顯示幣別----------
     self.showingCurrency=self.currentTrip.mainCurrency;
+    self.currencyIndex=0;
     //-----記錄目前檢視中的Trip--------（讓切換share的tab時可以知道顯示哪個trip）
     UINavigationController *navigationCTL=self.tabBarController.childViewControllers[1];
     ShareMainPageCDTVC * sharePage=(ShareMainPageCDTVC *)navigationCTL.topViewController;
     sharePage.currentTrip=self.currentTrip;
 }
-
-
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+//{
+//    return (![[[touch view] class] isSubclassOfClass:[UIControl class]]);
+//}
 #pragma mark - Table view data source
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -213,6 +240,17 @@
 }
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
     [self performSegueWithIdentifier:@"Day Detail Segue" sender:indexPath];
+}
+- (void)navigationTitleTapOnce:(UIGestureRecognizer *)gesture{
+    NSLog(@"navigationBarTapOnce");
+    NSOrderedSet *currencies=[self.currentTrip getAllCurrencies];
+    if ([currencies count]<=self.currencyIndex+1) {
+        self.currencyIndex=0;
+    }else{
+        self.currencyIndex++;
+    }
+    self.showingCurrency=currencies[self.currencyIndex];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Delegation

@@ -27,6 +27,7 @@
                                                      inManagedObjectContext:self.managedObjectContext];
     
     category.name = self.name.text;
+    category.iconName=@"empty";
 
     
     
@@ -43,5 +44,6 @@
     [textField resignFirstResponder];
     return YES;
 }
+
 
 @end

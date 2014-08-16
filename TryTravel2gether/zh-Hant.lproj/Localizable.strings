@@ -1,0 +1,27 @@
+/* 
+  Localizable.strings
+  TryTravel2gether
+
+  Created by YICHUN on 2014/8/11.
+  Copyright (c) 2014年 NW. All rights reserved.
+*/
+
+"SelectGuys" = "選擇參與者";
+"Guys"="參與者";
+"GuysUnit"="人";
+"GroupsUnit"="群組";
+"TripDay_Prepare"="行前準備";
+"TripDay_Review"="回程整理";
+"TripDayValidate_ExistedDay"="本日已存在";
+"NavBackString_Days"="日期";
+"NavBackString_Receipts"="收據列表";
+"NavBackString_Items"="收據明細";
+"ShareAllGroupName"="全體分攤";
+"Named"="名稱";
+"PUSH"="加入";
+"AddGuy_SystemParticipant"="新增系統參與者";
+"AddGroupMin2Tips"="群組人數至少需為 2人";
+"GroupName"="群組名稱";
+"GuysInGroup"="群組參與者";
+"GuysInSystem"="系統參與者列表";
+"Unspecified"="未設定歸屬人";

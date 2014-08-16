@@ -34,9 +34,11 @@
     NSDateComponents * endDateComponents=[[NSDateComponents alloc]init];
     endDateComponents=[[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:self.inTrip.endDate toDate:self.date options:0];
     if (startDateComponents.day<0) {
-        dayString=@"Prepare";
+        //dayString=@"Prepare";
+        dayString=NSLocalizedString(@"TripDay_Prepare", @"TripDayString");
     }else if (endDateComponents.day>0){
-        dayString=@"Review";
+        //dayString=@"Review";
+        dayString=NSLocalizedString(@"TripDay_Review", @"TripDayString");
     }else{
         dayString=[NSString stringWithFormat:@"Day %i",[self DayNumberOfTripdayInTrip]];
     }

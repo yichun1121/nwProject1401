@@ -42,13 +42,17 @@
 		BFC6CCFC190B888F0071D99E /* NWKeyboardUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CCFB190B888F0071D99E /* NWKeyboardUtils.m */; };
 		BFC6CCFF190B98AB0071D99E /* NWPickerUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CCFE190B98AB0071D99E /* NWPickerUtils.m */; };
 		BFC6CD05190BD38B0071D99E /* NWUIScrollViewMovePostition.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CD04190BD38B0071D99E /* NWUIScrollViewMovePostition.m */; };
+		C903332B1988D72200A55362 /* NWAdShiftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C903332A1988D72200A55362 /* NWAdShiftTableViewController.m */; };
 		C903A89B18D46D76009708C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C903A89A18D46D76009708C6 /* Images.xcassets */; };
+		C907B72E194C4438001A4C53 /* NWCustCellImageTitleSubDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C907B72C194C4438001A4C53 /* NWCustCellImageTitleSubDetail.m */; };
+		C907B72F194C4438001A4C53 /* NWCustCellImageTitleSubDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = C907B72D194C4438001A4C53 /* NWCustCellImageTitleSubDetail.xib */; };
 		C909F35318D00FE600E02B8D /* CurrencyCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C909F35218D00FE600E02B8D /* CurrencyCDTVC.m */; };
 		C909F36E18D0125800E02B8D /* DayCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = C909F36D18D0125800E02B8D /* DayCurrency.m */; };
 		C90D484118DADC7500367316 /* NWUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = C90D484018DADC7500367316 /* NWUserSettings.m */; };
 		C913902918F01D060069EAC2 /* SettingsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C913902818F01D060069EAC2 /* SettingsTVC.m */; };
 		C913902C18F034420069EAC2 /* CategoriesCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C913902B18F034420069EAC2 /* CategoriesCDTVC.m */; };
 		C92ABB27190E11EF00BEA584 /* Item+Expend.m in Sources */ = {isa = PBXBuildFile; fileRef = C92ABB26190E11EF00BEA584 /* Item+Expend.m */; };
+		C94FD1301998769E001910AC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C94FD1321998769E001910AC /* Localizable.strings */; };
 		C9558F8E191893D500B6C430 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = C9558F8D191893D500B6C430 /* Item.m */; };
 		C9558F901918970200B6C430 /* TripDetailTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9558F8F1918970200B6C430 /* TripDetailTVC.m */; };
 		C95AFA031886733B00DF057E /* DaysCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C95AFA021886733B00DF057E /* DaysCDTVC.m */; };
@@ -59,10 +63,9 @@
 		C9697B1618FCF8E1006148E0 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9697B1518FCF8E1006148E0 /* SWRevealViewController.m */; };
 		C9697B1918FCF97C006148E0 /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9697B1818FCF97C006148E0 /* SidebarViewController.m */; };
 		C9697B1C18FD39F9006148E0 /* SettingMenuRVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9697B1B18FD39F9006148E0 /* SettingMenuRVC.m */; };
+		C96A7E9F198FE17900B131B2 /* Trip+Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = C96A7E9E198FE17900B131B2 /* Trip+Currency.m */; };
 		C96AC7B318F10EBB0037DA8B /* AddCategoryTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C96AC7B218F10EBB0037DA8B /* AddCategoryTVC.m */; };
 		C96AC7B618F24D410037DA8B /* SelectCategoryCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C96AC7B518F24D410037DA8B /* SelectCategoryCDTVC.m */; };
-		C96F0616190B92AD0072899E /* Currency.plist in Resources */ = {isa = PBXBuildFile; fileRef = C96F0615190B92AD0072899E /* Currency.plist */; };
-		C96F0618190BD34D0072899E /* ItemCategory.plist in Resources */ = {isa = PBXBuildFile; fileRef = C96F0617190BD34D0072899E /* ItemCategory.plist */; };
 		C97365F218E6EA170060583A /* ItemsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C97365F118E6EA170060583A /* ItemsCDTVC.m */; };
 		C977812C19123298008F07F9 /* CatInTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = C977812B19123298008F07F9 /* CatInTrip.m */; };
 		C977813519123299008F07F9 /* Receipt.m in Sources */ = {isa = PBXBuildFile; fileRef = C977813419123299008F07F9 /* Receipt.m */; };
@@ -71,11 +74,14 @@
 		C977815619129D9E008F07F9 /* Itemcategory+Colorful.m in Sources */ = {isa = PBXBuildFile; fileRef = C977815519129D9E008F07F9 /* Itemcategory+Colorful.m */; };
 		C977815919129DFB008F07F9 /* Itemcategory.m in Sources */ = {isa = PBXBuildFile; fileRef = C977815819129DFB008F07F9 /* Itemcategory.m */; };
 		C977815C19129DFC008F07F9 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = C977815B19129DFC008F07F9 /* Group.m */; };
+		C9789D90198BB37A00C4B1E6 /* Currency.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9789D92198BB37A00C4B1E6 /* Currency.plist */; };
+		C9789D94198BB98100C4B1E6 /* ItemCategory.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9789D96198BB98100C4B1E6 /* ItemCategory.plist */; };
 		C97DAE6819135626009B7E6C /* Photo+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = C97DAE6719135626009B7E6C /* Photo+Image.m */; };
 		C97DAE6B19136FAA009B7E6C /* Receipt+Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = C97DAE6A19136FAA009B7E6C /* Receipt+Photo.m */; };
 		C980686718E0B4C200841064 /* ReceiptDetailTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C980686618E0B4C200841064 /* ReceiptDetailTVC.m */; };
 		C981340C190769BF00CF43CC /* ShareMainPageCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C981340B190769BF00CF43CC /* ShareMainPageCDTVC.m */; };
 		C981340F19078D0800CF43CC /* SelectTripCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C981340E19078D0800CF43CC /* SelectTripCDTVC.m */; };
+		C99C6DF31967D37000D3ABA5 /* PhotoContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C6DF21967D37000D3ABA5 /* PhotoContentVC.m */; };
 		C9AAED8E19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED8D19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.m */; };
 		C9AAED9119067A87002D3BAB /* GroupAndGuyInTripCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED9019067A87002D3BAB /* GroupAndGuyInTripCDTVC.m */; };
 		C9AAED941906A361002D3BAB /* Group+TripGuys.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED931906A361002D3BAB /* Group+TripGuys.m */; };
@@ -104,6 +110,7 @@
 		C9F804AA187A4C9B00EE4EDE /* AddTripTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F804A9187A4C9B00EE4EDE /* AddTripTVC.m */; };
 		C9F804F7187A733000EE4EDE /* nwAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F804F6187A733000EE4EDE /* nwAppDelegate.m */; };
 		C9F804FA187A74DB00EE4EDE /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F804F9187A74DB00EE4EDE /* CoreDataTableViewController.m */; };
+		C9FDDA14197FA9CC0060336A /* ReceiptPhotoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FDDA13197FA9CC0060336A /* ReceiptPhotoVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,7 +198,12 @@
 		BFC6CCFE190B98AB0071D99E /* NWPickerUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWPickerUtils.m; sourceTree = "<group>"; };
 		BFC6CD03190BD38B0071D99E /* NWUIScrollViewMovePostition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWUIScrollViewMovePostition.h; sourceTree = "<group>"; };
 		BFC6CD04190BD38B0071D99E /* NWUIScrollViewMovePostition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWUIScrollViewMovePostition.m; sourceTree = "<group>"; };
+		C90333291988D72200A55362 /* NWAdShiftTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWAdShiftTableViewController.h; sourceTree = "<group>"; };
+		C903332A1988D72200A55362 /* NWAdShiftTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWAdShiftTableViewController.m; sourceTree = "<group>"; };
 		C903A89A18D46D76009708C6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C907B72B194C4438001A4C53 /* NWCustCellImageTitleSubDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWCustCellImageTitleSubDetail.h; path = NWCust/NWCustCellImageTitleSubDetail.h; sourceTree = "<group>"; };
+		C907B72C194C4438001A4C53 /* NWCustCellImageTitleSubDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWCustCellImageTitleSubDetail.m; path = NWCust/NWCustCellImageTitleSubDetail.m; sourceTree = "<group>"; };
+		C907B72D194C4438001A4C53 /* NWCustCellImageTitleSubDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NWCustCellImageTitleSubDetail.xib; path = NWCust/NWCustCellImageTitleSubDetail.xib; sourceTree = "<group>"; };
 		C909F35118D00FE600E02B8D /* CurrencyCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyCDTVC.h; sourceTree = "<group>"; };
 		C909F35218D00FE600E02B8D /* CurrencyCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyCDTVC.m; sourceTree = "<group>"; };
 		C909F36C18D0125800E02B8D /* DayCurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayCurrency.h; sourceTree = "<group>"; };
@@ -206,6 +218,8 @@
 		C92ABB26190E11EF00BEA584 /* Item+Expend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Item+Expend.m"; sourceTree = "<group>"; };
 		C94BF2C3189118940039C6CC /* ReceiptsCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptsCDTVC.h; sourceTree = "<group>"; };
 		C94BF2C4189118940039C6CC /* ReceiptsCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptsCDTVC.m; sourceTree = "<group>"; };
+		C94FD1311998769E001910AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C94FD133199876A8001910AC /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C9558F8C191893D500B6C430 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		C9558F8D191893D500B6C430 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		C9558F8F1918970200B6C430 /* TripDetailTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripDetailTVC.m; sourceTree = "<group>"; };
@@ -224,12 +238,12 @@
 		C9697B1818FCF97C006148E0 /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
 		C9697B1A18FD39F9006148E0 /* SettingMenuRVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingMenuRVC.h; sourceTree = "<group>"; };
 		C9697B1B18FD39F9006148E0 /* SettingMenuRVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingMenuRVC.m; sourceTree = "<group>"; };
+		C96A7E9D198FE17900B131B2 /* Trip+Currency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Trip+Currency.h"; sourceTree = "<group>"; };
+		C96A7E9E198FE17900B131B2 /* Trip+Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Trip+Currency.m"; sourceTree = "<group>"; };
 		C96AC7B118F10EBB0037DA8B /* AddCategoryTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCategoryTVC.h; sourceTree = "<group>"; };
 		C96AC7B218F10EBB0037DA8B /* AddCategoryTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCategoryTVC.m; sourceTree = "<group>"; };
 		C96AC7B418F24D410037DA8B /* SelectCategoryCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCategoryCDTVC.h; sourceTree = "<group>"; };
 		C96AC7B518F24D410037DA8B /* SelectCategoryCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCategoryCDTVC.m; sourceTree = "<group>"; };
-		C96F0615190B92AD0072899E /* Currency.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Currency.plist; sourceTree = "<group>"; };
-		C96F0617190BD34D0072899E /* ItemCategory.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ItemCategory.plist; sourceTree = "<group>"; };
 		C97365F018E6EA170060583A /* ItemsCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsCDTVC.h; sourceTree = "<group>"; };
 		C97365F118E6EA170060583A /* ItemsCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsCDTVC.m; sourceTree = "<group>"; };
 		C9778129191228CC008F07F9 /* Model 5_ColorAndPhotos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 5_ColorAndPhotos.xcdatamodel"; sourceTree = "<group>"; };
@@ -247,6 +261,13 @@
 		C977815819129DFB008F07F9 /* Itemcategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Itemcategory.m; sourceTree = "<group>"; };
 		C977815A19129DFC008F07F9 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		C977815B19129DFC008F07F9 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		C9789D8D198BB28600C4B1E6 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		C9789D8E198BB28600C4B1E6 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		C9789D8F198BB28600C4B1E6 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		C9789D91198BB37A00C4B1E6 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "zh-Hant"; path = "zh-Hant.lproj/Currency.plist"; sourceTree = "<group>"; };
+		C9789D97198BB98F00C4B1E6 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "zh-Hant"; path = "zh-Hant.lproj/ItemCategory.plist"; sourceTree = "<group>"; };
+		C9789D98198BFEDA00C4B1E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Currency.plist; sourceTree = "<group>"; };
+		C9789D99198BFEE700C4B1E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/ItemCategory.plist; sourceTree = "<group>"; };
 		C97DAE6619135626009B7E6C /* Photo+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Photo+Image.h"; sourceTree = "<group>"; };
 		C97DAE6719135626009B7E6C /* Photo+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Photo+Image.m"; sourceTree = "<group>"; };
 		C97DAE6919136FAA009B7E6C /* Receipt+Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Receipt+Photo.h"; sourceTree = "<group>"; };
@@ -257,6 +278,8 @@
 		C981340B190769BF00CF43CC /* ShareMainPageCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareMainPageCDTVC.m; sourceTree = "<group>"; };
 		C981340D19078D0800CF43CC /* SelectTripCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTripCDTVC.h; sourceTree = "<group>"; };
 		C981340E19078D0800CF43CC /* SelectTripCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectTripCDTVC.m; sourceTree = "<group>"; };
+		C99C6DF11967D37000D3ABA5 /* PhotoContentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoContentVC.h; sourceTree = "<group>"; };
+		C99C6DF21967D37000D3ABA5 /* PhotoContentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoContentVC.m; sourceTree = "<group>"; };
 		C9AAED8C19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGroupAndGuyCDTVC.h; sourceTree = "<group>"; };
 		C9AAED8D19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectGroupAndGuyCDTVC.m; sourceTree = "<group>"; };
 		C9AAED8F19067A87002D3BAB /* GroupAndGuyInTripCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupAndGuyInTripCDTVC.h; sourceTree = "<group>"; };
@@ -271,7 +294,7 @@
 		C9C6258118F67A7800026CFA /* ItemDetailTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemDetailTVC.h; sourceTree = "<group>"; };
 		C9C6258218F67A7800026CFA /* ItemDetailTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemDetailTVC.m; sourceTree = "<group>"; };
 		C9D28ADB18DFFFC200304370 /* Model 4_ItemCategoryGuyGroup.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 4_ItemCategoryGuyGroup.xcdatamodel"; sourceTree = "<group>"; };
-		C9DB0000186B187D00F3B008 /* TryTravel2gether.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TryTravel2gether.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9DB0000186B187D00F3B008 /* Travel2gether.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Travel2gether.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9DB0003186B187D00F3B008 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C9DB0005186B187D00F3B008 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C9DB0007186B187D00F3B008 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -303,6 +326,8 @@
 		C9F804F8187A74DB00EE4EDE /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		C9F804F9187A74DB00EE4EDE /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		C9F804FB187AA42C00EE4EDE /* TripDetailTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripDetailTVC.h; sourceTree = "<group>"; };
+		C9FDDA12197FA9CC0060336A /* ReceiptPhotoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptPhotoVC.h; sourceTree = "<group>"; };
+		C9FDDA13197FA9CC0060336A /* ReceiptPhotoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptPhotoVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -378,10 +403,10 @@
 		C913902D18F05EB20069EAC2 /* Trip */ = {
 			isa = PBXGroup;
 			children = (
+				C9F804FB187AA42C00EE4EDE /* TripDetailTVC.h */,
 				C9558F8F1918970200B6C430 /* TripDetailTVC.m */,
 				C9F804A5187A4C7800EE4EDE /* TripsCDTVC.h */,
 				C9F804A6187A4C7800EE4EDE /* TripsCDTVC.m */,
-				C9F804FB187AA42C00EE4EDE /* TripDetailTVC.h */,
 				C9F804A8187A4C9B00EE4EDE /* AddTripTVC.h */,
 				C9F804A9187A4C9B00EE4EDE /* AddTripTVC.m */,
 				C9EE94D91908C0B600E599C1 /* TripsCDTVCWithSidebar.h */,
@@ -445,9 +470,10 @@
 		C96F0614190B926C0072899E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				C96F0615190B92AD0072899E /* Currency.plist */,
-				C96F0617190BD34D0072899E /* ItemCategory.plist */,
+				C9789D92198BB37A00C4B1E6 /* Currency.plist */,
+				C9789D96198BB98100C4B1E6 /* ItemCategory.plist */,
 				C95C792919279DBB00F073EF /* testMergeFrom.plist */,
+				C94FD1321998769E001910AC /* Localizable.strings */,
 			);
 			name = Resource;
 			sourceTree = "<group>";
@@ -483,6 +509,7 @@
 			children = (
 				180A50691914EFE40053A9F0 /* NWCustCellSwitch.xib */,
 				C9C4098318E8758900E1F3FE /* NWCustCellTitleSubDetail.xib */,
+				C907B72D194C4438001A4C53 /* NWCustCellImageTitleSubDetail.xib */,
 			);
 			name = CustView;
 			sourceTree = "<group>";
@@ -490,7 +517,7 @@
 		C9DB0001186B187D00F3B008 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C9DB0000186B187D00F3B008 /* TryTravel2gether.app */,
+				C9DB0000186B187D00F3B008 /* Travel2gether.app */,
 				C9DB0021186B187E00F3B008 /* TryTravel2getherTests.xctest */,
 			);
 			name = Products;
@@ -620,6 +647,8 @@
 				1863F9CE190BAFC80033AECF /* Trip+Group.h */,
 				1863F9CF190BAFC80033AECF /* Trip+Group.m */,
 				C977813619123299008F07F9 /* Trip.h */,
+				C96A7E9D198FE17900B131B2 /* Trip+Currency.h */,
+				C96A7E9E198FE17900B131B2 /* Trip+Currency.m */,
 				C977813719123299008F07F9 /* Trip.m */,
 			);
 			name = CoreDataModel;
@@ -643,7 +672,11 @@
 				1869ACF11914F19600BF8547 /* NWCustCellSwitch.h */,
 				1869ACF21914F19600BF8547 /* NWCustCellSwitch.m */,
 				C9F64D3418E709A00005ED24 /* NWCustCellTitleSubDetail.h */,
+				C90333291988D72200A55362 /* NWAdShiftTableViewController.h */,
+				C903332A1988D72200A55362 /* NWAdShiftTableViewController.m */,
 				C9F64D3518E709A00005ED24 /* NWCustCellTitleSubDetail.m */,
+				C907B72B194C4438001A4C53 /* NWCustCellImageTitleSubDetail.h */,
+				C907B72C194C4438001A4C53 /* NWCustCellImageTitleSubDetail.m */,
 			);
 			name = CustController;
 			sourceTree = "<group>";
@@ -683,6 +716,10 @@
 				C913902D18F05EB20069EAC2 /* Trip */,
 				040A6323188ADE480084A3EC /* TripDaysTVC.h */,
 				040A6324188ADE480084A3EC /* TripDaysTVC.m */,
+				C99C6DF11967D37000D3ABA5 /* PhotoContentVC.h */,
+				C99C6DF21967D37000D3ABA5 /* PhotoContentVC.m */,
+				C9FDDA12197FA9CC0060336A /* ReceiptPhotoVC.h */,
+				C9FDDA13197FA9CC0060336A /* ReceiptPhotoVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -730,7 +767,7 @@
 			);
 			name = TryTravel2gether;
 			productName = TryTravel2gether;
-			productReference = C9DB0000186B187D00F3B008 /* TryTravel2gether.app */;
+			productReference = C9DB0000186B187D00F3B008 /* Travel2gether.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -746,6 +783,9 @@
 					C9DB0020186B187E00F3B008 = {
 						TestTargetID = C9DBFFFF186B187D00F3B008;
 					};
+					C9DBFFFF186B187D00F3B008 = {
+						DevelopmentTeam = 7D95C3P75W;
+					};
 				};
 			};
 			buildConfigurationList = C9DBFFFB186B187D00F3B008 /* Build configuration list for PBXProject "TryTravel2gether" */;
@@ -755,6 +795,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hant",
 			);
 			mainGroup = C9DBFFF7186B187D00F3B008;
 			productRefGroup = C9DB0001186B187D00F3B008 /* Products */;
@@ -780,12 +821,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C907B72F194C4438001A4C53 /* NWCustCellImageTitleSubDetail.xib in Resources */,
 				180A506A1914EFE40053A9F0 /* NWCustCellSwitch.xib in Resources */,
+				C94FD1301998769E001910AC /* Localizable.strings in Resources */,
 				BF88EBDB19431B6E006E3E60 /* README.txt in Resources */,
 				C95C792A19279DBB00F073EF /* testMergeFrom.plist in Resources */,
 				C9C4098418E8758900E1F3FE /* NWCustCellTitleSubDetail.xib in Resources */,
-				C96F0618190BD34D0072899E /* ItemCategory.plist in Resources */,
-				C96F0616190B92AD0072899E /* Currency.plist in Resources */,
+				C9789D94198BB98100C4B1E6 /* ItemCategory.plist in Resources */,
+				C9789D90198BB37A00C4B1E6 /* Currency.plist in Resources */,
 				C9DB000E186B187E00F3B008 /* InfoPlist.strings in Resources */,
 				C903A89B18D46D76009708C6 /* Images.xcassets in Resources */,
 				C9DB0017186B187E00F3B008 /* Main.storyboard in Resources */,
@@ -809,11 +852,14 @@
 			files = (
 				C981340C190769BF00CF43CC /* ShareMainPageCDTVC.m in Sources */,
 				C9697B1918FCF97C006148E0 /* SidebarViewController.m in Sources */,
+				C9FDDA14197FA9CC0060336A /* ReceiptPhotoVC.m in Sources */,
 				18B8143F18E6E9740089BF0B /* AddGuyTVC.m in Sources */,
 				C92ABB27190E11EF00BEA584 /* Item+Expend.m in Sources */,
 				C9F804AA187A4C9B00EE4EDE /* AddTripTVC.m in Sources */,
 				C95AFA031886733B00DF057E /* DaysCDTVC.m in Sources */,
+				C907B72E194C4438001A4C53 /* NWCustCellImageTitleSubDetail.m in Sources */,
 				BFC6CCFC190B888F0071D99E /* NWKeyboardUtils.m in Sources */,
+				C96A7E9F198FE17900B131B2 /* Trip+Currency.m in Sources */,
 				BF6179B71930A3560016D235 /* NWCustAdMobTabBarController.m in Sources */,
 				C90D484118DADC7500367316 /* NWUserSettings.m in Sources */,
 				C97365F218E6EA170060583A /* ItemsCDTVC.m in Sources */,
@@ -825,6 +871,7 @@
 				0409B6F51893BEAE000C6DF6 /* AddDayTVC.m in Sources */,
 				C977813B19123299008F07F9 /* Photo.m in Sources */,
 				C9DB0010186B187E00F3B008 /* main.m in Sources */,
+				C903332B1988D72200A55362 /* NWAdShiftTableViewController.m in Sources */,
 				04ED46F018A64CAF004EA22E /* Trip+Days.m in Sources */,
 				C977815919129DFB008F07F9 /* Itemcategory.m in Sources */,
 				C9AAED941906A361002D3BAB /* Group+TripGuys.m in Sources */,
@@ -857,6 +904,7 @@
 				BFC6CD05190BD38B0071D99E /* NWUIScrollViewMovePostition.m in Sources */,
 				C909F36E18D0125800E02B8D /* DayCurrency.m in Sources */,
 				186C1B281927378E00C87DE7 /* GuyInTrip+Group.m in Sources */,
+				C99C6DF31967D37000D3ABA5 /* PhotoContentVC.m in Sources */,
 				C977815C19129DFC008F07F9 /* Group.m in Sources */,
 				C9558F8E191893D500B6C430 /* Item.m in Sources */,
 				C9558F901918970200B6C430 /* TripDetailTVC.m in Sources */,
@@ -891,10 +939,38 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		C94FD1321998769E001910AC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C94FD1311998769E001910AC /* Base */,
+				C94FD133199876A8001910AC /* zh-Hant */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		C9789D92198BB37A00C4B1E6 /* Currency.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9789D91198BB37A00C4B1E6 /* zh-Hant */,
+				C9789D98198BFEDA00C4B1E6 /* Base */,
+			);
+			name = Currency.plist;
+			sourceTree = "<group>";
+		};
+		C9789D96198BB98100C4B1E6 /* ItemCategory.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9789D97198BB98F00C4B1E6 /* zh-Hant */,
+				C9789D99198BFEE700C4B1E6 /* Base */,
+			);
+			name = ItemCategory.plist;
+			sourceTree = "<group>";
+		};
 		C9DB000C186B187E00F3B008 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				C9DB000D186B187E00F3B008 /* en */,
+				C9789D8E198BB28600C4B1E6 /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -903,6 +979,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				C9DB0016186B187E00F3B008 /* Base */,
+				C9789D8D198BB28600C4B1E6 /* zh-Hant */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -911,6 +988,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				C9DB002C186B187E00F3B008 /* en */,
+				C9789D8F198BB28600C4B1E6 /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -950,7 +1028,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -972,6 +1050,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -982,7 +1061,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -993,6 +1072,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TryTravel2gether/TryTravel2gether-Prefix.pch";
 				INFOPLIST_FILE = "TryTravel2gether/TryTravel2gether-Info.plist";
@@ -1001,7 +1082,8 @@
 					"$(PROJECT_DIR)/TryTravel2gether",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Travel2gether;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1011,6 +1093,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TryTravel2gether/TryTravel2gether-Prefix.pch";
 				INFOPLIST_FILE = "TryTravel2gether/TryTravel2gether-Info.plist";
@@ -1019,7 +1103,8 @@
 					"$(PROJECT_DIR)/TryTravel2gether",
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Travel2gether;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

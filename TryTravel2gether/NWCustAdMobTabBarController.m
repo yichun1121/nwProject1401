@@ -28,21 +28,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.tabBar setFrame:CGRectMake(self.tabBar.frame.origin.x, self.tabBar.frame.origin.y-50, 320, 49)];
+    NSLog(@"%@",[self.tabBar subviews]);
     
     CGPoint origin = CGPointMake(0.0,
-                                 self.view.frame.size.height -
-                                 CGSizeFromGADAdSize(kGADAdSizeBanner).height*2);
+                                 self.tabBar.frame.size.height);
     
     admobBannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner origin:origin];
     admobBannerView.adUnitID=@"ca-app-pub-1412142430031740/7628300912";
     admobBannerView.rootViewController=self;
     admobBannerView.delegate = self;
     
-    [self.view addSubview:admobBannerView];
+    [self.tabBar addSubview:admobBannerView];
     [self.admobBannerView loadRequest:[self request]];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,12 +57,13 @@
 
 - (void)adViewDidReceiveAd:(GADBannerView *)bannerView {
     [UIView beginAnimations:@"BannerSlide" context:nil];
+
     bannerView.frame = CGRectMake(0.0,
-                                  self.view.frame.size.height -
-                                  bannerView.frame.size.height*2,
+                                  self.tabBar.frame.size.height,
                                   bannerView.frame.size.width,
                                   bannerView.frame.size.height);
     [UIView commitAnimations];
+
 }
 
 - (void)adView:(GADBannerView *)bannerView
@@ -79,8 +80,7 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
     request.testDevices = @[
                             // TODO: Add your device/simulator test identifiers here. Your device identifier is printed to
                             // the console when the app is launched.
-                            GAD_SIMULATOR_ID
-                            ];
+                            GAD_SIMULATOR_ID                            ];
     return request;
 }
 

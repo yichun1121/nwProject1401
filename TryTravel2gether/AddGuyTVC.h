@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NWAdShiftTableViewController.h"
 
 @class AddGuyTVC;
 @protocol AddGuyTVCDelegate <NSObject>
 -(void)theSaveButtonOnTheAddGuyWasTapped:(AddGuyTVC *)controller;
 @end
 
-@interface AddGuyTVC : UITableViewController<UITextFieldDelegate>
+@interface AddGuyTVC : NWAdShiftTableViewController<UITextFieldDelegate>
 @property NSManagedObjectContext *managedObjectContext;
 @property (weak,nonatomic)id<AddGuyTVCDelegate> delegate;
 

@@ -60,10 +60,8 @@
         }
     }
     cell.accessoryType=UITableViewCellAccessoryCheckmark;
-}
-
-- (IBAction)done:(UIBarButtonItem *)sender {
     [self.delegate theDoneButtonOnTheSelectCategoryCDTVCWasTapped:self];
 }
+
 
 @end

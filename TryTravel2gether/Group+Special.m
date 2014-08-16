@@ -19,4 +19,11 @@
         return NO;
     }
 }
+-(NSString *)namedLocalizable{
+    if ([self isShareAll]) {
+        return NSLocalizedString(@"ShareAllGroupName", @"GroupShowingName");
+    }else{
+        return self.name;
+    }
+}
 @end

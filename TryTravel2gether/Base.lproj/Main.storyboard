@@ -185,6 +185,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="btnSave" destination="0fl-kw-doc" id="BMG-t6-aSE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JMD-Al-v1v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -388,13 +391,7 @@
                             <outlet property="delegate" destination="iZy-Dw-F0I" id="lvg-et-ldv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Select a Category" id="bQe-uJ-GM7">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="noq-ZJ-Nzq">
-                            <connections>
-                                <action selector="done:" destination="iZy-Dw-F0I" id="5CY-bd-2AX"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Select a Category" id="bQe-uJ-GM7"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b5j-2W-cd0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -796,11 +793,11 @@
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="1QV-4V-Zc1" detailTextLabel="TMH-Ph-N9i" style="IBUITableViewCellStyleSubtitle" id="MXJ-s7-1nR">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="1QV-4V-Zc1" detailTextLabel="TMH-Ph-N9i" style="IBUITableViewCellStyleSubtitle" id="MXJ-s7-1nR">
                                 <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MXJ-s7-1nR" id="9Sc-yd-bXu">
-                                    <rect key="frame" x="0.0" y="0.0" width="253" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1QV-4V-Zc1">
@@ -820,7 +817,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="rD3-Ku-nz7" kind="push" identifier="Group Detail Segue" trigger="accessoryAction" id="pTG-8n-YQW"/>
+                                    <segue destination="rD3-Ku-nz7" kind="push" identifier="Group Detail Segue" id="0a5-qO-VaC"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -833,7 +830,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bAQ-gn-1VB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1118" y="933"/>
+            <point key="canvasLocation" x="1096" y="969"/>
         </scene>
         <!--Trip DetailTVC - Detail-->
         <scene sceneID="EHd-iX-AGP">
@@ -1029,6 +1026,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FD1-nT-0Sl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1466" y="749"/>
+        </scene>
+        <!--Receipt PhotoVC-->
+        <scene sceneID="vMk-L9-8tc">
+            <objects>
+                <viewController id="J9x-aW-akf" customClass="ReceiptPhotoVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rde-Cc-Feh"/>
+                        <viewControllerLayoutGuide type="bottom" id="P06-tc-KnN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KEB-R1-Q0o">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="iuA-fk-MB6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GTR-Lj-RaE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1775" y="809"/>
         </scene>
         <!--Add GuyTVC - Add Guy-->
         <scene sceneID="bHi-cv-pNt">
@@ -2005,7 +2021,7 @@
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="VbE-x2-d56" customClass="NWCustCellTitleSubDetail">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="VbE-x2-d56" customClass="NWCustCellImageTitleSubDetail">
                                 <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VbE-x2-d56" id="1lW-vo-b7K">
@@ -2023,15 +2039,20 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Item List" id="22b-OU-3Gn">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="PkI-m0-YXY"/>
+                        <barButtonItem key="rightBarButtonItem" image="image" id="PkI-m0-YXY">
+                            <connections>
+                                <segue destination="J9x-aW-akf" kind="push" identifier="Photo Gallery Segue From Item List" id="gEa-ZK-CtC"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="btnGallery" destination="PkI-m0-YXY" id="reX-pK-RT2"/>
                         <outlet property="remaining" destination="2dC-dZ-hEA" id="TSa-CT-P1k"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xby-0E-NJS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1870" y="1132"/>
+            <point key="canvasLocation" x="1717" y="1199"/>
         </scene>
         <!--Select Group And GuyCDTVC - Owner-->
         <scene sceneID="23h-Qn-cP5">
@@ -2264,6 +2285,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rhp-y2-at4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2305" y="1540"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="Cor-vW-wqr">
+            <objects>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="99G-3D-jLr" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mpM-Dq-vaA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1977" y="533"/>
+        </scene>
+        <!--Photo ContentVC-->
+        <scene sceneID="yy3-Ph-NMI">
+            <objects>
+                <viewController storyboardIdentifier="PhotoContent" id="b7C-4o-XBq" customClass="PhotoContentVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Kgb-JI-Fq2"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Us-hB-M5t"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qHm-nV-sUr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" indicatorStyle="black" minimumZoomScale="0.25" maximumZoomScale="3" translatesAutoresizingMaskIntoConstraints="NO" id="pTK-jt-jeE">
+                                <rect key="frame" x="-20" y="-20" width="340" height="500"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uP7-ZO-OLq">
+                                        <rect key="frame" x="20" y="20" width="320" height="480"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundImage" destination="uP7-ZO-OLq" id="WX0-vq-c7e"/>
+                        <outlet property="scrollView" destination="pTK-jt-jeE" id="Wcf-6s-sZF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H2r-S3-mbz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2331" y="443"/>
         </scene>
         <!--ReceiptsCDTVC-->
         <scene sceneID="WhL-wY-V2F">
@@ -2538,7 +2601,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tM6-M8-bOU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
+                                                    <rect key="frame" x="0.0" y="-28" width="320" height="295"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </scrollView>
                                             </subviews>
