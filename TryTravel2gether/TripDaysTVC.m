@@ -157,7 +157,7 @@
         BOOL tripHadTheSelectedDay=[self.currentTrip hadThisDate:[self.dateFormatter dateFromString:self.selectedDayString]];
         if (tripHadTheSelectedDay) {
             //若selectedDayString為已存在的旅遊日（ex旅遊當下）則因為上面的旅遊日已勾，所以不顯示
-            cell.detailTextLabel.text=@"PUSH";
+            cell.detailTextLabel.text=NSLocalizedString(@"PUSH",@"ActiveTips");
             cell.accessoryType=UITableViewCellAccessoryNone;
         }else{
             //若selectedDayString不在旅遊日當中，則會勾選並顯示日期

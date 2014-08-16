@@ -48,7 +48,6 @@
 	}
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
-    self.groupTextField.delegate=self; //要加delegate=self，監聽textfield，才能在return時收鍵盤（textFieldShouldReturn）
     self.navigationItem.rightBarButtonItem.enabled=NO;
 }
 
@@ -138,6 +137,7 @@
     if (indexPath.section==0) {
         self.groupTextField= [[UITextField alloc] initWithFrame:CGRectMake(85, 7, 215, 30)];
         self.groupTextField.borderStyle=UITextBorderStyleRoundedRect;
+        self.groupTextField.delegate=self;//要加delegate=self，監聽textfield，才能在return時收鍵盤
         cell.textLabel.text=@"";
         UILabel *nameLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, 11, 56, 21)];
         nameLabel.text=NSLocalizedString(@"Named", @"CellDesc");
@@ -154,28 +154,24 @@
         if (indexPath.row<count) {
             Guy *guy=[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
             cell.textLabel.text = [NSString stringWithFormat:@"%@",guy.name];
-            
         }else{
             //可以多生一行cell，連Add Guy 的controller
-            cell.textLabel.text = NSLocalizedString(@"AddGuy", @"CellDesc");
+            cell.textLabel.text = NSLocalizedString(@"AddGuy_SystemParticipant", @"CellDesc");
             cell.textLabel.textColor=[UIColor grayColor];
             cell.detailTextLabel.text= NSLocalizedString(@"PUSH",@"ActiveTips");
             self.addGuyIndexPath=indexPath;
         }
-        
     }
-
     return cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSString *sectionName;
-    
     if (section==0) {
-        sectionName = @"Group Name";
+        sectionName = NSLocalizedString(@"GroupName",@"SessionDesc");
     }else if (section==1){
-        sectionName=[NSString stringWithFormat:@"Guys"];
+        sectionName = [NSString stringWithFormat:NSLocalizedString(@"GuysInSystem",@"SessionDesc")];
     }
     return sectionName;
 }
@@ -213,7 +209,6 @@
     }else {
         return 44.0f;
     }
-    
 }
 
 #pragma mark - ➤ Navigation：Segue Settings

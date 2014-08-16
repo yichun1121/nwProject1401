@@ -169,7 +169,7 @@
             }
         }else{
             //可以多生一行cell，連Add Guy 的controller
-            cell.textLabel.text = NSLocalizedString(@"AddGuy", @"CellDesc");
+            cell.textLabel.text = NSLocalizedString(@"AddGuy_SystemParticipant", @"CellDesc");
             cell.textLabel.textColor=[UIColor grayColor];
             cell.detailTextLabel.text= NSLocalizedString(@"PUSH",@"ActiveTips");
             self.addGuyIndexPath=indexPath;
@@ -186,9 +186,9 @@
     NSString *sectionName;
     
     if (section==0) {
-         sectionName = @"Group Name";
+         sectionName = NSLocalizedString(@"GroupName",@"SessionDesc");
     }else if (section==1){
-        sectionName=[NSString stringWithFormat:@"Guys"];
+        sectionName=[NSString stringWithFormat:NSLocalizedString(@"GuysInGroup",@"SessionDesc")];
     }
     return sectionName;
 }

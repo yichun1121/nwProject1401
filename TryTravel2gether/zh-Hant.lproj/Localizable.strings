@@ -18,7 +18,9 @@
 "NavBackString_Items"="收據明細";
 "ShareAllGroupName"="全體分攤";
 "Named"="名稱";
-"PUSH"="點擊";
-"AddGuy"="新增本次參與者";
+"PUSH"="加入";
+"AddGuy_SystemParticipant"="新增系統參與者";
 "AddGroupMin2Tips"="群組人數至少需為 2人";
 "GroupName"="群組名稱";
+"GuysInGroup"="群組參與者";
+"GuysInSystem"="系統參與者列表";

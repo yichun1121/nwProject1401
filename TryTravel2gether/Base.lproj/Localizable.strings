@@ -19,6 +19,8 @@
 "ShareAllGroupName"="Share-All Group";
 "Named"="Named";
 "PUSH"="PUSH";
-"AddGuy"="Add Guy In This Trip";
+"AddGuy_SystemParticipant"="Add System Participants";
 "AddGroupMin2Tips"="To make a group, at least choose 2 guys.";
 "GroupName"="Group Name";
+"GuysInGroup"="Guys In Group";
+"GuysInSystem"="System Guys";

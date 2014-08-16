@@ -78,15 +78,16 @@
     self.selectedGuys=[NSMutableSet new];
 //    self.guysCell.textLabel.text=@"Guys";
     self.guysCell.textLabel.text=NSLocalizedString(@"Guys", @"CellDesc");
-    
+}
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //-----計算Guy&Group
     for (GuyInTrip * guyInTrip in self.trip.guysInTrip) {
-    [self.selectedGuys addObject:guyInTrip.guy];
+        [self.selectedGuys addObject:guyInTrip.guy];
     }
     int guyscount=(int)[self.selectedGuys count];
     self.guysCell.detailTextLabel.text=[NSString stringWithFormat:@"%i %@",guyscount,NSLocalizedString(@"GuysUnit", @"CellContent")];
     self.groupsCell.detailTextLabel.text=[NSString stringWithFormat:@"%@ %@",self.trip.countRealGroups,NSLocalizedString(@"GroupsUnit", @"CellContent")];
-    
-
 }
 
 -(void) save:(id)sender{

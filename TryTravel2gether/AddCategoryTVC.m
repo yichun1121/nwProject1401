@@ -27,6 +27,7 @@
                                                      inManagedObjectContext:self.managedObjectContext];
     
     category.name = self.name.text;
+    category.iconName=@"empty";
 
     
     
