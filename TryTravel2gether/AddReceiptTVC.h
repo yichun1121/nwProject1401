@@ -11,6 +11,7 @@
 #import "Day.h"
 #import "TripDaysTVC.h"
 #import "CurrencyCDTVC.h"
+#import "NWAdShiftTableViewController.h"
 #import "Calculator.h"
 
 @class AddReceiptTVC;
@@ -21,7 +22,7 @@
 
 @end
 
-@interface AddReceiptTVC : UITableViewController<UITextFieldDelegate,TripDaysTVCDelegate,CurrencyCDTVCDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIScrollViewDelegate,CalculatorDelegate>
+@interface AddReceiptTVC : NWAdShiftTableViewController<UITextFieldDelegate,TripDaysTVCDelegate,CurrencyCDTVCDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIScrollViewDelegate,CalculatorDelegate>
 
 @property (weak,nonatomic)id <AddReceiptTVCDelegate> delegate;
 @property (strong,nonatomic)NSManagedObjectContext *managedObjectContext;
