@@ -184,7 +184,9 @@
     receipt.day=selectedDay;
     
     receipt.dayCurrency=[self getDayCurrencyWithTripDay:selectedDay Currency:self.currentCurrency];
-    
+    //CoreData Transformable type
+    NSData *receiptArrayData=[NSKeyedArchiver archivedDataWithRootObject:self.arrayOfStack];
+    receipt.calculatorArray=receiptArrayData;
     
     [self.managedObjectContext save:nil];  // write to database
     NSLog(@"Save new Receipt in AddReceiptTVC");

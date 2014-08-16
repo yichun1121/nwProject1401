@@ -149,6 +149,9 @@
     self.receipt.total=[NSNumber numberWithDouble:[self.totalPrice.currentTitle doubleValue]];
     self.receipt.time=[self.timeFormatter dateFromString:self.timeCell.detailTextLabel.text];
     self.receipt.day=selectedDay;
+    //CoreData Transformable type
+    NSData *receiptArrayData=[NSKeyedArchiver archivedDataWithRootObject:self.arrayOfStack];
+    self.receipt.calculatorArray=receiptArrayData;
     
     self.receipt.dayCurrency=[self getDayCurrencyWithTripDay:selectedDay Currency:self.currentCurrency];
     //TODO: 存照片需要另外判斷
@@ -258,7 +261,8 @@
     self.dateCell.detailTextLabel.text=[self.dateFormatter stringFromDate:self.receipt.day.date];
     self.timeCell.detailTextLabel.text=[self.timeFormatter stringFromDate:self.receipt.time];
     self.selectedDayString=[self.dateFormatter stringFromDate: self.receipt.day.date];
-
+    self.arrayOfStack=[NSKeyedUnarchiver unarchiveObjectWithData:self.receipt.calculatorArray];
+    
     for (Photo * photo in self.receipt.photosOrdered) {
         UIImage *image=photo.image;
         [self loadImageIntoScrollView:image];   //要先load再add，不然位置會計算錯
