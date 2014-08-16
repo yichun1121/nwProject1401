@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Account" representedClassName="Account" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="receipts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Receipt" inverseName="account" inverseEntity="Receipt" syncable="YES"/>
+    </entity>
+    <entity name="CatInTrip" representedClassName="CatInTrip" syncable="YES">
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Itemcategory" inverseName="catInTrips" inverseEntity="Itemcategory" syncable="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="catInTrip" inverseEntity="Item" syncable="YES"/>
+        <relationship name="trip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="catsInTrip" inverseEntity="Trip" syncable="YES"/>
+    </entity>
+    <entity name="Currency" representedClassName="Currency" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sign" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="standardSign" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="dayCurrency" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DayCurrency" inverseName="currency" inverseEntity="DayCurrency" syncable="YES"/>
+        <relationship name="trips" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Trip" inverseName="mainCurrency" inverseEntity="Trip" syncable="YES"/>
+    </entity>
+    <entity name="Day" representedClassName="Day" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="dayIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="dayCurrencies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DayCurrency" inverseName="tripDay" inverseEntity="DayCurrency" syncable="YES"/>
+        <relationship name="inTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="days" inverseEntity="Trip" syncable="YES"/>
+        <relationship name="receipts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Receipt" inverseName="day" inverseEntity="Receipt" syncable="YES"/>
+    </entity>
+    <entity name="DayCurrency" representedClassName="DayCurrency" syncable="YES">
+        <relationship name="currency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="dayCurrency" inverseEntity="Currency" syncable="YES"/>
+        <relationship name="receipts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Receipt" inverseName="dayCurrency" inverseEntity="Receipt" syncable="YES"/>
+        <relationship name="tripDay" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="dayCurrencies" inverseEntity="Day" syncable="YES"/>
+    </entity>
+    <entity name="Group" representedClassName="Group" syncable="YES">
+        <attribute name="colorRGB" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="guysInTrip" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GuyInTrip" inverseName="groups" inverseEntity="GuyInTrip" syncable="YES"/>
+        <relationship name="inTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="groups" inverseEntity="Trip" syncable="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="group" inverseEntity="Item" syncable="YES"/>
+    </entity>
+    <entity name="Guy" representedClassName="Guy" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="guyInTrips" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GuyInTrip" inverseName="guy" inverseEntity="GuyInTrip" syncable="YES"/>
+    </entity>
+    <entity name="GuyInTrip" representedClassName="GuyInTrip" syncable="YES">
+        <attribute name="realInTrip" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="guysInTrip" inverseEntity="Group" syncable="YES"/>
+        <relationship name="guy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Guy" inverseName="guyInTrips" inverseEntity="Guy" syncable="YES"/>
+        <relationship name="inTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="guysInTrip" inverseEntity="Trip" syncable="YES"/>
+    </entity>
+    <entity name="Item" representedClassName="Item" syncable="YES">
+        <attribute name="itemIndex" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="catInTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CatInTrip" inverseName="items" inverseEntity="CatInTrip" syncable="YES"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="items" inverseEntity="Group" syncable="YES"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="items" inverseEntity="Photo" syncable="YES"/>
+        <relationship name="receipt" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Receipt" inverseName="items" inverseEntity="Receipt" syncable="YES"/>
+    </entity>
+    <entity name="Itemcategory" representedClassName="Itemcategory" syncable="YES">
+        <attribute name="colorRGB" optional="YES" attributeType="String" valueTransformerName="UIColor" syncable="YES"/>
+        <attribute name="iconName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="catInTrips" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CatInTrip" inverseName="category" inverseEntity="CatInTrip" syncable="YES"/>
+    </entity>
+    <entity name="Photo" representedClassName="Photo" syncable="YES">
+        <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fullPath" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="photos" inverseEntity="Item" syncable="YES"/>
+        <relationship name="receipts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Receipt" inverseName="photos" inverseEntity="Receipt" syncable="YES"/>
+    </entity>
+    <entity name="Receipt" representedClassName="Receipt" syncable="YES">
+        <attribute name="calculatorArray" optional="YES" attributeType="Transformable" valueTransformerName="CalculatorNSArray" syncable="YES"/>
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="total" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" inverseName="receipts" inverseEntity="Account" syncable="YES"/>
+        <relationship name="day" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="receipts" inverseEntity="Day" syncable="YES"/>
+        <relationship name="dayCurrency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DayCurrency" inverseName="receipts" inverseEntity="DayCurrency" syncable="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="receipt" inverseEntity="Item" syncable="YES"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="receipts" inverseEntity="Photo" syncable="YES"/>
+    </entity>
+    <entity name="Trip" representedClassName="Trip" syncable="YES">
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="tripIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="catsInTrip" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CatInTrip" inverseName="trip" inverseEntity="CatInTrip" syncable="YES"/>
+        <relationship name="days" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Day" inverseName="inTrip" inverseEntity="Day" syncable="YES"/>
+        <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="inTrip" inverseEntity="Group" syncable="YES"/>
+        <relationship name="guysInTrip" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GuyInTrip" inverseName="inTrip" inverseEntity="GuyInTrip" syncable="YES"/>
+        <relationship name="mainCurrency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="trips" inverseEntity="Currency" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="CatInTrip" positionX="-54" positionY="-180" width="128" height="88"/>
+        <element name="Currency" positionX="63" positionY="72" width="128" height="118"/>
+        <element name="Day" positionX="88" positionY="-79" width="128" height="133"/>
+        <element name="DayCurrency" positionX="-146" positionY="110" width="128" height="90"/>
+        <element name="Group" positionX="207" positionY="194" width="128" height="118"/>
+        <element name="Guy" positionX="556" positionY="189" width="128" height="73"/>
+        <element name="GuyInTrip" positionX="385" positionY="189" width="128" height="103"/>
+        <element name="Item" positionX="-297" positionY="-27" width="128" height="163"/>
+        <element name="Itemcategory" positionX="-279" positionY="-198" width="128" height="103"/>
+        <element name="Photo" positionX="-459" positionY="-108" width="128" height="103"/>
+        <element name="Receipt" positionX="-101" positionY="-88" width="128" height="178"/>
+        <element name="Trip" positionX="369" positionY="-103" width="128" height="178"/>
+        <element name="Account" positionX="-261" positionY="-90" width="128" height="73"/>
+    </elements>
+</model>
