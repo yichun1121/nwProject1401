@@ -108,7 +108,7 @@
         }
     }else{
         self.groupCell.detailTextLabel.text=@"";
-        self.groupCell.textLabel.text=@"Unspecified";
+        self.groupCell.textLabel.text=NSLocalizedString(@"Unspecified",@"ActiveTips");
     }
 }
 

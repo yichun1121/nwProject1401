@@ -2912,16 +2912,16 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="sp3-cC-l9s"/>
-        <segue reference="6Sz-8Y-kfc"/>
         <segue reference="uY8-M1-8nc"/>
-        <segue reference="5QA-QK-Xps"/>
-        <segue reference="bq2-7x-Hhd"/>
-        <segue reference="moX-HC-O6P"/>
-        <segue reference="IWa-Ty-2Zl"/>
-        <segue reference="fuH-vh-HtH"/>
-        <segue reference="4yc-3i-Tb3"/>
-        <segue reference="dk3-o7-VGh"/>
         <segue reference="wJe-84-bVr"/>
+        <segue reference="6Sz-8Y-kfc"/>
+        <segue reference="sp3-cC-l9s"/>
+        <segue reference="moX-HC-O6P"/>
+        <segue reference="dk3-o7-VGh"/>
+        <segue reference="ZIy-n6-9Hi"/>
+        <segue reference="jlX-mz-Yrp"/>
+        <segue reference="4yc-3i-Tb3"/>
+        <segue reference="lbP-ID-Nb3"/>
+        <segue reference="XJC-77-AaP"/>
     </inferredMetricsTieBreakers>
 </document>
