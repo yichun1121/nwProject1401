@@ -26,7 +26,7 @@
 @property (weak,nonatomic)id <AddReceiptTVCDelegate> delegate;
 @property (strong,nonatomic)NSManagedObjectContext *managedObjectContext;
 
-@property (weak, nonatomic) IBOutlet UITextField *totalPrice;
+//@property (weak, nonatomic) IBOutlet UITextField *totalPrice;
 @property (weak, nonatomic) IBOutlet UITextField *desc;
 @property (weak, nonatomic) IBOutlet UITableViewCell *dateCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *timeCell;
@@ -37,6 +37,9 @@
 @property (strong,nonatomic) Trip *currentTrip;
 //計算機算出來的結果
 @property(strong, nonatomic) NSNumber *result;
+@property(strong, nonatomic) NSMutableArray * arrayOfStack;
+@property (weak, nonatomic) IBOutlet UIButton *totalPrice;
+
 -(IBAction)save:(id)sender;
 
 #pragma mark - 新增加的內容for picker action

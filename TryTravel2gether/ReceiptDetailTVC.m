@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *currency;
 @property (weak, nonatomic) IBOutlet UILabel *currencySign;
 
-@property (weak, nonatomic) IBOutlet UITextField *totalPrice;
+//@property (weak, nonatomic) IBOutlet UITextField *totalPrice;
 @property (weak, nonatomic) IBOutlet UITextField *desc;
 @property (weak, nonatomic) IBOutlet UITableViewCell *dateCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *timeCell;
@@ -39,14 +39,37 @@
 /*!
  記錄已存的照片資訊（檔名路徑）*/
 @property (nonatomic) NSMutableArray *imagePath;
-
+@property (weak, nonatomic) IBOutlet UIButton *totalPrice;
+@property (strong,nonatomic)Calculator *calculator;
+@property BOOL isCalculatorOpened;
 @end
 
 @implementation ReceiptDetailTVC
 @synthesize timePicker=_timePicker;
 @synthesize imagePicker=_imagePicker;
 @synthesize images=_images;
+@synthesize calculator=_calculator;
+@synthesize result=_result;
+@synthesize totalPrice;
+@synthesize arrayOfStack=_arrayOfStack;
 
+-(Calculator *)calculator{
+    if(_calculator==nil){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        _calculator=[storyboard instantiateViewControllerWithIdentifier:@"calculator"];
+        _calculator.delegate=self;
+        [_calculator setModalPresentationStyle:UIModalPresentationFullScreen];
+        
+    }
+    return _calculator;
+}
+-(NSMutableArray *)arrayOfStack
+{
+    if(!_arrayOfStack){
+        _arrayOfStack=[NSMutableArray new];
+    }
+    return _arrayOfStack;
+}
 
 - (void)viewDidLoad
 {
@@ -62,12 +85,26 @@
     
     //設定UITextFeild的delegate
     self.desc.delegate=self;
-    self.totalPrice.delegate=self;
-    
     //設定頁面初始的顯示狀態
     //-----顯示day資訊-----------
     [self configureTheCell];
 }
+
+
+
+/*!show計算機
+ */
+-(void)showCalculator{
+    
+    [self presentViewController:self.calculator animated:YES completion:nil];
+}
+- (IBAction)click:(UIButton *)sender {
+    self.calculator.arrayOfStack=[self.arrayOfStack mutableCopy];
+    [self showCalculator];
+    self.isCalculatorOpened=YES;
+    
+}
+
 -(Photo *)saveImage:(UIImage *)image{
     NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString * basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
@@ -109,7 +146,7 @@
 -(void)save:(id)sender{
     Day *selectedDay=[self getTripDayByDate:self.selectedDayString];
     self.receipt.desc = self.desc.text;
-    self.receipt.total=[NSNumber numberWithDouble:[self.totalPrice.text doubleValue]];
+    self.receipt.total=[NSNumber numberWithDouble:[self.totalPrice.currentTitle doubleValue]];
     self.receipt.time=[self.timeFormatter dateFromString:self.timeCell.detailTextLabel.text];
     self.receipt.day=selectedDay;
     
@@ -216,7 +253,7 @@
 #pragma mark - Table view data source
 -(void)configureTheCell{
     [self setAllCurrencyWithCurrency:self.receipt.dayCurrency.currency];
-    self.totalPrice.text=[NSString stringWithFormat:@"%@", self.receipt.total];
+    [self.totalPrice setTitle:[NSString stringWithFormat:@"%@", self.receipt.total] forState:UIControlStateNormal];
     self.desc.text=self.receipt.desc;
     self.dateCell.detailTextLabel.text=[self.dateFormatter stringFromDate:self.receipt.day.date];
     self.timeCell.detailTextLabel.text=[self.timeFormatter stringFromDate:self.receipt.time];
@@ -395,6 +432,22 @@
     }else{
         self.actingCellIndexPath=nil;
     }
+}
+-(void)theCancelButtonOnCalcultorWasTapped:(Calculator *)controller{
+    //TODO:controller和self怎麼沒差別
+    [controller dismissViewControllerAnimated:YES completion:Nil];
+    
+}
+
+-(void)theOkButtonOnCalcultorWasTapped:(Calculator *)controller{
+    
+    self.result=controller.result;
+    self.arrayOfStack=[controller.arrayOfStack copy];
+    [self.totalPrice setTitle:[NSString stringWithFormat:@"%@",self.result] forState:UIControlStateNormal];
+    
+    //TODO:controller和self怎麼沒差別
+    [controller dismissViewControllerAnimated:YES completion:Nil];
+    
 }
 ////下面這個目前沒有使用
 //#pragma mark 負責長cell的高度，也在這設定actingPicker（每次會因為tableView beginUpdates和endUpdates重畫）

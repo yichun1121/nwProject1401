@@ -10,15 +10,17 @@
 
 @class Calculator;
 @protocol CalculatorDelegate <NSObject>
--(void)theCancelOrOkButtonOnCalcultorWasTapped:(Calculator *)controller;
+-(void)theCancelButtonOnCalcultorWasTapped:(Calculator *)controller;
+-(void)theOkButtonOnCalcultorWasTapped:(Calculator *)controller;
 @end
 
 @interface Calculator : UIViewController
 @property(strong, nonatomic) NSMutableArray * arrayOfStack;
 @property(strong, nonatomic) NSNumber *result;
 @property(weak,nonatomic) id<CalculatorDelegate>delegate;
-@property(strong, nonatomic) NSString *btnCurrentTitle;
-- (IBAction)dismicclick:(id)sender;
 
+
+- (IBAction)okClick:(id)sender;
+- (IBAction)cancelClick:(id)sender;
 
 @end

@@ -11,7 +11,6 @@
 @interface Calculator ()
 @property (weak, nonatomic) IBOutlet UILabel *display;
 @property (nonatomic) BOOL userIsInTheMiddleofEnteringANumber;
-@property (nonatomic) BOOL isEnterPressed;
 @property (weak, nonatomic) IBOutlet UILabel *description;
 @property (nonatomic, strong) NSString * operator;
 @end
@@ -22,8 +21,7 @@
 @synthesize arrayOfStack=_arrayOfStack;
 @synthesize userIsInTheMiddleofEnteringANumber;
 @synthesize description;
-@synthesize isEnterPressed;
-@synthesize btnCurrentTitle=_btnCurrentTitle;
+
 
 -(NSMutableArray *)arrayOfStack
 {
@@ -38,21 +36,24 @@
     [super viewDidLoad];
 	//畫面初始顯示為零
     self.display.text = @"0";
-    self.userIsInTheMiddleofEnteringANumber=YES;
     self.result=0;
     self.description.text=@"";
-    self.btnCurrentTitle=@"";
-    self.isEnterPressed=NO;
+    
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super viewDidAppear:animated];
+    NSLog(@"elements of array2 in calculator =%lu",(unsigned long)[self.arrayOfStack count]);
+    self.userIsInTheMiddleofEnteringANumber=NO;
+    if ([self.arrayOfStack count]!=0) {
+        [self calculatorBrian];
+        [self descriptionOfCalculation];
+    }
 }
 
 - (IBAction)digitPressed:(id)sender {
-    isEnterPressed=NO;
+
     //把初始的零、使用者確定輸入完成的數字消掉
     if ([self.display.text isEqual:@"0"]||self.userIsInTheMiddleofEnteringANumber==NO) {
         self.display.text=@"";
@@ -69,9 +70,9 @@
     }else{
         self.display.text = [self.display.text stringByAppendingString:digit];
     }
-    
+    //清除button顏色
     for (UIView *sub in self.view.subviews) {
-        if ([sub isKindOfClass:[UIButton class]]) {
+        if ([sub isKindOfClass:[UIButton class]]&& sub.tag!=99) {
             UIButton *btn=(UIButton *)sub;
             btn.backgroundColor=[UIColor clearColor];
         }
@@ -81,7 +82,7 @@
 - (IBAction)operationPressed:(UIButton *)sender {
     sender.backgroundColor=[UIColor colorWithRed:0.8 green:0.8 blue:1 alpha:0.6];
     //先把operationPressed前的數字記在Array中
-    if (isEnterPressed==NO) {
+    if (self.userIsInTheMiddleofEnteringANumber==YES) {
         [self.arrayOfStack addObject:self.display.text];
         [self calculatorBrian];
     }
@@ -98,11 +99,15 @@
     [self descriptionOfCalculation];
 }
 - (IBAction)enterPressed:(UIButton *)sender {
-    isEnterPressed=YES;
-    self.userIsInTheMiddleofEnteringANumber=NO;
+    
+    if(self.userIsInTheMiddleofEnteringANumber==YES){
     [self.arrayOfStack addObject:self.display.text];
+    }
+    
     [self descriptionOfCalculation];
     [self calculatorBrian];
+    self.userIsInTheMiddleofEnteringANumber=NO;
+
 }
 - (IBAction)backPressed:(id)sender {
     if ([self.display.text length]>0) {
@@ -124,8 +129,11 @@
     self.userIsInTheMiddleofEnteringANumber=YES;
 }
 -(void)calculatorBrian{
-    double temp;
-    if (self.result!=0) {
+    
+    if ([self.arrayOfStack count]==1) {
+        self.result=[self.arrayOfStack objectAtIndex:0];
+    }else if(self.userIsInTheMiddleofEnteringANumber==YES){
+        double temp=0;
         if ([self.operator isEqualToString:@"+"]) {
             temp=[self.result doubleValue]+[self.display.text doubleValue];
         }else if ([self.operator isEqualToString:@"-"]) {
@@ -140,10 +148,10 @@
             }
         }
         self.result=[NSNumber numberWithDouble:temp];
-        self.display.text=[NSString stringWithFormat:@"%@",self.result];
     }
     
-    
+    self.display.text=[NSString stringWithFormat:@"%@",self.result];
+
 }
 
 
@@ -173,16 +181,24 @@
     if ([self.operator isEqualToString:@"÷"]&&[self.display.text doubleValue]==0) {
         self.description.text=@"Error";
     }
+    
 }
 
-- (IBAction)dismicclick:(id)sender
+- (IBAction)okClick:(id)sender
 {
-    self.btnCurrentTitle=[sender currentTitle];
-    //[self dismissViewControllerAnimated:YES completion:Nil];
-    if ([[sender currentTitle] isEqualToString:@"Ok"]&& isEnterPressed==NO) {
+    
+    //如果沒按Enter，就幫忙按
+    if (self.userIsInTheMiddleofEnteringANumber==YES) {
         [self enterPressed:sender];
     }
-    [self.delegate theCancelOrOkButtonOnCalcultorWasTapped:self];
+    
+    [self.delegate theOkButtonOnCalcultorWasTapped:self];
+    
+}
+
+- (IBAction)cancelClick:(id)sender
+{
+    [self.delegate theCancelButtonOnCalcultorWasTapped:self];
     
 }
 

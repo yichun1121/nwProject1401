@@ -30,8 +30,6 @@
 @property (nonatomic)  UIImagePickerController *imagePicker;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic)  NSMutableArray *images;
-
-@property (weak, nonatomic) IBOutlet UIButton *showResult;
 @property (strong,nonatomic)Calculator *calculator;
 @property BOOL isCalculatorOpened;
 @end
@@ -46,7 +44,8 @@
 @synthesize images=_images;
 @synthesize calculator=_calculator;
 @synthesize result=_result;
-@synthesize showResult;
+@synthesize totalPrice;
+@synthesize arrayOfStack=_arrayOfStack;
 
 -(Calculator *)calculator{
     if(_calculator==nil){
@@ -54,8 +53,16 @@
         _calculator=[storyboard instantiateViewControllerWithIdentifier:@"calculator"];
         _calculator.delegate=self;
         [_calculator setModalPresentationStyle:UIModalPresentationFullScreen];
+        
     }
     return _calculator;
+}
+-(NSMutableArray *)arrayOfStack
+{
+    if(!_arrayOfStack){
+        _arrayOfStack=[NSMutableArray new];
+    }
+    return _arrayOfStack;
 }
 
 
@@ -74,7 +81,6 @@
     
     //設定UITextFeild的delegate（按return縮keyboard）
     self.desc.delegate=self;
-    self.totalPrice.delegate=self;
     //設定scrollView的delegate（scroll功能）
     self.scrollView.delegate=self;
     
@@ -82,7 +88,7 @@
     [self showDefaultDateValue];
     [self setAllCurrencyWithCurrency:self.currentTrip.mainCurrency];
     self.result=0;
-    [self.showResult setTitle:@"0" forState:UIControlStateNormal];
+    [self.totalPrice setTitle:@"0" forState:UIControlStateNormal];
     
 
 }
@@ -101,11 +107,11 @@
 /*!show計算機
  */
 -(void)showCalculator{
+    
     [self presentViewController:self.calculator animated:YES completion:nil];
-    
-    
 }
 - (IBAction)click:(UIButton *)sender {
+    self.calculator.arrayOfStack=[self.arrayOfStack mutableCopy];
     [self showCalculator];
     self.isCalculatorOpened=YES;
     
@@ -173,7 +179,7 @@
     
     Day *selectedDay=[self getTripDayByDate:self.selectedDayString];
     receipt.desc = self.desc.text;
-    receipt.total=[NSNumber numberWithDouble:[self.totalPrice.text doubleValue]];
+    receipt.total=[NSNumber numberWithDouble:[self.totalPrice.currentTitle doubleValue]];
     receipt.time=[self.timeFormatter dateFromString:self.timeCell.detailTextLabel.text];
     receipt.day=selectedDay;
     
@@ -440,16 +446,21 @@
     [controller.navigationController popViewControllerAnimated:YES];
 }
 
--(void)theCancelOrOkButtonOnCalcultorWasTapped:(Calculator *)controller{
+-(void)theCancelButtonOnCalcultorWasTapped:(Calculator *)controller{
+    //TODO:controller和self怎麼沒差別
+    [controller dismissViewControllerAnimated:YES completion:Nil];
+
+}
+
+-(void)theOkButtonOnCalcultorWasTapped:(Calculator *)controller{
+    
+    self.result=controller.result;
+    self.arrayOfStack=[controller.arrayOfStack copy];
+    [self.totalPrice setTitle:[NSString stringWithFormat:@"%@",self.result] forState:UIControlStateNormal];
+    
     //TODO:controller和self怎麼沒差別
     [controller dismissViewControllerAnimated:YES completion:Nil];
     
-    if ([controller.btnCurrentTitle isEqualToString:@"Ok"]) {
-        self.result=controller.result;
-        [self.showResult setTitle:[NSString stringWithFormat:@"%@",self.result] forState:UIControlStateNormal];
-    
-    }
 }
-
 
 @end
