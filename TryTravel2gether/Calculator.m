@@ -47,6 +47,7 @@
     NSLog(@"elements of array2 in calculator =%lu",(unsigned long)[self.arrayOfStack count]);
     self.userIsInTheMiddleofEnteringANumber=NO;
     if ([self.arrayOfStack count]!=0) {
+        
         [self calculatorBrian];
         [self descriptionOfCalculation];
     }
