@@ -12,6 +12,7 @@
 #import "Itemcategory.h"
 #import "SettingMenuRVC.h"
 #import "ShareMainPageCDTVC.h"
+#import "Account.h"
 
 @implementation nwAppDelegate
 
@@ -43,6 +44,12 @@
     }else{
         category.iconName=iconName;
     }
+    [self.managedObjectContext save:nil];
+}
+-(void)insertCategoryName:(NSString *)accountName{
+    Account *account = [NSEntityDescription insertNewObjectForEntityForName:@"Account"
+                                                           inManagedObjectContext:self.managedObjectContext];
+    account.name = accountName;
     [self.managedObjectContext save:nil];
 }
 
@@ -100,6 +107,17 @@
 
     NSLog(@"Importing Core Data Default Values for Item Categories Completed!");
 }
+-(void)importCoreDataDefaultAccounts{
+    NSLog(@"Importing Core Data Default Values for Accounts...");
+    NSString *readPlist=[[NSBundle mainBundle] pathForResource:@"Account" ofType:@"plist"];
+    NSArray *arrCategory=[NSArray arrayWithContentsOfFile:readPlist];
+    for (int i=0; i<arrCategory.count; i++) {
+        NSString *name=[[arrCategory objectAtIndex:i] objectForKey:@"accountName"];
+        [self insertCategoryName:name];
+    }
+    
+    NSLog(@"Importing Core Data Default Values for Item Categories Completed!");
+}
 
 -(void)checkDefaultData:(NSString *)entityName By:(NSString *)attributeName{
     [self setupFetchedResultsControllerByEntityName:entityName AttributeName:attributeName];
@@ -110,6 +128,8 @@
             [self importCoreDataDefaultMoneyTypes];
         }else if ([@"Itemcategory" isEqualToString:entityName]){
             [self importCoreDataDefaultCategories];
+        }else if ([@"Account" isEqualToString:entityName]){
+            [self importCoreDataDefaultAccounts];
         }
     }
     else {
@@ -125,6 +145,7 @@
      */
     [self checkDefaultData:@"Currency" By:@"name"];
     [self checkDefaultData:@"Itemcategory" By:@"name"];
+    [self checkDefaultData:@"Account" By:@"name"];
 //    [self setupFetchedResultsControllerByEntityName:@"Currency" AttributeName:@"name"];
 //    
 //    if (![[self.fetchedResultsController fetchedObjects] count] > 0 ) {
