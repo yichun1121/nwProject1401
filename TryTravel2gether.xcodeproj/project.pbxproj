@@ -47,6 +47,7 @@
 		C903332B1988D72200A55362 /* NWAdShiftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C903332A1988D72200A55362 /* NWAdShiftTableViewController.m */; };
 		C903A89B18D46D76009708C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C903A89A18D46D76009708C6 /* Images.xcassets */; };
 		C90510C0199F5CD300D87F39 /* Account.plist in Resources */ = {isa = PBXBuildFile; fileRef = C90510C2199F5CD300D87F39 /* Account.plist */; };
+		C90510C6199F891C00D87F39 /* SelectPaymentCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C90510C5199F891C00D87F39 /* SelectPaymentCDTVC.m */; };
 		C907B72E194C4438001A4C53 /* NWCustCellImageTitleSubDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C907B72C194C4438001A4C53 /* NWCustCellImageTitleSubDetail.m */; };
 		C907B72F194C4438001A4C53 /* NWCustCellImageTitleSubDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = C907B72D194C4438001A4C53 /* NWCustCellImageTitleSubDetail.xib */; };
 		C909F35318D00FE600E02B8D /* CurrencyCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C909F35218D00FE600E02B8D /* CurrencyCDTVC.m */; };
@@ -210,6 +211,8 @@
 		C903A89A18D46D76009708C6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C90510C1199F5CD300D87F39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Account.plist; sourceTree = "<group>"; };
 		C90510C3199F5CE600D87F39 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "zh-Hant"; path = "zh-Hant.lproj/Account.plist"; sourceTree = "<group>"; };
+		C90510C4199F891C00D87F39 /* SelectPaymentCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPaymentCDTVC.h; sourceTree = "<group>"; };
+		C90510C5199F891C00D87F39 /* SelectPaymentCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPaymentCDTVC.m; sourceTree = "<group>"; };
 		C907B72B194C4438001A4C53 /* NWCustCellImageTitleSubDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWCustCellImageTitleSubDetail.h; path = NWCust/NWCustCellImageTitleSubDetail.h; sourceTree = "<group>"; };
 		C907B72C194C4438001A4C53 /* NWCustCellImageTitleSubDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWCustCellImageTitleSubDetail.m; path = NWCust/NWCustCellImageTitleSubDetail.m; sourceTree = "<group>"; };
 		C907B72D194C4438001A4C53 /* NWCustCellImageTitleSubDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NWCustCellImageTitleSubDetail.xib; path = NWCust/NWCustCellImageTitleSubDetail.xib; sourceTree = "<group>"; };
@@ -730,6 +733,8 @@
 				C99C6DF21967D37000D3ABA5 /* PhotoContentVC.m */,
 				C9FDDA12197FA9CC0060336A /* ReceiptPhotoVC.h */,
 				C9FDDA13197FA9CC0060336A /* ReceiptPhotoVC.m */,
+				C90510C4199F891C00D87F39 /* SelectPaymentCDTVC.h */,
+				C90510C5199F891C00D87F39 /* SelectPaymentCDTVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -933,6 +938,7 @@
 				C96AC7B618F24D410037DA8B /* SelectCategoryCDTVC.m in Sources */,
 				1869ACF31914F19600BF8547 /* NWCustCellSwitch.m in Sources */,
 				C964B92E18D42BBB002EF48C /* Day+Expend.m in Sources */,
+				C90510C6199F891C00D87F39 /* SelectPaymentCDTVC.m in Sources */,
 				1810A8CC199F52710073B2C7 /* Receipt.m in Sources */,
 				C964B93418D43061002EF48C /* Day.m in Sources */,
 				04A04665188A4B5D00D98809 /* AddReceiptTVC.m in Sources */,

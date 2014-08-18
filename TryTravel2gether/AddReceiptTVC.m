@@ -15,6 +15,7 @@
 #import "NWKeyboardUtils.h"
 #import "NWPickerUtils.h"
 #import "NWUIScrollViewMovePostition.h"
+#import "Account.h"
 
 
 @interface AddReceiptTVC ()
@@ -24,6 +25,7 @@
 @property Currency *currentCurrency;
 @property (weak, nonatomic) IBOutlet UITableViewCell *currency;
 @property (weak, nonatomic) IBOutlet UILabel *currencySign;
+@property (weak, nonatomic) IBOutlet UITableViewCell *paymentAccount;
 @property (strong, nonatomic) IBOutlet UIDatePicker *timePicker;
 
 @property NSIndexPath * actingCellIndexPath;
@@ -32,6 +34,7 @@
 @property (nonatomic)  NSMutableArray *images;
 @property (strong,nonatomic)Calculator *calculator;
 @property BOOL isCalculatorOpened;
+@property (strong,nonatomic) Account *selectedAccount;
 @end
 
 @implementation AddReceiptTVC
@@ -46,6 +49,7 @@
 @synthesize result=_result;
 @synthesize totalPrice;
 @synthesize arrayOfStack=_arrayOfStack;
+@synthesize selectedAccount=_selectedAccount;
 
 -(Calculator *)calculator{
     if(_calculator==nil){
@@ -96,7 +100,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (!self.isCalculatorOpened) {
+    if (!self.isCalculatorOpened&&[self.totalPrice.titleLabel.text isEqualToString:@"0"]) {
         [self showCalculator];
         self.isCalculatorOpened=YES;
     }else{
@@ -187,6 +191,7 @@
     //CoreData Transformable type
     NSData *receiptArrayData=[NSKeyedArchiver archivedDataWithRootObject:self.arrayOfStack];
     receipt.calculatorArray=receiptArrayData;
+    receipt.account=self.selectedAccount;
     
     [self.managedObjectContext save:nil];  // write to database
     NSLog(@"Save new Receipt in AddReceiptTVC");
@@ -419,6 +424,13 @@
         currencyCDTVC.managedObjectContext=self.managedObjectContext;
         currencyCDTVC.selectedCurrency=self.currentCurrency;
         
+    }else if([segue.identifier isEqualToString:@"Payment Segue From Add Receipt"]){
+        NSLog(@"Setting %@ as a delegate of PaymentCDTVC...",self.class);
+        SelectPaymentCDTVC *selectPaymentCDTVC=segue.destinationViewController;
+        selectPaymentCDTVC.delegate=self;
+        selectPaymentCDTVC.managedObjectContext=self.managedObjectContext;
+        selectPaymentCDTVC.selectedAccount=self.selectedAccount;
+        
     }
 }
 
@@ -455,14 +467,27 @@
 }
 
 -(void)theOkButtonOnCalcultorWasTapped:(Calculator *)controller{
-    
+    if ([controller.arrayOfStack count]!=0) {
+        
     self.result=controller.result;
     self.arrayOfStack=[controller.arrayOfStack copy];
-    [self.totalPrice setTitle:[NSString stringWithFormat:@"%@",self.result] forState:UIControlStateNormal];
+        [self.totalPrice setTitle:[NSString stringWithFormat:@"%@",self.result] forState:UIControlStateNormal];
+    }
     
     //TODO:controller和self怎麼沒差別
     [controller dismissViewControllerAnimated:YES completion:Nil];
     
+}
+-(void)theSaveButtonOnTheSelectPaymentWasTapped:(SelectPaymentCDTVC *)controller{
+    if (!controller.selectedAccount.name) {
+        self.paymentAccount.detailTextLabel.text=@"Undefind";
+        self.selectedAccount=nil;
+    }else{
+        self.paymentAccount.detailTextLabel.text=controller.selectedAccount.name;
+        self.selectedAccount=controller.selectedAccount;
+        
+    }
+    [controller.navigationController popViewControllerAnimated:YES];
 }
 
 @end

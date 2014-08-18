@@ -15,6 +15,7 @@
 #import "NWKeyboardUtils.h"
 #import "NWPickerUtils.h"
 #import "NWUIScrollViewMovePostition.h"
+#import "Account.h"
 
 @interface ReceiptDetailTVC ()
 
@@ -23,6 +24,7 @@
 @property NSDateFormatter *dateTimeFormatter;
 @property Currency *currentCurrency;
 @property (weak, nonatomic) IBOutlet UITableViewCell *currency;
+@property (weak, nonatomic) IBOutlet UITableViewCell *paymentAccount;
 @property (weak, nonatomic) IBOutlet UILabel *currencySign;
 
 //@property (weak, nonatomic) IBOutlet UITextField *totalPrice;
@@ -42,6 +44,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *totalPrice;
 @property (strong,nonatomic)Calculator *calculator;
 @property BOOL isCalculatorOpened;
+@property (strong,nonatomic) Account *selectedAccount;
 @end
 
 @implementation ReceiptDetailTVC
@@ -52,6 +55,7 @@
 @synthesize result=_result;
 @synthesize totalPrice;
 @synthesize arrayOfStack=_arrayOfStack;
+@synthesize selectedAccount=_selectedAccount;
 
 -(Calculator *)calculator{
     if(_calculator==nil){
@@ -163,6 +167,7 @@
         [mtbImages addObject:photo];
     }
     self.receipt.photos=mtbImages;
+    self.receipt.account=self.selectedAccount;
     
     [self.managedObjectContext save:nil];  // write to database
     NSLog(@"Save new Receipt in AddReceiptTVC");
@@ -262,6 +267,8 @@
     self.timeCell.detailTextLabel.text=[self.timeFormatter stringFromDate:self.receipt.time];
     self.selectedDayString=[self.dateFormatter stringFromDate: self.receipt.day.date];
     self.arrayOfStack=[NSKeyedUnarchiver unarchiveObjectWithData:self.receipt.calculatorArray];
+    self.selectedAccount=self.receipt.account;
+    self.paymentAccount.detailTextLabel.text=self.receipt.account.name;
     
     for (Photo * photo in self.receipt.photosOrdered) {
         UIImage *image=photo.image;
@@ -374,6 +381,13 @@
         currencyCDTVC.managedObjectContext=self.managedObjectContext;
         currencyCDTVC.selectedCurrency=self.currentCurrency;
         
+    }else if([segue.identifier isEqualToString:@"Payment Segue From Receipt Detail"]){
+        NSLog(@"Setting CurrencyCDTVC as a delegate of TripDaysTVC...");
+        SelectPaymentCDTVC *selectPaymentCDTVC=segue.destinationViewController;
+        
+        selectPaymentCDTVC.delegate=self;
+        selectPaymentCDTVC.managedObjectContext=self.managedObjectContext;
+        selectPaymentCDTVC.selectedAccount=self.receipt.account;
     }
 }
 
@@ -452,6 +466,17 @@
     //TODO:controller和self怎麼沒差別
     [controller dismissViewControllerAnimated:YES completion:Nil];
     
+}
+
+-(void)theSaveButtonOnTheSelectPaymentWasTapped:(SelectPaymentCDTVC *)controller{
+    if (!controller.selectedAccount.name) {
+        self.paymentAccount.detailTextLabel.text=@"Undefind";
+        self.selectedAccount=nil;
+    }else{
+        self.paymentAccount.detailTextLabel.text=controller.selectedAccount.name;
+        self.selectedAccount=controller.selectedAccount;
+    }
+    [controller.navigationController popViewControllerAnimated:YES];
 }
 ////下面這個目前沒有使用
 //#pragma mark 負責長cell的高度，也在這設定actingPicker（每次會因為tableView beginUpdates和endUpdates重畫）
