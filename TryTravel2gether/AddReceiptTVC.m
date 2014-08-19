@@ -188,9 +188,11 @@
     receipt.day=selectedDay;
     
     receipt.dayCurrency=[self getDayCurrencyWithTripDay:selectedDay Currency:self.currentCurrency];
+    
     //CoreData Transformable type
     NSData *receiptArrayData=[NSKeyedArchiver archivedDataWithRootObject:self.arrayOfStack];
     receipt.calculatorArray=receiptArrayData;
+    
     receipt.account=self.selectedAccount;
     
     [self.managedObjectContext save:nil];  // write to database
@@ -238,21 +240,68 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 
 }
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+/*! 載入ImageView，配合已存在的照片放置新位置並延伸scrollView為適當寬度
+  */
 -(void)loadImageIntoScrollView:(UIImage *)image{
-    //1. 計算這次imageView大小位置，並把照片放進去
+    //1. 計算這次imageView大小位置，並把照片放進去----------------------------------------------------------
     NSInteger imgCount=[self.images count];
     double imgViewWidth=155;
     CGRect newImageRect=CGRectMake((imgViewWidth+5)*imgCount+5, 10, imgViewWidth, image.size.height/image.size.width*imgViewWidth);
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:newImageRect];
     imgView.image=image;
     NSLog(@"loaded a image @%@",self.class);
-    //2. 把imageView放進scrollView裡，並拉長scrollView
+    //2. 加刪除按鈕------------------------------------------------------------------------------------
+    float btnDiameter=30;   //按鈕直徑
+    float padding=5;
+    CGRect btnDeleteReck=CGRectMake(imgViewWidth-padding-btnDiameter, padding, btnDiameter, btnDiameter);
+    UIButton *btnDelete=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [btnDelete setImage:[UIImage imageNamed:@"trash"] forState:UIControlStateNormal];
+    btnDelete.backgroundColor=[UIColor whiteColor];
+    [btnDelete.titleLabel setTextColor:[UIColor blackColor]];
+    btnDelete.alpha=0.7;
+    CALayer *layer =btnDelete.layer;
+    [layer setMasksToBounds:YES];
+    [layer setCornerRadius:btnDiameter/2];
+    [btnDelete addTarget:self action:@selector(deleteImageClick:) forControlEvents:UIControlEventTouchDown];
+    btnDelete.frame=btnDeleteReck;
+    //[btnDelete setTitle:@"X" forState:UIControlStateNormal];
+    [imgView addSubview:btnDelete];
+    imgView.userInteractionEnabled=YES; //預設是NO，設成YES後subview的button event才有效
+    //3. 把imageView放進scrollView裡，並拉長scrollView---------------------------------------------------
     [self.scrollView addSubview:imgView];
     CGSize scrollSize=CGSizeMake((imgViewWidth+5)*(imgCount+1), self.scrollView.frame.size.height);
     self.scrollView.contentSize=scrollSize; //要把scrollView拉大，才能scroll
 }
--(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-    [self dismissViewControllerAnimated:YES completion:nil];
+-(void)deleteImageClick:(id)sender{
+    if ([sender isKindOfClass:UIButton.class]) {
+        UIButton *btnDelete=(UIButton *)sender;
+        if ([btnDelete.superview isKindOfClass:UIImageView.class]) {
+            //清空原本scrollView裡面的照片
+            for (UIView *view in self.scrollView.subviews) {
+                [view removeFromSuperview];
+            }
+            CGSize scrollSize=CGSizeMake(0, self.scrollView.frame.size.height);
+            self.scrollView.contentSize=scrollSize;
+            NSMutableArray *tempImages=[self.images mutableCopy];
+            [self.images removeAllObjects];
+            //重load
+            UIImageView *imgView=(UIImageView *)btnDelete.superview;
+            for (int i=0; i<[tempImages count]; i++) {
+                if (imgView.image==tempImages[i]) {
+                    [tempImages removeObjectAtIndex:i];
+                    i=i-1;  //原本的i被刪掉，後面的會往前遞補，所以下個run i++後要從同一個i開始跑，現在先減掉
+                }else{
+                    [self loadImageIntoScrollView:tempImages[i]];   //要先load再add，不然位置會計算錯
+                    [self.images addObject:tempImages[i]];
+                }
+                NSLog(@"image %i",i);
+            }
+        }
+        NSLog(@"delete image");
+    }
 }
 #pragma mark - lazy instantiation
 

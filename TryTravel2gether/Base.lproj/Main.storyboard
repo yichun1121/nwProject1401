@@ -1660,13 +1660,6 @@
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RIX-MI-izH">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <subviews>
-                                                        <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rul-eJ-aeM">
-                                                            <rect key="frame" x="-8" y="0.0" width="320" height="239"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                                        </containerView>
-                                                    </subviews>
                                                 </scrollView>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -2685,7 +2678,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tM6-M8-bOU">
-                                                    <rect key="frame" x="0.0" y="-28" width="320" height="295"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </scrollView>
                                             </subviews>
@@ -3282,16 +3275,16 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="uY8-M1-8nc"/>
-        <segue reference="moX-HC-O6P"/>
-        <segue reference="jlX-mz-Yrp"/>
-        <segue reference="ZIy-n6-9Hi"/>
-        <segue reference="4yc-3i-Tb3"/>
-        <segue reference="PqC-DQ-EtO"/>
-        <segue reference="dk3-o7-VGh"/>
-        <segue reference="4bK-FK-wew"/>
         <segue reference="6Sz-8Y-kfc"/>
         <segue reference="sp3-cC-l9s"/>
-        <segue reference="XJC-77-AaP"/>
+        <segue reference="moX-HC-O6P"/>
+        <segue reference="4bK-FK-wew"/>
+        <segue reference="PqC-DQ-EtO"/>
+        <segue reference="dk3-o7-VGh"/>
+        <segue reference="ZIy-n6-9Hi"/>
+        <segue reference="jlX-mz-Yrp"/>
+        <segue reference="4yc-3i-Tb3"/>
         <segue reference="lbP-ID-Nb3"/>
+        <segue reference="XJC-77-AaP"/>
     </inferredMetricsTieBreakers>
 </document>

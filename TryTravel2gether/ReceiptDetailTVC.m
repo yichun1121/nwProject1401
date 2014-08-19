@@ -153,19 +153,35 @@
     self.receipt.total=[NSNumber numberWithDouble:[self.totalPrice.currentTitle doubleValue]];
     self.receipt.time=[self.timeFormatter dateFromString:self.timeCell.detailTextLabel.text];
     self.receipt.day=selectedDay;
+    
+    self.receipt.dayCurrency=[self getDayCurrencyWithTripDay:selectedDay Currency:self.currentCurrency];
+    
+    self.receipt.account=self.selectedAccount;
+    
     //CoreData Transformable type
     NSData *receiptArrayData=[NSKeyedArchiver archivedDataWithRootObject:self.arrayOfStack];
     self.receipt.calculatorArray=receiptArrayData;
     
-    self.receipt.dayCurrency=[self getDayCurrencyWithTripDay:selectedDay Currency:self.currentCurrency];
-    //TODO: 存照片需要另外判斷
     NSMutableSet *mtbImages=[[NSMutableSet alloc]init];
     //移除不需要的照片---------------------------------------------------------------------
     //如果mtbImages裡的路徑不包含于現有的self.imagePath，代表這張照片不需要了，所以可以移掉
+    NSFileManager *fileManager=[NSFileManager defaultManager];
     for (Photo * photo in self.receipt.photos) {
         if ([self.imagePath containsObject: photo.fullPath]) {
             [mtbImages addObject:photo];
+            
+        }else{
+            NSError *error;
+            BOOL success = [fileManager removeItemAtPath:photo.fullPath error:&error];
+            if (success) {
+                NSLog(@"deletePhotoFile@%@: %@",self.class,photo.fullPath);
+                NSLog(@"Deleting Photo object...");
+                [self.managedObjectContext deleteObject:photo];
+            }else{
+                NSLog(@"Fail! deletePhotoFile: %@ @%@ (%@)",photo.fullPath,self.class,error.localizedDescription);
+            }
         }
+        
     }
     //儲存新加入的照片---------------------------------------------------------------------
     //self.imagePath和self.images的資料差異就是新增的照片，把存在images但不在imagePath裡的照片存起來
@@ -176,7 +192,6 @@
         [mtbImages addObject:photo];
     }
     self.receipt.photos=mtbImages;
-    self.receipt.account=self.selectedAccount;
     
     [self.managedObjectContext save:nil];  // write to database
     NSLog(@"Save new Receipt in AddReceiptTVC");
@@ -225,7 +240,9 @@
     imgView.image=image;
     NSLog(@"loaded a image @%@",self.class);
     //2. 加刪除按鈕------------------------------------------------------------------------------------
-    CGRect btnDeleteReck=CGRectMake(imgViewWidth-35, 25, 30, 30);
+    float btnDiameter=30;   //按鈕直徑
+    float padding=5;
+    CGRect btnDeleteReck=CGRectMake(imgViewWidth-padding-btnDiameter, padding, btnDiameter, btnDiameter);
     UIButton *btnDelete=[UIButton buttonWithType:UIButtonTypeRoundedRect];
     [btnDelete setImage:[UIImage imageNamed:@"trash"] forState:UIControlStateNormal];
     btnDelete.backgroundColor=[UIColor whiteColor];
@@ -233,7 +250,7 @@
     btnDelete.alpha=0.7;
     CALayer *layer =btnDelete.layer;
     [layer setMasksToBounds:YES];
-    [layer setCornerRadius:15.0];
+    [layer setCornerRadius:btnDiameter/2];
     [btnDelete addTarget:self action:@selector(deleteImageClick:) forControlEvents:UIControlEventTouchDown];
     btnDelete.frame=btnDeleteReck;
     //[btnDelete setTitle:@"X" forState:UIControlStateNormal];
@@ -244,13 +261,6 @@
     CGSize scrollSize=CGSizeMake((imgViewWidth+5)*(imgCount+1), self.scrollView.frame.size.height);
     self.scrollView.contentSize=scrollSize; //要把scrollView拉大，才能scroll
     
-}
-/*!設定currentCurrency還有頁面相關顯示
- */
--(void)setAllCurrencyWithCurrency:(Currency *)currency{
-    self.currentCurrency=currency;
-    self.currency.detailTextLabel.text=currency.standardSign;
-    self.currencySign.text=currency.sign;
 }
 -(void)deleteImageClick:(id)sender{
     if ([sender isKindOfClass:UIButton.class]) {
@@ -332,6 +342,14 @@
         [self.images addObject:image];
         [self.imagePath addObject:photo.fullPath];
     }
+}
+
+/*!設定currentCurrency還有頁面相關顯示
+ */
+-(void)setAllCurrencyWithCurrency:(Currency *)currency{
+    self.currentCurrency=currency;
+    self.currency.detailTextLabel.text=currency.standardSign;
+    self.currencySign.text=currency.sign;
 }
 #pragma mark - ▣ CRUD_TripDay+DayCurrency
 /*!以yyyy/MM/dd的日期字串取得本旅程中對應的Day，如果沒有這天，回傳nil
@@ -447,31 +465,7 @@
     }
 }
 
-#pragma mark - delegation
-#pragma mark 監測UITextFeild事件，按下return的時候會收鍵盤
-//要在viewDidLoad裡加上textField的delegate=self，才監聽的到
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
-    return YES;
-}
 
--(void)dayWasSelectedInTripDaysTVC:(TripDaysTVC *)controller{
-    self.selectedDayString=controller.selectedDayString;
-    self.dateCell.detailTextLabel.text=controller.selectedDayString;
-    //self.datePicker.date=[self.dateFormatter dateFromString:controller.selectedDayString];
-    [controller.navigationController popViewControllerAnimated:YES];
-}
--(void)currencyWasSelectedInCurrencyCDTVC:(CurrencyCDTVC *)controller{
-    [self setAllCurrencyWithCurrency:controller.selectedCurrency];
-    [controller.navigationController popViewControllerAnimated:YES];
-}
-
-//開始編輯textField時做的事
-- (void)textFieldDidBeginEditing:(UITextField *)textField{
-    
-    //清除所有的picker
-    [NWPickerUtils dismissPicker:self.tableView];
-}
 #pragma mark 監測點選row時候的事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *clickCell=[self.tableView cellForRowAtIndexPath:indexPath];
@@ -506,6 +500,32 @@
     }else{
         self.actingCellIndexPath=nil;
     }
+}
+
+#pragma mark - delegation
+#pragma mark 監測UITextFeild事件，按下return的時候會收鍵盤
+//要在viewDidLoad裡加上textField的delegate=self，才監聽的到
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+-(void)dayWasSelectedInTripDaysTVC:(TripDaysTVC *)controller{
+    self.selectedDayString=controller.selectedDayString;
+    self.dateCell.detailTextLabel.text=controller.selectedDayString;
+    //self.datePicker.date=[self.dateFormatter dateFromString:controller.selectedDayString];
+    [controller.navigationController popViewControllerAnimated:YES];
+}
+-(void)currencyWasSelectedInCurrencyCDTVC:(CurrencyCDTVC *)controller{
+    [self setAllCurrencyWithCurrency:controller.selectedCurrency];
+    [controller.navigationController popViewControllerAnimated:YES];
+}
+
+//開始編輯textField時做的事
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    //清除所有的picker
+    [NWPickerUtils dismissPicker:self.tableView];
 }
 -(void)theCancelButtonOnCalcultorWasTapped:(Calculator *)controller{
     //TODO:controller和self怎麼沒差別
