@@ -3225,7 +3225,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="99" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="CalculatorCancel" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JQf-LD-XXR">
-                                <rect key="frame" x="20" y="427" width="75" height="54"/>
+                                <rect key="frame" x="30" y="426" width="75" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
@@ -3238,7 +3238,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="99" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="CalculatorOK" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aIh-Al-wTQ">
-                                <rect key="frame" x="225" y="427" width="75" height="53"/>
+                                <rect key="frame" x="215" y="427" width="75" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.25098040700000002" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
@@ -3286,12 +3286,12 @@
         <segue reference="jlX-mz-Yrp"/>
         <segue reference="ZIy-n6-9Hi"/>
         <segue reference="4yc-3i-Tb3"/>
-        <segue reference="r1V-Ci-7uc"/>
-        <segue reference="fuU-qV-pe9"/>
-        <segue reference="UeU-4K-QBx"/>
+        <segue reference="PqC-DQ-EtO"/>
+        <segue reference="dk3-o7-VGh"/>
+        <segue reference="4bK-FK-wew"/>
         <segue reference="6Sz-8Y-kfc"/>
         <segue reference="sp3-cC-l9s"/>
-        <segue reference="lbP-ID-Nb3"/>
         <segue reference="XJC-77-AaP"/>
+        <segue reference="lbP-ID-Nb3"/>
     </inferredMetricsTieBreakers>
 </document>

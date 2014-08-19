@@ -159,7 +159,16 @@
     
     self.receipt.dayCurrency=[self getDayCurrencyWithTripDay:selectedDay Currency:self.currentCurrency];
     //TODO: 存照片需要另外判斷
-    NSMutableSet *mtbImages=[self.receipt.photos mutableCopy];
+    NSMutableSet *mtbImages=[[NSMutableSet alloc]init];
+    //移除不需要的照片---------------------------------------------------------------------
+    //如果mtbImages裡的路徑不包含于現有的self.imagePath，代表這張照片不需要了，所以可以移掉
+    for (Photo * photo in self.receipt.photos) {
+        if ([self.imagePath containsObject: photo.fullPath]) {
+            [mtbImages addObject:photo];
+        }
+    }
+    //儲存新加入的照片---------------------------------------------------------------------
+    //self.imagePath和self.images的資料差異就是新增的照片，把存在images但不在imagePath裡的照片存起來
     int countExistingPhoto=(int)self.imagePath.count;
     for (int i=countExistingPhoto; i<self.images.count; i++) {
         UIImage *image=self.images[i];
@@ -208,14 +217,29 @@
 /*! 載入ImageView，配合已存在的照片放置新位置並延伸scrollView為適當寬度
  */
 -(void)loadImageIntoScrollView:(UIImage *)image{
-    //1. 計算這次imageView大小位置，並把照片放進去
+    //1. 計算這次imageView大小位置，並把照片放進去----------------------------------------------------------
     NSInteger imgCount=[self.images count];
     double imgViewWidth=155;
     CGRect newImageRect=CGRectMake((imgViewWidth+5)*imgCount+5, 10, imgViewWidth, image.size.height/image.size.width*imgViewWidth);
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:newImageRect];
     imgView.image=image;
     NSLog(@"loaded a image @%@",self.class);
-    //2. 把imageView放進scrollView裡，並拉長scrollView
+    //2. 加刪除按鈕------------------------------------------------------------------------------------
+    CGRect btnDeleteReck=CGRectMake(imgViewWidth-35, 25, 30, 30);
+    UIButton *btnDelete=[UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [btnDelete setImage:[UIImage imageNamed:@"trash"] forState:UIControlStateNormal];
+    btnDelete.backgroundColor=[UIColor whiteColor];
+    [btnDelete.titleLabel setTextColor:[UIColor blackColor]];
+    btnDelete.alpha=0.7;
+    CALayer *layer =btnDelete.layer;
+    [layer setMasksToBounds:YES];
+    [layer setCornerRadius:15.0];
+    [btnDelete addTarget:self action:@selector(deleteImageClick:) forControlEvents:UIControlEventTouchDown];
+    btnDelete.frame=btnDeleteReck;
+    //[btnDelete setTitle:@"X" forState:UIControlStateNormal];
+    [imgView addSubview:btnDelete];
+    imgView.userInteractionEnabled=YES; //預設是NO，設成YES後subview的button event才有效
+    //3. 把imageView放進scrollView裡，並拉長scrollView---------------------------------------------------
     [self.scrollView addSubview:imgView];
     CGSize scrollSize=CGSizeMake((imgViewWidth+5)*(imgCount+1), self.scrollView.frame.size.height);
     self.scrollView.contentSize=scrollSize; //要把scrollView拉大，才能scroll
@@ -227,6 +251,38 @@
     self.currentCurrency=currency;
     self.currency.detailTextLabel.text=currency.standardSign;
     self.currencySign.text=currency.sign;
+}
+-(void)deleteImageClick:(id)sender{
+    if ([sender isKindOfClass:UIButton.class]) {
+        UIButton *btnDelete=(UIButton *)sender;
+        if ([btnDelete.superview isKindOfClass:UIImageView.class]) {
+            //清空原本scrollView裡面的照片
+            for (UIView *view in self.scrollView.subviews) {
+                [view removeFromSuperview];
+            }
+            CGSize scrollSize=CGSizeMake(0, self.scrollView.frame.size.height);
+            self.scrollView.contentSize=scrollSize;
+            NSMutableArray *tempImages=[self.images mutableCopy];
+            NSMutableArray *tempImagePath=[self.imagePath mutableCopy];
+            [self.images removeAllObjects];
+            [self.imagePath removeAllObjects];
+            //重load
+            UIImageView *imgView=(UIImageView *)btnDelete.superview;
+            for (int i=0; i<[tempImages count]; i++) {
+                if (imgView.image==tempImages[i]) {
+                    [tempImages removeObjectAtIndex:i];
+                    [tempImagePath removeObjectAtIndex:i];
+                    i=i-1;  //原本的i被刪掉，後面的會往前遞補，所以下個run i++後要從同一個i開始跑，現在先減掉
+                }else{
+                    [self loadImageIntoScrollView:tempImages[i]];   //要先load再add，不然位置會計算錯
+                    [self.images addObject:tempImages[i]];
+                    [self.imagePath addObject:tempImagePath[i]];
+                }
+                NSLog(@"image %i",i);
+            }
+        }
+        NSLog(@"delete image");
+    }
 }
 #pragma mark - lazy instantiation
 
