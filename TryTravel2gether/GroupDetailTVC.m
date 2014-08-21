@@ -118,7 +118,6 @@
 	}
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
-
 }
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationItem.title=[self.group namedLocalizable];
@@ -145,9 +144,7 @@
  */
 -(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
-        self.groupTextField= [[UITextField alloc] initWithFrame:CGRectMake(85, 7, 215, 30)];
-        self.groupTextField.borderStyle=UITextBorderStyleRoundedRect;
-        cell.textLabel.text=NSLocalizedString(@"Named", @"CellDesc");
+        //-----如果是Share-All群組，就把右上角確認修改按鈕關掉，不可修改。----------
         if ([self.group isShareAll]) {
             self.groupTextField.enabled=NO;
             self.btnSave.enabled=NO;
@@ -155,8 +152,24 @@
             self.groupTextField.enabled=YES;
             self.btnSave.enabled=YES;
         }
+        
+        self.groupTextField= [[UITextField alloc] initWithFrame:CGRectMake(85, 7, 215, 30)];
+        self.groupTextField.borderStyle=UITextBorderStyleRoundedRect;
+        self.groupTextField.delegate=self;
+        //-----Name Label-----
+        cell.textLabel.text=@"";
+        UILabel *nameLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, 11, 56, 21)];
+        nameLabel.text=NSLocalizedString(@"Named", @"CellDesc");
+        [cell addSubview:nameLabel];
         self.groupTextField.text=[self.group namedLocalizable];
         [cell addSubview:self.groupTextField];
+        //-----新增群組需2人以上說明文字-------------------
+        UILabel *message=[[UILabel alloc]initWithFrame:CGRectMake(85, 45, 215, 10)];
+        message.font=[UIFont systemFontOfSize:10.0];
+        message.text=NSLocalizedString(@"AddGroupMin2Tips", @"ActiveTips");
+        message.textColor=[UIColor lightGrayColor];
+        [cell addSubview:message];
+        
     }else if (indexPath.section==1){
         id<NSFetchedResultsSectionInfo>sectionInfo=[[self.fetchedResultsController sections] objectAtIndex:0];
         NSInteger count=[sectionInfo numberOfObjects];
@@ -194,26 +207,43 @@
 }
 //被選起來就打勾勾，有打勾勾的存進NSSet
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell=[self.tableView cellForRowAtIndexPath:indexPath];
-    //可以多生一行cell，連Add Guy 的controller
-    if (self.addGuyIndexPath&&(indexPath.row==self.addGuyIndexPath.row)) {
-        cell.accessoryType=UITableViewCellAccessoryNone;
-        [self moveToSelectGuysCDTVC];
-    
-    }else{
-        GuyInTrip *guyInTrip=[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
-
-        if(cell.accessoryType==UITableViewCellAccessoryCheckmark){
+    if (!self.group.isShareAll) {
+        
+        UITableViewCell *cell=[self.tableView cellForRowAtIndexPath:indexPath];
+        //可以多生一行cell，連Add Guy 的controller
+        if (self.addGuyIndexPath&&(indexPath.row==self.addGuyIndexPath.row)) {
             cell.accessoryType=UITableViewCellAccessoryNone;
-            [self.guysInTripOfGroup removeObject:guyInTrip];
+            [self moveToSelectGuysCDTVC];
+        
         }else{
-            cell.accessoryType=UITableViewCellAccessoryCheckmark;
-            [self.guysInTripOfGroup addObject:guyInTrip];
+            if (indexPath.section!=0) {
+            //如果indexPath.section=0，就是點選到群組名稱那行，不需要打勾
+                GuyInTrip *guyInTrip=[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
+
+                if(cell.accessoryType==UITableViewCellAccessoryCheckmark){
+                    cell.accessoryType=UITableViewCellAccessoryNone;
+                    [self.guysInTripOfGroup removeObject:guyInTrip];
+                }else{
+                    cell.accessoryType=UITableViewCellAccessoryCheckmark;
+                    [self.guysInTripOfGroup addObject:guyInTrip];
+                }
+                if ([self.guysInTripOfGroup count]>1) {
+                    self.navigationItem.rightBarButtonItem.enabled=YES;
+                }else{
+                    self.navigationItem.rightBarButtonItem.enabled=NO;
+                }
+            }
         }
     }
     
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section==0) {
+        return 64.0f;
+    }else {
+        return 44.0f;
+    }
+}
 
 
 #pragma mark - ➤ Navigation：Segue Settings
@@ -242,9 +272,23 @@
     // close the delegated view
     [controller.navigationController popViewControllerAnimated:YES];
     controller.SelectedGuys=self.selectedGuys;
-    
-    
 }
+#pragma mark - 監測UITextFeild事件，按下return的時候會收鍵盤
+//要在viewDidLoad裡加上textField的delegate=self，才監聽的到
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    BOOL editable;
+    if (self.group.isShareAll) {
+        editable=NO;
+    }else{
+        editable=YES;
+    }
+    return editable;
+}
+
 - (IBAction)save:(id)sender{
     self.group.guysInTrip=[self.guysInTripOfGroup copy];
     self.group.name=self.groupTextField.text;

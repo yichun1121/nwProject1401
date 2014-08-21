@@ -85,6 +85,7 @@
 		C981340C190769BF00CF43CC /* ShareMainPageCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C981340B190769BF00CF43CC /* ShareMainPageCDTVC.m */; };
 		C981340F19078D0800CF43CC /* SelectTripCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C981340E19078D0800CF43CC /* SelectTripCDTVC.m */; };
 		C988FC9319A4E36D000A0FCB /* UserIcons.plist in Resources */ = {isa = PBXBuildFile; fileRef = C988FC9219A4E36D000A0FCB /* UserIcons.plist */; };
+		C988FC9619A62766000A0FCB /* Currency+Decimal.m in Sources */ = {isa = PBXBuildFile; fileRef = C988FC9519A62766000A0FCB /* Currency+Decimal.m */; };
 		C99C6DF31967D37000D3ABA5 /* PhotoContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C6DF21967D37000D3ABA5 /* PhotoContentVC.m */; };
 		C9AAED8E19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED8D19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.m */; };
 		C9AAED9119067A87002D3BAB /* GroupAndGuyInTripCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED9019067A87002D3BAB /* GroupAndGuyInTripCDTVC.m */; };
@@ -290,6 +291,8 @@
 		C981340D19078D0800CF43CC /* SelectTripCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTripCDTVC.h; sourceTree = "<group>"; };
 		C981340E19078D0800CF43CC /* SelectTripCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectTripCDTVC.m; sourceTree = "<group>"; };
 		C988FC9219A4E36D000A0FCB /* UserIcons.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserIcons.plist; sourceTree = "<group>"; };
+		C988FC9419A62766000A0FCB /* Currency+Decimal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Currency+Decimal.h"; sourceTree = "<group>"; };
+		C988FC9519A62766000A0FCB /* Currency+Decimal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Currency+Decimal.m"; sourceTree = "<group>"; };
 		C99C6DF11967D37000D3ABA5 /* PhotoContentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoContentVC.h; sourceTree = "<group>"; };
 		C99C6DF21967D37000D3ABA5 /* PhotoContentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoContentVC.m; sourceTree = "<group>"; };
 		C9AAED8C19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGroupAndGuyCDTVC.h; sourceTree = "<group>"; };
@@ -617,6 +620,8 @@
 				C977812A19123298008F07F9 /* CatInTrip.h */,
 				C977812B19123298008F07F9 /* CatInTrip.m */,
 				C964B92F18D42FDC002EF48C /* Currency.h */,
+				C988FC9419A62766000A0FCB /* Currency+Decimal.h */,
+				C988FC9519A62766000A0FCB /* Currency+Decimal.m */,
 				C964B93018D42FDC002EF48C /* Currency.m */,
 				C964B92C18D42BBB002EF48C /* Day+Expend.h */,
 				C964B92D18D42BBB002EF48C /* Day+Expend.m */,
@@ -906,6 +911,7 @@
 				C9697B1618FCF8E1006148E0 /* SWRevealViewController.m in Sources */,
 				C964B93118D42FDC002EF48C /* Currency.m in Sources */,
 				18DE117F18F97F72003F3083 /* Guy.m in Sources */,
+				C988FC9619A62766000A0FCB /* Currency+Decimal.m in Sources */,
 				0409B6F21892B763000C6DF6 /* Day+TripDay.m in Sources */,
 				C9F80494187A333D00EE4EDE /* Model.xcdatamodeld in Sources */,
 				BFC6CCFF190B98AB0071D99E /* NWPickerUtils.m in Sources */,

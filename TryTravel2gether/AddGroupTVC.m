@@ -141,19 +141,24 @@
         cell.textLabel.text=@"";
         UILabel *nameLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, 11, 56, 21)];
         nameLabel.text=NSLocalizedString(@"Named", @"CellDesc");
+
+        [cell addSubview:self.groupTextField];
+        [cell addSubview:nameLabel];
+        //-----新增群組需2人以上說明文字-------------------
         UILabel *message=[[UILabel alloc]initWithFrame:CGRectMake(85, 45, 215, 10)];
         message.font=[UIFont systemFontOfSize:10.0];
         message.text=NSLocalizedString(@"AddGroupMin2Tips", @"ActiveTips");
         message.textColor=[UIColor lightGrayColor];
-        [cell addSubview:self.groupTextField];
-        [cell addSubview:nameLabel];
         [cell addSubview:message];
+        
     }else if (indexPath.section==1){
         id<NSFetchedResultsSectionInfo>sectionInfo=[[self.fetchedResultsController sections] objectAtIndex:0];
         NSInteger count=[sectionInfo numberOfObjects];
         if (indexPath.row<count) {
             Guy *guy=[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
             cell.textLabel.text = [NSString stringWithFormat:@"%@",guy.name];
+            cell.detailTextLabel.text=@"";
+            cell.textLabel.textColor=[UIColor blackColor];
         }else{
             //可以多生一行cell，連Add Guy 的controller
             cell.textLabel.text = NSLocalizedString(@"AddGuy_SystemParticipant", @"CellDesc");

@@ -46,7 +46,7 @@
     }
     [self.managedObjectContext save:nil];
 }
--(void)insertCategoryName:(NSString *)accountName{
+-(void)insertAccountName:(NSString *)accountName{
     Account *account = [NSEntityDescription insertNewObjectForEntityForName:@"Account"
                                                            inManagedObjectContext:self.managedObjectContext];
     account.name = accountName;
@@ -113,7 +113,7 @@
     NSArray *arrCategory=[NSArray arrayWithContentsOfFile:readPlist];
     for (int i=0; i<arrCategory.count; i++) {
         NSString *name=[[arrCategory objectAtIndex:i] objectForKey:@"accountName"];
-        [self insertCategoryName:name];
+        [self insertAccountName:name];
     }
     
     NSLog(@"Importing Core Data Default Values for Item Categories Completed!");

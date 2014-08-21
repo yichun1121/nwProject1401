@@ -18,7 +18,7 @@
 - (void)theSaveButtonOnTheGroupDetailTVCWasTapped:(GroupDetailTVC *)controller;
 @end
 
-@interface GroupDetailTVC : NWAdShiftTableViewController<NSFetchedResultsControllerDelegate,SelectGuysCDTVCDelegate>
+@interface GroupDetailTVC : NWAdShiftTableViewController<NSFetchedResultsControllerDelegate,SelectGuysCDTVCDelegate,UITextFieldDelegate>
 
 @property (nonatomic, weak) id <GroupDetailTVCDelegate>delegate;
 @property (nonatomic, strong)NSManagedObjectContext *managedObjectContext;

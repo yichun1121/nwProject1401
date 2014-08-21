@@ -10,6 +10,7 @@
 #import "SelectTripCDTVC.h"
 #import "GuyInTrip+Expend.h"
 #import "Trip+Currency.h"
+#import "Currency+Decimal.h"
 
 @interface ShareMainPageCDTVC ()
 @property (weak, nonatomic) IBOutlet UILabel *tripName;
@@ -169,7 +170,8 @@
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     GuyInTrip *guy=[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text=guy.guy.name;
-    cell.detailTextLabel.text=[NSString stringWithFormat:@"%@ %@",self.showingCurrency.sign, [guy totalExpendUsingCurrency:self.showingCurrency]];
+    NSString *totalPriceString=[self.showingCurrency.numberFormatter stringFromNumber: [guy totalExpendUsingCurrency:self.showingCurrency]];
+    cell.detailTextLabel.text=[NSString stringWithFormat:@"%@ %@",self.showingCurrency.sign, totalPriceString];
 //    cell.detailTextLabel.text=guy;
     
     return cell;
