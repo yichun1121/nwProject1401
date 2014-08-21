@@ -84,6 +84,7 @@
 		C980686718E0B4C200841064 /* ReceiptDetailTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C980686618E0B4C200841064 /* ReceiptDetailTVC.m */; };
 		C981340C190769BF00CF43CC /* ShareMainPageCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C981340B190769BF00CF43CC /* ShareMainPageCDTVC.m */; };
 		C981340F19078D0800CF43CC /* SelectTripCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C981340E19078D0800CF43CC /* SelectTripCDTVC.m */; };
+		C988FC9319A4E36D000A0FCB /* UserIcons.plist in Resources */ = {isa = PBXBuildFile; fileRef = C988FC9219A4E36D000A0FCB /* UserIcons.plist */; };
 		C99C6DF31967D37000D3ABA5 /* PhotoContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C6DF21967D37000D3ABA5 /* PhotoContentVC.m */; };
 		C9AAED8E19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED8D19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.m */; };
 		C9AAED9119067A87002D3BAB /* GroupAndGuyInTripCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED9019067A87002D3BAB /* GroupAndGuyInTripCDTVC.m */; };
@@ -288,6 +289,7 @@
 		C981340B190769BF00CF43CC /* ShareMainPageCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareMainPageCDTVC.m; sourceTree = "<group>"; };
 		C981340D19078D0800CF43CC /* SelectTripCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTripCDTVC.h; sourceTree = "<group>"; };
 		C981340E19078D0800CF43CC /* SelectTripCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectTripCDTVC.m; sourceTree = "<group>"; };
+		C988FC9219A4E36D000A0FCB /* UserIcons.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserIcons.plist; sourceTree = "<group>"; };
 		C99C6DF11967D37000D3ABA5 /* PhotoContentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoContentVC.h; sourceTree = "<group>"; };
 		C99C6DF21967D37000D3ABA5 /* PhotoContentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoContentVC.m; sourceTree = "<group>"; };
 		C9AAED8C19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGroupAndGuyCDTVC.h; sourceTree = "<group>"; };
@@ -485,6 +487,7 @@
 				C95C792919279DBB00F073EF /* testMergeFrom.plist */,
 				C94FD1321998769E001910AC /* Localizable.strings */,
 				C90510C2199F5CD300D87F39 /* Account.plist */,
+				C988FC9219A4E36D000A0FCB /* UserIcons.plist */,
 			);
 			name = Resource;
 			sourceTree = "<group>";
@@ -845,6 +848,7 @@
 				C9789D94198BB98100C4B1E6 /* ItemCategory.plist in Resources */,
 				C9789D90198BB37A00C4B1E6 /* Currency.plist in Resources */,
 				C90510C0199F5CD300D87F39 /* Account.plist in Resources */,
+				C988FC9319A4E36D000A0FCB /* UserIcons.plist in Resources */,
 				C9DB000E186B187E00F3B008 /* InfoPlist.strings in Resources */,
 				C903A89B18D46D76009708C6 /* Images.xcassets in Resources */,
 				C9DB0017186B187E00F3B008 /* Main.storyboard in Resources */,

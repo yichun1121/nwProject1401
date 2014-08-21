@@ -87,7 +87,8 @@
     Itemcategory *itemCategory=[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text=itemCategory.name;
     cell.imageView.image=itemCategory.image;
-//    cell.backgroundColor=itemCategory.color;
+    CGRect imageRect=CGRectMake(30, 22, 32, 32);
+    cell.imageView.layer.frame=imageRect;
     cell.imageView.backgroundColor=itemCategory.color;
     cell.imageView.layer.borderColor=[itemCategory.color CGColor];
     cell.imageView.layer.borderWidth=0;

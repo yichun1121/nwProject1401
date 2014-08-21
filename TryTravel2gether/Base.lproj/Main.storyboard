@@ -106,14 +106,33 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="naX-If-NTf" id="lIk-KZ-xil">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="8Bq-Zw-jin">
+                                                    <rect key="frame" x="84" y="7" width="218" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="sliderValueChanged:" destination="dX3-f1-a38" eventType="valueChanged" id="tmO-ix-enV"/>
+                                                    </connections>
+                                                </slider>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="empty" translatesAutoresizingMaskIntoConstraints="NO" id="RUy-G1-PVo">
+                                                    <rect key="frame" x="30" y="6" width="32" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="1kc-VN-dc4">
-                                        <rect key="frame" x="0.0" y="88" width="320" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="229" id="1kc-VN-dc4">
+                                        <rect key="frame" x="0.0" y="88" width="320" height="229"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1kc-VN-dc4" id="c3b-Gq-oGy">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="228"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Znq-8D-xOl">
+                                                    <rect key="frame" x="0.0" y="4" width="320" height="220"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </scrollView>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -132,7 +151,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="colorSlider" destination="8Bq-Zw-jin" id="vmP-hs-N5n"/>
+                        <outlet property="iconImage" destination="RUy-G1-PVo" id="Ylx-9i-2DS"/>
                         <outlet property="name" destination="wQa-kZ-ewB" id="1BN-V2-I1w"/>
+                        <outlet property="scrollView" destination="Znq-8D-xOl" id="kOW-cN-xge"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xd4-cJ-8z0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3258,6 +3280,7 @@
     </scenes>
     <resources>
         <image name="camera" width="24" height="24"/>
+        <image name="empty" width="48" height="48"/>
         <image name="folder" width="48" height="48"/>
         <image name="group" width="48" height="48"/>
         <image name="guys-1" width="48" height="48"/>

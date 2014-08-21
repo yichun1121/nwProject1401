@@ -11,6 +11,7 @@
 #import "Currency.h"
 #import "ReceiptDetailTVC.h"
 #import "ItemsCDTVC.h"
+#import "Day+TripDay.h"
 
 @interface ReceiptsCDTVC ()
 @property NSDateFormatter *dateFormatter;
@@ -54,7 +55,6 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.title=self.currentDay.name;
     
     //-----Date Formatter----------
     self.dateFormatter=[[NSDateFormatter alloc]init];
@@ -63,6 +63,14 @@
     self.dateFormatter.dateFormat=@"yyyy/MM/dd";
     self.timeFormatter.dateFormat=@"HH:mm";
     
+    //-----設定頁面標題------
+    if ([@""isEqualToString:self.currentDay.name]) {
+        NSString *strDate=[self.dateFormatter stringFromDate:self.currentDay.date];
+        NSString *shortDate=[strDate substringFromIndex:5];
+        self.navigationItem.title=[NSString stringWithFormat:@"%@ %@",shortDate,self.currentDay.DayNumberStringOfTripdayInTrip];
+    }else{
+        self.navigationItem.title=self.currentDay.name;
+    }
     //-----設定下一頁時的back button的字（避免本頁的title太長）-----------
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"NavBackString_Receipts", @"NavigationBackString") style:UIBarButtonItemStylePlain target:nil action:nil];
 
