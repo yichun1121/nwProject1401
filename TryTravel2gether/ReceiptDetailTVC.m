@@ -281,12 +281,17 @@
             for (int i=0; i<[tempImages count]; i++) {
                 if (imgView.image==tempImages[i]) {
                     [tempImages removeObjectAtIndex:i];
-                    [tempImagePath removeObjectAtIndex:i];
+                    if ([tempImagePath count]>i) {
+                        //如果是原有儲存過的照片就會有path，沒有的話就不用刪
+                        [tempImagePath removeObjectAtIndex:i];
+                    }
                     i=i-1;  //原本的i被刪掉，後面的會往前遞補，所以下個run i++後要從同一個i開始跑，現在先減掉
                 }else{
                     [self loadImageIntoScrollView:tempImages[i]];   //要先load再add，不然位置會計算錯
                     [self.images addObject:tempImages[i]];
-                    [self.imagePath addObject:tempImagePath[i]];
+                    if ([tempImagePath count] >i) {
+                        [self.imagePath addObject:tempImagePath[i]];
+                    }
                 }
                 NSLog(@"image %i",i);
             }

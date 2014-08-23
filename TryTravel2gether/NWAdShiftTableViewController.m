@@ -9,7 +9,7 @@
 #import "NWAdShiftTableViewController.h"
 
 @interface NWAdShiftTableViewController ()
-
+@property BOOL isMoveForADAlready;
 @end
 
 @implementation NWAdShiftTableViewController
@@ -32,15 +32,32 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
 }
 #pragma mark - Table view set AdMob banner
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    //-----self.tableView.frame 的高度剪掉AdMob Banner高度-------(讓Banner不會擋到TableView的資訊)
-    [self.tableView setFrame:CGRectMake(self.tableView.frame.origin.x
-                                        , self.tableView.frame.origin.y
-                                        , self.tableView.frame.size.width
-                                        , self.tableView.frame.size.height-50)];
+    if (!self.isMoveForADAlready) {
+        NSLog(@"before content:%f",self.tableView.contentSize.height);
+        NSLog(@"before frame:%f",self.tableView.frame.size.height);
+        //-----self.tableView.frame 的高度剪掉AdMob Banner高度-------(讓Banner不會擋到TableView的資訊)
+//        [self.tableView setFrame:CGRectMake(self.tableView.frame.origin.x
+//                                            , self.tableView.frame.origin.y
+//                                            , self.tableView.frame.size.width
+//                                            , self.tableView.frame.size.height-100)];
+//    [self.tableView setBounds:CGRectMake(self.tableView.bounds.origin.x
+//                                        , self.tableView.bounds.origin.y
+//                                        , self.tableView.bounds.size.width
+//                                        , self.tableView.bounds.size.height-100)];
+
+        //最後是要增加contentSize，把AD的高度也加入contentSize中
+        [self.tableView setContentSize:CGSizeMake(self.tableView.contentSize.width
+                                            , self.tableView.contentSize.height+50)];
+    
+        self.isMoveForADAlready=YES;
+    }
+    NSLog(@"after content:%f",self.tableView.contentSize.height);
+    NSLog(@"after frame:%f",self.tableView.frame.size.height);
 }
 
 @end
