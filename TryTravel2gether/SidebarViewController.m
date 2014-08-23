@@ -12,6 +12,8 @@
 #import "TripsCDTVC.h"
 #import "CategoriesCDTVC.h"
 #import "GuysCDTVC.h"
+#import "BackupdataTVC.h"
+#import "ExportCSVFileCDTVC.h"
 
 @interface SidebarViewController ()
 
@@ -34,7 +36,7 @@
 {
     [super viewDidLoad];
 
-    menuItems = @[@"title", @"trips", @"categories", @"guys"];
+    menuItems = @[@"title", @"trips", @"categories", @"guys",@"backupdata",@"exportData"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -88,6 +90,14 @@
             GuysCDTVC *guysCDTVC=segue.destinationViewController;
             guysCDTVC.managedObjectContext=self.managedObjectContext;
             NSLog(@"Translate managedObjectContext to GuysCDTVC @%@",self.class);
+        }else if ([segue.identifier isEqualToString:@"Backupdata List Segue From Sidebar Menu"]){
+            BackupdataTVC *backupdataTVC=segue.destinationViewController;
+            backupdataTVC.managedObjectContext=self.managedObjectContext;
+            NSLog(@"Translate managedObjectContext to BackupdataTVC @%@",self.class);
+        }else if ([segue.identifier isEqualToString:@"Exportdata List Segue From Sidebar Menu"]){
+            ExportCSVFileCDTVC *exportCSVFileCDTVC=segue.destinationViewController;
+            exportCSVFileCDTVC.managedObjectContext=self.managedObjectContext;
+            NSLog(@"Translate managedObjectContext to ExportdataCDTVC @%@",self.class);
         }
         
         SWRevealViewControllerSegue *swSegue = (SWRevealViewControllerSegue*) segue;
