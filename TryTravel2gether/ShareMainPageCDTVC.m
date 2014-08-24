@@ -11,6 +11,7 @@
 #import "GuyInTrip+Expend.h"
 #import "Trip+Currency.h"
 #import "Currency+Decimal.h"
+#import "OwnItemsCDTVC.h"
 
 @interface ShareMainPageCDTVC ()
 @property (weak, nonatomic) IBOutlet UILabel *tripName;
@@ -58,7 +59,7 @@
     //[self.tableView registerNib:myCellNib forCellReuseIdentifier:@"Cell"];
     
     //-----設定下一頁時的back button的字（避免本頁的title太長）-----------
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"ShareMain" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"ShareMain",@"PageTitle") style:UIBarButtonItemStylePlain target:nil action:nil];
     
     //-----設定title + 註冊手勢-----------
     //    self.navigationItem.title=self.currentTrip.name;
@@ -113,7 +114,7 @@
         _interstitial = [[GADInterstitial alloc] init];
         _interstitial.delegate = self;
         _interstitial.adUnitID = @"ca-app-pub-1412142430031740/6151567713";
-        [_interstitial loadRequest:[self request]];
+//        [_interstitial loadRequest:[self request]];
         self.interstitialShow = TRUE;
     }else{
        self.interstitialShow = FALSE;
@@ -217,6 +218,12 @@
         selectTripCDTVC.managedObjectContext=self.managedObjectContext;
         selectTripCDTVC.selectedTrip=self.currentTrip;
         selectTripCDTVC.delegate=self;
+    }else if ([segue.identifier isEqualToString:@"Show Own Item Segue From Share Main"]){
+        OwnItemsCDTVC *ownItemsCDTVC=[segue destinationViewController];
+        ownItemsCDTVC.managedObjectContext=self.managedObjectContext;
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        GuyInTrip *guy=[self.fetchedResultsController objectAtIndexPath:indexPath];
+        ownItemsCDTVC.userGroups=guy.groups;
     }
     
 }

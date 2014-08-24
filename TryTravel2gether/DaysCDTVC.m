@@ -110,8 +110,10 @@
     self.currencyIndex=0;
     //-----記錄目前檢視中的Trip--------（讓切換share的tab時可以知道顯示哪個trip）
     UINavigationController *navigationCTL=self.tabBarController.childViewControllers[1];
-    ShareMainPageCDTVC * sharePage=(ShareMainPageCDTVC *)navigationCTL.topViewController;
-    sharePage.currentTrip=self.currentTrip;
+    if ([navigationCTL.topViewController isKindOfClass:ShareMainPageCDTVC.class]) {
+        ShareMainPageCDTVC * sharePage=(ShareMainPageCDTVC *)navigationCTL.topViewController;
+        sharePage.currentTrip=self.currentTrip;
+    }
 }
 //- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 //{

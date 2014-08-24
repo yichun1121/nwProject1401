@@ -1314,14 +1314,12 @@
                                                     <rect key="frame" x="15" y="3" width="83" height="22"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" red="0.57568038508765051" green="0.70226801658163263" blue="0.18409679246581195" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oUa-nA-fP9">
                                                     <rect key="frame" x="15" y="25" width="32" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.57568038508765051" green="0.70226801658163263" blue="0.18409679246581195" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -2001,7 +1999,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Owner" id="ByZ-ek-Db4">
+                            <tableViewSection headerTitle="belongs to" id="ByZ-ek-Db4">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Gls-Wr-oFt" detailTextLabel="FNa-6f-KEa" style="IBUITableViewCellStyleSubtitle" id="hhT-F9-Fiz">
                                         <rect key="frame" x="0.0" y="308" width="320" height="44"/>
@@ -2313,7 +2311,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Owner" id="oYx-GT-Hr3">
+                            <tableViewSection headerTitle="belongs to" id="oYx-GT-Hr3">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Bzp-5k-pbH" detailTextLabel="X3C-p0-Jxk" style="IBUITableViewCellStyleSubtitle" id="i6y-wJ-vWb">
                                         <rect key="frame" x="0.0" y="308" width="320" height="44"/>
@@ -2773,11 +2771,11 @@
                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Bpm-IE-yfY" detailTextLabel="f8d-F4-lOO" style="IBUITableViewCellStyleValue1" id="aqN-fq-btw">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Bpm-IE-yfY" detailTextLabel="f8d-F4-lOO" style="IBUITableViewCellStyleValue1" id="aqN-fq-btw">
                                 <rect key="frame" x="0.0" y="112" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aqN-fq-btw" id="i97-I7-5fa">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bpm-IE-yfY">
@@ -2788,7 +2786,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f8d-F4-lOO">
-                                            <rect key="frame" x="261" y="11" width="44" height="21"/>
+                                            <rect key="frame" x="241" y="11" width="44" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
@@ -2796,6 +2794,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="hmp-1L-M4c" kind="push" identifier="Show Own Item Segue From Share Main" id="2Ru-df-EnC"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -2833,6 +2834,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TdC-ad-Mih" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1587" y="26"/>
+        </scene>
+        <!--Own ItemsCDTVC-->
+        <scene sceneID="Job-Fd-IMp">
+            <objects>
+                <tableViewController id="hmp-1L-M4c" customClass="OwnItemsCDTVC" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="TUR-Nb-fJd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="Nwa-Qo-TAK">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nwa-Qo-TAK" id="OvF-xQ-fWm">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hmp-1L-M4c" id="xOG-is-iHa"/>
+                            <outlet property="delegate" destination="hmp-1L-M4c" id="mgE-wR-3Zu"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="S5z-jK-pw7"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ovi-lU-Xez" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-769" y="130"/>
         </scene>
         <!--Select TripCDTVC-->
         <scene sceneID="Mw5-BR-xU9">
@@ -2877,7 +2907,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y79-cr-Rxj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-797" y="26"/>
+            <point key="canvasLocation" x="-670" y="-42"/>
         </scene>
         <!--Cust Ad Mob Tab Bar Controller-->
         <scene sceneID="ePT-Zn-GsI">
@@ -3312,15 +3342,15 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="uY8-M1-8nc"/>
-        <segue reference="moX-HC-O6P"/>
-        <segue reference="IWa-Ty-2Zl"/>
-        <segue reference="fuH-vh-HtH"/>
-        <segue reference="4yc-3i-Tb3"/>
-        <segue reference="dk3-o7-VGh"/>
-        <segue reference="PqC-DQ-EtO"/>
-        <segue reference="4bK-FK-wew"/>
         <segue reference="x1x-e5-6Ev"/>
         <segue reference="sp3-cC-l9s"/>
+        <segue reference="moX-HC-O6P"/>
+        <segue reference="PqC-DQ-EtO"/>
+        <segue reference="4bK-FK-wew"/>
+        <segue reference="dk3-o7-VGh"/>
+        <segue reference="jlX-mz-Yrp"/>
+        <segue reference="ZIy-n6-9Hi"/>
+        <segue reference="4yc-3i-Tb3"/>
         <segue reference="lbP-ID-Nb3"/>
         <segue reference="XJC-77-AaP"/>
     </inferredMetricsTieBreakers>

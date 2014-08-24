@@ -86,6 +86,9 @@
 		C981340F19078D0800CF43CC /* SelectTripCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C981340E19078D0800CF43CC /* SelectTripCDTVC.m */; };
 		C988FC9319A4E36D000A0FCB /* UserIcons.plist in Resources */ = {isa = PBXBuildFile; fileRef = C988FC9219A4E36D000A0FCB /* UserIcons.plist */; };
 		C988FC9619A62766000A0FCB /* Currency+Decimal.m in Sources */ = {isa = PBXBuildFile; fileRef = C988FC9519A62766000A0FCB /* Currency+Decimal.m */; };
+		C988FCA219A8B6A3000A0FCB /* OwnItemsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C988FCA119A8B6A3000A0FCB /* OwnItemsCDTVC.m */; };
+		C988FCA419A96F60000A0FCB /* NWCustCellOwnItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = C988FCA319A96F60000A0FCB /* NWCustCellOwnItem.xib */; };
+		C988FCA719A971AE000A0FCB /* NWCustCellOwnItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C988FCA619A971AE000A0FCB /* NWCustCellOwnItem.m */; };
 		C99C6DF31967D37000D3ABA5 /* PhotoContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C6DF21967D37000D3ABA5 /* PhotoContentVC.m */; };
 		C9AAED8E19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED8D19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.m */; };
 		C9AAED9119067A87002D3BAB /* GroupAndGuyInTripCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED9019067A87002D3BAB /* GroupAndGuyInTripCDTVC.m */; };
@@ -293,6 +296,11 @@
 		C988FC9219A4E36D000A0FCB /* UserIcons.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserIcons.plist; sourceTree = "<group>"; };
 		C988FC9419A62766000A0FCB /* Currency+Decimal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Currency+Decimal.h"; sourceTree = "<group>"; };
 		C988FC9519A62766000A0FCB /* Currency+Decimal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Currency+Decimal.m"; sourceTree = "<group>"; };
+		C988FCA019A8B6A3000A0FCB /* OwnItemsCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OwnItemsCDTVC.h; sourceTree = "<group>"; };
+		C988FCA119A8B6A3000A0FCB /* OwnItemsCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OwnItemsCDTVC.m; sourceTree = "<group>"; };
+		C988FCA319A96F60000A0FCB /* NWCustCellOwnItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NWCustCellOwnItem.xib; path = NWCust/NWCustCellOwnItem.xib; sourceTree = "<group>"; };
+		C988FCA519A971AE000A0FCB /* NWCustCellOwnItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWCustCellOwnItem.h; path = NWCust/NWCustCellOwnItem.h; sourceTree = "<group>"; };
+		C988FCA619A971AE000A0FCB /* NWCustCellOwnItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWCustCellOwnItem.m; path = NWCust/NWCustCellOwnItem.m; sourceTree = "<group>"; };
 		C99C6DF11967D37000D3ABA5 /* PhotoContentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoContentVC.h; sourceTree = "<group>"; };
 		C99C6DF21967D37000D3ABA5 /* PhotoContentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoContentVC.m; sourceTree = "<group>"; };
 		C9AAED8C19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGroupAndGuyCDTVC.h; sourceTree = "<group>"; };
@@ -527,6 +535,7 @@
 				180A50691914EFE40053A9F0 /* NWCustCellSwitch.xib */,
 				C9C4098318E8758900E1F3FE /* NWCustCellTitleSubDetail.xib */,
 				C907B72D194C4438001A4C53 /* NWCustCellImageTitleSubDetail.xib */,
+				C988FCA319A96F60000A0FCB /* NWCustCellOwnItem.xib */,
 			);
 			name = CustView;
 			sourceTree = "<group>";
@@ -698,6 +707,8 @@
 				C9F64D3518E709A00005ED24 /* NWCustCellTitleSubDetail.m */,
 				C907B72B194C4438001A4C53 /* NWCustCellImageTitleSubDetail.h */,
 				C907B72C194C4438001A4C53 /* NWCustCellImageTitleSubDetail.m */,
+				C988FCA519A971AE000A0FCB /* NWCustCellOwnItem.h */,
+				C988FCA619A971AE000A0FCB /* NWCustCellOwnItem.m */,
 			);
 			name = CustController;
 			sourceTree = "<group>";
@@ -743,6 +754,8 @@
 				C9FDDA13197FA9CC0060336A /* ReceiptPhotoVC.m */,
 				C90510C4199F891C00D87F39 /* SelectPaymentCDTVC.h */,
 				C90510C5199F891C00D87F39 /* SelectPaymentCDTVC.m */,
+				C988FCA019A8B6A3000A0FCB /* OwnItemsCDTVC.h */,
+				C988FCA119A8B6A3000A0FCB /* OwnItemsCDTVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -851,6 +864,7 @@
 				C95C792A19279DBB00F073EF /* testMergeFrom.plist in Resources */,
 				C9C4098418E8758900E1F3FE /* NWCustCellTitleSubDetail.xib in Resources */,
 				C9789D94198BB98100C4B1E6 /* ItemCategory.plist in Resources */,
+				C988FCA419A96F60000A0FCB /* NWCustCellOwnItem.xib in Resources */,
 				C9789D90198BB37A00C4B1E6 /* Currency.plist in Resources */,
 				C90510C0199F5CD300D87F39 /* Account.plist in Resources */,
 				C988FC9319A4E36D000A0FCB /* UserIcons.plist in Resources */,
@@ -912,6 +926,7 @@
 				C964B93118D42FDC002EF48C /* Currency.m in Sources */,
 				18DE117F18F97F72003F3083 /* Guy.m in Sources */,
 				C988FC9619A62766000A0FCB /* Currency+Decimal.m in Sources */,
+				C988FCA719A971AE000A0FCB /* NWCustCellOwnItem.m in Sources */,
 				0409B6F21892B763000C6DF6 /* Day+TripDay.m in Sources */,
 				C9F80494187A333D00EE4EDE /* Model.xcdatamodeld in Sources */,
 				BFC6CCFF190B98AB0071D99E /* NWPickerUtils.m in Sources */,
@@ -929,6 +944,7 @@
 				040A631F188ADB7B0084A3EC /* CoreDataTableViewCell.m in Sources */,
 				C981340F19078D0800CF43CC /* SelectTripCDTVC.m in Sources */,
 				BFC6CD05190BD38B0071D99E /* NWUIScrollViewMovePostition.m in Sources */,
+				C988FCA219A8B6A3000A0FCB /* OwnItemsCDTVC.m in Sources */,
 				C909F36E18D0125800E02B8D /* DayCurrency.m in Sources */,
 				186C1B281927378E00C87DE7 /* GuyInTrip+Group.m in Sources */,
 				C99C6DF31967D37000D3ABA5 /* PhotoContentVC.m in Sources */,
