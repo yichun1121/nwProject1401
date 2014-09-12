@@ -19,9 +19,10 @@
 
 
 @interface AddReceiptTVC ()
-@property NSDateFormatter *dateFormatter;
-@property NSDateFormatter *timeFormatter;
-@property NSDateFormatter *dateTimeFormatter;
+@property (nonatomic)  NSDateFormatter *dateFormatter;
+@property (nonatomic,strong) NSDateFormatter *dateFormatter_GMT;
+@property (nonatomic)  NSDateFormatter *timeFormatter;
+@property (nonatomic)  NSDateFormatter *dateTimeFormatter;
 @property Currency *currentCurrency;
 @property (weak, nonatomic) IBOutlet UITableViewCell *currency;
 @property (weak, nonatomic) IBOutlet UILabel *currencySign;
@@ -41,6 +42,7 @@
 @synthesize delegate;
 @synthesize managedObjectContext=_managedObjectContext;
 @synthesize dateFormatter=_dateFormatter;
+@synthesize dateFormatter_GMT=_dateFormatter_GMT;
 @synthesize timeFormatter=_timeFormatter;
 @synthesize dateTimeFormatter=_dateTimeFormatter;
 @synthesize imagePicker=_imagePicker;
@@ -51,6 +53,7 @@
 @synthesize arrayOfStack=_arrayOfStack;
 @synthesize selectedAccount=_selectedAccount;
 
+#pragma mark - lazy instantiation
 -(Calculator *)calculator{
     if(_calculator==nil){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -70,18 +73,38 @@
 }
 
 
+-(NSDateFormatter *)dateFormatter_GMT{
+    if (!_dateFormatter_GMT) {
+        _dateFormatter_GMT=[[NSDateFormatter alloc]init];
+        _dateFormatter_GMT.timeZone=[NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+        self.dateFormatter_GMT.dateFormat=@"yyyy/MM/dd";
+    }
+    return _dateFormatter_GMT;
+}
+-(NSDateFormatter *)dateFormatter{
+    if (!_dateFormatter) {
+        self.dateFormatter = [[NSDateFormatter alloc] init];
+        [self.dateFormatter setDateFormat:@"yyyy/MM/dd"];
+    }
+    return _dateFormatter;
+}
+-(NSDateFormatter *)timeFormatter{
+    if (!_timeFormatter) {
+        self.timeFormatter=[[NSDateFormatter alloc]init];
+        self.timeFormatter.dateFormat=@"HH:mm";
+    }
+    return _timeFormatter;
+}
+-(NSDateFormatter *)dateTimeFormatter{
+    if (!_dateTimeFormatter) {
+        self.dateTimeFormatter=[[NSDateFormatter alloc]init];
+        self.dateTimeFormatter.dateFormat=[NSString stringWithFormat:@"%@ %@",self.dateFormatter.dateFormat,self.timeFormatter.dateFormat];
+    }
+    return _dateTimeFormatter;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    //-----Date Formatter----------
-    self.dateFormatter=[[NSDateFormatter alloc]init];
-    self.timeFormatter=[[NSDateFormatter alloc]init];
-    self.dateTimeFormatter=[[NSDateFormatter alloc]init];
-    
-    self.dateFormatter.dateFormat=@"yyyy/MM/dd";
-    self.timeFormatter.dateFormat=@"HH:mm";
-    self.dateTimeFormatter.dateFormat=[NSString stringWithFormat:@"%@ %@",self.dateFormatter.dateFormat,self.timeFormatter.dateFormat];
     
     //設定UITextFeild的delegate（按return縮keyboard）
     self.desc.delegate=self;
@@ -114,7 +137,7 @@
     
     [self presentViewController:self.calculator animated:YES completion:nil];
 }
-- (IBAction)click:(UIButton *)sender {
+- (IBAction)btnCalculateResultClick:(UIButton *)sender {
     self.calculator.arrayOfStack=[self.arrayOfStack mutableCopy];
     [self showCalculator];
     self.isCalculatorOpened=YES;
@@ -338,7 +361,7 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entityDesc];
     
-    NSDate *date= [self.dateFormatter dateFromString:dateString];
+    NSDate *date= [self.dateFormatter_GMT dateFromString:dateString];
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"(date = %@) AND (inTrip=%@)", date,self.currentTrip];
     [request setPredicate:pred];
     

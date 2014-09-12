@@ -1,4 +1,4 @@
-//
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 //
 //  Trip+Days.m
 //  TryTravel2gether
 //
@@ -12,13 +12,14 @@
 
 /*!判斷該trip是否已有某日
  */
--(BOOL)hadThisDate:(NSDate *)date{
+-(BOOL)hadThisDateWithUTC:(NSString *)date{
     BOOL hadDay=YES;
     
-    NSDateFormatter * dateFormatter=[NSDateFormatter new];
-    dateFormatter.dateFormat=@"yyyy/MM/dd";
+    NSDateFormatter * dateFormatter_GMT=[NSDateFormatter new];
+    dateFormatter_GMT.dateFormat=@"yyyy/MM/dd";
+    dateFormatter_GMT.timeZone=[NSTimeZone timeZoneWithAbbreviation:@"UTC"];
     
-    NSDate *midnightDate=[dateFormatter dateFromString:[dateFormatter stringFromDate:date]];
+    NSDate *midnightDate=[dateFormatter_GMT dateFromString:date];
     NSEntityDescription *entityDesc =
     [NSEntityDescription entityForName:@"Day" inManagedObjectContext:self.managedObjectContext];
     

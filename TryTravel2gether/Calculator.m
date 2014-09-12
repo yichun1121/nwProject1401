@@ -211,6 +211,12 @@
 
 - (IBAction)cancelClick:(id)sender
 {
+    //要清掉顯示的內容
+    self.display.text = @"0";
+    self.result=0;
+    self.description.text=@"";
+    [self.arrayOfStack removeAllObjects];
+    
     [self.delegate theCancelButtonOnCalcultorWasTapped:self];
     
 }

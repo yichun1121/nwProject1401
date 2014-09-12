@@ -154,7 +154,7 @@
         //顯示尚未新增的旅遊日：Other Day那行。
         //（從self.selectedDayString來，當日或是剛才點選的日期）
         cell.textLabel.text=@"other day";
-        BOOL tripHadTheSelectedDay=[self.currentTrip hadThisDate:[self.dateFormatter dateFromString:self.selectedDayString]];
+        BOOL tripHadTheSelectedDay=[self.currentTrip hadThisDateWithUTC:self.selectedDayString];
         if (tripHadTheSelectedDay) {
             //若selectedDayString為已存在的旅遊日（ex旅遊當下）則因為上面的旅遊日已勾，所以不顯示
             cell.detailTextLabel.text=NSLocalizedString(@"PUSH",@"ActiveTips");

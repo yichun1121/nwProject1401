@@ -1497,7 +1497,7 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="click:" destination="w8Y-PQ-8PV" eventType="touchUpInside" id="hGA-CL-Qlp"/>
+                                                        <action selector="btnCalculateResultClick:" destination="w8Y-PQ-8PV" eventType="touchUpInside" id="t4B-7z-VeK"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

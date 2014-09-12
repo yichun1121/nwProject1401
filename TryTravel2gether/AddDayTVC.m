@@ -14,22 +14,41 @@
 #import "NWUIScrollViewMovePostition.h"
 
 @interface AddDayTVC ()
-@property NSDateFormatter *dateFormatter;
+@property (nonatomic)  NSDateFormatter *dateFormatter;
+@property (nonatomic,strong) NSDateFormatter *dateFormatter_GMT;
 @property (nonatomic)  UIDatePicker *datePicker;
 @property NSIndexPath *actingDateCellIndexPath;
 @end
 
 @implementation AddDayTVC
+@synthesize dateFormatter=_dateFormatter;
+@synthesize dateFormatter_GMT=_dateFormatter_GMT;
 @synthesize datePicker=_datePicker;
+
+#pragma mark - lazy instantiation
+-(NSDateFormatter *)dateFormatter_GMT{
+    if (!_dateFormatter_GMT) {
+        _dateFormatter_GMT=[[NSDateFormatter alloc]init];
+        _dateFormatter_GMT.timeZone=[NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+        self.dateFormatter_GMT.dateFormat=@"yyyy/MM/dd";
+    }
+    return _dateFormatter_GMT;
+}
+-(NSDateFormatter *)dateFormatter{
+    if (!_dateFormatter) {
+        self.dateFormatter = [[NSDateFormatter alloc] init];
+        [self.dateFormatter setDateFormat:@"yyyy/MM/dd"];
+    }
+    return _dateFormatter;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.navigationItem.title=self.currentTrip.name;
-
-    self.dateFormatter=[[NSDateFormatter alloc]init];
-    self.dateFormatter.dateFormat=@"yyyy/MM/dd";
     
-    [self showResultOfTheDate:[NSDate date]];
+    NSString *todayDateString=[self.dateFormatter_GMT stringFromDate:[NSDate date]];
+    [self showResultOfTheDateString:todayDateString];
     self.dateCell.detailTextLabel.text=[self.dateFormatter stringFromDate:[NSDate date]];
     
     self.dayName.delegate=self; //要加delegate=self，監聽textfield，才能在return時收鍵盤（textFieldShouldReturn）
@@ -54,8 +73,8 @@
     return _datePicker;
 }
 
--(void) showResultOfTheDate:(NSDate *)date{
-    if ([self.currentTrip hadThisDate:date]) {
+-(void) showResultOfTheDateString:(NSString *)date{
+    if ([self.currentTrip hadThisDateWithUTC:date]) {
         self.navigationItem.rightBarButtonItem.enabled=NO;
         self.dayResultString.textLabel.text=NSLocalizedString(@"TripDayValidate_ExistedDay",@"ValueValidate");
     }else{
@@ -68,8 +87,8 @@
 #pragma mark - PickerChange事件
 - (void)pickerChanged{
     self.dateCell.detailTextLabel.text=[self.dateFormatter stringFromDate:self.datePicker.date];
-
-    [self showResultOfTheDate:self.datePicker.date];
+    NSString *dateString=[self.dateFormatter_GMT stringFromDate:self.datePicker.date];
+    [self showResultOfTheDateString:dateString];
     
 }
 
@@ -108,7 +127,7 @@
     
     day.name = self.dayName.text;
     day.inTrip=self.currentTrip;
-    day.date=[self.dateFormatter dateFromString:self.dateCell.detailTextLabel.text];
+    day.date=[self.dateFormatter_GMT dateFromString:self.dateCell.detailTextLabel.text];
     
     NSLog(@"Save new Day in AddDayTVC");
     

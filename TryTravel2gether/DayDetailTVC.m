@@ -11,21 +11,37 @@
 #import "Day+TripDay.h"
 
 @interface DayDetailTVC ()
-@property NSDateFormatter *dateFormatter;
+@property (nonatomic)  NSDateFormatter *dateFormatter;
+@property (nonatomic,strong) NSDateFormatter *dateFormatter_GMT;
 @end
 /*!
    目前Day Detail不開放修改日期，所以不用加picker。
  */
 @implementation DayDetailTVC
+@synthesize dateFormatter=_dateFormatter;
+@synthesize dateFormatter_GMT=_dateFormatter_GMT;
+
+#pragma mark - lazy instantiation
+-(NSDateFormatter *)dateFormatter_GMT{
+    if (!_dateFormatter_GMT) {
+        _dateFormatter_GMT=[[NSDateFormatter alloc]init];
+        _dateFormatter_GMT.timeZone=[NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+        self.dateFormatter_GMT.dateFormat=@"yyyy/MM/dd";
+    }
+    return _dateFormatter_GMT;
+}
+-(NSDateFormatter *)dateFormatter{
+    if (!_dateFormatter) {
+        self.dateFormatter = [[NSDateFormatter alloc] init];
+        [self.dateFormatter setDateFormat:@"yyyy/MM/dd"];
+    }
+    return _dateFormatter;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     NSLog(@"Setting the value of fields in this static table to that of the passed Day");
-
-    //-----Date Formatter----------
-    self.dateFormatter=[[NSDateFormatter alloc]init];
-    self.dateFormatter.dateFormat=@"yyyy/MM/dd";
     
     //-----顯示day資訊-----------
     [self configureTheCell];
@@ -40,7 +56,7 @@
      不需要再建一個新的managedObjectContext，也不用再建一個Trip，直接改舊的就可以了
      */
     [self.day setName:self.dayName.text];
-    self.day.date=[self.dateFormatter dateFromString:self.dateCell.detailTextLabel.text];
+    self.day.date=[self.dateFormatter_GMT dateFromString:self.dateCell.detailTextLabel.text];
     
     [self.managedObjectContext save:nil];  // write to database
     
@@ -57,7 +73,7 @@
     NSString *strDateRange=[NSString stringWithFormat:@"%@ - %@",[self.dateFormatter stringFromDate:self.day.inTrip.startDate],[self.dateFormatter stringFromDate:self.day.inTrip.endDate]];
     self.tripInfoCell.textLabel.text = self.day.inTrip.name;
     self.tripInfoCell.detailTextLabel.text=strDateRange;
-    self.dateCell.detailTextLabel.text=[self.dateFormatter stringFromDate:self.day.date];
+    self.dateCell.detailTextLabel.text=[self.dateFormatter_GMT stringFromDate:self.day.date];
     self.dayName.text=self.day.name;
     self.dayResultString.textLabel.text=[self.day DayNumberStringOfTripdayInTrip];
 }

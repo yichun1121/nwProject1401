@@ -9,5 +9,5 @@
 #import "Trip.h"
 
 @interface Trip (Days)
--(BOOL)hadThisDate:(NSDate *)date;
+-(BOOL)hadThisDateWithUTC:(NSString *)date;
 @end

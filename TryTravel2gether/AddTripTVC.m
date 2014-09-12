@@ -20,6 +20,7 @@
 
 @interface AddTripTVC ()
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
+@property (nonatomic,strong) NSDateFormatter *dateFormatter_GMT;
 @property (weak, nonatomic) IBOutlet UITableViewCell *currency;
 @property (strong,nonatomic) Currency *currentCurrency;
 @property (strong, nonatomic) UIDatePicker *endPicker;
@@ -30,8 +31,10 @@
 @synthesize delegate;
 @synthesize managedObjectContext=_managedObjectContext;
 @synthesize dateFormatter=_dateFormatter;
+@synthesize dateFormatter_GMT=_dateFormatter_GMT;
 @synthesize selectedGuys=_selectedGuys;
 
+#pragma mark - lazy instantiation
 -(UIDatePicker *) startPicker
 {
     if (!_startPicker) {
@@ -52,12 +55,23 @@
     return _endPicker;
 }
 
+-(NSDateFormatter *)dateFormatter_GMT{
+    if (!_dateFormatter_GMT) {
+        _dateFormatter_GMT=[[NSDateFormatter alloc]init];
+        _dateFormatter_GMT.timeZone=[NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+        self.dateFormatter_GMT.dateFormat=@"yyyy/MM/dd";
+    }
+    return _dateFormatter_GMT;
+}
+-(NSDateFormatter *)dateFormatter{
+    if (!_dateFormatter) {
+        self.dateFormatter = [[NSDateFormatter alloc] init];
+        [self.dateFormatter setDateFormat:@"yyyy/MM/dd"];
+    }
+    return _dateFormatter;
+}
 -(void)viewDidLoad{
     [super viewDidLoad];
-
-    //-----Date Formatter----------
-    self.dateFormatter = [[NSDateFormatter alloc] init];
-    [self.dateFormatter setDateFormat:@"yyyy/MM/dd"];
     
     //-----顯示當天的日期-----------
     self.startDate.detailTextLabel.text= [self.dateFormatter stringFromDate:[NSDate date]];
@@ -178,9 +192,15 @@
     //建立日期原件（dateComponents）
     NSDateComponents *dateComponents=[[NSDateComponents alloc]init];
     
+    //NSString *strDateStart=[self.dateFormatter stringFromDate:startDate];
+    
+    startDate=[self.dateFormatter_GMT dateFromString:[self.dateFormatter stringFromDate:startDate]];
+    endDate=[self.dateFormatter_GMT dateFromString:[self.dateFormatter stringFromDate:endDate]];
+    
     //算出起始和結束期間共需幾天
     //double dayCount= ([endDate timeIntervalSinceDate:startDate]/86400)+1;
     int dayCount= (int)[[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:startDate toDate:endDate options:0].day+1;
+    
     
     for (int i=0; i<dayCount; i++) {
         Day *day= [NSEntityDescription insertNewObjectForEntityForName:@"Day"
