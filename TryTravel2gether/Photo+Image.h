@@ -10,4 +10,6 @@
 
 @interface Photo (Image)
 -(UIImage *)image;
++(NSString *)newRelativeFolderWithTripIndex:(NSNumber *)tripIndex;
+-(NSString *)fullPath;
 @end

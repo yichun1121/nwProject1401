@@ -2,7 +2,7 @@
 //  Receipt.m
 //  TryTravel2gether
 //
-//  Created by apple on 2014/8/16.
+//  Created by YICHUN on 2014/9/26.
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 
@@ -16,14 +16,14 @@
 
 @implementation Receipt
 
+@dynamic calculatorArray;
 @dynamic desc;
 @dynamic time;
 @dynamic total;
-@dynamic calculatorArray;
+@dynamic account;
 @dynamic day;
 @dynamic dayCurrency;
 @dynamic items;
 @dynamic photos;
-@dynamic account;
 
 @end

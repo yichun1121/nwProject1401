@@ -2,6 +2,9 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Account" representedClassName="Account" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="surplus" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="guysInTrip" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GuyInTrip" inverseName="accounts" inverseEntity="GuyInTrip" syncable="YES"/>
+        <relationship name="payWay" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PayWay" inverseName="accounts" inverseEntity="PayWay" syncable="YES"/>
         <relationship name="receipts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Receipt" inverseName="account" inverseEntity="Receipt" syncable="YES"/>
     </entity>
     <entity name="CatInTrip" representedClassName="CatInTrip" syncable="YES">
@@ -42,6 +45,7 @@
     </entity>
     <entity name="GuyInTrip" representedClassName="GuyInTrip" syncable="YES">
         <attribute name="realInTrip" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="accounts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Account" inverseName="guysInTrip" inverseEntity="Account" syncable="YES"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="guysInTrip" inverseEntity="Group" syncable="YES"/>
         <relationship name="guy" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Guy" inverseName="guyInTrips" inverseEntity="Guy" syncable="YES"/>
         <relationship name="inTrip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trip" inverseName="guysInTrip" inverseEntity="Trip" syncable="YES"/>
@@ -62,11 +66,15 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="catInTrips" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CatInTrip" inverseName="category" inverseEntity="CatInTrip" syncable="YES"/>
     </entity>
+    <entity name="PayWay" representedClassName="PayWay" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="accounts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Account" inverseName="payWay" inverseEntity="Account" syncable="YES"/>
+    </entity>
     <entity name="Photo" representedClassName="Photo" syncable="YES">
         <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="relativePath" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="photos" inverseEntity="Item" syncable="YES"/>
-        <relationship name="receipts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Receipt" inverseName="photos" inverseEntity="Receipt" syncable="YES"/>
+        <relationship name="receipt" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Receipt" inverseName="photos" inverseEntity="Receipt" syncable="YES"/>
     </entity>
     <entity name="Receipt" representedClassName="Receipt" syncable="YES">
         <attribute name="calculatorArray" optional="YES" attributeType="Transformable" valueTransformerName="CalculatorNSArray" syncable="YES"/>
@@ -77,7 +85,7 @@
         <relationship name="day" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="receipts" inverseEntity="Day" syncable="YES"/>
         <relationship name="dayCurrency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DayCurrency" inverseName="receipts" inverseEntity="DayCurrency" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="receipt" inverseEntity="Item" syncable="YES"/>
-        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="receipts" inverseEntity="Photo" syncable="YES"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="receipt" inverseEntity="Photo" syncable="YES"/>
     </entity>
     <entity name="Trip" representedClassName="Trip" syncable="YES">
         <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -91,17 +99,18 @@
         <relationship name="mainCurrency" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Currency" inverseName="trips" inverseEntity="Currency" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Account" positionX="-261" positionY="-90" width="128" height="73"/>
+        <element name="Account" positionX="-279" positionY="-90" width="128" height="118"/>
         <element name="CatInTrip" positionX="-54" positionY="-180" width="128" height="88"/>
         <element name="Currency" positionX="63" positionY="72" width="128" height="118"/>
         <element name="Day" positionX="88" positionY="-79" width="128" height="133"/>
         <element name="DayCurrency" positionX="-146" positionY="110" width="128" height="90"/>
-        <element name="Group" positionX="207" positionY="194" width="128" height="118"/>
+        <element name="Group" positionX="36" positionY="206" width="128" height="118"/>
         <element name="Guy" positionX="556" positionY="189" width="128" height="73"/>
-        <element name="GuyInTrip" positionX="385" positionY="189" width="128" height="103"/>
-        <element name="Item" positionX="-297" positionY="-27" width="128" height="163"/>
+        <element name="GuyInTrip" positionX="297" positionY="198" width="128" height="118"/>
+        <element name="Item" positionX="-324" positionY="26" width="128" height="163"/>
         <element name="Itemcategory" positionX="-279" positionY="-198" width="128" height="103"/>
-        <element name="Photo" positionX="-459" positionY="-108" width="128" height="103"/>
+        <element name="PayWay" positionX="-441" positionY="-144" width="128" height="73"/>
+        <element name="Photo" positionX="-495" positionY="-58" width="128" height="103"/>
         <element name="Receipt" positionX="-101" positionY="-88" width="128" height="178"/>
         <element name="Trip" positionX="369" positionY="-103" width="128" height="178"/>
     </elements>

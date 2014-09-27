@@ -26,11 +26,12 @@
 @end
 
 
-@interface AddTripTVC : UITableViewController<UITextFieldDelegate,CurrencyCDTVCDelegate,SelectGuysCDTVCDelegate>
+@interface AddTripTVC : UITableViewController<UITextFieldDelegate,CurrencyCDTVCDelegate,SelectGuysCDTVCDelegate,NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, weak) id <AddTripTVCDelegate> delegate;
 @property (nonatomic, strong)NSManagedObjectContext *managedObjectContext;
-
+@property (strong, nonatomic) NSFetchedResultsController *
+fetchedResultsController;
 
 @property (weak, nonatomic) IBOutlet UITextField *tripName; //TODO: tripName不知道要weak還是strong
 @property (weak, nonatomic) IBOutlet UITableViewCell *startDate;

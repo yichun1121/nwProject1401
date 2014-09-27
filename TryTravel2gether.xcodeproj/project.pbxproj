@@ -15,8 +15,6 @@
 		04A04665188A4B5D00D98809 /* AddReceiptTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A04664188A4B5D00D98809 /* AddReceiptTVC.m */; };
 		04ED46F018A64CAF004EA22E /* Trip+Days.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ED46EF18A64CAF004EA22E /* Trip+Days.m */; };
 		180A506A1914EFE40053A9F0 /* NWCustCellSwitch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 180A50691914EFE40053A9F0 /* NWCustCellSwitch.xib */; };
-		1810A8C9199F52710073B2C7 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810A8C8199F52710073B2C7 /* Account.m */; };
-		1810A8CC199F52710073B2C7 /* Receipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 1810A8CB199F52710073B2C7 /* Receipt.m */; };
 		183412D519270D320082AB76 /* GroupDetailTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 183412D419270D320082AB76 /* GroupDetailTVC.m */; };
 		1859D0FE18F00AD200C93338 /* SelectGuysCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1859D0FD18F00AD200C93338 /* SelectGuysCDTVC.m */; };
 		1863F9CD190B681D0033AECF /* AddGroupTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1863F9CC190B681D0033AECF /* AddGroupTVC.m */; };
@@ -55,6 +53,7 @@
 		C90D484118DADC7500367316 /* NWUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = C90D484018DADC7500367316 /* NWUserSettings.m */; };
 		C913902918F01D060069EAC2 /* SettingsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C913902818F01D060069EAC2 /* SettingsTVC.m */; };
 		C913902C18F034420069EAC2 /* CategoriesCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C913902B18F034420069EAC2 /* CategoriesCDTVC.m */; };
+		C926A54819D6E60D0086DF47 /* Trip+System.m in Sources */ = {isa = PBXBuildFile; fileRef = C926A54719D6E60D0086DF47 /* Trip+System.m */; };
 		C92ABB27190E11EF00BEA584 /* Item+Expend.m in Sources */ = {isa = PBXBuildFile; fileRef = C92ABB26190E11EF00BEA584 /* Item+Expend.m */; };
 		C94FD1301998769E001910AC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C94FD1321998769E001910AC /* Localizable.strings */; };
 		C9558F8E191893D500B6C430 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = C9558F8D191893D500B6C430 /* Item.m */; };
@@ -64,6 +63,11 @@
 		C964B92E18D42BBB002EF48C /* Day+Expend.m in Sources */ = {isa = PBXBuildFile; fileRef = C964B92D18D42BBB002EF48C /* Day+Expend.m */; };
 		C964B93118D42FDC002EF48C /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = C964B93018D42FDC002EF48C /* Currency.m */; };
 		C964B93418D43061002EF48C /* Day.m in Sources */ = {isa = PBXBuildFile; fileRef = C964B93318D43061002EF48C /* Day.m */; };
+		C969733119D52B36002A7171 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = C969733019D52B36002A7171 /* Account.m */; };
+		C969733419D52B36002A7171 /* Receipt.m in Sources */ = {isa = PBXBuildFile; fileRef = C969733319D52B36002A7171 /* Receipt.m */; };
+		C969733719D52B36002A7171 /* PayWay.m in Sources */ = {isa = PBXBuildFile; fileRef = C969733619D52B36002A7171 /* PayWay.m */; };
+		C969733D19D52B37002A7171 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = C969733C19D52B37002A7171 /* Trip.m */; };
+		C969734019D52CE0002A7171 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = C969733F19D52CE0002A7171 /* Photo.m */; };
 		C9697B1618FCF8E1006148E0 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9697B1518FCF8E1006148E0 /* SWRevealViewController.m */; };
 		C9697B1918FCF97C006148E0 /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9697B1818FCF97C006148E0 /* SidebarViewController.m */; };
 		C9697B1C18FD39F9006148E0 /* SettingMenuRVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9697B1B18FD39F9006148E0 /* SettingMenuRVC.m */; };
@@ -72,8 +76,6 @@
 		C96AC7B618F24D410037DA8B /* SelectCategoryCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C96AC7B518F24D410037DA8B /* SelectCategoryCDTVC.m */; };
 		C97365F218E6EA170060583A /* ItemsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C97365F118E6EA170060583A /* ItemsCDTVC.m */; };
 		C977812C19123298008F07F9 /* CatInTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = C977812B19123298008F07F9 /* CatInTrip.m */; };
-		C977813819123299008F07F9 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = C977813719123299008F07F9 /* Trip.m */; };
-		C977813B19123299008F07F9 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = C977813A19123299008F07F9 /* Photo.m */; };
 		C977815619129D9E008F07F9 /* Itemcategory+Colorful.m in Sources */ = {isa = PBXBuildFile; fileRef = C977815519129D9E008F07F9 /* Itemcategory+Colorful.m */; };
 		C977815919129DFB008F07F9 /* Itemcategory.m in Sources */ = {isa = PBXBuildFile; fileRef = C977815819129DFB008F07F9 /* Itemcategory.m */; };
 		C977815C19129DFC008F07F9 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = C977815B19129DFC008F07F9 /* Group.m */; };
@@ -149,10 +151,6 @@
 		04ED46EE18A64CAF004EA22E /* Trip+Days.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Trip+Days.h"; sourceTree = "<group>"; };
 		04ED46EF18A64CAF004EA22E /* Trip+Days.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Trip+Days.m"; sourceTree = "<group>"; };
 		180A50691914EFE40053A9F0 /* NWCustCellSwitch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NWCustCellSwitch.xib; path = NWCust/NWCustCellSwitch.xib; sourceTree = "<group>"; };
-		1810A8C7199F52710073B2C7 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
-		1810A8C8199F52710073B2C7 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
-		1810A8CA199F52710073B2C7 /* Receipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Receipt.h; sourceTree = "<group>"; };
-		1810A8CB199F52710073B2C7 /* Receipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Receipt.m; sourceTree = "<group>"; };
 		183412D319270D320082AB76 /* GroupDetailTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailTVC.h; sourceTree = "<group>"; };
 		183412D419270D320082AB76 /* GroupDetailTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailTVC.m; sourceTree = "<group>"; };
 		1859D0FC18F00AD200C93338 /* SelectGuysCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGuysCDTVC.h; sourceTree = "<group>"; };
@@ -231,6 +229,8 @@
 		C913902818F01D060069EAC2 /* SettingsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTVC.m; sourceTree = "<group>"; };
 		C913902A18F034420069EAC2 /* CategoriesCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesCDTVC.h; sourceTree = "<group>"; };
 		C913902B18F034420069EAC2 /* CategoriesCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesCDTVC.m; sourceTree = "<group>"; };
+		C926A54619D6E60D0086DF47 /* Trip+System.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Trip+System.h"; sourceTree = "<group>"; };
+		C926A54719D6E60D0086DF47 /* Trip+System.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Trip+System.m"; sourceTree = "<group>"; };
 		C92ABB25190E11EF00BEA584 /* Item+Expend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Item+Expend.h"; sourceTree = "<group>"; };
 		C92ABB26190E11EF00BEA584 /* Item+Expend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Item+Expend.m"; sourceTree = "<group>"; };
 		C94BF2C3189118940039C6CC /* ReceiptsCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptsCDTVC.h; sourceTree = "<group>"; };
@@ -249,6 +249,16 @@
 		C964B93018D42FDC002EF48C /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
 		C964B93218D43061002EF48C /* Day.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Day.h; sourceTree = "<group>"; };
 		C964B93318D43061002EF48C /* Day.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Day.m; sourceTree = "<group>"; };
+		C969732F19D52B36002A7171 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
+		C969733019D52B36002A7171 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
+		C969733219D52B36002A7171 /* Receipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Receipt.h; sourceTree = "<group>"; };
+		C969733319D52B36002A7171 /* Receipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Receipt.m; sourceTree = "<group>"; };
+		C969733519D52B36002A7171 /* PayWay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayWay.h; sourceTree = "<group>"; };
+		C969733619D52B36002A7171 /* PayWay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayWay.m; sourceTree = "<group>"; };
+		C969733B19D52B37002A7171 /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
+		C969733C19D52B37002A7171 /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
+		C969733E19D52CE0002A7171 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		C969733F19D52CE0002A7171 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		C9697B1418FCF8E1006148E0 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		C9697B1518FCF8E1006148E0 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		C9697B1718FCF97C006148E0 /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
@@ -266,10 +276,6 @@
 		C9778129191228CC008F07F9 /* Model 5_ColorAndPhotos.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 5_ColorAndPhotos.xcdatamodel"; sourceTree = "<group>"; };
 		C977812A19123298008F07F9 /* CatInTrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatInTrip.h; sourceTree = "<group>"; };
 		C977812B19123298008F07F9 /* CatInTrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatInTrip.m; sourceTree = "<group>"; };
-		C977813619123299008F07F9 /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
-		C977813719123299008F07F9 /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
-		C977813919123299008F07F9 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
-		C977813A19123299008F07F9 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		C977815419129D9E008F07F9 /* Itemcategory+Colorful.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Itemcategory+Colorful.h"; sourceTree = "<group>"; };
 		C977815519129D9E008F07F9 /* Itemcategory+Colorful.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Itemcategory+Colorful.m"; sourceTree = "<group>"; };
 		C977815719129DFB008F07F9 /* Itemcategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Itemcategory.h; sourceTree = "<group>"; };
@@ -309,6 +315,7 @@
 		C9AAED9019067A87002D3BAB /* GroupAndGuyInTripCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupAndGuyInTripCDTVC.m; sourceTree = "<group>"; };
 		C9AAED921906A361002D3BAB /* Group+TripGuys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Group+TripGuys.h"; sourceTree = "<group>"; };
 		C9AAED931906A361002D3BAB /* Group+TripGuys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Group+TripGuys.m"; sourceTree = "<group>"; };
+		C9BAE34D19D1B1D200045686 /* Model 7_PhotoRelativePathAndReceiptPayer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 7_PhotoRelativePathAndReceiptPayer.xcdatamodel"; sourceTree = "<group>"; };
 		C9C4097918E7247600E1F3FE /* AddItemTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddItemTVC.h; sourceTree = "<group>"; };
 		C9C4097A18E7247600E1F3FE /* AddItemTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddItemTVC.m; sourceTree = "<group>"; };
 		C9C4097C18E73D6700E1F3FE /* Receipt+Calculate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Receipt+Calculate.h"; sourceTree = "<group>"; };
@@ -622,15 +629,13 @@
 		C9DB003B186B195800F3B008 /* CoreDataModel */ = {
 			isa = PBXGroup;
 			children = (
-				186C1B261927378E00C87DE7 /* GuyInTrip+Group.h */,
-				186C1B271927378E00C87DE7 /* GuyInTrip+Group.m */,
-				186C1B291927395D00C87DE7 /* Group+Special.h */,
-				186C1B2A1927395D00C87DE7 /* Group+Special.m */,
+				C969732F19D52B36002A7171 /* Account.h */,
+				C969733019D52B36002A7171 /* Account.m */,
 				C977812A19123298008F07F9 /* CatInTrip.h */,
 				C977812B19123298008F07F9 /* CatInTrip.m */,
-				C964B92F18D42FDC002EF48C /* Currency.h */,
 				C988FC9419A62766000A0FCB /* Currency+Decimal.h */,
 				C988FC9519A62766000A0FCB /* Currency+Decimal.m */,
+				C964B92F18D42FDC002EF48C /* Currency.h */,
 				C964B93018D42FDC002EF48C /* Currency.m */,
 				C964B92C18D42BBB002EF48C /* Day+Expend.h */,
 				C964B92D18D42BBB002EF48C /* Day+Expend.m */,
@@ -640,6 +645,8 @@
 				C964B93318D43061002EF48C /* Day.m */,
 				C909F36C18D0125800E02B8D /* DayCurrency.h */,
 				C909F36D18D0125800E02B8D /* DayCurrency.m */,
+				186C1B291927395D00C87DE7 /* Group+Special.h */,
+				186C1B2A1927395D00C87DE7 /* Group+Special.m */,
 				C9AAED921906A361002D3BAB /* Group+TripGuys.h */,
 				C9AAED931906A361002D3BAB /* Group+TripGuys.m */,
 				C977815A19129DFC008F07F9 /* Group.h */,
@@ -648,38 +655,42 @@
 				18DE117E18F97F72003F3083 /* Guy.m */,
 				C9EE94DF1908F2D100E599C1 /* GuyInTrip+Expend.h */,
 				C9EE94E01908F2D100E599C1 /* GuyInTrip+Expend.m */,
+				186C1B261927378E00C87DE7 /* GuyInTrip+Group.h */,
+				186C1B271927378E00C87DE7 /* GuyInTrip+Group.m */,
 				18DE117A18F97F72003F3083 /* GuyInTrip.h */,
 				18DE117B18F97F72003F3083 /* GuyInTrip.m */,
 				C92ABB25190E11EF00BEA584 /* Item+Expend.h */,
 				C92ABB26190E11EF00BEA584 /* Item+Expend.m */,
+				C9558F8C191893D500B6C430 /* Item.h */,
+				C9558F8D191893D500B6C430 /* Item.m */,
 				C977815419129D9E008F07F9 /* Itemcategory+Colorful.h */,
 				C977815519129D9E008F07F9 /* Itemcategory+Colorful.m */,
 				C977815719129DFB008F07F9 /* Itemcategory.h */,
 				C977815819129DFB008F07F9 /* Itemcategory.m */,
 				C9F80492187A333D00EE4EDE /* Model.xcdatamodeld */,
-				1810A8CA199F52710073B2C7 /* Receipt.h */,
-				1810A8CB199F52710073B2C7 /* Receipt.m */,
-				1810A8C7199F52710073B2C7 /* Account.h */,
-				1810A8C8199F52710073B2C7 /* Account.m */,
-				C9558F8C191893D500B6C430 /* Item.h */,
-				C9558F8D191893D500B6C430 /* Item.m */,
-				C977813919123299008F07F9 /* Photo.h */,
-				C977813A19123299008F07F9 /* Photo.m */,
+				C969733E19D52CE0002A7171 /* Photo.h */,
+				C969733F19D52CE0002A7171 /* Photo.m */,
+				C969733519D52B36002A7171 /* PayWay.h */,
+				C969733619D52B36002A7171 /* PayWay.m */,
 				C97DAE6619135626009B7E6C /* Photo+Image.h */,
 				C97DAE6719135626009B7E6C /* Photo+Image.m */,
 				C9C4097C18E73D6700E1F3FE /* Receipt+Calculate.h */,
 				C9C4097D18E73D6700E1F3FE /* Receipt+Calculate.m */,
 				C97DAE6919136FAA009B7E6C /* Receipt+Photo.h */,
 				C97DAE6A19136FAA009B7E6C /* Receipt+Photo.m */,
+				C969733219D52B36002A7171 /* Receipt.h */,
+				C969733319D52B36002A7171 /* Receipt.m */,
 				C9DB003C186B197400F3B008 /* TourModel.xcdatamodeld */,
+				C96A7E9D198FE17900B131B2 /* Trip+Currency.h */,
+				C96A7E9E198FE17900B131B2 /* Trip+Currency.m */,
 				04ED46EE18A64CAF004EA22E /* Trip+Days.h */,
 				04ED46EF18A64CAF004EA22E /* Trip+Days.m */,
 				1863F9CE190BAFC80033AECF /* Trip+Group.h */,
 				1863F9CF190BAFC80033AECF /* Trip+Group.m */,
-				C977813619123299008F07F9 /* Trip.h */,
-				C96A7E9D198FE17900B131B2 /* Trip+Currency.h */,
-				C96A7E9E198FE17900B131B2 /* Trip+Currency.m */,
-				C977813719123299008F07F9 /* Trip.m */,
+				C969733B19D52B37002A7171 /* Trip.h */,
+				C969733C19D52B37002A7171 /* Trip.m */,
+				C926A54619D6E60D0086DF47 /* Trip+System.h */,
+				C926A54719D6E60D0086DF47 /* Trip+System.m */,
 			);
 			name = CoreDataModel;
 			sourceTree = "<group>";
@@ -892,6 +903,7 @@
 				C981340C190769BF00CF43CC /* ShareMainPageCDTVC.m in Sources */,
 				C9697B1918FCF97C006148E0 /* SidebarViewController.m in Sources */,
 				C9FDDA14197FA9CC0060336A /* ReceiptPhotoVC.m in Sources */,
+				C969734019D52CE0002A7171 /* Photo.m in Sources */,
 				18B8143F18E6E9740089BF0B /* AddGuyTVC.m in Sources */,
 				C92ABB27190E11EF00BEA584 /* Item+Expend.m in Sources */,
 				C9F804AA187A4C9B00EE4EDE /* AddTripTVC.m in Sources */,
@@ -905,10 +917,11 @@
 				C977812C19123298008F07F9 /* CatInTrip.m in Sources */,
 				C9F804FA187A74DB00EE4EDE /* CoreDataTableViewController.m in Sources */,
 				C97DAE6819135626009B7E6C /* Photo+Image.m in Sources */,
+				C969733419D52B36002A7171 /* Receipt.m in Sources */,
 				C9C4097E18E73D6700E1F3FE /* Receipt+Calculate.m in Sources */,
 				C9C4097B18E7247600E1F3FE /* AddItemTVC.m in Sources */,
 				0409B6F51893BEAE000C6DF6 /* AddDayTVC.m in Sources */,
-				C977813B19123299008F07F9 /* Photo.m in Sources */,
+				C969733719D52B36002A7171 /* PayWay.m in Sources */,
 				C9DB0010186B187E00F3B008 /* main.m in Sources */,
 				C903332B1988D72200A55362 /* NWAdShiftTableViewController.m in Sources */,
 				04ED46F018A64CAF004EA22E /* Trip+Days.m in Sources */,
@@ -922,6 +935,7 @@
 				04858D4018AA63F000A81340 /* DayDetailTVC.m in Sources */,
 				C97DAE6B19136FAA009B7E6C /* Receipt+Photo.m in Sources */,
 				186C1B2B1927395D00C87DE7 /* Group+Special.m in Sources */,
+				C969733119D52B36002A7171 /* Account.m in Sources */,
 				C9697B1618FCF8E1006148E0 /* SWRevealViewController.m in Sources */,
 				C964B93118D42FDC002EF48C /* Currency.m in Sources */,
 				18DE117F18F97F72003F3083 /* Guy.m in Sources */,
@@ -930,16 +944,15 @@
 				0409B6F21892B763000C6DF6 /* Day+TripDay.m in Sources */,
 				C9F80494187A333D00EE4EDE /* Model.xcdatamodeld in Sources */,
 				BFC6CCFF190B98AB0071D99E /* NWPickerUtils.m in Sources */,
+				C969733D19D52B37002A7171 /* Trip.m in Sources */,
 				C9EE94E11908F2D100E599C1 /* GuyInTrip+Expend.m in Sources */,
 				C9F804A7187A4C7800EE4EDE /* TripsCDTVC.m in Sources */,
-				1810A8C9199F52710073B2C7 /* Account.m in Sources */,
 				C913902918F01D060069EAC2 /* SettingsTVC.m in Sources */,
 				C9AAED8E19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.m in Sources */,
 				1863F9CD190B681D0033AECF /* AddGroupTVC.m in Sources */,
 				040A6325188ADE480084A3EC /* TripDaysTVC.m in Sources */,
 				C909F35318D00FE600E02B8D /* CurrencyCDTVC.m in Sources */,
 				C9EE94DB1908C0B600E599C1 /* TripsCDTVCWithSidebar.m in Sources */,
-				C977813819123299008F07F9 /* Trip.m in Sources */,
 				C977815619129D9E008F07F9 /* Itemcategory+Colorful.m in Sources */,
 				040A631F188ADB7B0084A3EC /* CoreDataTableViewCell.m in Sources */,
 				C981340F19078D0800CF43CC /* SelectTripCDTVC.m in Sources */,
@@ -965,8 +978,8 @@
 				1869ACF31914F19600BF8547 /* NWCustCellSwitch.m in Sources */,
 				C964B92E18D42BBB002EF48C /* Day+Expend.m in Sources */,
 				C90510C6199F891C00D87F39 /* SelectPaymentCDTVC.m in Sources */,
-				1810A8CC199F52710073B2C7 /* Receipt.m in Sources */,
 				C964B93418D43061002EF48C /* Day.m in Sources */,
+				C926A54819D6E60D0086DF47 /* Trip+System.m in Sources */,
 				04A04665188A4B5D00D98809 /* AddReceiptTVC.m in Sources */,
 				C9697B1C18FD39F9006148E0 /* SettingMenuRVC.m in Sources */,
 			);
@@ -1250,6 +1263,7 @@
 		C9F80492187A333D00EE4EDE /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				C9BAE34D19D1B1D200045686 /* Model 7_PhotoRelativePathAndReceiptPayer.xcdatamodel */,
 				187B88A9199F4F69007A4B74 /* Model 6_CalCulatorArrayAndReceiptPayWay.xcdatamodel */,
 				04E6AF7818AF6AFB007714A3 /* Model 3_MoneyType.xcdatamodel */,
 				C9D28ADB18DFFFC200304370 /* Model 4_ItemCategoryGuyGroup.xcdatamodel */,
@@ -1257,7 +1271,7 @@
 				04A0464D1886DFAF00D98809 /* Model 2_receipts_photos.xcdatamodel */,
 				C9F80493187A333D00EE4EDE /* Model.xcdatamodel */,
 			);
-			currentVersion = 187B88A9199F4F69007A4B74 /* Model 6_CalCulatorArrayAndReceiptPayWay.xcdatamodel */;
+			currentVersion = C9BAE34D19D1B1D200045686 /* Model 7_PhotoRelativePathAndReceiptPayer.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

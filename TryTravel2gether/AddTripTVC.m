@@ -17,6 +17,7 @@
 #import "NWKeyboardUtils.h"
 #import "NWPickerUtils.h"
 #import "NWUIScrollViewMovePostition.h"
+#import "Trip+System.h"
 
 @interface AddTripTVC ()
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
@@ -33,6 +34,7 @@
 @synthesize dateFormatter=_dateFormatter;
 @synthesize dateFormatter_GMT=_dateFormatter_GMT;
 @synthesize selectedGuys=_selectedGuys;
+@synthesize fetchedResultsController=_fetchedResultsController;
 
 #pragma mark - lazy instantiation
 -(UIDatePicker *) startPicker
@@ -101,10 +103,11 @@
                                                inManagedObjectContext:self.managedObjectContext];
     
     trip.name = self.tripName.text;
-    trip.startDate=[self.dateFormatter dateFromString: self.startDate.detailTextLabel.text];
-    trip.endDate=[self.dateFormatter dateFromString:self.endDate.detailTextLabel.text];
+    trip.startDate=[self.dateFormatter_GMT dateFromString: self.startDate.detailTextLabel.text];
+    trip.endDate=[self.dateFormatter_GMT dateFromString:self.endDate.detailTextLabel.text];
     trip.days=[self creatDefaultDaysFromStartDate:trip.startDate ToEndDate:trip.endDate];
     trip.mainCurrency=self.currentCurrency;
+    trip.tripIndex=[Trip getNextTripIndex];
     [self.managedObjectContext save:nil];  // write to database
     [self createDefaultGroupWithGuy:self.selectedGuys InCurrentTrip:trip];
     [self createDefaultGroupWithShareTogetherInCurrentTrip:trip];
@@ -239,6 +242,7 @@
         
     }
 }
+
 
 #pragma mark - Group&GuyInTrip
 //把每個參與者都視為一個Group

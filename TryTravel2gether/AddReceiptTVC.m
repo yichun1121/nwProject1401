@@ -8,10 +8,12 @@
 
 #import "AddReceiptTVC.h"
 #import "Trip.h"
+#import "Trip+Days.h"
 #import "TripDaysTVC.h"
 #import "DayCurrency.h"
 #import "Currency.h"
 #import "Photo.h"
+#import "Photo+Image.h"
 #import "NWKeyboardUtils.h"
 #import "NWPickerUtils.h"
 #import "NWUIScrollViewMovePostition.h"
@@ -77,28 +79,28 @@
     if (!_dateFormatter_GMT) {
         _dateFormatter_GMT=[[NSDateFormatter alloc]init];
         _dateFormatter_GMT.timeZone=[NSTimeZone timeZoneWithAbbreviation:@"UTC"];
-        self.dateFormatter_GMT.dateFormat=@"yyyy/MM/dd";
+        _dateFormatter_GMT.dateFormat=@"yyyy/MM/dd";
     }
     return _dateFormatter_GMT;
 }
 -(NSDateFormatter *)dateFormatter{
     if (!_dateFormatter) {
-        self.dateFormatter = [[NSDateFormatter alloc] init];
-        [self.dateFormatter setDateFormat:@"yyyy/MM/dd"];
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        [_dateFormatter setDateFormat:@"yyyy/MM/dd"];
     }
     return _dateFormatter;
 }
 -(NSDateFormatter *)timeFormatter{
     if (!_timeFormatter) {
-        self.timeFormatter=[[NSDateFormatter alloc]init];
-        self.timeFormatter.dateFormat=@"HH:mm";
+        _timeFormatter=[[NSDateFormatter alloc]init];
+        _timeFormatter.dateFormat=@"HH:mm";
     }
     return _timeFormatter;
 }
 -(NSDateFormatter *)dateTimeFormatter{
     if (!_dateTimeFormatter) {
-        self.dateTimeFormatter=[[NSDateFormatter alloc]init];
-        self.dateTimeFormatter.dateFormat=[NSString stringWithFormat:@"%@ %@",self.dateFormatter.dateFormat,self.timeFormatter.dateFormat];
+        _dateTimeFormatter=[[NSDateFormatter alloc]init];
+        _dateTimeFormatter.dateFormat=[NSString stringWithFormat:@"%@ %@",self.dateFormatter.dateFormat,self.timeFormatter.dateFormat];
     }
     return _dateTimeFormatter;
 }
@@ -163,13 +165,16 @@
     self.currencySign.text=currency.sign;
 }
 -(Photo *)saveImage:(UIImage *)image{
+    
+    //    NSData * binaryImageData = UIImagePNGRepresentation(image);
+    NSData * binaryImageData = UIImageJPEGRepresentation(image, 0.3);     //數字是壓縮比<=1
+    
     NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString * basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
     
-//    NSData * binaryImageData = UIImagePNGRepresentation(image);
-    NSData * binaryImageData = UIImageJPEGRepresentation(image, 1);     //數字是壓縮比<=1
     //TODO: Trip加了index以後，用tripIndex當資料夾名字
-    NSString *folderPath=[NSString stringWithFormat:@"%@/Photos/%@ %@",basePath,@"Trip",self.currentTrip.name ];
+    NSString * relativeFolder=[Photo newRelativeFolderWithTripIndex:self.currentTrip.tripIndex];
+    NSString *folderPath=[NSString stringWithFormat:@"%@%@",basePath,relativeFolder];
     //-----檢查預存放的資料夾路徑-------------------------
     if ([[NSFileManager defaultManager] fileExistsAtPath:folderPath]){
         NSLog(@"folder path exists.");
@@ -194,7 +199,7 @@
     //-----儲存entity:Photo-------------------------------------
     Photo *photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photo"
                                                      inManagedObjectContext:self.managedObjectContext];
-    photo.fullPath=imagePath;
+    photo.relativePath=[NSString stringWithFormat:@"%@/%@",relativeFolder,fileName];
     photo.fileName=fileName;
     [self.managedObjectContext save:nil];  // write to database
     return photo;
@@ -204,7 +209,8 @@
     Receipt *receipt = [NSEntityDescription insertNewObjectForEntityForName:@"Receipt"
                                                      inManagedObjectContext:self.managedObjectContext];
     
-    Day *selectedDay=[self getTripDayByDate:self.selectedDayString];
+    //Day *selectedDay=[self getTripDayByDate:self.selectedDayString];
+    Day *selectedDay=[self.currentTrip getTripDayByDateString:self.selectedDayString];
     receipt.desc = self.desc.text;
     receipt.total=[NSNumber numberWithDouble:[self.totalPrice.currentTitle doubleValue]];
     receipt.time=[self.timeFormatter dateFromString:self.timeCell.detailTextLabel.text];
@@ -353,41 +359,41 @@
 #pragma mark - ▣ CRUD_TripDay+DayCurrency
 /*!以yyyy/MM/dd的日期字串取得本旅程中對應的Day，如果沒有這天，回傳nil
  */
--(Day *)getTripDayByDate:(NSString *)dateString{
-    NSLog(@"Find the trip day:%@ in the current trip.",dateString);
-    NSEntityDescription *entityDesc =
-    [NSEntityDescription entityForName:@"Day" inManagedObjectContext:self.managedObjectContext];
-    
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityDesc];
-    
-    NSDate *date= [self.dateFormatter_GMT dateFromString:dateString];
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"(date = %@) AND (inTrip=%@)", date,self.currentTrip];
-    [request setPredicate:pred];
-    
-    NSError *error;
-    NSArray *objects = [self.managedObjectContext executeFetchRequest:request error:&error];
-    
-    if ([objects count] == 0) {
-        return [self createDayInCurrentTripByDateString:date];
-    } else {
-        return objects[0];
-    }
-}
--(Day *)createDayInCurrentTripByDateString:(NSDate *)date{
-    NSLog(@"Create the new day in the current trip.");
-    
-    Day *day = [NSEntityDescription insertNewObjectForEntityForName:@"Day"
-                                             inManagedObjectContext:self.managedObjectContext];
-    day.name=@"";
-    day.date=date;
-    day.inTrip=self.currentTrip;
-    
-    NSLog(@"Create new Day in AddReceiptTVC");
-    
-    [self.managedObjectContext save:nil];  // write to database
-    return day;
-}
+//-(Day *)getTripDayByDate:(NSString *)dateString{
+//    NSLog(@"Find the trip day:%@ in the current trip.",dateString);
+//    NSEntityDescription *entityDesc =
+//    [NSEntityDescription entityForName:@"Day" inManagedObjectContext:self.managedObjectContext];
+//    
+//    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+//    [request setEntity:entityDesc];
+//    
+//    NSDate *date= [self.dateFormatter_GMT dateFromString:dateString];
+//    NSPredicate *pred = [NSPredicate predicateWithFormat:@"(date = %@) AND (inTrip=%@)", date,self.currentTrip];
+//    [request setPredicate:pred];
+//    
+//    NSError *error;
+//    NSArray *objects = [self.managedObjectContext executeFetchRequest:request error:&error];
+//    
+//    if ([objects count] == 0) {
+//        return [self createDayInCurrentTripByDateString:date];
+//    } else {
+//        return objects[0];
+//    }
+//}
+//-(Day *)createDayInCurrentTripByDateString:(NSDate *)date{
+//    NSLog(@"Create the new day in the current trip.");
+//    
+//    Day *day = [NSEntityDescription insertNewObjectForEntityForName:@"Day"
+//                                             inManagedObjectContext:self.managedObjectContext];
+//    day.name=@"";
+//    day.date=date;
+//    day.inTrip=self.currentTrip;
+//    
+//    NSLog(@"Create new Day in AddReceiptTVC");
+//    
+//    [self.managedObjectContext save:nil];  // write to database
+//    return day;
+//}
 -(DayCurrency *)getDayCurrencyWithTripDay:(Day *)tripDay Currency:(Currency *)currency{
     //    //-----Date Formatter----------
     //    NSDateFormatter *dateFormatter;

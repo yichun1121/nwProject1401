@@ -2,7 +2,7 @@
 //  Photo.h
 //  TryTravel2gether
 //
-//  Created by YICHUN on 2014/5/1.
+//  Created by YICHUN on 2014/9/26.
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 
@@ -14,17 +14,12 @@
 @interface Photo : NSManagedObject
 
 @property (nonatomic, retain) NSString * fileName;
-@property (nonatomic, retain) NSString * fullPath;
-@property (nonatomic, retain) NSSet *receipts;
+@property (nonatomic, retain) NSString * relativePath;
 @property (nonatomic, retain) NSSet *items;
+@property (nonatomic, retain) Receipt *receipt;
 @end
 
 @interface Photo (CoreDataGeneratedAccessors)
-
-- (void)addReceiptsObject:(Receipt *)value;
-- (void)removeReceiptsObject:(Receipt *)value;
-- (void)addReceipts:(NSSet *)values;
-- (void)removeReceipts:(NSSet *)values;
 
 - (void)addItemsObject:(Item *)value;
 - (void)removeItemsObject:(Item *)value;

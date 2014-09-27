@@ -1,22 +1,18 @@
 //
-//  Account.m
+//  PayWay.m
 //  TryTravel2gether
 //
 //  Created by YICHUN on 2014/9/26.
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 
+#import "PayWay.h"
 #import "Account.h"
-#import "GuyInTrip.h"
-#import "Receipt.h"
 
 
-@implementation Account
+@implementation PayWay
 
 @dynamic name;
-@dynamic surplus;
-@dynamic guysInTrip;
-@dynamic payWay;
-@dynamic receipts;
+@dynamic accounts;
 
 @end

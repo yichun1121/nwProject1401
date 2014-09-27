@@ -10,4 +10,7 @@
 
 @interface Trip (Days)
 -(BOOL)hadThisDateWithUTC:(NSString *)date;
++(NSDateFormatter *)dateFormatter_GMT;
+-(Day *)getTripDayByDateString:(NSString *)dateString;
+-(Day *)createDayInCurrentTripByDateString:(NSDate *)date;
 @end

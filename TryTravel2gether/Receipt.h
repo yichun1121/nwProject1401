@@ -2,7 +2,7 @@
 //  Receipt.h
 //  TryTravel2gether
 //
-//  Created by apple on 2014/8/16.
+//  Created by YICHUN on 2014/9/26.
 //  Copyright (c) 2014年 NW. All rights reserved.
 //
 
@@ -13,15 +13,15 @@
 
 @interface Receipt : NSManagedObject
 
+@property (nonatomic, retain) id calculatorArray;
 @property (nonatomic, retain) NSString * desc;
 @property (nonatomic, retain) NSDate * time;
 @property (nonatomic, retain) NSNumber * total;
-@property (nonatomic, retain) id calculatorArray;
+@property (nonatomic, retain) Account *account;
 @property (nonatomic, retain) Day *day;
 @property (nonatomic, retain) DayCurrency *dayCurrency;
 @property (nonatomic, retain) NSSet *items;
 @property (nonatomic, retain) NSSet *photos;
-@property (nonatomic, retain) Account *account;
 @end
 
 @interface Receipt (CoreDataGeneratedAccessors)
