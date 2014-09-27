@@ -116,6 +116,13 @@
             case NSFetchedResultsChangeDelete:
                 [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
                 break;
+            //更新為ios8，要新增兩個case，先暫時放這個
+            case NSFetchedResultsChangeMove:
+                NSLog(@"A table item was moved");
+                break;
+            case NSFetchedResultsChangeUpdate:
+                NSLog(@"A table item was updated");
+                break;
         }
     }
 }
