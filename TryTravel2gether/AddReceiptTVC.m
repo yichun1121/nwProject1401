@@ -167,7 +167,7 @@
 -(Photo *)saveImage:(UIImage *)image{
     
     //    NSData * binaryImageData = UIImagePNGRepresentation(image);
-    NSData * binaryImageData = UIImageJPEGRepresentation(image, 0.3);     //數字是壓縮比<=1
+    NSData * binaryImageData = UIImageJPEGRepresentation(image, 0.5);     //數字是壓縮比<=1
     
     NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString * basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
@@ -264,8 +264,11 @@
     UIImage * image=[info objectForKey:UIImagePickerControllerOriginalImage];
     //2. 載入ImageView 延伸scrollView
     [self loadImageIntoScrollView:image];
-    
+    //3. 加入MutableArray
     [self.images addObject:image];
+    //4. 存入Album
+    UIImageWriteToSavedPhotosAlbum(image, self, nil, nil);
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 
 }
