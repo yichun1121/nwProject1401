@@ -37,6 +37,7 @@
 #pragma mark - Table view set AdMob banner
 
 // 需要廣告的時候把下面整段的註解取消
+// 還要把GoogleAdMobileLibs資料夾裝回來
 //-(void)viewDidAppear:(BOOL)animated {
 //    [super viewDidAppear:animated];
 //    if (!self.isMoveForADAlready) {

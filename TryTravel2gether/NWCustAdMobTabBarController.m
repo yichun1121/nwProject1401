@@ -14,11 +14,11 @@
 
 @implementation NWCustAdMobTabBarController
 
-@synthesize admobBannerView;
 
 
 // 需要廣告的時候把下面全部的註解取消
-//
+// 還要把GoogleAdMobileLibs資料夾裝回來
+
 //- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 //{
 //    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

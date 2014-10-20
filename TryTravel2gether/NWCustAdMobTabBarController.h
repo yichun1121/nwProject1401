@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GADBannerView.h"
 #import <iAd/iAd.h>
 
-@interface NWCustAdMobTabBarController : UITabBarController<GADBannerViewDelegate,ADBannerViewDelegate>
-@property(nonatomic, strong)GADBannerView *admobBannerView;
-@property(nonatomic, strong)ADBannerView *bannerView;
+@interface NWCustAdMobTabBarController : UITabBarController<ADBannerViewDelegate>
+
 //@property(nonatomic, strong)BOOL *isShowIAD;
 @end

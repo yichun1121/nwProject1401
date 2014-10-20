@@ -9,11 +9,10 @@
 #import "CoreDataTableViewController.h"
 #import "Trip.h"
 #import "SelectTripCDTVC.h"
-#import "GADInterstitial.h"
 
-@interface ShareMainPageCDTVC : CoreDataTableViewController<SelectTripCDTVCDelegate,GADInterstitialDelegate>{
+@interface ShareMainPageCDTVC : CoreDataTableViewController<SelectTripCDTVCDelegate>{
     // 將其中一個宣告為執行個體變數
-    GADInterstitial *_interstitial;
+//    GADInterstitial *_interstitial;
 }
 @property (weak,nonatomic)NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic)NSFetchedResultsController *fetchedResultsController;

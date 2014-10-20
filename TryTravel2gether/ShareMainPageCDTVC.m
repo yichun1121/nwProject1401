@@ -74,31 +74,33 @@
 }
 
 
-#pragma mark GADInterstitialDelegate implementation
-- (void)interstitialDidReceiveAd:(GADInterstitial *)ad {
-    NSLog(@"Received ad successfully");
-    [_interstitial presentFromRootViewController:self];
-}
-
-- (void)interstitial:(GADInterstitial *)ad didFailToReceiveAdWithError:(GADRequestError *)error {
-    NSLog(@"Failed to receive ad with error: %@", [error localizedFailureReason]);
-}
-
-
-#pragma mark GADRequest generation
-- (GADRequest *)request {
-    GADRequest *request = [GADRequest request];
-    
-    // Make the request for a test ad. Put in an identifier for the simulator as well as any devices
-    // you want to receive test ads.
-    request.testDevices = @[
-                            // TODO: Add your device/simulator test identifiers here. Your device identifier is printed to
-                            // the console when the app is launched.
-                            GAD_SIMULATOR_ID
-                            ];
-    return request;
-}
-
+// 需要插頁廣告的時候把下面區塊的註解取消
+// 還要把GoogleAdMobileLibs資料夾裝回來
+//#pragma mark GADInterstitialDelegate implementation
+//- (void)interstitialDidReceiveAd:(GADInterstitial *)ad {
+//    NSLog(@"Received ad successfully");
+//    [_interstitial presentFromRootViewController:self];
+//}
+//
+//- (void)interstitial:(GADInterstitial *)ad didFailToReceiveAdWithError:(GADRequestError *)error {
+//    NSLog(@"Failed to receive ad with error: %@", [error localizedFailureReason]);
+//}
+//
+//
+//#pragma mark GADRequest generation
+//- (GADRequest *)request {
+//    GADRequest *request = [GADRequest request];
+//    
+//    // Make the request for a test ad. Put in an identifier for the simulator as well as any devices
+//    // you want to receive test ads.
+//    request.testDevices = @[
+//                            // TODO: Add your device/simulator test identifiers here. Your device identifier is printed to
+//                            // the console when the app is launched.
+//                            GAD_SIMULATOR_ID
+//                            ];
+//    return request;
+//}
+//
 
 
 
@@ -109,16 +111,18 @@
     self.showingCurrency=self.currentTrip.mainCurrency;
     self.currencyIndex=0;
 
-    if (!self.interstitialShow) {
-        //-----google AdMob插頁廣告----------
-        _interstitial = [[GADInterstitial alloc] init];
-        _interstitial.delegate = self;
-        _interstitial.adUnitID = @"ca-app-pub-1412142430031740/6151567713";
+    // 需要插頁廣告的時候把下面區塊的註解取消
+    // 還要把GoogleAdMobileLibs資料夾裝回來
+//    if (!self.interstitialShow) {
+//        //-----google AdMob插頁廣告----------
+//        _interstitial = [[GADInterstitial alloc] init];
+//        _interstitial.delegate = self;
+//        _interstitial.adUnitID = @"ca-app-pub-1412142430031740/6151567713";
 //        [_interstitial loadRequest:[self request]];
-        self.interstitialShow = TRUE;
-    }else{
-       self.interstitialShow = FALSE;
-    }
+//        self.interstitialShow = TRUE;
+//    }else{
+//       self.interstitialShow = FALSE;
+//    }
 
     
     if (!self.currentTrip) {
