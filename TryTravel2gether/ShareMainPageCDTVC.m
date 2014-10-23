@@ -45,6 +45,13 @@
     }
     return _lblNavTitle;
 }
+-(Trip *)currentTrip{
+    if (!_currentTrip) {
+        self.currentTrip=[self getDefaultTrip];
+    }
+    return _currentTrip;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -106,8 +113,8 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-
-    self.lblNavTitle.text=self.currentTrip.name;
+//    self.lblNavTitle.text=self.currentTrip.name;
+    self.lblNavTitle.text=[NSString stringWithFormat:@"%@ - %@",self.currentTrip.name,self.currentTrip.mainCurrency.standardSign];
     self.showingCurrency=self.currentTrip.mainCurrency;
     self.currencyIndex=0;
 
@@ -124,10 +131,7 @@
 //       self.interstitialShow = FALSE;
 //    }
 
-    
-    if (!self.currentTrip) {
-        self.currentTrip=[self getDefaultTrip];
-    }
+
     [self showTripInfo:self.currentTrip];
     
     [self setupFetchedResultController];
