@@ -96,6 +96,7 @@
     cell.textLabel.text=receipt.desc;
     if ([receipt isItemsGroupAllSet]) {
         cell.textLabel.textColor=[UIColor blackColor];
+        
     }else{
         cell.textLabel.textColor=[UIColor orangeColor];
     }
@@ -103,7 +104,7 @@
     NSString *moneyTypeSign=receipt.dayCurrency.currency.sign;
     cell.detailTextLabel.text=[NSString stringWithFormat:@"%@ %@",moneyTypeSign,receipt.total];
     //    if ([[receipt calculateSumOfAllItems]isEqualToNumber: receipt.total]) {
-    if ([receipt isItemsAllSet]) {
+    if ([receipt isItemsAllSet]) {        
         cell.detailTextLabel.textColor=[UIColor lightGrayColor];
     }else {
         cell.detailTextLabel.textColor=[UIColor redColor];

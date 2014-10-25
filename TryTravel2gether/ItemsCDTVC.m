@@ -124,10 +124,10 @@
     cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
     Item *item=[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.titleTextLabel.text=item.name;
-    if (!item.group) {
-        cell.titleTextLabel.textColor=[UIColor orangeColor];
+    if (item.group) {
+        cell.alertSignGroup.hidden=YES;
     }else{
-        cell.titleTextLabel.textColor=[UIColor blackColor];
+        cell.alertSignGroup.hidden=NO;
     }
     
     cell.subtitleTextLabel.text=[NSString stringWithFormat:@"%@ x %@",item.price,item.quantity];

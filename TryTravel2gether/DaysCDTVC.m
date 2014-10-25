@@ -141,9 +141,9 @@
     Day *day=[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.titleTextLabel.text =[day DayNumberStringOfTripdayInTrip]; //ex:Day 2 or Prepare;
     if ([day isReceiptGroupAllSet]) {
-        cell.titleTextLabel.textColor=[UIColor blackColor];
+        cell.alertSignGroup.hidden=YES;
     }else{
-        cell.titleTextLabel.textColor=[UIColor orangeColor];
+        cell.alertSignGroup.hidden=NO;
     }
     
     NSString *strDate=[self.dateFormatter stringFromDate:day.date];
@@ -152,9 +152,9 @@
     
     cell.detailTextLabel.text=[NSString stringWithFormat:@"%@ %@",self.showingCurrency.sign,[day dayExpendUsing:self.showingCurrency]];
     if ([day isReceiptAllSet]) {
-        cell.detailTextLabel.textColor=[UIColor blackColor];
+        cell.alertSignExpend.hidden=YES;
     }else {
-        cell.detailTextLabel.textColor=[UIColor redColor];
+        cell.alertSignExpend.hidden=NO;
     }
     
     return cell;

@@ -11,6 +11,8 @@
 @implementation NWCustCellImageTitleSubDetail
 
 @synthesize titleTextLabel,subtitleTextLabel,detailTextLabel,imageView;
+
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -18,6 +20,7 @@
         self.detailTextLabel=super.detailTextLabel;
         self.titleTextLabel=super.textLabel;
     }
+    
     return self;
 }
 - (void)awakeFromNib
@@ -30,6 +33,18 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+-(UIView *)alertSignGroup{
+    _alertSignGroup.layer.cornerRadius=5;
+    return _alertSignGroup;
+}
+-(UIView *)alertSignExpend{
+    _alertSignExpend.layer.cornerRadius=5;
+    return _alertSignExpend;
+}
+-(UIView *)alertSignAccount{
+    _alertSignAccount.layer.cornerRadius=5;
+    return _alertSignAccount;
 }
 
 @end

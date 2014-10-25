@@ -49,9 +49,10 @@
         self.detailTextLabel=super.detailTextLabel;
         self.titleTextLabel=super.textLabel;
     }
+    self.layer.cornerRadius = 5;
+    
     return self;
 }
-
 - (void)awakeFromNib
 {
     // Initialization code
@@ -64,4 +65,16 @@
     // Configure the view for the selected state
 }
 
+-(UIView *)alertSignGroup{
+    _alertSignGroup.layer.cornerRadius=5;
+    return _alertSignGroup;
+}
+-(UIView *)alertSignExpend{
+    _alertSignExpend.layer.cornerRadius=5;
+    return _alertSignExpend;
+}
+-(UIView *)alertSignAccount{
+    _alertSignAccount.layer.cornerRadius=5;
+    return _alertSignAccount;
+}
 @end
