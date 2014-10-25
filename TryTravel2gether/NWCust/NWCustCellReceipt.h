@@ -12,5 +12,7 @@
 @property (weak, nonatomic) IBOutlet UIView *alertSignAccount;
 @property (weak, nonatomic) IBOutlet UIView *alertSignGroup;
 @property (weak, nonatomic) IBOutlet UIView *alertSignExpend;
+@property (weak, nonatomic) IBOutlet UILabel *detailLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleTextLabel;
 
 @end

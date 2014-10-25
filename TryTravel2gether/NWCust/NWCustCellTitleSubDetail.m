@@ -49,7 +49,6 @@
         self.detailTextLabel=super.detailTextLabel;
         self.titleTextLabel=super.textLabel;
     }
-    self.layer.cornerRadius = 5;
     
     return self;
 }

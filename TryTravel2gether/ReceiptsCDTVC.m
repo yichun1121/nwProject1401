@@ -13,6 +13,7 @@
 #import "ItemsCDTVC.h"
 #import "Day+TripDay.h"
 #import "Receipt+Calculate.h"
+#import "NWCustCellReceipt.h"
 
 @interface ReceiptsCDTVC ()
 @property NSDateFormatter *dateFormatter;
@@ -72,6 +73,11 @@
     }else{
         self.navigationItem.title=self.currentDay.name;
     }
+    
+    //-----註冊CustomCell----------
+    UINib* myCellNib = [UINib nibWithNibName:@"NWCustCellReceipt" bundle:nil];
+    [self.tableView registerNib:myCellNib forCellReuseIdentifier:@"Cell"];
+    
     //-----設定下一頁時的back button的字（避免本頁的title太長）-----------
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"NavBackString_Receipts", @"NavigationBackString") style:UIBarButtonItemStylePlain target:nil action:nil];
 
@@ -80,10 +86,10 @@
 #pragma mark - Table view data source
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * CellIdentifier=@"Receipt Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString * CellIdentifier=@"Cell";
+    NWCustCellReceipt *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[NWCustCellReceipt alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     // Configure the cell...
     cell=[self configureCell:cell AtIndexPath:indexPath];
@@ -91,23 +97,23 @@
 }
 /*!組合TableViewCell的顯示內容
  */
--(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
+-(NWCustCellReceipt *)configureCell:(NWCustCellReceipt *)cell AtIndexPath:(NSIndexPath *)indexPath{
+    cell.accessoryType=UITableViewCellAccessoryDetailDisclosureButton;
     Receipt *receipt=[self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text=receipt.desc;
+    cell.titleTextLabel.text=receipt.desc;
     if ([receipt isItemsGroupAllSet]) {
-        cell.textLabel.textColor=[UIColor blackColor];
-        
+        cell.alertSignGroup.hidden=YES;
     }else{
-        cell.textLabel.textColor=[UIColor orangeColor];
+        cell.alertSignGroup.hidden=NO;
     }
     
     NSString *moneyTypeSign=receipt.dayCurrency.currency.sign;
-    cell.detailTextLabel.text=[NSString stringWithFormat:@"%@ %@",moneyTypeSign,receipt.total];
+    cell.detailLabel.text=[NSString stringWithFormat:@"%@ %@",moneyTypeSign,receipt.total];
     //    if ([[receipt calculateSumOfAllItems]isEqualToNumber: receipt.total]) {
     if ([receipt isItemsAllSet]) {        
-        cell.detailTextLabel.textColor=[UIColor lightGrayColor];
+        cell.alertSignExpend.hidden=YES;
     }else {
-        cell.detailTextLabel.textColor=[UIColor redColor];
+        cell.alertSignExpend.hidden=NO;
     }
     
     return cell;
@@ -135,16 +141,22 @@
         ReceiptDetailTVC * receiptDetailTVC=segue.destinationViewController;
         receiptDetailTVC.delegate=self;
         receiptDetailTVC.managedObjectContext=self.managedObjectContext;
-        NSIndexPath *indexPath=[self.tableView indexPathForCell:sender];;
+//        NSIndexPath *indexPath=[self.tableView indexPathForCell:sender];
+        
+        NSIndexPath *indexPath=(NSIndexPath *)sender;   //因為在accessoryButtonTappedForRowWithIndexPath事件裡傳indexPath過來
         self.selectedReceipt=[self.fetchedResultsController objectAtIndexPath:indexPath];
         receiptDetailTVC.receipt=self.selectedReceipt;
     }else if([segue.identifier isEqualToString:@"Items List Segue From Receipts"]){
         NSLog(@"Setting ReceiptsCDTVC as a delegate of ItemsCDTVC");
         ItemsCDTVC *itemsCDTVC=segue.destinationViewController;
-        NSIndexPath *indexPath=[self.tableView indexPathForCell:sender];
+//        NSIndexPath *indexPath=[self.tableView indexPathForCell:sender];
+        
+        NSIndexPath *indexPath=(NSIndexPath *)sender;   //因為在accessoryButtonTappedForRowWithIndexPath事件裡傳indexPath過來
         self.selectedReceipt=[self.fetchedResultsController objectAtIndexPath:indexPath];
         itemsCDTVC.currentReceipt=self.selectedReceipt;
         itemsCDTVC.managedObjectContext=self.managedObjectContext;
+
+        
     }
 }
 #pragma mark - Deleting（紅➖）+Inserting(綠➕）
@@ -170,7 +182,13 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }
 }
-
+#pragma mark - 事件
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:@"Items List Segue From Receipts" sender:indexPath];
+}
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:@"Receipt Detail Segue" sender:indexPath];
+}
 #pragma mark - delegation
 -(void)theSaveButtonOnTheAddReceiptWasTapped:(AddReceiptTVC *)controller{
     
