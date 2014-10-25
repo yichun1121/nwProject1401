@@ -88,6 +88,8 @@
 		C988FCA219A8B6A3000A0FCB /* OwnItemsCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C988FCA119A8B6A3000A0FCB /* OwnItemsCDTVC.m */; };
 		C988FCA419A96F60000A0FCB /* NWCustCellOwnItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = C988FCA319A96F60000A0FCB /* NWCustCellOwnItem.xib */; };
 		C988FCA719A971AE000A0FCB /* NWCustCellOwnItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C988FCA619A971AE000A0FCB /* NWCustCellOwnItem.m */; };
+		C98E049819FAD1C1001ED5DF /* NWTag.m in Sources */ = {isa = PBXBuildFile; fileRef = C98E049719FAD1C1001ED5DF /* NWTag.m */; };
+		C99B5BA619F94D1800AE18EC /* Receipt+Expend.m in Sources */ = {isa = PBXBuildFile; fileRef = C99B5BA519F94D1800AE18EC /* Receipt+Expend.m */; };
 		C99C6DF31967D37000D3ABA5 /* PhotoContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C6DF21967D37000D3ABA5 /* PhotoContentVC.m */; };
 		C9AAED8E19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED8D19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.m */; };
 		C9AAED9119067A87002D3BAB /* GroupAndGuyInTripCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED9019067A87002D3BAB /* GroupAndGuyInTripCDTVC.m */; };
@@ -290,6 +292,10 @@
 		C988FCA319A96F60000A0FCB /* NWCustCellOwnItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NWCustCellOwnItem.xib; path = NWCust/NWCustCellOwnItem.xib; sourceTree = "<group>"; };
 		C988FCA519A971AE000A0FCB /* NWCustCellOwnItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWCustCellOwnItem.h; path = NWCust/NWCustCellOwnItem.h; sourceTree = "<group>"; };
 		C988FCA619A971AE000A0FCB /* NWCustCellOwnItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NWCustCellOwnItem.m; path = NWCust/NWCustCellOwnItem.m; sourceTree = "<group>"; };
+		C98E049619FAD1C1001ED5DF /* NWTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWTag.h; sourceTree = "<group>"; };
+		C98E049719FAD1C1001ED5DF /* NWTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWTag.m; sourceTree = "<group>"; };
+		C99B5BA419F94D1800AE18EC /* Receipt+Expend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Receipt+Expend.h"; sourceTree = "<group>"; };
+		C99B5BA519F94D1800AE18EC /* Receipt+Expend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Receipt+Expend.m"; sourceTree = "<group>"; };
 		C99C6DF11967D37000D3ABA5 /* PhotoContentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoContentVC.h; sourceTree = "<group>"; };
 		C99C6DF21967D37000D3ABA5 /* PhotoContentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoContentVC.m; sourceTree = "<group>"; };
 		C9AAED8C19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGroupAndGuyCDTVC.h; sourceTree = "<group>"; };
@@ -386,6 +392,8 @@
 				BFC6CCFE190B98AB0071D99E /* NWPickerUtils.m */,
 				BFC6CD03190BD38B0071D99E /* NWUIScrollViewMovePostition.h */,
 				BFC6CD04190BD38B0071D99E /* NWUIScrollViewMovePostition.m */,
+				C98E049619FAD1C1001ED5DF /* NWTag.h */,
+				C98E049719FAD1C1001ED5DF /* NWTag.m */,
 			);
 			name = NWClass;
 			sourceTree = "<group>";
@@ -638,6 +646,8 @@
 				C97DAE6919136FAA009B7E6C /* Receipt+Photo.h */,
 				C97DAE6A19136FAA009B7E6C /* Receipt+Photo.m */,
 				C969733219D52B36002A7171 /* Receipt.h */,
+				C99B5BA419F94D1800AE18EC /* Receipt+Expend.h */,
+				C99B5BA519F94D1800AE18EC /* Receipt+Expend.m */,
 				C969733319D52B36002A7171 /* Receipt.m */,
 				C9DB003C186B197400F3B008 /* TourModel.xcdatamodeld */,
 				C96A7E9D198FE17900B131B2 /* Trip+Currency.h */,
@@ -897,6 +907,7 @@
 				C9697B1618FCF8E1006148E0 /* SWRevealViewController.m in Sources */,
 				C964B93118D42FDC002EF48C /* Currency.m in Sources */,
 				18DE117F18F97F72003F3083 /* Guy.m in Sources */,
+				C98E049819FAD1C1001ED5DF /* NWTag.m in Sources */,
 				C988FC9619A62766000A0FCB /* Currency+Decimal.m in Sources */,
 				C988FCA719A971AE000A0FCB /* NWCustCellOwnItem.m in Sources */,
 				0409B6F21892B763000C6DF6 /* Day+TripDay.m in Sources */,
@@ -934,6 +945,7 @@
 				C9DB003E186B197400F3B008 /* TourModel.xcdatamodeld in Sources */,
 				C96AC7B618F24D410037DA8B /* SelectCategoryCDTVC.m in Sources */,
 				1869ACF31914F19600BF8547 /* NWCustCellSwitch.m in Sources */,
+				C99B5BA619F94D1800AE18EC /* Receipt+Expend.m in Sources */,
 				C964B92E18D42BBB002EF48C /* Day+Expend.m in Sources */,
 				C90510C6199F891C00D87F39 /* SelectPaymentCDTVC.m in Sources */,
 				C964B93418D43061002EF48C /* Day.m in Sources */,

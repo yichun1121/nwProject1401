@@ -8,28 +8,41 @@
 
 #import "Receipt+Calculate.h"
 #import "Item.h"
+#import "Item+Expend.h"
 
 @implementation Receipt (Calculate)
 /*!計算本Receipt中已設定價格的物品總和
  */
--(double)calculateSumOfAllItems{
+-(NSNumber *)calculateSumOfAllItems{
     double sum=0;
     for (Item *item in self.items) {
-        sum+=[item.price doubleValue]*[item.quantity intValue];
+        sum+=[item.totalPrice doubleValue];
     }
-    return sum;
+    return [NSNumber numberWithDouble:sum];
 }
 /*!回傳尚未設定物品之金額
  */
--(double)getMoneyIsNotSet{
-    return [self.total doubleValue]-[self calculateSumOfAllItems];
+-(NSNumber *)getMoneyRemaining{
+    double remaining=[self.total doubleValue]-[[self calculateSumOfAllItems]doubleValue];
+    return [NSNumber numberWithDouble:remaining];
 }
 /*!Receipt中的金額是否已全部設定（YES:已設定完成, NO:尚未設定完成）
  */
--(BOOL)itemsAllSet{
+-(BOOL)isItemsAllSet{
     BOOL allSet=NO;
-    if ([self getMoneyIsNotSet]==0) {
+    if ([[self getMoneyRemaining]isEqualToNumber:[NSNumber numberWithDouble: 0]]) {
         allSet=YES;
+    }
+    return allSet;
+}
+/*!Receipt中所有item的歸屬者是否已經設定（YES:已設定完成, NO:尚未設定完成）*/
+-(BOOL)isItemsGroupAllSet{
+    BOOL allSet=YES;
+    for (Item *item in self.items) {
+        if (!item.group) {
+            allSet=NO;
+            break;
+        }
     }
     return allSet;
 }

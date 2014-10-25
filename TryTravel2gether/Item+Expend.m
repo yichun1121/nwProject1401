@@ -15,4 +15,7 @@
     NSInteger numOfPeople=[self.group.guysInTrip count];
     return [NSNumber numberWithDouble:totalPrice/numOfPeople];
 }
+-(NSNumber *)totalPrice{
+    return [NSNumber numberWithDouble: [self.price doubleValue]*[self.quantity intValue]];
+}
 @end

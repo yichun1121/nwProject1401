@@ -36,20 +36,28 @@
         _showingCurrency=self.currentTrip.mainCurrency;
         self.currencyIndex=0;
     }
+    self.lblNavTitle.text=[NSString stringWithFormat:@"%@ - %@",self.currentTrip.name,_showingCurrency.standardSign];
     return _showingCurrency;
 }
 -(UILabel *)lblNavTitle{
     if (!_lblNavTitle) {
-        _lblNavTitle=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 60, 30)];
+        _lblNavTitle=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 90, 30)];
         _lblNavTitle.textAlignment = NSTextAlignmentCenter;
     }
     return _lblNavTitle;
 }
 -(Trip *)currentTrip{
     if (!_currentTrip) {
-        self.currentTrip=[self getDefaultTrip];
+        _currentTrip=[self getDefaultTrip];
     }
     return _currentTrip;
+}
+-(NSDateFormatter *)dateFormatter{
+    if (!_dateFormatter) {
+        _dateFormatter=[[NSDateFormatter alloc]init];
+        _dateFormatter.dateFormat=@"yyyy/MM/dd";
+    }
+    return _dateFormatter;
 }
 
 - (void)viewDidLoad
@@ -57,9 +65,6 @@
     [super viewDidLoad];
 
     //self.editing=YES;
-    //-----Date Formatter----------
-    self.dateFormatter=[[NSDateFormatter alloc]init];
-    self.dateFormatter.dateFormat=@"yyyy/MM/dd";
     
     //-----註冊CustomCell----------
     //UINib* myCellNib = [UINib nibWithNibName:@"NWCustCellTitleSubDetail" bundle:nil];
@@ -114,7 +119,6 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 //    self.lblNavTitle.text=self.currentTrip.name;
-    self.lblNavTitle.text=[NSString stringWithFormat:@"%@ - %@",self.currentTrip.name,self.currentTrip.mainCurrency.standardSign];
     self.showingCurrency=self.currentTrip.mainCurrency;
     self.currencyIndex=0;
 

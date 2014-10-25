@@ -10,4 +10,5 @@
 
 @interface Item (Expend)
 @property (readonly)NSNumber * sharedPrice;
+@property (readonly)NSNumber * totalPrice;
 @end

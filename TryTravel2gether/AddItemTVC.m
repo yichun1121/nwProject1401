@@ -57,7 +57,7 @@
     item.quantity=[NSNumber numberWithInteger:[self.qantity.text integerValue]];
     item.receipt=self.currentReceipt;
     if (!self.selectedCategory) {
-        self.selectedCategory=[self getCategoryWithName:@"Uncategorized"];
+        self.selectedCategory=[self getCategoryWithName:NSLocalizedString(@"Uncategorized",@"ItemCategory")];
     }
     item.catInTrip=[self getCatInTripWithCategory:self.selectedCategory AndTrip:self.currentReceipt.day.inTrip];
     item.itemIndex=self.currentReceipt.getNextItemSerialNumberInReceipt;

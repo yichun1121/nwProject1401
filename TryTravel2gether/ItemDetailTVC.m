@@ -10,6 +10,7 @@
 #import "Itemcategory.h"
 #import "CatInTrip.h"
 #import "Day.h"
+#import "Item+Expend.h"
 
 @interface ItemDetailTVC ()
 @property (weak, nonatomic) IBOutlet UITextField *name;
@@ -35,12 +36,18 @@
     self.name.text=item.name;
     self.price.text=[NSString stringWithFormat:@"%@", item.price] ;
     self.qantity.text=[NSString stringWithFormat:@"%@", item.quantity] ;
-    self.totalPrice.text=[NSString stringWithFormat:@"%g", [item.price doubleValue]*[item.quantity intValue]] ;
+//    self.totalPrice.text=[NSString stringWithFormat:@"%g", [item.price doubleValue]*[item.quantity intValue]] ;
+    self.totalPrice.text=[NSString stringWithFormat:@"%@",item.totalPrice];
 
     self.selectedCategory=item.catInTrip.category;
     self.selectedGroupOrGuy=item.group;
     self.categoryName.textLabel.text=item.catInTrip.category.name;
     [super showGroupInfo:item.group];
+    if ([self.groupCell.textLabel.text isEqualToString: NSLocalizedString(@"Unspecified",@"ActiveTips")]){
+        self.groupCell.textLabel.textColor=[UIColor orangeColor];
+    }else{
+        self.groupCell.textLabel.textColor=[UIColor blackColor];
+    }
 }
 
 #pragma mark - 事件

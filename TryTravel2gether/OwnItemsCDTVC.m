@@ -18,6 +18,7 @@
 #import "Itemcategory+Colorful.h"
 #import "Group.h"
 #import "NWCustCellOwnItem.h"
+#import "ItemDetailTVC.h"
 
 
 @interface OwnItemsCDTVC()
@@ -45,6 +46,7 @@
     //-----註冊CustomCell----------
     UINib* myCellNib = [UINib nibWithNibName:@"NWCustCellOwnItem" bundle:nil];
     [self.tableView registerNib:myCellNib forCellReuseIdentifier:@"Cell"];
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -121,7 +123,29 @@
     }else {
         cell.imgGroup.image=nil;
     }
+    
     return cell;
 }
-//TODO: 連到itemDetail
+#pragma mark - 事件
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:@"Item Segue From OwnItems" sender:indexPath];
+}
+#pragma mark - ➤ Navigation：Segue Settings
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"Item Segue From OwnItems"]) {
+        NSLog(@"Setting %@ as a delegate of ItemDetailTVC",self.class);
+        Item * selectedItem=[self.fetchedResultsController objectAtIndexPath:sender];
+        ItemDetailTVC * itemDetailTVC=[segue destinationViewController];
+        itemDetailTVC.managedObjectContext=self.managedObjectContext;
+        itemDetailTVC.currentReceipt=selectedItem.receipt;
+        itemDetailTVC.currentItem=selectedItem;
+        itemDetailTVC.delegate=self;
+    }
+    
+}
+
+#pragma mark - Delegation
+-(void)theSaveButtonOnTheAddItemWasTapped:(AddItemTVC *)controller{
+    [controller.navigationController popViewControllerAnimated:YES];
+}
 @end

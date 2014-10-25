@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "CoreDataTableViewController.h"
 #import "Trip.h"
+#import "AddItemTVC.h"
 
-@interface OwnItemsCDTVC :CoreDataTableViewController
+@interface OwnItemsCDTVC :CoreDataTableViewController<AddItemTVCDelegate>
 @property (strong,nonatomic) NSSet *userGroups;
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic) NSFetchedResultsController *fetchedResultsController;

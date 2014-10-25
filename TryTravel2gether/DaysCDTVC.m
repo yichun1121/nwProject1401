@@ -13,6 +13,7 @@
 #import "Day+Expend.h"
 #import "ShareMainPageCDTVC.h"
 #import "Trip+Currency.h"
+#import "Day+Expend.h"
 
 
 @interface DaysCDTVC ()
@@ -139,10 +140,22 @@
     cell.accessoryType=UITableViewCellAccessoryDetailDisclosureButton;
     Day *day=[self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.titleTextLabel.text =[day DayNumberStringOfTripdayInTrip]; //ex:Day 2 or Prepare;
+    if ([day isReceiptGroupAllSet]) {
+        cell.titleTextLabel.textColor=[UIColor blackColor];
+    }else{
+        cell.titleTextLabel.textColor=[UIColor orangeColor];
+    }
+    
     NSString *strDate=[self.dateFormatter stringFromDate:day.date];
     NSString *shortDate=[strDate substringFromIndex:5];
     cell.subtitleTextLabel.text=[NSString stringWithFormat:@"(%@) %@",shortDate,day.name];    //ex:2013/11/29：關西國際機場、高台寺
+    
     cell.detailTextLabel.text=[NSString stringWithFormat:@"%@ %@",self.showingCurrency.sign,[day dayExpendUsing:self.showingCurrency]];
+    if ([day isReceiptAllSet]) {
+        cell.detailTextLabel.textColor=[UIColor blackColor];
+    }else {
+        cell.detailTextLabel.textColor=[UIColor redColor];
+    }
     
     return cell;
 }
