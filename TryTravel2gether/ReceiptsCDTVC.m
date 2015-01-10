@@ -108,12 +108,24 @@
     }
     
     NSString *moneyTypeSign=receipt.dayCurrency.currency.sign;
-    cell.detailLabel.text=[NSString stringWithFormat:@"%@ %@",moneyTypeSign,receipt.total];
+    cell.detailLabel.text=[
+                           NSString stringWithFormat:@"%@ %@",moneyTypeSign,receipt.total];
     //    if ([[receipt calculateSumOfAllItems]isEqualToNumber: receipt.total]) {
     if ([receipt isItemsAllSet]) {        
         cell.alertSignExpend.hidden=YES;
     }else {
         cell.alertSignExpend.hidden=NO;
+    }
+    
+    if (!receipt.account) {
+        cell.alertSignAccount.hidden=NO;
+        //TODO: 付款方式未設定的時候改i的顏色+i的事件
+//        UIImageView *accessory=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"accessory_greenSign.png"]];
+//        cell.accessoryView=accessory;
+    }else{
+        cell.alertSignAccount.hidden=YES;
+        //TODO: cell的accessory要變回來
+        //cell.accessoryView=
     }
     
     return cell;

@@ -157,6 +157,11 @@
         cell.alertSignExpend.hidden=NO;
     }
     
+    if ([day isReceiptAccountAllSet]) {
+        cell.alertSignAccount.hidden=YES;
+    }else{
+        cell.alertSignAccount.hidden=NO;
+    }
     return cell;
 }
 /*! 判斷某天是該次旅程的第幾天（startDate當天回傳1，前一天回傳-1，不應該有0） */

@@ -72,4 +72,15 @@
     return isAllSet;
 }
 
+/*!本日中所有receipt的帳戶是否已經設定（YES:已設定完成, NO:尚未設定完成）*/
+-(BOOL)isReceiptAccountAllSet{
+    BOOL isAllSet=YES;
+    for (Receipt *receipt in self.receipts) {
+        if (!receipt.account) {
+            isAllSet=NO;
+            break;
+        }
+    }
+    return isAllSet;
+}
 @end
