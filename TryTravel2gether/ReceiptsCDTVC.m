@@ -181,6 +181,10 @@
         // Delete the role object that was swiped
         Receipt *receiptDelete = [self.fetchedResultsController objectAtIndexPath:indexPath];
         NSLog(@"Deleting %@(%@)", receiptDelete.desc,receiptDelete.total);
+        //要刪Receipt之前先把該Receipt裏的所有item刪掉
+        for (Item *itemDelete in receiptDelete.items) {
+            [self.managedObjectContext deleteObject:itemDelete];
+        }
         [self.managedObjectContext deleteObject:receiptDelete];
         [self.managedObjectContext save:nil];
         

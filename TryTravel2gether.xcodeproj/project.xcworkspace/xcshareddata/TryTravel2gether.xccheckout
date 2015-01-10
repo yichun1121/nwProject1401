@@ -5,13 +5,11 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>1F9DEEC5-EA89-4663-A0D3-776FA3C167D5</string>
+	<string>08159B01-F523-4915-9C0D-EEE16B88915F</string>
 	<key>IDESourceControlProjectName</key>
 	<string>TryTravel2gether</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>550765A0-4595-4DBC-B3CB-AD8B515F8ED9</key>
-		<string>https://github.com/yichun1121/nwProject1401.git</string>
 		<key>A77FA4573CC967F72850689417C1A2AD7937DC85</key>
 		<string>https://github.com/yichun1121/nwProject1401.git</string>
 	</dict>
@@ -19,8 +17,6 @@
 	<string>TryTravel2gether.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>550765A0-4595-4DBC-B3CB-AD8B515F8ED9</key>
-		<string>../../../Travel2gether</string>
 		<key>A77FA4573CC967F72850689417C1A2AD7937DC85</key>
 		<string>../..</string>
 	</dict>
@@ -39,14 +35,6 @@
 			<string>A77FA4573CC967F72850689417C1A2AD7937DC85</string>
 			<key>IDESourceControlWCCName</key>
 			<string>nwProject1401</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>550765A0-4595-4DBC-B3CB-AD8B515F8ED9</string>
-			<key>IDESourceControlWCCName</key>
-			<string>Travel2gether</string>
 		</dict>
 	</array>
 </dict>

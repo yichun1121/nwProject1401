@@ -186,6 +186,15 @@
         // Delete the role object that was swiped
         Day *dayToDelete = [self.fetchedResultsController objectAtIndexPath:indexPath];
         NSLog(@"Deleting (%@)", dayToDelete.name);
+        //要刪Day之前先刪該Day的所有的Receipt
+        for (Receipt *receiptDelete in dayToDelete.receipts) {
+            //要刪Receipt之前先把該Receipt裏的所有item刪掉
+            for (Item *itemDelete in receiptDelete.items) {
+                [self.managedObjectContext deleteObject:itemDelete];
+            }
+            [self.managedObjectContext deleteObject:receiptDelete];
+        }
+        
         [self.managedObjectContext deleteObject:dayToDelete];
         [self.managedObjectContext save:nil];
         
