@@ -46,8 +46,8 @@
     }
     [self.managedObjectContext save:nil];
 }
--(void)insertAccountName:(NSString *)accountName{
-    Account *account = [NSEntityDescription insertNewObjectForEntityForName:@"Account"
+-(void)insertPayWayName:(NSString *)accountName{
+    Account *account = [NSEntityDescription insertNewObjectForEntityForName:@"PayWay"
                                                            inManagedObjectContext:self.managedObjectContext];
     account.name = accountName;
     [self.managedObjectContext save:nil];
@@ -107,13 +107,13 @@
 
     NSLog(@"Importing Core Data Default Values for Item Categories Completed!");
 }
--(void)importCoreDataDefaultAccounts{
+-(void)importCoreDataDefaultPayWays{
     NSLog(@"Importing Core Data Default Values for Accounts...");
-    NSString *readPlist=[[NSBundle mainBundle] pathForResource:@"Account" ofType:@"plist"];
+    NSString *readPlist=[[NSBundle mainBundle] pathForResource:@"PayWay" ofType:@"plist"];
     NSArray *arrCategory=[NSArray arrayWithContentsOfFile:readPlist];
     for (int i=0; i<arrCategory.count; i++) {
-        NSString *name=[[arrCategory objectAtIndex:i] objectForKey:@"accountName"];
-        [self insertAccountName:name];
+        NSString *name=[[arrCategory objectAtIndex:i] objectForKey:@"payWayName"];
+        [self insertPayWayName:name];
     }
     
     NSLog(@"Importing Core Data Default Values for Item Categories Completed!");
@@ -128,8 +128,8 @@
             [self importCoreDataDefaultMoneyTypes];
         }else if ([@"Itemcategory" isEqualToString:entityName]){
             [self importCoreDataDefaultCategories];
-        }else if ([@"Account" isEqualToString:entityName]){
-            [self importCoreDataDefaultAccounts];
+        }else if ([@"PayWay" isEqualToString:entityName]){
+            [self importCoreDataDefaultPayWays];
         }
     }
     else {
@@ -145,7 +145,7 @@
      */
     [self checkDefaultData:@"Currency" By:@"name"];
     [self checkDefaultData:@"Itemcategory" By:@"name"];
-    [self checkDefaultData:@"Account" By:@"name"];
+    [self checkDefaultData:@"PayWay" By:@"name"];
 //    [self setupFetchedResultsControllerByEntityName:@"Currency" AttributeName:@"name"];
 //    
 //    if (![[self.fetchedResultsController fetchedObjects] count] > 0 ) {

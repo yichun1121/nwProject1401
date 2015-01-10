@@ -3,12 +3,16 @@
 <plist version="1.0">
 <array>
 	<dict>
-		<key>accountName</key>
-		<string>現金</string>
+		<key>payWayName</key>
+		<string>Cash</string>
 	</dict>
 	<dict>
-		<key>accountName</key>
-		<string>刷卡</string>
+		<key>payWayName</key>
+		<string>Credit Card</string>
+	</dict>
+	<dict>
+		<key>payWayName</key>
+		<string>Traveler&apos;s Check</string>
 	</dict>
 </array>
 </plist>
