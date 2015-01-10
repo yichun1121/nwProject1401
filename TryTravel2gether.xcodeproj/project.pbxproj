@@ -41,7 +41,7 @@
 		BFC6CD05190BD38B0071D99E /* NWUIScrollViewMovePostition.m in Sources */ = {isa = PBXBuildFile; fileRef = BFC6CD04190BD38B0071D99E /* NWUIScrollViewMovePostition.m */; };
 		C903332B1988D72200A55362 /* NWAdShiftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C903332A1988D72200A55362 /* NWAdShiftTableViewController.m */; };
 		C903A89B18D46D76009708C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C903A89A18D46D76009708C6 /* Images.xcassets */; };
-		C90510C0199F5CD300D87F39 /* Account.plist in Resources */ = {isa = PBXBuildFile; fileRef = C90510C2199F5CD300D87F39 /* Account.plist */; };
+		C90510C0199F5CD300D87F39 /* PayWay.plist in Resources */ = {isa = PBXBuildFile; fileRef = C90510C2199F5CD300D87F39 /* PayWay.plist */; };
 		C90510C6199F891C00D87F39 /* SelectPaymentCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C90510C5199F891C00D87F39 /* SelectPaymentCDTVC.m */; };
 		C907B72E194C4438001A4C53 /* NWCustCellImageTitleSubDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = C907B72C194C4438001A4C53 /* NWCustCellImageTitleSubDetail.m */; };
 		C907B72F194C4438001A4C53 /* NWCustCellImageTitleSubDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = C907B72D194C4438001A4C53 /* NWCustCellImageTitleSubDetail.xib */; };
@@ -198,8 +198,8 @@
 		C90333291988D72200A55362 /* NWAdShiftTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWAdShiftTableViewController.h; sourceTree = "<group>"; };
 		C903332A1988D72200A55362 /* NWAdShiftTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWAdShiftTableViewController.m; sourceTree = "<group>"; };
 		C903A89A18D46D76009708C6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		C90510C1199F5CD300D87F39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Account.plist; sourceTree = "<group>"; };
-		C90510C3199F5CE600D87F39 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "zh-Hant"; path = "zh-Hant.lproj/Account.plist"; sourceTree = "<group>"; };
+		C90510C1199F5CD300D87F39 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/PayWay.plist; sourceTree = "<group>"; };
+		C90510C3199F5CE600D87F39 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "zh-Hant"; path = "zh-Hant.lproj/PayWay.plist"; sourceTree = "<group>"; };
 		C90510C4199F891C00D87F39 /* SelectPaymentCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPaymentCDTVC.h; sourceTree = "<group>"; };
 		C90510C5199F891C00D87F39 /* SelectPaymentCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPaymentCDTVC.m; sourceTree = "<group>"; };
 		C907B72B194C4438001A4C53 /* NWCustCellImageTitleSubDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NWCustCellImageTitleSubDetail.h; path = NWCust/NWCustCellImageTitleSubDetail.h; sourceTree = "<group>"; };
@@ -472,7 +472,7 @@
 				C9789D96198BB98100C4B1E6 /* ItemCategory.plist */,
 				C95C792919279DBB00F073EF /* testMergeFrom.plist */,
 				C94FD1321998769E001910AC /* Localizable.strings */,
-				C90510C2199F5CD300D87F39 /* Account.plist */,
+				C90510C2199F5CD300D87F39 /* PayWay.plist */,
 				C988FC9219A4E36D000A0FCB /* UserIcons.plist */,
 			);
 			name = Resource;
@@ -848,7 +848,7 @@
 				C9789D94198BB98100C4B1E6 /* ItemCategory.plist in Resources */,
 				C988FCA419A96F60000A0FCB /* NWCustCellOwnItem.xib in Resources */,
 				C9789D90198BB37A00C4B1E6 /* Currency.plist in Resources */,
-				C90510C0199F5CD300D87F39 /* Account.plist in Resources */,
+				C90510C0199F5CD300D87F39 /* PayWay.plist in Resources */,
 				C988FC9319A4E36D000A0FCB /* UserIcons.plist in Resources */,
 				C9DB000E186B187E00F3B008 /* InfoPlist.strings in Resources */,
 				C903A89B18D46D76009708C6 /* Images.xcassets in Resources */,
@@ -970,13 +970,13 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C90510C2199F5CD300D87F39 /* Account.plist */ = {
+		C90510C2199F5CD300D87F39 /* PayWay.plist */ = {
 			isa = PBXVariantGroup;
 			children = (
 				C90510C1199F5CD300D87F39 /* Base */,
 				C90510C3199F5CE600D87F39 /* zh-Hant */,
 			);
-			name = Account.plist;
+			name = PayWay.plist;
 			sourceTree = "<group>";
 		};
 		C94FD1321998769E001910AC /* Localizable.strings */ = {
