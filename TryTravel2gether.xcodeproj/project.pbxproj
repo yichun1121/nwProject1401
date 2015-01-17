@@ -50,6 +50,7 @@
 		C90D484118DADC7500367316 /* NWUserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = C90D484018DADC7500367316 /* NWUserSettings.m */; };
 		C913902918F01D060069EAC2 /* SettingsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C913902818F01D060069EAC2 /* SettingsTVC.m */; };
 		C913902C18F034420069EAC2 /* CategoriesCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C913902B18F034420069EAC2 /* CategoriesCDTVC.m */; };
+		C920F6FC1A6A883E0015BD99 /* PersonalSharedTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C920F6FB1A6A883E0015BD99 /* PersonalSharedTVC.m */; };
 		C926A54819D6E60D0086DF47 /* Trip+System.m in Sources */ = {isa = PBXBuildFile; fileRef = C926A54719D6E60D0086DF47 /* Trip+System.m */; };
 		C92ABB27190E11EF00BEA584 /* Item+Expend.m in Sources */ = {isa = PBXBuildFile; fileRef = C92ABB26190E11EF00BEA584 /* Item+Expend.m */; };
 		C94FD1301998769E001910AC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C94FD1321998769E001910AC /* Localizable.strings */; };
@@ -215,6 +216,8 @@
 		C913902818F01D060069EAC2 /* SettingsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTVC.m; sourceTree = "<group>"; };
 		C913902A18F034420069EAC2 /* CategoriesCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesCDTVC.h; sourceTree = "<group>"; };
 		C913902B18F034420069EAC2 /* CategoriesCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesCDTVC.m; sourceTree = "<group>"; };
+		C920F6FA1A6A883E0015BD99 /* PersonalSharedTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalSharedTVC.h; sourceTree = "<group>"; };
+		C920F6FB1A6A883E0015BD99 /* PersonalSharedTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalSharedTVC.m; sourceTree = "<group>"; };
 		C926A54619D6E60D0086DF47 /* Trip+System.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Trip+System.h"; sourceTree = "<group>"; };
 		C926A54719D6E60D0086DF47 /* Trip+System.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Trip+System.m"; sourceTree = "<group>"; };
 		C92ABB25190E11EF00BEA584 /* Item+Expend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Item+Expend.h"; sourceTree = "<group>"; };
@@ -739,6 +742,8 @@
 				C90510C5199F891C00D87F39 /* SelectPaymentCDTVC.m */,
 				C988FCA019A8B6A3000A0FCB /* OwnItemsCDTVC.h */,
 				C988FCA119A8B6A3000A0FCB /* OwnItemsCDTVC.m */,
+				C920F6FA1A6A883E0015BD99 /* PersonalSharedTVC.h */,
+				C920F6FB1A6A883E0015BD99 /* PersonalSharedTVC.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -892,6 +897,7 @@
 				C969733419D52B36002A7171 /* Receipt.m in Sources */,
 				C9C4097E18E73D6700E1F3FE /* Receipt+Calculate.m in Sources */,
 				C9C4097B18E7247600E1F3FE /* AddItemTVC.m in Sources */,
+				C920F6FC1A6A883E0015BD99 /* PersonalSharedTVC.m in Sources */,
 				0409B6F51893BEAE000C6DF6 /* AddDayTVC.m in Sources */,
 				C969733719D52B36002A7171 /* PayWay.m in Sources */,
 				C9DB0010186B187E00F3B008 /* main.m in Sources */,

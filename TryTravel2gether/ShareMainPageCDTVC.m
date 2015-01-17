@@ -11,7 +11,7 @@
 #import "GuyInTrip+Expend.h"
 #import "Trip+Currency.h"
 #import "Currency+Decimal.h"
-#import "OwnItemsCDTVC.h"
+#import "PersonalSharedTVC.h"
 
 @interface ShareMainPageCDTVC ()
 @property (weak, nonatomic) IBOutlet UILabel *tripName;
@@ -230,12 +230,12 @@
         selectTripCDTVC.managedObjectContext=self.managedObjectContext;
         selectTripCDTVC.selectedTrip=self.currentTrip;
         selectTripCDTVC.delegate=self;
-    }else if ([segue.identifier isEqualToString:@"Show Own Item Segue From Share Main"]){
-        OwnItemsCDTVC *ownItemsCDTVC=[segue destinationViewController];
-        ownItemsCDTVC.managedObjectContext=self.managedObjectContext;
+    }else if([segue.identifier isEqualToString:@"Show Personal Shared From Share Main"]){
+        PersonalSharedTVC *personalTVC=[segue destinationViewController];
+        personalTVC.managedObjectContext=self.managedObjectContext;
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         GuyInTrip *guy=[self.fetchedResultsController objectAtIndexPath:indexPath];
-        ownItemsCDTVC.userGroups=guy.groups;
+        personalTVC.currentGuy=guy;
     }
     
 }
