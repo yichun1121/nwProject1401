@@ -9,17 +9,30 @@
 #import "PersonalSharedTVC.h"
 #import "OwnItemsCDTVC.h"
 #import "Guy.h"
+#import "Trip+Currency.h"
+#import "Currency.h"
+#import "GuyInTrip+Payed.h"
+#import "GuyInTrip+Expend.h"
+#import "Currency+Decimal.h"
 
 @interface PersonalSharedTVC ()
-
-@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (strong,nonatomic)  NSOrderedSet *currecies;
 @end
 
 @implementation PersonalSharedTVC
+@synthesize currecies=_currecies;
+//@synthesize fetchedResultsController=_fetchedResultsController;
+
+#pragma mark - lazy instantiation
+-(NSOrderedSet *)currecies{
+    if(!_currecies){
+        _currecies=[self.currentGuy.inTrip getAllCurrencies];
+    }
+    return _currecies;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.name.text=self.currentGuy.guy.name;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -27,10 +40,6 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Table view data source
 
@@ -45,10 +54,10 @@
             row=1;
             break;
         case 1:
-            row=1;
+            row=[self.currecies count];
             break;
         case 2:
-            row=1;
+            row=[self.currecies count];
             break;
         case 3:
             row=1;
@@ -60,7 +69,76 @@
     }
     return row;
 }
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionName;
+    switch (section)
+    {
+        case 1:
+            sectionName = @"Payed";
+            break;
+        case 2:
+            sectionName = @"Spend";
+            break;
+        default:
+            sectionName = @"";
+            break;
+    }
+    return sectionName;
+}
 
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell;
+    cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    
+    // Configure the cell...
+    cell=[self configureCell:cell AtIndexPath:indexPath];
+    return cell;
+}
+/*!組合TableViewCell的顯示內容
+ */
+-(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
+    cell.textLabel.font=[UIFont systemFontOfSize:cell.textLabel.font.pointSize];
+    cell.accessoryType=UITableViewCellAccessoryNone;
+    
+    if (indexPath.section==0) {
+        cell.textLabel.text=self.currentGuy.guy.name;
+    }else if (indexPath.section==1){
+        if (indexPath.row<self.currecies.count) {
+            
+            Currency *currency=self.currecies[indexPath.row];
+            NSNumber *totalInCurrency=[self.currentGuy totalPayedUsingCurrency:currency];
+            NSString *strTotal=[currency.numberFormatter stringFromNumber:totalInCurrency];
+            cell.textLabel.text=[NSString stringWithFormat:@"\t%@\t%@",currency.standardSign,strTotal];
+        }
+    }else if (indexPath.section==2){
+        if (indexPath.row<self.currecies.count) {
+            
+            Currency *currency=self.currecies[indexPath.row];
+            NSNumber *totalInCurrency=[self.currentGuy totalExpendUsingCurrency:currency];
+            NSString *strTotal=[currency.numberFormatter stringFromNumber:totalInCurrency];
+            cell.textLabel.text=[NSString stringWithFormat:@"\t%@\t%@",currency.standardSign,strTotal];
+        }
+    }else if (indexPath.section==3){
+        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.text=@"Personal Items List";
+        cell.textLabel.font= [UIFont boldSystemFontOfSize:cell.textLabel.font.pointSize];
+    }
+    
+    return cell;
+}
+#pragma mark - 事件
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section==3){
+        [self performSegueWithIdentifier:@"Show Own Item Segue From Personal Shared" sender:indexPath];
+    }
+}
 #pragma mark - ➤ Navigation：Segue Settings
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"Show Own Item Segue From Personal Shared"]){
@@ -71,16 +149,6 @@
     }
     
 }
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -98,30 +166,6 @@
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
 */
 

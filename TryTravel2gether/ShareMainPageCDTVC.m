@@ -36,7 +36,7 @@
         _showingCurrency=self.currentTrip.mainCurrency;
         self.currencyIndex=0;
     }
-    self.lblNavTitle.text=[NSString stringWithFormat:@"%@ - %@",self.currentTrip.name,_showingCurrency.standardSign];
+    self.lblNavTitle.text=[NSString stringWithFormat:@"%@ - %@",_showingCurrency.standardSign,self.currentTrip.name];
     return _showingCurrency;
 }
 -(UILabel *)lblNavTitle{

@@ -2,24 +2,30 @@
 //  GuyInTrip.h
 //  TryTravel2gether
 //
-//  Created by apple on 2014/4/12.
-//  Copyright (c) 2014年 NW. All rights reserved.
+//  Created by YICHUN on 2015/1/19.
+//  Copyright (c) 2015年 NW. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Group, Guy, Trip;
+@class Account, Group, Guy, Trip;
 
 @interface GuyInTrip : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * realInTrip;
+@property (nonatomic, retain) NSSet *accounts;
 @property (nonatomic, retain) NSSet *groups;
 @property (nonatomic, retain) Guy *guy;
 @property (nonatomic, retain) Trip *inTrip;
 @end
 
 @interface GuyInTrip (CoreDataGeneratedAccessors)
+
+- (void)addAccountsObject:(Account *)value;
+- (void)removeAccountsObject:(Account *)value;
+- (void)addAccounts:(NSSet *)values;
+- (void)removeAccounts:(NSSet *)values;
 
 - (void)addGroupsObject:(Group *)value;
 - (void)removeGroupsObject:(Group *)value;

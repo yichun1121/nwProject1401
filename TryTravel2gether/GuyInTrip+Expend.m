@@ -14,6 +14,8 @@
 #import "DayCurrency.h"
 #import "Item+Expend.h"
 #import "Guy.h"
+#import "NWDataSaving.h"
+
 @implementation GuyInTrip (Expend)
 -(NSNumber * )totalExpendUsingCurrency:(Currency *)currency{
     double total=0;
@@ -32,36 +34,12 @@
         }
     }
     savingString=[NSString stringWithFormat:@"幣別總計：%g\n%@",total,savingString];
-    NSString *fileName=[NSString stringWithFormat:@"Trip%@%@_%@.tsv",self.inTrip.tripIndex,self.guy.name,currency.standardSign ];
-    [self saveDataIntoFile:savingString withName:fileName];
+    NSString *fileName=[NSString stringWithFormat:@"Trip%@%@_%@_Expend.tsv",self.inTrip.tripIndex,self.guy.name,currency.standardSign ];
+    [NWDataSaving saveDataIntoFile:savingString withName:fileName];
     return [NSNumber numberWithDouble:total];
 }
 -(NSString *)totalExpendWithMainCurrencySign{
     Currency *currency=self.inTrip.mainCurrency;
     return [NSString stringWithFormat:@"%@ %@",currency.sign,[self totalExpendUsingCurrency:currency]];
-}
--(void)saveDataIntoFile:(NSString *)savingString withName:(NSString *)fileName{
-    //Saving file
-//    NSFileManager *fileManager = [[NSFileManager alloc] init];
-//
-//    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString * basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
-    
-    NSURL* url=[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
-                                                       inDomains:NSUserDomainMask] lastObject];
-    
-    NSString *path = [url.path stringByAppendingPathComponent:fileName];
-    
-//    NSString *destination = [url stringByAppendingPathComponent:fileName];
-    
-    NSError *error = nil;
-    
-    BOOL succeeded = [savingString writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
-    
-    if (succeeded) {
-        NSLog(@"Success at: %@",path);
-    } else {
-        NSLog(@"Failed to store. Error: %@",error);
-    }
 }
 @end

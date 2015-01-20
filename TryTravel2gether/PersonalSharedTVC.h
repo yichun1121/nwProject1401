@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "GuyInTrip.h"
 
-@interface PersonalSharedTVC : UITableViewController
+@interface PersonalSharedTVC : UITableViewController//<NSFetchedResultsControllerDelegate>
 
 @property (weak,nonatomic)NSManagedObjectContext *managedObjectContext;
-@property (strong,nonatomic) NSFetchedResultsController *fetchedResultsController;
+//@property (strong,nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong,nonatomic) GuyInTrip* currentGuy;
 @end
