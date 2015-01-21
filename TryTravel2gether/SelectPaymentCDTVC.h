@@ -9,14 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "CoreDataTableViewController.h"
 #import "Account.h"
+#import "AddPaymentAccountTVC.h"
+
+
 @class SelectPaymentCDTVC;
 @protocol SelectPaymentCDTVCDelegate<NSObject>
 -(void)theSaveButtonOnTheSelectPaymentWasTapped:(SelectPaymentCDTVC *)controller;
 @end
-@interface SelectPaymentCDTVC : CoreDataTableViewController
+@interface SelectPaymentCDTVC : CoreDataTableViewController<AddPaymentAccountTVCDelegate>
 
 @property (strong,nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (weak,nonatomic) id<SelectPaymentCDTVCDelegate> delegate;
 @property (strong,nonatomic)Account* selectedAccount;
+@property (strong,nonatomic)Trip* currentTrip;
+
 @end

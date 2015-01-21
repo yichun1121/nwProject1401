@@ -311,5 +311,8 @@
     self.guysCell.detailTextLabel.text=[NSString stringWithFormat:@"%i Guys",guyscount];
     [controller.navigationController popViewControllerAnimated:YES];
 }
+-(void)theSaveButtonOnTheSelectPaymentWasTapped:(SelectPaymentCDTVC *)controller{
+    [controller.navigationController popViewControllerAnimated:YES];
+}
 
 @end

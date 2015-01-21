@@ -511,6 +511,7 @@
         selectPaymentCDTVC.delegate=self;
         selectPaymentCDTVC.managedObjectContext=self.managedObjectContext;
         selectPaymentCDTVC.selectedAccount=self.selectedAccount;
+        selectPaymentCDTVC.currentTrip=self.currentTrip;
         
     }
 }

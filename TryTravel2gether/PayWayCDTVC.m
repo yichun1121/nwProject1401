@@ -1,21 +1,20 @@
 //
-//  SelectPaymentCDTVC.m
+//  PayWayCDTVC.m
 //  TryTravel2gether
 //
-//  Created by YICHUN on 2014/8/16.
-//  Copyright (c) 2014年 NW. All rights reserved.
+//  Created by apple on 2015/1/17.
+//  Copyright (c) 2015年 NW. All rights reserved.
 //
 
-#import "SelectPaymentCDTVC.h"
+#import "PayWayCDTVC.h"
 
-@interface SelectPaymentCDTVC()
-@property (strong,nonatomic)NSArray *fetchedObjects;
+@interface PayWayCDTVC ()
+
 @end
 
-@implementation SelectPaymentCDTVC
+@implementation PayWayCDTVC
 @synthesize managedObjectContext=_managedObjectContext;
 @synthesize fetchedResultsController=_fetchedResultsController;
-@synthesize fetchedObjects=_fetchedObjects;
 
 #pragma mark - FetchedResultsController
 -(void)viewWillAppear:(BOOL)animated{
@@ -25,7 +24,7 @@
 
 -(void)setupFetchedResultController{
     
-    NSString *entityName=@"Account";
+    NSString *entityName=@"PayWay";
     NSLog(@"Setting up a Fetched Results Controller for the Entity named %@",entityName);
     
     NSFetchRequest *request=[NSFetchRequest fetchRequestWithEntityName:entityName];
@@ -40,13 +39,6 @@
     
     [self performFetch];
     
-}
-
--(NSArray *)fetchedObjects{
-    if(!_fetchedObjects){
-        _fetchedObjects = [self.fetchedResultsController fetchedObjects];
-    }
-    return _fetchedObjects;
 }
 
 #pragma mark - Table view data source
@@ -64,9 +56,9 @@
 /*!組合TableViewCell的顯示內容
  */
 -(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
-    Account *account=[self.fetchedObjects objectAtIndex:indexPath.row];
-    cell.textLabel.text=account.name;
-    if ([account.name isEqualToString: self.selectedAccount.name]) {
+    PayWay *payWay=[self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text=payWay.name;
+    if ([payWay.name isEqualToString: self.selectedPayWay.name]) {
         cell.accessoryType=UITableViewCellAccessoryCheckmark;
     }else{
         cell.accessoryType=UITableViewCellAccessoryNone;
@@ -76,24 +68,10 @@
 #pragma mark - 事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //    self.selectedGroup=[self.fetchedResultsController objectAtIndexPath:indexPath];
-    self.selectedAccount=self.fetchedObjects[indexPath.row];
-    [self.delegate theSaveButtonOnTheSelectPaymentWasTapped:self];
+    self.selectedPayWay=[self.fetchedResultsController objectAtIndexPath:indexPath];
+    [self.delegate payWayWasSelectedInPayWayCDTVC:self];
 }
-#pragma mark - ➤ Navigation：Segue Settings
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 
-    NSLog(@"Setting SelectPaymentCDTVC as a delegate of AddPaymentAccountTVC...");
-
-    if ([segue.identifier isEqualToString:@"Add Payment Account Segue From PaymentCDTVC"]) {
-        AddPaymentAccountTVC *addPaymentAccountTVC=segue.destinationViewController;
-        addPaymentAccountTVC.currentTrip=self.currentTrip;
-    }
-}
-#pragma mark - delegation
-
-- (void)theSaveButtonOnTheAddPaymentAccountTVCWasTapped:(AddPaymentAccountTVC *)controller{
-    [controller.navigationController popViewControllerAnimated:YES];
-}
 
 
 @end
