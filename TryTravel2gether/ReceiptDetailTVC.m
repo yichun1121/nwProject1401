@@ -361,7 +361,7 @@
     self.selectedDayString=[self.dateFormatter stringFromDate: self.receipt.day.date];
     self.arrayOfStack=[NSKeyedUnarchiver unarchiveObjectWithData:self.receipt.calculatorArray];
     self.selectedAccount=self.receipt.account;
-    self.paymentAccount.detailTextLabel.text=[NSString stringWithFormat:@"%@'s %@",self.receipt.account.name,self.receipt.account.payWay.name];
+    self.paymentAccount.detailTextLabel.text=[NSString stringWithFormat:@"%@",self.receipt.account.name];
     
     for (Photo * photo in self.receipt.photosOrdered) {
         UIImage *image=photo.image;
@@ -574,7 +574,7 @@
         self.paymentAccount.detailTextLabel.text=@"Undefind";
         self.selectedAccount=nil;
     }else{
-        self.paymentAccount.detailTextLabel.text=[NSString stringWithFormat:@"%@'s %@",controller.selectedAccount.name,controller.selectedAccount.payWay.name];
+        self.paymentAccount.detailTextLabel.text=[NSString stringWithFormat:@"%@",controller.selectedAccount.name];
         self.selectedAccount=controller.selectedAccount;
     }
     [controller.navigationController popViewControllerAnimated:YES];

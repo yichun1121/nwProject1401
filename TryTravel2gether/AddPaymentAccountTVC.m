@@ -10,6 +10,7 @@
 
 
 @interface AddPaymentAccountTVC ()
+@property (strong, nonatomic) IBOutlet UITextField *accountName;
 
 @end
 
@@ -19,9 +20,11 @@
 @synthesize selectedPayWay=_selectedPayWay;
 @synthesize selectedGuyInTrip=_selectedGuyInTrip;
 @synthesize currentTrip=_currentTrip;
+@synthesize accountName=_accountName;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.accountName.delegate=self;
     //顯示賬戶資訊
     self.ownerCell.textLabel.text=@"Owner";
     self.ownerCell.detailTextLabel.text=@"Undefined";
@@ -36,15 +39,15 @@
     Account *account = [NSEntityDescription insertNewObjectForEntityForName:@"Account"
                                                inManagedObjectContext:self.managedObjectContext];
     
-    account.name = self.selectedGuyInTrip.guy.name;
+    account.name = self.accountName.text;
     account.payWay=self.selectedPayWay;
     [account addGuysInTripObject:self.selectedGuyInTrip];
     
     
     [self.managedObjectContext save:nil];  // write to database
-    
+   
  
-    //發射按下的訊號，讓有實做theSaveButtonOnTheAddTripTVCWasTapped這個method的程式（監聽add的程式）知道。
+    //發射按下的訊號，讓有實做theSaveButtonOnTheAddPaymentAccountTVCWasTapped這個method的程式（監聽add的程式）知道。
     [self.delegate theSaveButtonOnTheAddPaymentAccountTVCWasTapped:self];
 }
 #pragma mark - ➤ Navigation：Segue Settings
@@ -80,4 +83,10 @@
     [controller.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - 監測UITextFeild事件，按下return的時候會收鍵盤
+//要在viewDidLoad裡加上textField的delegate=self，才監聽的到
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
 @end

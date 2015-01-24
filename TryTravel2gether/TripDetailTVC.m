@@ -212,7 +212,13 @@
         groupCDTVC.currentTrip=self.trip;
         groupCDTVC.delegate=self;
         //TODO:group的delegate，然後要顯示group數量
+    }else if ([segue.identifier isEqualToString:@"Account List Segue From Trip Detail"]) {
+        TripAccountCDTVC *tripAccountCDTVC=segue.destinationViewController;
+        tripAccountCDTVC.currentTrip=self.trip;
+        //tripAccountCDTVC.delegate=self;
+        tripAccountCDTVC.managedObjectContext=self.managedObjectContext;
     }
+
     else {
         NSLog(@"Unidentified Segue Attempted! @%@",self.class);
     }
