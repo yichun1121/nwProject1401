@@ -10,6 +10,7 @@
 #import "CoreDataTableViewController.h"
 #import "Account.h"
 #import "AddPaymentAccountTVC.h"
+#import "PayWay.h"
 
 
 @class SelectPaymentCDTVC;

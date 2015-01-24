@@ -361,7 +361,7 @@
     self.selectedDayString=[self.dateFormatter stringFromDate: self.receipt.day.date];
     self.arrayOfStack=[NSKeyedUnarchiver unarchiveObjectWithData:self.receipt.calculatorArray];
     self.selectedAccount=self.receipt.account;
-    self.paymentAccount.detailTextLabel.text=self.receipt.account.name;
+    self.paymentAccount.detailTextLabel.text=[NSString stringWithFormat:@"%@'s %@",self.receipt.account.name,self.receipt.account.payWay.name];
     
     for (Photo * photo in self.receipt.photosOrdered) {
         UIImage *image=photo.image;
@@ -489,6 +489,7 @@
         selectPaymentCDTVC.delegate=self;
         selectPaymentCDTVC.managedObjectContext=self.managedObjectContext;
         selectPaymentCDTVC.selectedAccount=self.receipt.account;
+        selectPaymentCDTVC.currentTrip=self.receipt.day.inTrip;
     }
 }
 
@@ -573,7 +574,7 @@
         self.paymentAccount.detailTextLabel.text=@"Undefind";
         self.selectedAccount=nil;
     }else{
-        self.paymentAccount.detailTextLabel.text=controller.selectedAccount.name;
+        self.paymentAccount.detailTextLabel.text=[NSString stringWithFormat:@"%@'s %@",controller.selectedAccount.name,controller.selectedAccount.payWay.name];
         self.selectedAccount=controller.selectedAccount;
     }
     [controller.navigationController popViewControllerAnimated:YES];

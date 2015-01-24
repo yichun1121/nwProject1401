@@ -8,6 +8,7 @@
 
 #import "AddPaymentAccountTVC.h"
 
+
 @interface AddPaymentAccountTVC ()
 
 @end
@@ -22,6 +23,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //顯示賬戶資訊
+    self.ownerCell.textLabel.text=@"Owner";
+    self.ownerCell.detailTextLabel.text=@"Undefined";
+    self.payWayCell.textLabel.text=@"PayWay";
+    self.payWayCell.detailTextLabel.text=@"Undefined";
 }
 
 -(void) save:(id)sender{
@@ -33,8 +38,11 @@
     
     account.name = self.selectedGuyInTrip.guy.name;
     account.payWay=self.selectedPayWay;
-
+    [account addGuysInTripObject:self.selectedGuyInTrip];
+    
+    
     [self.managedObjectContext save:nil];  // write to database
+    
  
     //發射按下的訊號，讓有實做theSaveButtonOnTheAddTripTVCWasTapped這個method的程式（監聽add的程式）知道。
     [self.delegate theSaveButtonOnTheAddPaymentAccountTVCWasTapped:self];
@@ -63,10 +71,12 @@
 #pragma mark - delegation
 -(void)guyWasSelectedInSelectAccountOwnerCDTVC:(SelectAccountOwnerCDTVC *)controller{
     self.selectedGuyInTrip=controller.selectedGuyInTrip;
+    self.ownerCell.detailTextLabel.text=self.selectedGuyInTrip.guy.name;
     [controller.navigationController popViewControllerAnimated:YES];
 }
 -(void)payWayWasSelectedInPayWayCDTVC:(PayWayCDTVC *)controller{
     self.selectedPayWay=controller.selectedPayWay;
+    self.payWayCell.detailTextLabel.text=self.selectedPayWay.name;
     [controller.navigationController popViewControllerAnimated:YES];
 }
 

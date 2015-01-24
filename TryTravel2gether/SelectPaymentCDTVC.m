@@ -7,6 +7,7 @@
 //
 
 #import "SelectPaymentCDTVC.h"
+#import "PayWay.h"
 
 @interface SelectPaymentCDTVC()
 @property (strong,nonatomic)NSArray *fetchedObjects;
@@ -29,6 +30,7 @@
     NSLog(@"Setting up a Fetched Results Controller for the Entity named %@",entityName);
     
     NSFetchRequest *request=[NSFetchRequest fetchRequestWithEntityName:entityName];
+    request.predicate = [NSPredicate predicateWithFormat:@"ANY guysInTrip.inTrip.name=%@",@"HK"];
     request.sortDescriptors=[NSArray arrayWithObjects:
                              [NSSortDescriptor sortDescriptorWithKey:@"name"
                                                            ascending:YES], nil];
@@ -65,8 +67,9 @@
  */
 -(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
     Account *account=[self.fetchedObjects objectAtIndex:indexPath.row];
-    cell.textLabel.text=account.name;
-    if ([account.name isEqualToString: self.selectedAccount.name]) {
+    cell.textLabel.text=[NSString stringWithFormat:@"%@'s %@",account.name,account.payWay.name];
+    NSString *selfAccountPayWayName=[NSString stringWithFormat:@"%@'s %@",self.selectedAccount.name,self.selectedAccount.payWay.name];
+    if ([cell.textLabel.text isEqualToString: selfAccountPayWayName]) {
         cell.accessoryType=UITableViewCellAccessoryCheckmark;
     }else{
         cell.accessoryType=UITableViewCellAccessoryNone;
@@ -87,6 +90,8 @@
     if ([segue.identifier isEqualToString:@"Add Payment Account Segue From PaymentCDTVC"]) {
         AddPaymentAccountTVC *addPaymentAccountTVC=segue.destinationViewController;
         addPaymentAccountTVC.currentTrip=self.currentTrip;
+        addPaymentAccountTVC.delegate=self;
+        addPaymentAccountTVC.managedObjectContext=self.managedObjectContext;
     }
 }
 #pragma mark - delegation

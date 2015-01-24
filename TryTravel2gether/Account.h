@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class GuyInTrip, Receipt;
+@class GuyInTrip, Receipt,PayWay;
 
 @interface Account : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSDecimalNumber * surplus;
 @property (nonatomic, retain) NSSet *guysInTrip;
-@property (nonatomic, retain) NSManagedObject *payWay;
+@property (nonatomic, retain) PayWay *payWay;
 @property (nonatomic, retain) NSSet *receipts;
 @end
 

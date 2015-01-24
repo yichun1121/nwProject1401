@@ -240,7 +240,13 @@
         selectGuysCDTVC.managedObjectContext=self.managedObjectContext;
         selectGuysCDTVC.selectedGuys=[self.selectedGuys mutableCopy];
         
+    }else if ([segue.identifier isEqualToString:@"Payment Segue From Add Trip"]){
+        NSLog(@"Setting AddTripTVC as a delegate of SelectPaymentCDTVC");
+        SelectPaymentCDTVC *selectPaymentCDTVC=segue.destinationViewController;
+        selectPaymentCDTVC.delegate=self;
+        selectPaymentCDTVC.managedObjectContext=self.managedObjectContext;
     }
+        
 }
 
 
