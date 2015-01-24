@@ -445,3 +445,6 @@
 "D8m-2O-QbJ.text"="未設定";
 "aQh-Ut-0ZF.text"="未設定";
 "7up-TC-r95.text"="如果想讓這個參與者加入「全體分攤」群組，請設定「是」";
+/* Class = "IBUINavigationItem"; title = "Personal Shared"; ObjectID = "b4C-Fl-dRt"; */
+"b4C-Fl-dRt.title" = "個人分攤資訊";
+

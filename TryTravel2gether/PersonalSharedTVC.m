@@ -75,10 +75,10 @@
     switch (section)
     {
         case 1:
-            sectionName = @"Payed";
+            sectionName = NSLocalizedString(@"Payed",@"SectionTitle");
             break;
         case 2:
-            sectionName = @"Spend";
+            sectionName = NSLocalizedString(@"Spend",@"SectionTitle");
             break;
         default:
             sectionName = @"";
@@ -106,6 +106,7 @@
 -(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
     cell.textLabel.font=[UIFont systemFontOfSize:cell.textLabel.font.pointSize];
     cell.accessoryType=UITableViewCellAccessoryNone;
+    cell.backgroundColor=[UIColor whiteColor];
     
     if (indexPath.section==0) {
         cell.textLabel.text=self.currentGuy.guy.name;
@@ -127,8 +128,9 @@
         }
     }else if (indexPath.section==3){
         cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
-        cell.textLabel.text=@"Personal Items List";
+        cell.textLabel.text=NSLocalizedString(@"ShowPersonalSharedItems",@"CellTitle");
         cell.textLabel.font= [UIFont boldSystemFontOfSize:cell.textLabel.font.pointSize];
+        cell.backgroundColor=[UIColor lightGrayColor];
     }
     
     return cell;
@@ -136,16 +138,35 @@
 #pragma mark - 事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.section==3){
-        [self performSegueWithIdentifier:@"Show Own Item Segue From Personal Shared" sender:indexPath];
+        //因為頁面上沒有拉segue，所以不能用performSegue（自訂cell但頁面有拉的時候才能用）
+        [self moveToOwnItemsCDTVC];
     }
 }
 #pragma mark - ➤ Navigation：Segue Settings
+/*手動移到下一頁：ownItemsCDTVC
+ */
+- (void)moveToOwnItemsCDTVC{
+    UIStoryboard*  storyboard = [UIStoryboard storyboardWithName:@"Main"
+                                                          bundle:nil];
+    OwnItemsCDTVC *ownItemsCDTVC=[storyboard instantiateViewControllerWithIdentifier:@"OwnItemsCDTVC"];
+    ownItemsCDTVC.managedObjectContext=self.managedObjectContext;
+    GuyInTrip *guy=self.currentGuy;
+    ownItemsCDTVC.userGroups=guy.groups;
+    NSMutableArray *viewcontrollers=[self.navigationController.viewControllers mutableCopy];
+    [viewcontrollers addObject:ownItemsCDTVC];
+//    self.navigationController.viewControllers=[viewcontrollers copy];
+//    [self.navigationController popToViewController:ownItemsCDTVC animated:YES];
+
+    [UIView animateWithDuration:0.75
+                     animations:^{
+                         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+                         [self.navigationController pushViewController:ownItemsCDTVC animated:NO];
+                         [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.navigationController.view cache:NO];
+                     }];
+}
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([segue.identifier isEqualToString:@"Show Own Item Segue From Personal Shared"]){
-        OwnItemsCDTVC *ownItemsCDTVC=[segue destinationViewController];
-        ownItemsCDTVC.managedObjectContext=self.managedObjectContext;
-        GuyInTrip *guy=self.currentGuy;
-        ownItemsCDTVC.userGroups=guy.groups;
+    if ([segue.identifier isEqualToString:@""]){
+
     }
     
 }
