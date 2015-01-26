@@ -225,11 +225,11 @@
 }
 #pragma mark - ➤ Navigation：Segue Settings
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([segue.identifier isEqualToString:@"Select Trip Segue From Share Main Page"]) {
-        SelectTripCDTVC *selectTripCDTVC=[segue destinationViewController];
-        selectTripCDTVC.managedObjectContext=self.managedObjectContext;
-        selectTripCDTVC.selectedTrip=self.currentTrip;
-        selectTripCDTVC.delegate=self;
+    if ([segue.identifier isEqualToString:@"Share Option Segue From Share Main Page"]) {
+        ShareOptionTVC *shareOptionTVC=[segue destinationViewController];
+        shareOptionTVC.managedObjectContext=self.managedObjectContext;
+        shareOptionTVC.currentTrip=self.currentTrip;
+        shareOptionTVC.delegate=self;
     }else if([segue.identifier isEqualToString:@"Show Personal Shared From Share Main"]){
         PersonalSharedTVC *personalTVC=[segue destinationViewController];
         personalTVC.managedObjectContext=self.managedObjectContext;
@@ -260,11 +260,11 @@
 }
 
 #pragma mark - Delegation
--(void)theTripCellOnSelectTripCDTVCWasTapped:(SelectTripCDTVC *)controller{
-    if (controller.selectedTrip!=self.currentTrip) {
-        self.currentTrip=controller.selectedTrip;
+-(void)theSaveButtonOnTheShareOptionWasTapped:(ShareOptionTVC *)controller{
+    if (controller.currentTrip!=self.currentTrip) {
+        self.currentTrip=controller.currentTrip;
         [self performFetch];
-        [self showTripInfo:controller.selectedTrip];
+        [self showTripInfo:self.currentTrip];
     }
     
     [self.navigationController popViewControllerAnimated:YES];

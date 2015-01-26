@@ -42,6 +42,17 @@
     //計算未設定剩餘款
     NSString *strCurrencySign=self.currentReceipt.dayCurrency.currency.sign;
     self.remaining.text=[NSString stringWithFormat:@"%@ %@",strCurrencySign,[self.currentReceipt getMoneyRemaining]];
+    //-----顯示未設定金額----------
+//    NSString *strCurrencySign=self.currentReceipt.dayCurrency.currency.sign;
+    double remaining=[[self.currentReceipt getMoneyRemaining]doubleValue];
+    if (remaining==0) {
+        //未配置金額==0時，不顯示
+        self.remaining.superview.hidden=YES;
+    }else{
+        self.remaining.text=[NSString stringWithFormat:@"%@ %g",strCurrencySign,remaining];
+        self.remaining.superview.hidden=NO;
+        self.remaining.textColor=[UIColor redColor];
+    }
     
     //如果receipt裡沒有照片，就不顯示照片按鈕
     if ([self.currentReceipt.photos count]<=0) {
@@ -88,17 +99,7 @@
     UINib* myCellNib = [UINib nibWithNibName:@"NWCustCellImageTitleSubDetail" bundle:nil];
     [self.tableView registerNib:myCellNib forCellReuseIdentifier:@"Cell"];
     
-    //-----顯示未設定金額----------
-    NSString *strCurrencySign=self.currentReceipt.dayCurrency.currency.sign;
-    double remaining=[[self.currentReceipt getMoneyRemaining]doubleValue];
-    if (remaining==0) {
-        //未配置金額==0時，不顯示
-        self.remaining.superview.hidden=YES;
-    }else{
-        self.remaining.text=[NSString stringWithFormat:@"%@ %g",strCurrencySign,remaining];
-        self.remaining.superview.hidden=NO;
-        self.remaining.textColor=[UIColor redColor];
-    }
+
     //-----設定下一頁時的back button的字（避免本頁的title太長）-----------
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"NavBackString_Items", @"NavigationBackString") style:UIBarButtonItemStylePlain target:nil action:nil];
 }
@@ -245,16 +246,10 @@
 #pragma mark - delegation
 -(void)theSaveButtonOnTheAddItemWasTapped:(AddItemTVC *)controller{
     [controller.navigationController popViewControllerAnimated:YES];
-    //-----顯示未設定金額----------
-    NSString *strCurrencySign=self.currentReceipt.dayCurrency.currency.sign;
-    self.remaining.text=[NSString stringWithFormat:@"%@ %@",strCurrencySign,[self.currentReceipt getMoneyRemaining]];
     
 }
 -(void)theSaveButtonOnItemDetailTVCWasTapped:(ItemDetailTVC *)controller{
     [controller.navigationController popViewControllerAnimated:YES];
-    //-----顯示未設定金額----------
-    NSString *strCurrencySign=self.currentReceipt.dayCurrency.currency.sign;
-    self.remaining.text=[NSString stringWithFormat:@"%@ %@",strCurrencySign,[self.currentReceipt getMoneyRemaining]];
 }
 
 

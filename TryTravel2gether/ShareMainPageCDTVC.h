@@ -8,9 +8,9 @@
 
 #import "CoreDataTableViewController.h"
 #import "Trip.h"
-#import "SelectTripCDTVC.h"
+#import "ShareOptionTVC.h"
 
-@interface ShareMainPageCDTVC : CoreDataTableViewController<SelectTripCDTVCDelegate>{
+@interface ShareMainPageCDTVC : CoreDataTableViewController<ShareOptionDelegate>{
     // 將其中一個宣告為執行個體變數
 //    GADInterstitial *_interstitial;
 }

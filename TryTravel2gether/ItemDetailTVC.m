@@ -34,7 +34,14 @@
     self.navigationItem.title=self.currentItem.name;
     //navigationItem.title才是改頁面上方的title
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if ([self.groupCell.textLabel.text isEqualToString: NSLocalizedString(@"Unspecified",@"ActiveTips")]){
+        self.groupCell.textLabel.textColor=[UIColor orangeColor];
+    }else{
+        self.groupCell.textLabel.textColor=[UIColor blackColor];
+    }
+}
 -(void)setItemDetail:(Item *)item{
     self.name.text=item.name;
     self.price.text=[NSString stringWithFormat:@"%@", item.price] ;
@@ -46,11 +53,7 @@
     self.selectedGroupOrGuy=item.group;
     self.categoryName.textLabel.text=item.catInTrip.category.name;
     [super showGroupInfo:item.group];
-    if ([self.groupCell.textLabel.text isEqualToString: NSLocalizedString(@"Unspecified",@"ActiveTips")]){
-        self.groupCell.textLabel.textColor=[UIColor orangeColor];
-    }else{
-        self.groupCell.textLabel.textColor=[UIColor blackColor];
-    }
+
 }
 
 #pragma mark - 事件
