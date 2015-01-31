@@ -29,7 +29,10 @@
 {
     [super viewDidLoad];
     [self setItemDetail:self.currentItem];
-    self.navigationController.title=self.currentItem.name;
+    //self.navigationController.title=self.currentItem.name;
+    //navigationController.title會改到下面tab的title
+    self.navigationItem.title=self.currentItem.name;
+    //navigationItem.title才是改頁面上方的title
 }
 
 -(void)setItemDetail:(Item *)item{

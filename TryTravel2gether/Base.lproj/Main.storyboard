@@ -375,7 +375,7 @@
             <objects>
                 <tableViewController id="iZy-Dw-F0I" customClass="SelectCategoryCDTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="nLz-MK-nFW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="Keq-Jk-8Ct">
@@ -2310,7 +2310,7 @@
             <objects>
                 <tableViewController id="rdf-WH-KRA" customClass="SelectGroupAndGuyCDTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="sX7-yG-CZq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -2359,7 +2359,7 @@
             <objects>
                 <tableViewController id="8KR-sK-irC" customClass="ItemDetailTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="czK-QU-7ma">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -2947,7 +2947,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="hmp-1L-M4c" kind="push" identifier="Show Own Item Segue From Share Main" id="2Ru-df-EnC"/>
+                                    <segue destination="DOT-2Z-92a" kind="push" identifier="Show Personal Shared From Share Main" id="hUS-A0-hBV"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -2990,7 +2990,7 @@
         <!--Own ItemsCDTVC-->
         <scene sceneID="Job-Fd-IMp">
             <objects>
-                <tableViewController id="hmp-1L-M4c" customClass="OwnItemsCDTVC" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="OwnItemsCDTVC" id="hmp-1L-M4c" customClass="OwnItemsCDTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="TUR-Nb-fJd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3063,6 +3063,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y79-cr-Rxj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-670" y="-42"/>
+        </scene>
+        <!--Personal Shared-->
+        <scene sceneID="Lsk-2K-u7Z">
+            <objects>
+                <tableViewController id="DOT-2Z-92a" customClass="PersonalSharedTVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="8cF-p5-nWb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="uow-vB-xyK" style="IBUITableViewCellStyleDefault" id="HQf-0M-hON">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HQf-0M-hON" id="lhj-es-Jdh">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uow-vB-xyK">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="DOT-2Z-92a" id="GhZ-Co-1mD"/>
+                            <outlet property="delegate" destination="DOT-2Z-92a" id="qzd-ha-oni"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Personal Shared" id="b4C-Fl-dRt"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W0Y-5o-hcP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-752" y="295"/>
         </scene>
         <!--Cust Ad Mob Tab Bar Controller-->
         <scene sceneID="ePT-Zn-GsI">
