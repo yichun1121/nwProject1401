@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Group, Guy, Trip;
+@class Group, Guy, Trip,Account;
 
 @interface GuyInTrip : NSManagedObject
 
@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSSet *groups;
 @property (nonatomic, retain) Guy *guy;
 @property (nonatomic, retain) Trip *inTrip;
+@property (nonatomic, retain) NSSet *accounts;
 @end
 
 @interface GuyInTrip (CoreDataGeneratedAccessors)
@@ -25,5 +26,9 @@
 - (void)removeGroupsObject:(Group *)value;
 - (void)addGroups:(NSSet *)values;
 - (void)removeGroups:(NSSet *)values;
+- (void)addAccountsObject:(Account *)value;
+- (void)removeAccountsObject:(Account *)value;
+- (void)addAccounts:(NSSet *)values;
+- (void)removeAccounts:(NSSet *)values;
 
 @end

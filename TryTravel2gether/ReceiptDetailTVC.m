@@ -69,6 +69,10 @@
     //設定頁面初始的顯示狀態
     //-----顯示day資訊-----------
     [self configureTheCell];
+    //----Account不存在時
+    if(!self.selectedAccount){
+        self.paymentAccount.detailTextLabel.text=NSLocalizedString(@"Unspecified_Account", @"CellDesc");
+    }
 }
 
 
@@ -571,7 +575,7 @@
 
 -(void)theSaveButtonOnTheSelectPaymentWasTapped:(SelectPaymentCDTVC *)controller{
     if (!controller.selectedAccount.name) {
-        self.paymentAccount.detailTextLabel.text=@"Undefind";
+        self.paymentAccount.detailTextLabel.text=NSLocalizedString(@"Unspecified_Account", @"CellDesc");
         self.selectedAccount=nil;
     }else{
         self.paymentAccount.detailTextLabel.text=[NSString stringWithFormat:@"%@",controller.selectedAccount.name];

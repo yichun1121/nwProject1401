@@ -10,7 +10,7 @@
 #import "Group.h"
 #import "Guy.h"
 #import "Trip.h"
-
+#import "Account.h"
 
 @implementation GuyInTrip
 
@@ -18,5 +18,6 @@
 @dynamic groups;
 @dynamic guy;
 @dynamic inTrip;
+@dynamic accounts;
 
 @end

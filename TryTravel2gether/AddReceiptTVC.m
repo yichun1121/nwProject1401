@@ -562,7 +562,7 @@
 }
 -(void)theSaveButtonOnTheSelectPaymentWasTapped:(SelectPaymentCDTVC *)controller{
     if (!controller.selectedAccount.name) {
-        self.paymentAccount.detailTextLabel.text=@"Undefind";
+        self.paymentAccount.detailTextLabel.text=NSLocalizedString(@"Unspecified_Account", @"CellDesc");
         self.selectedAccount=nil;
     }else{
         self.paymentAccount.detailTextLabel.text=[NSString stringWithFormat:@"%@",controller.selectedAccount.name];

@@ -10,7 +10,8 @@
 
 
 @interface AddPaymentAccountTVC ()
-@property (strong, nonatomic) IBOutlet UITextField *accountName;
+
+
 
 @end
 
@@ -26,10 +27,10 @@
     [super viewDidLoad];
     self.accountName.delegate=self;
     //顯示賬戶資訊
-    self.ownerCell.textLabel.text=@"Owner";
-    self.ownerCell.detailTextLabel.text=@"Undefined";
-    self.payWayCell.textLabel.text=@"PayWay";
-    self.payWayCell.detailTextLabel.text=@"Undefined";
+    self.ownerCell.textLabel.text=NSLocalizedString(@"Owner", @"CellDesc");
+    self.ownerCell.detailTextLabel.text=NSLocalizedString(@"Unspecified_Owner", @"CellDesc");
+    self.payWayCell.textLabel.text=NSLocalizedString(@"PayWay", @"CellDesc");
+    self.payWayCell.detailTextLabel.text=NSLocalizedString(@"Unspecified_PayWay", @"CellDesc");
 }
 
 -(void) save:(id)sender{

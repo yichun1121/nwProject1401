@@ -14,27 +14,54 @@
 
 @implementation TripAccountCDTVC
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self setupFetchedResultController];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+#pragma mark - Table view data source
+/*!組合TableViewCell的顯示內容
+ */
+-(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
+    
+    Account *account=[self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text=[NSString stringWithFormat:@"%@",account.name];
+    return cell;
+}
+#pragma mark - 事件
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
 }
 
-//#pragma mark - ➤ Navigation：Segue Settings
-//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-//    
-//    NSLog(@"Setting SelectPaymentCDTVC as a delegate of AddPaymentAccountTVC...");
-//    
-//    if ([segue.identifier isEqualToString:@"Account List Segue From Trip Detail"]) {
-//        TripAccountCDTVC *tripAccountCDTVC=segue.destinationViewController;
-//        tripAccountCDTVC.currentTrip=self.currentTrip;
-//        tripAccountCDTVC.delegate=self;
-//        tripAccountCDTVC.managedObjectContext=self.managedObjectContext;
-//    }
-//}
+#pragma mark - ➤ Navigation：Segue Settings
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    
+    if ([segue.identifier isEqualToString:@"Add Payment Account Segue From TripAccountCDTVC"]) {
+        AddPaymentAccountTVC *addPaymentAccountTVC=segue.destinationViewController;
+        addPaymentAccountTVC.currentTrip=self.currentTrip;
+        addPaymentAccountTVC.delegate=self;
+        addPaymentAccountTVC.managedObjectContext=self.managedObjectContext;
+    }else if ([segue.identifier isEqualToString:@"Account Detail Segue From TripAccountCDTVC"]){
+        self.selectedAccount=[self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForSelectedRow]];
+        AccountDetailTVC *accountDetailTVC=segue.destinationViewController;
+        accountDetailTVC.selectedAccount=self.selectedAccount;
+        accountDetailTVC.delegate=self;
+        accountDetailTVC.managedObjectContext=self.managedObjectContext;
+    }
+}
+#pragma mark - delegation
+
+- (void)theSaveButtonOnTheAccountDetailTVCWasTapped:(AccountDetailTVC *)controller{
+    
+    [controller.navigationController popViewControllerAnimated:YES];
+}
 
 @end

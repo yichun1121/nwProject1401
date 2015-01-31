@@ -7,8 +7,8 @@
 //
 
 #import "SelectPaymentCDTVC.h"
+#import "AccountDetailTVC.h"
 
-
-@interface TripAccountCDTVC : SelectPaymentCDTVC
+@interface TripAccountCDTVC : SelectPaymentCDTVC<AccountDetailTVCDelegate>
 
 @end

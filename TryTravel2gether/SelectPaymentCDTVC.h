@@ -24,5 +24,5 @@
 @property (weak,nonatomic) id<SelectPaymentCDTVCDelegate> delegate;
 @property (strong,nonatomic)Account* selectedAccount;
 @property (strong,nonatomic)Trip* currentTrip;
-
+-(void)setupFetchedResultController;
 @end

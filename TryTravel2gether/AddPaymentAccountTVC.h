@@ -21,12 +21,13 @@
 
 @interface AddPaymentAccountTVC : UITableViewController<UITextFieldDelegate,SelectAccountOwnerCDTVCDelegate,PayWayCDTVCDelegate,NSFetchedResultsControllerDelegate>
 @property NSManagedObjectContext *managedObjectContext;
-@property (weak,nonatomic)id<AddPaymentAccountTVCDelegate> delegate;
+@property (weak,nonatomic)id delegate;
 @property (strong,nonatomic)Trip *currentTrip;
 @property (strong,nonatomic)GuyInTrip *selectedGuyInTrip;
 @property (strong,nonatomic)PayWay* selectedPayWay;
 @property (strong, nonatomic) IBOutlet UITableViewCell *ownerCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell *payWayCell;
+@property (strong, nonatomic) IBOutlet UITextField *accountName;
 
 
 

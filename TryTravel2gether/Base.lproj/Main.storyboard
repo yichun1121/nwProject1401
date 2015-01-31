@@ -1022,7 +1022,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Accounts" id="QQa-AY-ZrY" userLabel="Accounts">
+                            <tableViewSection headerTitle="Payment Accounts" id="QQa-AY-ZrY" userLabel="Accounts">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="0vw-j9-Qzr" detailTextLabel="KC6-kS-4fj" style="IBUITableViewCellStyleValue1" id="bk9-ks-zXd">
                                         <rect key="frame" x="0.0" y="198" width="320" height="44"/>
@@ -1067,6 +1067,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="accountCell" destination="bk9-ks-zXd" id="ZST-Kb-SMp"/>
                         <outlet property="currency" destination="1MO-S1-LMu" id="H96-0G-DeZ"/>
                         <outlet property="endDate" destination="x8k-ts-brj" id="fa9-h2-YTM"/>
                         <outlet property="groupsCell" destination="paQ-ym-wpR" id="q0u-j9-GY7"/>
@@ -1545,7 +1546,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Payment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Dr9-s6-jf4">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Dr9-s6-jf4">
                                                     <rect key="frame" x="15" y="11" width="68" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1794,7 +1795,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bEw-bx-mIa">
-                                                    <rect key="frame" x="69" y="7" width="227" height="30"/>
+                                                    <rect key="frame" x="71" y="7" width="227" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -1869,7 +1870,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="accountName" destination="bEw-bx-mIa" id="MKU-sI-41V"/>
+                        <outlet property="accountName" destination="bEw-bx-mIa" id="PJ5-6P-SK5"/>
                         <outlet property="ownerCell" destination="nhd-LL-ssz" id="V26-lG-C4f"/>
                         <outlet property="payWayCell" destination="VeB-v1-iX2" id="kkj-ep-pWr"/>
                     </connections>
@@ -2714,7 +2715,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Payment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UdN-Eb-3BD">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UdN-Eb-3BD">
                                                     <rect key="frame" x="15" y="11" width="68" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -3469,7 +3470,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <segue destination="Fn2-5P-dI5" kind="push" id="7aW-z0-vvk"/>
+                                        <segue destination="Fn2-5P-dI5" kind="push" identifier="Add Payment Account Segue From TripAccountCDTVC" id="7aW-z0-vvk"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -3484,7 +3485,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Tbx-SP-6BJ" kind="push" id="S5J-KV-Rcw"/>
+                                    <segue destination="Tbx-SP-6BJ" kind="push" identifier="Account Detail Segue From TripAccountCDTVC" id="S5J-KV-Rcw"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -3502,7 +3503,7 @@
         <!--Account Detail-->
         <scene sceneID="Mhw-Qe-Y0f">
             <objects>
-                <tableViewController id="Tbx-SP-6BJ" sceneMemberID="viewController">
+                <tableViewController id="Tbx-SP-6BJ" customClass="AccountDetailTVC" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="XgA-Dq-IdS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3548,6 +3549,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="IjI-mJ-OXS" kind="push" identifier="Select Account Owner Segue From AccountDetailTVC" id="deY-uU-cnM"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="JcX-M3-9ea" detailTextLabel="Hln-uP-PHO" style="IBUITableViewCellStyleValue1" id="3lb-Jm-KnC">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -3568,6 +3572,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="KBS-y8-8uK" kind="push" identifier="PayWay Segue From AccountDetailTVC" id="6iq-JS-j3U"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -3614,19 +3621,21 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="WVg-4l-qZL"/>
+        <segue reference="UeU-4K-QBx"/>
         <segue reference="uY8-M1-8nc"/>
-        <segue reference="bq2-7x-Hhd"/>
         <segue reference="5QA-QK-Xps"/>
+        <segue reference="bq2-7x-Hhd"/>
         <segue reference="C6V-tt-ruz"/>
+        <segue reference="6iq-JS-j3U"/>
+        <segue reference="deY-uU-cnM"/>
         <segue reference="6Sz-8Y-kfc"/>
         <segue reference="sp3-cC-l9s"/>
-        <segue reference="wJe-84-bVr"/>
         <segue reference="moX-HC-O6P"/>
-        <segue reference="dk3-o7-VGh"/>
-        <segue reference="UeU-4K-QBx"/>
-        <segue reference="WVg-4l-qZL"/>
         <segue reference="MzM-EB-aPY"/>
-        <segue reference="jlX-mz-Yrp"/>
         <segue reference="ZIy-n6-9Hi"/>
+        <segue reference="jlX-mz-Yrp"/>
+        <segue reference="fuU-qV-pe9"/>
+        <segue reference="r1V-Ci-7uc"/>
     </inferredMetricsTieBreakers>
 </document>

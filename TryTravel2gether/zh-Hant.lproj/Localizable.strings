@@ -27,3 +27,9 @@
 "Unspecified"="未設定歸屬人";
 "ShareMain"="分攤計算";
 "Uncategorized"="未分類";
+"Accounts"="帳戶";
+"Owner"="帳戶所有人";
+"Unspecified_Owner"="未設定帳戶所有人";
+"PayWay"="付款方式";
+"Unspecified_PayWay"="未設定付款方式";
+"Unspecified_Account"="未設定帳戶";
