@@ -27,7 +27,9 @@
 "Unspecified"="未設定歸屬人";
 "ShareMain"="分攤計算";
 "Uncategorized"="未分類";
-"Accounts"="帳戶";
+"ShowPersonalSharedItems"="個人物品清單";
+"Payed"="已付";
+"Spend"="應付";"Accounts"="帳戶";
 "Owner"="帳戶所有人";
 "Unspecified_Owner"="未設定帳戶所有人";
 "PayWay"="付款方式";

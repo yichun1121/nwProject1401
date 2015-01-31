@@ -27,7 +27,9 @@
 "Unspecified"="Unspecified";
 "ShareMain"="ShareMain";
 "Uncategorized"="Uncategorized";
-"Accounts"="Accounts";
+"ShowPersonalSharedItems"="Personal Items List";
+"Payed"="Payed";
+"Spend"="Spend";"Accounts"="Accounts";
 "Owner"="Owner";
 "Unspecified_Owner"="Unspecified";
 "PayWay"="PayWay";

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class GuyInTrip, Receipt,PayWay;
+@class GuyInTrip, PayWay, Receipt;
 
 @interface Account : NSManagedObject
 
