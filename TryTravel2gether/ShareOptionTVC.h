@@ -18,7 +18,7 @@
 @end
 
 
-@interface ShareOptionTVC : UITableViewController<SelectTripCDTVCDelegate>
+@interface ShareOptionTVC : UITableViewController<SelectTripCDTVCDelegate,UITextFieldDelegate>
 @property (weak,nonatomic)NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic)id<ShareOptionDelegate> delegate;
 @property (strong,nonatomic)Trip *currentTrip;

@@ -90,6 +90,7 @@
 		C988FCA719A971AE000A0FCB /* NWCustCellOwnItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C988FCA619A971AE000A0FCB /* NWCustCellOwnItem.m */; };
 		C99B5BA619F94D1800AE18EC /* Receipt+Expend.m in Sources */ = {isa = PBXBuildFile; fileRef = C99B5BA519F94D1800AE18EC /* Receipt+Expend.m */; };
 		C99C6DF31967D37000D3ABA5 /* PhotoContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C99C6DF21967D37000D3ABA5 /* PhotoContentVC.m */; };
+		C9A2F9FC1A7CFCBC00744602 /* NWValidate.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A2F9FB1A7CFCBC00744602 /* NWValidate.m */; };
 		C9AAED8E19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED8D19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.m */; };
 		C9AAED9119067A87002D3BAB /* GroupAndGuyInTripCDTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED9019067A87002D3BAB /* GroupAndGuyInTripCDTVC.m */; };
 		C9AAED941906A361002D3BAB /* Group+TripGuys.m in Sources */ = {isa = PBXBuildFile; fileRef = C9AAED931906A361002D3BAB /* Group+TripGuys.m */; };
@@ -301,6 +302,8 @@
 		C99B5BA519F94D1800AE18EC /* Receipt+Expend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Receipt+Expend.m"; sourceTree = "<group>"; };
 		C99C6DF11967D37000D3ABA5 /* PhotoContentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoContentVC.h; sourceTree = "<group>"; };
 		C99C6DF21967D37000D3ABA5 /* PhotoContentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoContentVC.m; sourceTree = "<group>"; };
+		C9A2F9FA1A7CFCBC00744602 /* NWValidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWValidate.h; sourceTree = "<group>"; };
+		C9A2F9FB1A7CFCBC00744602 /* NWValidate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWValidate.m; sourceTree = "<group>"; };
 		C9AAED8C19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGroupAndGuyCDTVC.h; sourceTree = "<group>"; };
 		C9AAED8D19066D4C002D3BAB /* SelectGroupAndGuyCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectGroupAndGuyCDTVC.m; sourceTree = "<group>"; };
 		C9AAED8F19067A87002D3BAB /* GroupAndGuyInTripCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupAndGuyInTripCDTVC.h; sourceTree = "<group>"; };
@@ -408,6 +411,8 @@
 				BFC6CD04190BD38B0071D99E /* NWUIScrollViewMovePostition.m */,
 				C9B6D1EC1A6B6AFA00D3B309 /* NWDataSaving.h */,
 				C9B6D1ED1A6B6AFA00D3B309 /* NWDataSaving.m */,
+				C9A2F9FA1A7CFCBC00744602 /* NWValidate.h */,
+				C9A2F9FB1A7CFCBC00744602 /* NWValidate.m */,
 			);
 			name = NWClass;
 			sourceTree = "<group>";
@@ -896,6 +901,7 @@
 				C9697B1918FCF97C006148E0 /* SidebarViewController.m in Sources */,
 				C9FDDA14197FA9CC0060336A /* ReceiptPhotoVC.m in Sources */,
 				C9B6D1EB1A6B614300D3B309 /* GuyInTrip+Payed.m in Sources */,
+				C9A2F9FC1A7CFCBC00744602 /* NWValidate.m in Sources */,
 				C969734019D52CE0002A7171 /* Photo.m in Sources */,
 				18B8143F18E6E9740089BF0B /* AddGuyTVC.m in Sources */,
 				C92ABB27190E11EF00BEA584 /* Item+Expend.m in Sources */,
