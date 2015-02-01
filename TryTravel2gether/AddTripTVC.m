@@ -240,7 +240,13 @@
         selectGuysCDTVC.managedObjectContext=self.managedObjectContext;
         selectGuysCDTVC.selectedGuys=[self.selectedGuys mutableCopy];
         
+    }else if ([segue.identifier isEqualToString:@"Payment Segue From Add Trip"]){
+        NSLog(@"Setting AddTripTVC as a delegate of SelectPaymentCDTVC");
+        SelectPaymentCDTVC *selectPaymentCDTVC=segue.destinationViewController;
+        selectPaymentCDTVC.delegate=self;
+        selectPaymentCDTVC.managedObjectContext=self.managedObjectContext;
     }
+        
 }
 
 
@@ -309,6 +315,9 @@
     self.selectedGuys=controller.selectedGuys;
     int guyscount=(int)[self.selectedGuys count];
     self.guysCell.detailTextLabel.text=[NSString stringWithFormat:@"%i Guys",guyscount];
+    [controller.navigationController popViewControllerAnimated:YES];
+}
+-(void)theSaveButtonOnTheSelectPaymentWasTapped:(SelectPaymentCDTVC *)controller{
     [controller.navigationController popViewControllerAnimated:YES];
 }
 

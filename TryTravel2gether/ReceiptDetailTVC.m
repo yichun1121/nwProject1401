@@ -69,6 +69,10 @@
     //設定頁面初始的顯示狀態
     //-----顯示day資訊-----------
     [self configureTheCell];
+    //----Account不存在時
+    if(!self.selectedAccount){
+        self.paymentAccount.detailTextLabel.text=NSLocalizedString(@"Unspecified_Account", @"CellDesc");
+    }
 }
 
 
@@ -361,7 +365,7 @@
     self.selectedDayString=[self.dateFormatter stringFromDate: self.receipt.day.date];
     self.arrayOfStack=[NSKeyedUnarchiver unarchiveObjectWithData:self.receipt.calculatorArray];
     self.selectedAccount=self.receipt.account;
-    self.paymentAccount.detailTextLabel.text=self.receipt.account.name;
+    self.paymentAccount.detailTextLabel.text=[NSString stringWithFormat:@"%@",self.receipt.account.name];
     
     for (Photo * photo in self.receipt.photosOrdered) {
         UIImage *image=photo.image;
@@ -489,6 +493,7 @@
         selectPaymentCDTVC.delegate=self;
         selectPaymentCDTVC.managedObjectContext=self.managedObjectContext;
         selectPaymentCDTVC.selectedAccount=self.receipt.account;
+        selectPaymentCDTVC.currentTrip=self.receipt.day.inTrip;
     }
 }
 
@@ -570,10 +575,10 @@
 
 -(void)theSaveButtonOnTheSelectPaymentWasTapped:(SelectPaymentCDTVC *)controller{
     if (!controller.selectedAccount.name) {
-        self.paymentAccount.detailTextLabel.text=@"Undefind";
+        self.paymentAccount.detailTextLabel.text=NSLocalizedString(@"Unspecified_Account", @"CellDesc");
         self.selectedAccount=nil;
     }else{
-        self.paymentAccount.detailTextLabel.text=controller.selectedAccount.name;
+        self.paymentAccount.detailTextLabel.text=[NSString stringWithFormat:@"%@",controller.selectedAccount.name];
         self.selectedAccount=controller.selectedAccount;
     }
     [controller.navigationController popViewControllerAnimated:YES];

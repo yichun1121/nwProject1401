@@ -511,6 +511,7 @@
         selectPaymentCDTVC.delegate=self;
         selectPaymentCDTVC.managedObjectContext=self.managedObjectContext;
         selectPaymentCDTVC.selectedAccount=self.selectedAccount;
+        selectPaymentCDTVC.currentTrip=self.currentTrip;
         
     }
 }
@@ -561,10 +562,10 @@
 }
 -(void)theSaveButtonOnTheSelectPaymentWasTapped:(SelectPaymentCDTVC *)controller{
     if (!controller.selectedAccount.name) {
-        self.paymentAccount.detailTextLabel.text=@"Undefind";
+        self.paymentAccount.detailTextLabel.text=NSLocalizedString(@"Unspecified_Account", @"CellDesc");
         self.selectedAccount=nil;
     }else{
-        self.paymentAccount.detailTextLabel.text=controller.selectedAccount.name;
+        self.paymentAccount.detailTextLabel.text=[NSString stringWithFormat:@"%@",controller.selectedAccount.name];
         self.selectedAccount=controller.selectedAccount;
         
     }

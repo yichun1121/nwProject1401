@@ -7,15 +7,16 @@
 //
 
 #import "SelectPaymentCDTVC.h"
+#import "PayWay.h"
 
 @interface SelectPaymentCDTVC()
-@property (strong,nonatomic)NSArray *fetchedObjects;
+
 @end
 
 @implementation SelectPaymentCDTVC
 @synthesize managedObjectContext=_managedObjectContext;
 @synthesize fetchedResultsController=_fetchedResultsController;
-@synthesize fetchedObjects=_fetchedObjects;
+
 
 #pragma mark - FetchedResultsController
 -(void)viewWillAppear:(BOOL)animated{
@@ -29,6 +30,7 @@
     NSLog(@"Setting up a Fetched Results Controller for the Entity named %@",entityName);
     
     NSFetchRequest *request=[NSFetchRequest fetchRequestWithEntityName:entityName];
+    request.predicate = [NSPredicate predicateWithFormat:@"ANY guysInTrip.inTrip=%@",self.currentTrip];
     request.sortDescriptors=[NSArray arrayWithObjects:
                              [NSSortDescriptor sortDescriptorWithKey:@"name"
                                                            ascending:YES], nil];
@@ -42,12 +44,7 @@
     
 }
 
--(NSArray *)fetchedObjects{
-    if(!_fetchedObjects){
-        _fetchedObjects = [self.fetchedResultsController fetchedObjects];
-    }
-    return _fetchedObjects;
-}
+
 
 #pragma mark - Table view data source
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -64,8 +61,9 @@
 /*!組合TableViewCell的顯示內容
  */
 -(UITableViewCell *)configureCell:(UITableViewCell *)cell AtIndexPath:(NSIndexPath *)indexPath{
-    Account *account=[self.fetchedObjects objectAtIndex:indexPath.row];
-    cell.textLabel.text=account.name;
+   
+    Account *account=[self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text=[NSString stringWithFormat:@"%@",account.name];
     if ([account.name isEqualToString: self.selectedAccount.name]) {
         cell.accessoryType=UITableViewCellAccessoryCheckmark;
     }else{
@@ -75,9 +73,49 @@
 }
 #pragma mark - 事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //    self.selectedGroup=[self.fetchedResultsController objectAtIndexPath:indexPath];
-    self.selectedAccount=self.fetchedObjects[indexPath.row];
+    self.selectedAccount=[self.fetchedResultsController objectAtIndexPath:indexPath];
     [self.delegate theSaveButtonOnTheSelectPaymentWasTapped:self];
+}
+#pragma mark - ➤ Navigation：Segue Settings
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+
+    NSLog(@"Setting SelectPaymentCDTVC as a delegate of AddPaymentAccountTVC...");
+
+    if ([segue.identifier isEqualToString:@"Add Payment Account Segue From PaymentCDTVC"]) {
+        AddPaymentAccountTVC *addPaymentAccountTVC=segue.destinationViewController;
+        addPaymentAccountTVC.currentTrip=self.currentTrip;
+        addPaymentAccountTVC.delegate=self;
+        addPaymentAccountTVC.managedObjectContext=self.managedObjectContext;
+    }
+}
+#pragma mark - Deleting（紅➖）+Inserting(綠➕）
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        [self.tableView beginUpdates]; // Avoid  NSInternalInconsistencyException
+        
+        // Delete the role object that was swiped
+        Account *accountDelete = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        NSLog(@"Deleting %@", accountDelete.name);
+        [self.managedObjectContext deleteObject:accountDelete];
+        [self.managedObjectContext save:nil];
+        
+        // Delete the (now empty) row on the table
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self performFetch];
+        
+        [self.tableView endUpdates];
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
+}
+
+#pragma mark - delegation
+
+- (void)theSaveButtonOnTheAddPaymentAccountTVCWasTapped:(AddPaymentAccountTVC *)controller{
+    [controller.navigationController popViewControllerAnimated:YES];
 }
 
 

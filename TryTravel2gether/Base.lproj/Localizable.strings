@@ -29,4 +29,9 @@
 "Uncategorized"="Uncategorized";
 "ShowPersonalSharedItems"="Personal Items List";
 "Payed"="Payed";
-"Spend"="Spend";
+"Spend"="Spend";"Accounts"="Accounts";
+"Owner"="Owner";
+"Unspecified_Owner"="Unspecified";
+"PayWay"="PayWay";
+"Unspecified_PayWay"="Unspecified";
+"Unspecified_Account"="Unspecified";

@@ -16,6 +16,7 @@
 #import "NWPickerUtils.h"
 #import "NWUIScrollViewMovePostition.h"
 
+
 @interface TripDetailTVC ()
 @property NSDateFormatter *dateFormatter;
 @property (weak, nonatomic) IBOutlet UITableViewCell *currency;
@@ -25,6 +26,7 @@
 @property (strong, nonatomic) UIDatePicker *endPicker;
 @property (strong, nonatomic) UIDatePicker *startPicker;
 @property (strong,nonatomic) NSMutableSet *selectedGuys;
+@property (strong, nonatomic) IBOutlet UITableViewCell *accountCell;
 
 @end
 
@@ -78,6 +80,9 @@
     self.selectedGuys=[NSMutableSet new];
 //    self.guysCell.textLabel.text=@"Guys";
     self.guysCell.textLabel.text=NSLocalizedString(@"Guys", @"CellDesc");
+    //---顯示Account--------
+    self.accountCell.textLabel.text=NSLocalizedString(@"Accounts", @"CellDesc");
+
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -88,6 +93,16 @@
     int guyscount=(int)[self.selectedGuys count];
     self.guysCell.detailTextLabel.text=[NSString stringWithFormat:@"%i %@",guyscount,NSLocalizedString(@"GuysUnit", @"CellContent")];
     self.groupsCell.detailTextLabel.text=[NSString stringWithFormat:@"%@ %@",self.trip.countRealGroups,NSLocalizedString(@"GroupsUnit", @"CellContent")];
+    
+    //---顯示Account個數--------
+    
+    double numberOfAccount=0;
+    for (GuyInTrip *guyInTrip in self.trip.guysInTrip) {
+        numberOfAccount=numberOfAccount+(double)[guyInTrip.accounts count] ;
+    }
+    NSString *accountString=NSLocalizedString(@"Accounts", @"CellDesc");
+    self.accountCell.detailTextLabel.text=[NSString stringWithFormat:@"%d %@",(int)numberOfAccount,accountString];
+
 }
 
 -(void) save:(id)sender{
@@ -212,6 +227,11 @@
         groupCDTVC.currentTrip=self.trip;
         groupCDTVC.delegate=self;
         //TODO:group的delegate，然後要顯示group數量
+    }else if ([segue.identifier isEqualToString:@"Account List Segue From Trip Detail"]) {
+        TripAccountCDTVC *tripAccountCDTVC=segue.destinationViewController;
+        tripAccountCDTVC.currentTrip=self.trip;
+        //tripAccountCDTVC.delegate=self;
+        tripAccountCDTVC.managedObjectContext=self.managedObjectContext;
     }
     else {
         NSLog(@"Unidentified Segue Attempted! @%@",self.class);
