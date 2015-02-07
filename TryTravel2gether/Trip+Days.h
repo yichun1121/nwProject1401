@@ -9,8 +9,11 @@
 #import "Trip.h"
 
 @interface Trip (Days)
+//@property NSDateFormatter *dateFormatter_GMT;
 -(BOOL)hadThisDateWithUTC:(NSString *)date;
 +(NSDateFormatter *)dateFormatter_GMT;
++(NSDateFormatter *)dateTimeFormatter_GMT;
++(NSDateFormatter *)timeFormatter_GMT;
 -(Day *)getTripDayByDateString:(NSString *)dateString;
 -(Day *)createDayInCurrentTripByDateString:(NSDate *)date;
 @end

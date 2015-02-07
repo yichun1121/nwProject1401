@@ -44,6 +44,20 @@
     
     return formatter;
 }
++(NSDateFormatter *)dateTimeFormatter_GMT{
+    NSDateFormatter * formatter=[[NSDateFormatter alloc]init];
+    formatter.timeZone=[NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+    formatter.dateFormat=[NSString stringWithFormat:@"%@ %@",[Trip dateFormatter_GMT].dateFormat,[Trip timeFormatter_GMT].dateFormat];
+    
+    return formatter;
+}
++(NSDateFormatter *)timeFormatter_GMT{
+    NSDateFormatter * formatter=[[NSDateFormatter alloc]init];
+    formatter.timeZone=[NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+    formatter.dateFormat=@"HH:mm";
+
+    return formatter;
+}
 -(Day *)getTripDayByDateString:(NSString *)dateString{
     NSLog(@"Find the trip day:%@ in the current trip.",dateString);
     NSEntityDescription *entityDesc =
