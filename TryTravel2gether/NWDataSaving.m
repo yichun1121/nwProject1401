@@ -8,20 +8,77 @@
 
 #import "NWDataSaving.h"
 
+@interface NWDataSaving()
+@property (nonatomic) NSArray * paths;
+@property (nonatomic)  NSString * basePath;
+@end
+
 @implementation NWDataSaving
-+(void)saveDataIntoFile:(NSString *)savingString withName:(NSString *)fileName{
-    //Saving file
-    //    NSFileManager *fileManager = [[NSFileManager alloc] init];
-    //
-    //    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    //    NSString * basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+@synthesize paths=_paths;
+@synthesize basePath=_basePath;
+
+-(NSArray *)paths{
+    if (!_paths) {
+        _paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    }
+    return _paths;
+}
+-(NSString *)basePath{
+    if (!_basePath) {
+        _basePath=([self.paths count] > 0) ? [self.paths objectAtIndex:0] : nil;
+    }
+    return _basePath;
+}
+
+-(NSString *)checkedAndCreatedRelativeFolderPath:(NSString *)relativeFolder{
+    NSString *createdFolder=@"";
+    //1. 讓relative folder path第一個是斜線
+    if (![[relativeFolder substringToIndex:1] isEqual:@"/"]) {
+        relativeFolder=[@"/" stringByAppendingString:relativeFolder];
+    }
+    NSString * fullFolder=[self.basePath stringByAppendingString:relativeFolder];
+
+    if([self folderCreator:fullFolder]){
+        createdFolder=relativeFolder;
+    }
     
-    NSURL* url=[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
-                                                       inDomains:NSUserDomainMask] lastObject];
+    return relativeFolder;
+}
+
+-(bool)folderCreator:(NSString *)folderPath{
+    BOOL createSuccess=NO;
+    //-----檢查預存放的資料夾路徑-------------------------
+    if ([[NSFileManager defaultManager] fileExistsAtPath:folderPath]){
+        NSLog(@"folder path:%@ exists.",folderPath);
+        createSuccess=YES;
+    }else{
+        NSLog(@"creating folder...%@",folderPath);
+        NSError *error=nil;
+        //建立資料夾
+        [[NSFileManager defaultManager]createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:&error];
+        if (error) {
+            NSLog(@"fail to create folder, error: %@", [error localizedDescription]);
+        }else{
+            createSuccess=YES;
+        }
+    }
+    return createSuccess;
+}
+
+-(void)saveDataIntoFile:(NSString *)savingString withFileName:(NSString *)relativeName{
     
-    NSString *path = [url.path stringByAppendingPathComponent:fileName];
+//    NSURL* url=[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
+//                                                       inDomains:NSUserDomainMask] lastObject];
+//    
+//    NSString *path = [url.path stringByAppendingPathComponent:fileName];
+
+    NSString *name=[relativeName lastPathComponent];
+    NSString *relativeFolder=@"/";
+    if (![name isEqualToString:relativeName]) {
+        relativeFolder = [relativeName substringToIndex:relativeName.length-name.length-1];
+    }
     
-    //    NSString *destination = [url stringByAppendingPathComponent:fileName];
+    NSString *path=[NSString stringWithFormat:@"%@%@/%@",self.basePath,[self checkedAndCreatedRelativeFolderPath:relativeFolder],name];
     
     NSError *error = nil;
     

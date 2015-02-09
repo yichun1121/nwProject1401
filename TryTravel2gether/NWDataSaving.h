@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface NWDataSaving : NSObject
-+(void)saveDataIntoFile:(NSString *)savingString withName:(NSString *)fileName;
+-(void)saveDataIntoFile:(NSString *)savingString withFileName:(NSString *)relativeName;
+-(NSString *)checkedAndCreatedRelativeFolderPath:(NSString *)relativeFolder;
 @end

@@ -35,7 +35,8 @@
     }
     savingString=[NSString stringWithFormat:@"幣別總計：%g\n%@",total,savingString];
     NSString *fileName=[NSString stringWithFormat:@"Trip%@%@_%@_Expend.tsv",self.inTrip.tripIndex,self.guy.name,currency.standardSign ];
-    [NWDataSaving saveDataIntoFile:savingString withName:fileName];
+    NWDataSaving *dataSaving=[NWDataSaving new];
+    [dataSaving saveDataIntoFile:savingString withFileName:fileName];
     return [NSNumber numberWithDouble:total];
 }
 -(NSString *)totalExpendWithMainCurrencySign{
