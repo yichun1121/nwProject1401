@@ -26,8 +26,30 @@
 #import "Item+Expend.h"
 
 @implementation Trip (Export)
+-(NSString *)getItemExportRelativeFileNameByType:(ExportFileType)type{
+    return [NSString stringWithFormat:@"Export/Trip%@/Trip%@_items.%@",self.tripIndex,self.name,[self subfileNameByFileType:type] ];
+}
+-(NSString *)getReceiptExportRelativeFileNameByType:(ExportFileType)type{
+    return [NSString stringWithFormat:@"/Export/Trip%@/Trip%@_receipts.%@",self.tripIndex,self.name,[self subfileNameByFileType:type] ];
+}
 
-+(BOOL)exportTrip:(Trip*)trip ByType:(ExportFileType)type{
+-(NSString *)subfileNameByFileType:(ExportFileType)type{
+    NSString * subfileName=@"";
+    switch (type) {
+        case ExportFileCSV:
+            subfileName=@"csv";
+            break;
+        case ExportFileTSV:
+            subfileName=@"tsv";
+            break;
+            
+        default:
+            break;
+    }
+    return subfileName;
+}
+
+-(BOOL)exportTripByType:(ExportFileType)type{
     NSString *outputItemFormat=@"";
     NSString *outputReceiptFormat=@"";
     NSString *subFileName=@"";
@@ -80,8 +102,8 @@
     int itemSerial=0;
     //流水號格式：TxDxx，後加上收據在該天的流水號
     NSString *serTripID=@"T%@";
-    serTripID=[NSString stringWithFormat:serTripID,trip.tripIndex];
-    for (Day * day in trip.days) {
+    serTripID=[NSString stringWithFormat:serTripID,self.tripIndex];
+    for (Day * day in self.days) {
         NSNumberFormatter *numberFormatter=[[NSNumberFormatter alloc]init];
         [numberFormatter setPaddingPosition:NSNumberFormatterPadBeforePrefix];
         [numberFormatter setPaddingCharacter:@"0"];
@@ -136,9 +158,9 @@
         }
     }
     NWDataSaving *dataSaving=[NWDataSaving new];
-    NSString *itemFileName=[NSString stringWithFormat:@"Export/Trip%@/Trip%@_items.%@",trip.tripIndex,trip.name,subFileName ];
+    NSString *itemFileName=[self getItemExportRelativeFileNameByType:type];
     [dataSaving saveDataIntoFile:itemSavingString withFileName:itemFileName];
-    NSString *receiptFileName=[NSString stringWithFormat:@"/Export/Trip%@/Trip%@_receipts.%@",trip.tripIndex,trip.name,subFileName ];
+    NSString *receiptFileName=[self getReceiptExportRelativeFileNameByType:type];
     [dataSaving saveDataIntoFile:receiptSavingString withFileName:receiptFileName];
     return exportSuccess;
 }

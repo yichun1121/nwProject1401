@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NWData.h"
 
-@interface NWDataSaving : NSObject
+@interface NWDataSaving : NWData
 -(void)saveDataIntoFile:(NSString *)savingString withFileName:(NSString *)relativeName;
 -(NSString *)checkedAndCreatedRelativeFolderPath:(NSString *)relativeFolder;
 @end

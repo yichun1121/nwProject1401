@@ -59,6 +59,8 @@
 		C926A54819D6E60D0086DF47 /* Trip+System.m in Sources */ = {isa = PBXBuildFile; fileRef = C926A54719D6E60D0086DF47 /* Trip+System.m */; };
 		C92ABB27190E11EF00BEA584 /* Item+Expend.m in Sources */ = {isa = PBXBuildFile; fileRef = C92ABB26190E11EF00BEA584 /* Item+Expend.m */; };
 		C93867C71A888F6C00F54331 /* Trip+Export.m in Sources */ = {isa = PBXBuildFile; fileRef = C93867C61A888F6C00F54331 /* Trip+Export.m */; };
+		C93867CA1A8B9DAE00F54331 /* NWDataGetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C93867C91A8B9DAE00F54331 /* NWDataGetting.m */; };
+		C93867CD1A8B9DE100F54331 /* NWData.m in Sources */ = {isa = PBXBuildFile; fileRef = C93867CC1A8B9DE100F54331 /* NWData.m */; };
 		C94FD1301998769E001910AC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C94FD1321998769E001910AC /* Localizable.strings */; };
 		C9558F8E191893D500B6C430 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = C9558F8D191893D500B6C430 /* Item.m */; };
 		C9558F901918970200B6C430 /* TripDetailTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9558F8F1918970200B6C430 /* TripDetailTVC.m */; };
@@ -244,6 +246,10 @@
 		C92ABB26190E11EF00BEA584 /* Item+Expend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Item+Expend.m"; sourceTree = "<group>"; };
 		C93867C51A888F6C00F54331 /* Trip+Export.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Trip+Export.h"; sourceTree = "<group>"; };
 		C93867C61A888F6C00F54331 /* Trip+Export.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Trip+Export.m"; sourceTree = "<group>"; };
+		C93867C81A8B9DAE00F54331 /* NWDataGetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWDataGetting.h; sourceTree = "<group>"; };
+		C93867C91A8B9DAE00F54331 /* NWDataGetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWDataGetting.m; sourceTree = "<group>"; };
+		C93867CB1A8B9DE100F54331 /* NWData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWData.h; sourceTree = "<group>"; };
+		C93867CC1A8B9DE100F54331 /* NWData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWData.m; sourceTree = "<group>"; };
 		C94BF2C3189118940039C6CC /* ReceiptsCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptsCDTVC.h; sourceTree = "<group>"; };
 		C94BF2C4189118940039C6CC /* ReceiptsCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptsCDTVC.m; sourceTree = "<group>"; };
 		C94FD1311998769E001910AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -399,10 +405,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF9B784E192815D60040B122 /* MessageUI.framework in Frameworks */,
 				BF9B7853192816860040B122 /* AudioToolbox.framework in Frameworks */,
 				BF9B7852192816440040B122 /* SystemConfiguration.framework in Frameworks */,
 				BF9B7850192816100040B122 /* StoreKit.framework in Frameworks */,
-				BF9B784E192815D60040B122 /* MessageUI.framework in Frameworks */,
 				BF9B784A192815540040B122 /* CoreTelephony.framework in Frameworks */,
 				BF9B7848192813FB0040B122 /* CoreAudio.framework in Frameworks */,
 				BF9B7846192813DF0040B122 /* AVFoundation.framework in Frameworks */,
@@ -431,6 +437,10 @@
 				C9B6D1ED1A6B6AFA00D3B309 /* NWDataSaving.m */,
 				C9A2F9FA1A7CFCBC00744602 /* NWValidate.h */,
 				C9A2F9FB1A7CFCBC00744602 /* NWValidate.m */,
+				C93867C81A8B9DAE00F54331 /* NWDataGetting.h */,
+				C93867C91A8B9DAE00F54331 /* NWDataGetting.m */,
+				C93867CB1A8B9DE100F54331 /* NWData.h */,
+				C93867CC1A8B9DE100F54331 /* NWData.m */,
 			);
 			name = NWClass;
 			sourceTree = "<group>";
@@ -952,8 +962,10 @@
 				C9C4097B18E7247600E1F3FE /* AddItemTVC.m in Sources */,
 				C920F6FC1A6A883E0015BD99 /* PersonalSharedTVC.m in Sources */,
 				0409B6F51893BEAE000C6DF6 /* AddDayTVC.m in Sources */,
+				C93867CD1A8B9DE100F54331 /* NWData.m in Sources */,
 				C969733719D52B36002A7171 /* PayWay.m in Sources */,
 				C9DB0010186B187E00F3B008 /* main.m in Sources */,
+				C93867CA1A8B9DAE00F54331 /* NWDataGetting.m in Sources */,
 				C903332B1988D72200A55362 /* NWAdShiftTableViewController.m in Sources */,
 				183CD1961A6A4A1C0070DF51 /* PayWayCDTVC.m in Sources */,
 				04ED46F018A64CAF004EA22E /* Trip+Days.m in Sources */,

@@ -34,7 +34,7 @@
         }
     }
     savingString=[NSString stringWithFormat:@"幣別總計：%g\n%@",total,savingString];
-    NSString *fileName=[NSString stringWithFormat:@"Trip%@%@_%@_Expend.tsv",self.inTrip.tripIndex,self.guy.name,currency.standardSign ];
+    NSString *fileName=[NSString stringWithFormat:@"/Export/Trip%@/Trip%@_%@_%@_Expend.tsv",self.inTrip.tripIndex,self.inTrip.name,self.guy.name,currency.standardSign ];
     NWDataSaving *dataSaving=[NWDataSaving new];
     [dataSaving saveDataIntoFile:savingString withFileName:fileName];
     return [NSNumber numberWithDouble:total];

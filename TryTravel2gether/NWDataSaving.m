@@ -8,27 +8,7 @@
 
 #import "NWDataSaving.h"
 
-@interface NWDataSaving()
-@property (nonatomic) NSArray * paths;
-@property (nonatomic)  NSString * basePath;
-@end
-
 @implementation NWDataSaving
-@synthesize paths=_paths;
-@synthesize basePath=_basePath;
-
--(NSArray *)paths{
-    if (!_paths) {
-        _paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    }
-    return _paths;
-}
--(NSString *)basePath{
-    if (!_basePath) {
-        _basePath=([self.paths count] > 0) ? [self.paths objectAtIndex:0] : nil;
-    }
-    return _basePath;
-}
 
 -(NSString *)checkedAndCreatedRelativeFolderPath:(NSString *)relativeFolder{
     NSString *createdFolder=@"";
@@ -42,7 +22,7 @@
         createdFolder=relativeFolder;
     }
     
-    return relativeFolder;
+    return createdFolder;
 }
 
 -(bool)folderCreator:(NSString *)folderPath{
@@ -78,7 +58,8 @@
         relativeFolder = [relativeName substringToIndex:relativeName.length-name.length-1];
     }
     
-    NSString *path=[NSString stringWithFormat:@"%@%@/%@",self.basePath,[self checkedAndCreatedRelativeFolderPath:relativeFolder],name];
+//    NSString *path=[NSString stringWithFormat:@"%@%@/%@",self.basePath,[self checkedAndCreatedRelativeFolderPath:relativeFolder],name];
+    NSString *path=[NSString stringWithFormat:@"%@/%@",[self getFullPathByRelative:[self  checkedAndCreatedRelativeFolderPath:relativeFolder]],name ];
     
     NSError *error = nil;
     

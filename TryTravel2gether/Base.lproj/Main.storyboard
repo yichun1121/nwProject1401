@@ -3055,9 +3055,9 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Data" id="tFx-iw-1pG">
+                            <tableViewSection headerTitle="Data Export" id="tFx-iw-1pG">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Ziv-Hd-oxD">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="0.0" id="Ziv-Hd-oxD">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ziv-Hd-oxD" id="YQo-Rb-Bug">
                                             <autoresizingMask key="autoresizingMask"/>

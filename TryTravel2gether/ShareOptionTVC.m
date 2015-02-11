@@ -9,6 +9,7 @@
 #import "ShareOptionTVC.h"
 #import "NWValidate.h"
 #import "Trip+Export.h"
+#import "NWDataGetting.h"
 
 
 @interface ShareOptionTVC()
@@ -23,8 +24,8 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     self.email.delegate=self;
-    self.export2CSV.enabled=NO;
-    self.export2TSV.enabled=NO;
+//    self.export2CSV.enabled=NO;
+//    self.export2TSV.enabled=NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:self.email];
 }
 -(void)viewWillAppear:(BOOL)animated{
@@ -40,22 +41,69 @@
 }
 
 - (IBAction)export2TSV:(UIButton *)sender {
-    [Trip exportTrip:self.currentTrip ByType:ExportFileTSV];
+    [self.currentTrip exportTripByType:ExportFileTSV];
+    [self emailFileByType:ExportFileTSV];
 }
 
 - (IBAction)export2CSV:(UIButton *)sender {
-    [Trip exportTrip:self.currentTrip ByType:ExportFileCSV];
+    [self.currentTrip exportTripByType:ExportFileCSV];
+    [self emailFileByType:ExportFileCSV];
 }
+
 
 
 
 - (void)textFieldDidChange:(NSNotification *)notification {
-    if ([NWValidate validateEmailWithString:self.email.text]) {
-        self.export2CSV.enabled=YES;
-        self.export2TSV.enabled=YES;
-    }else{
-        self.export2CSV.enabled=NO;
-        self.export2TSV.enabled=NO;
+//    if ([NWValidate validateEmailWithString:self.email.text]) {
+//        self.export2CSV.enabled=YES;
+//        self.export2TSV.enabled=YES;
+//    }else{
+//        self.export2CSV.enabled=NO;
+//        self.export2TSV.enabled=NO;
+//    }
+}
+
+-(void)emailFileByType:(ExportFileType)type{
+    if ([MFMailComposeViewController canSendMail])
+    {
+        //建立物件與指定代理
+        MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc] init];
+        mailController.mailComposeDelegate = self;
+        
+        //設定收件人
+        [mailController setToRecipients:@[@"yichun1121@gmail.com"]];
+//        [mailController setCcRecipients:[NSArray arrayWithObjects:@"evelyn.y.yeh@gmail.com",@"yichun1121@gmail.com", nil]];
+        //[mailController setBccRecipients:[NSArray arrayWithObjects:@"evelyn.y.yeh@gmail.com",@"yichun1121@gmail.com", nil]];
+        
+        //設定主旨
+        [mailController setSubject:[NSString stringWithFormat:@"✈ LetsTravel2gether ✈ Travel Accounting：%@",self.currentTrip.name]];
+        
+        //設定內文並且不使用HTML語法
+        [mailController setMessageBody:@"Hi\n\n  The attached files are exported from LetsTravel2gether.\n\nFrom LetsTravel2gether" isHTML:NO];
+
+//        //加入圖片
+//        UIImage *theImage = [UIImage imageNamed:@"image.png"];
+//        NSData *imageData = UIImagePNGRepresentation(theImage);
+//        [mailController addAttachmentData:imageData mimeType:@"image/png" fileName:@"image"];
+        
+        NWDataGetting *dataGetter=[NWDataGetting new];
+        //Item List
+        NSString *fullItemPath=[self.currentTrip getItemExportRelativeFileNameByType:type];
+        NSData *fileExportItem = [dataGetter getDataByFileName:fullItemPath];
+        [mailController addAttachmentData:fileExportItem mimeType:@"text/plain" fileName:[NSString stringWithFormat:@"items.%@",[self.currentTrip subfileNameByFileType:type ]]];
+        
+        //Receipt List
+        NSString *fullReceiptPath=[self.currentTrip getReceiptExportRelativeFileNameByType:type];
+        NSData *fileExportReceipt = [dataGetter getDataByFileName:fullReceiptPath];
+        [mailController addAttachmentData:fileExportReceipt mimeType:@"text/plain" fileName:[NSString stringWithFormat:@"receipts.%@",[self.currentTrip subfileNameByFileType:type ]]];
+
+        
+        //顯示電子郵件畫面
+        [self presentViewController:mailController animated:YES completion:NULL];
+    }
+    else
+    {
+        NSLog(@"This device cannot send email");
     }
 }
 
@@ -76,6 +124,30 @@
     
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result) {
+        case MFMailComposeResultSent:
+            NSLog(@"You sent the email.");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"You saved a draft of this email");
+            break;
+        case MFMailComposeResultCancelled:
+            NSLog(@"You cancelled sending this email.");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail failed:  An error occurred when trying to compose this email");
+            break;
+        default:
+            NSLog(@"An error occurred when trying to compose this email");
+            break;
+    }
+    //執行取消發送電子郵件畫面的動畫
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark 監測UITextFeild事件，按下return的時候會收鍵盤
 //要在viewDidLoad裡加上textField的delegate=self，才監聽的到
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{

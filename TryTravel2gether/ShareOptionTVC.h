@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Trip.h"
 #import "SelectTripCDTVC.h"
+#import <MessageUI/MessageUI.h>
 
 @class ShareOptionTVC;
 @protocol ShareOptionDelegate <NSObject>
@@ -18,7 +19,7 @@
 @end
 
 
-@interface ShareOptionTVC : UITableViewController<SelectTripCDTVCDelegate,UITextFieldDelegate>
+@interface ShareOptionTVC : UITableViewController<SelectTripCDTVCDelegate,UITextFieldDelegate,MFMailComposeViewControllerDelegate>
 @property (weak,nonatomic)NSManagedObjectContext *managedObjectContext;
 @property (strong,nonatomic)id<ShareOptionDelegate> delegate;
 @property (strong,nonatomic)Trip *currentTrip;

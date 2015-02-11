@@ -14,6 +14,8 @@ typedef enum {
     ExportFileTSV,
 }ExportFileType;
 
-+(BOOL)exportTrip:(Trip*)trip ByType:(ExportFileType)type;
-
+-(BOOL)exportTripByType:(ExportFileType)type;
+-(NSString *)getItemExportRelativeFileNameByType:(ExportFileType)type;
+-(NSString *)getReceiptExportRelativeFileNameByType:(ExportFileType)type;
+-(NSString *)subfileNameByFileType:(ExportFileType)type;
 @end
