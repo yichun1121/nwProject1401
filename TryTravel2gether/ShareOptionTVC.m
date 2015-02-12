@@ -10,7 +10,7 @@
 #import "NWValidate.h"
 #import "Trip+Export.h"
 #import "NWDataGetting.h"
-
+#import "Trip+Days.h"
 
 @interface ShareOptionTVC()
 @property (weak, nonatomic) IBOutlet UITableViewCell *tripNameCell;
@@ -53,15 +53,27 @@
         mailController.mailComposeDelegate = self;
         
         //設定收件人
-        [mailController setToRecipients:@[@"yichun1121@gmail.com"]];
-//        [mailController setCcRecipients:[NSArray arrayWithObjects:@"evelyn.y.yeh@gmail.com",@"yichun1121@gmail.com", nil]];
+        //[mailController setToRecipients:@[@"yichun1121@gmail.com"]];
+        //[mailController setCcRecipients:[NSArray arrayWithObjects:@"evelyn.y.yeh@gmail.com",@"yichun1121@gmail.com", nil]];
         //[mailController setBccRecipients:[NSArray arrayWithObjects:@"evelyn.y.yeh@gmail.com",@"yichun1121@gmail.com", nil]];
         
         //設定主旨
-        [mailController setSubject:[NSString stringWithFormat:@"✈ LetsTravel2gether ✈ Travel Accounting：%@",self.currentTrip.name]];
+        [mailController setSubject:[NSString stringWithFormat:@" ★ LetsTravel2gether ✈ Travel Accounting：%@",self.currentTrip.name]];
         
         //設定內文並且不使用HTML語法
-        [mailController setMessageBody:@"Hi\n\n  The attached files are exported from LetsTravel2gether.\n\nFrom LetsTravel2gether" isHTML:NO];
+        //[mailController setMessageBody:@"Hi\n\n  The attached files are exported from LetsTravel2gether.\n\nFrom LetsTravel2gether" isHTML:NO];
+
+        NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"EmailTemplete" ofType:@"html"];
+        NSString *templeteString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
+        NSString *tripName=self.currentTrip.name;
+        NSString *tripStart=[[Trip dateFormatter_Local]stringFromDate:self.currentTrip.startDate];
+        NSString *tripEnd=[[Trip dateFormatter_Local]stringFromDate:self.currentTrip.endDate];
+        NSString *subfileName=[self.currentTrip subfileNameByFileType:type];
+        NSString *finalHtmlEmail=[NSString stringWithFormat:templeteString,tripName,tripStart,tripEnd,subfileName];
+        //設定內文並且使用HTML語法
+        [mailController setMessageBody:[NSString stringWithFormat:finalHtmlEmail,self.currentTrip.name] isHTML:YES];
+        
+        
 
 //        //加入圖片
 //        UIImage *theImage = [UIImage imageNamed:@"image.png"];

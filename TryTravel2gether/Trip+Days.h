@@ -14,6 +14,7 @@
 +(NSDateFormatter *)dateFormatter_GMT;
 +(NSDateFormatter *)dateTimeFormatter_GMT;
 +(NSDateFormatter *)timeFormatter_GMT;
++(NSDateFormatter *)dateFormatter_Local;
 -(Day *)getTripDayByDateString:(NSString *)dateString;
 -(Day *)createDayInCurrentTripByDateString:(NSDate *)date;
 @end

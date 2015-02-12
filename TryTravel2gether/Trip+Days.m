@@ -58,6 +58,14 @@
 
     return formatter;
 }
+
++(NSDateFormatter *)dateFormatter_Local{
+    NSDateFormatter * formatter=[[NSDateFormatter alloc]init];
+    formatter.dateFormat=@"yyyy/MM/dd";
+    
+    return formatter;
+}
+
 -(Day *)getTripDayByDateString:(NSString *)dateString{
     NSLog(@"Find the trip day:%@ in the current trip.",dateString);
     NSEntityDescription *entityDesc =

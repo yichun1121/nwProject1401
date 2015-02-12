@@ -3069,7 +3069,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B7o-M2-30F">
-                                                    <rect key="frame" x="101" y="8" width="118" height="30"/>
+                                                    <rect key="frame" x="8" y="8" width="304" height="30"/>
                                                     <state key="normal" title="Export in TSV file">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -3092,7 +3092,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lGH-uz-fbp">
-                                                    <rect key="frame" x="100" y="8" width="120" height="30"/>
+                                                    <rect key="frame" x="8" y="8" width="304" height="30"/>
                                                     <state key="normal" title="Export in CSV file">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
