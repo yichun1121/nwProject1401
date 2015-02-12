@@ -3030,7 +3030,7 @@
                         <sections>
                             <tableViewSection id="3PI-MC-QdQ">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="M1D-qf-6lr" detailTextLabel="KCW-Dt-H5G" style="IBUITableViewCellStyleValue1" id="Nvs-ib-4mr">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="M1D-qf-6lr" detailTextLabel="KCW-Dt-H5G" rowHeight="80" style="IBUITableViewCellStyleValue1" id="Nvs-ib-4mr">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nvs-ib-4mr" id="kUc-AL-na1">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -3057,33 +3057,20 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Data Export" id="tFx-iw-1pG">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="0.0" id="Ziv-Hd-oxD">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ziv-Hd-oxD" id="YQo-Rb-Bug">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txW-GC-qSd">
-                                                    <rect key="frame" x="24" y="11" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hPj-1y-tVx">
-                                                    <rect key="frame" x="74" y="8" width="238" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
-                                                </textField>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="7fg-DZ-g1f">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="7fg-DZ-g1f">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7fg-DZ-g1f" id="ACJ-pV-BQz">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Text file" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZW1-hl-qOT">
+                                                    <rect key="frame" x="131" y="38" width="59" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B7o-M2-30F">
-                                                    <rect key="frame" x="100" y="7" width="120" height="30"/>
-                                                    <state key="normal" title="Export to TSV file">
+                                                    <rect key="frame" x="101" y="8" width="118" height="30"/>
+                                                    <state key="normal" title="Export in TSV file">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -3093,14 +3080,20 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="U18-tj-e4Y">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="U18-tj-e4Y">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U18-tj-e4Y" id="Gxp-l1-vYP">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Inport Google Spreadsheet, Microsoft Excel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsg-Gm-ohQ">
+                                                    <rect key="frame" x="17" y="38" width="286" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lGH-uz-fbp">
-                                                    <rect key="frame" x="100" y="7" width="122" height="30"/>
-                                                    <state key="normal" title="Export to CSV file">
+                                                    <rect key="frame" x="100" y="8" width="120" height="30"/>
+                                                    <state key="normal" title="Export in CSV file">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -3126,7 +3119,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="email" destination="hPj-1y-tVx" id="08d-lT-ngE"/>
                         <outlet property="export2CSV" destination="lGH-uz-fbp" id="En1-ME-KcW"/>
                         <outlet property="export2TSV" destination="B7o-M2-30F" id="unx-Yc-bXH"/>
                         <outlet property="tripNameCell" destination="Nvs-ib-4mr" id="LHQ-D2-3Tv"/>

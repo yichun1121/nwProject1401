@@ -447,6 +447,13 @@
 "7up-TC-r95.text"="如果想讓這個參與者加入「全體分攤」群組，請設定「是」";
 /* Class = "IBUINavigationItem"; title = "Personal Shared"; ObjectID = "b4C-Fl-dRt"; */
 "b4C-Fl-dRt.title" = "個人分攤資訊";
+"M1D-qf-6lr.text"="分攤計算的旅程";
+/* Class = "IBUITableViewSection"; headerTitle = "Data Export"; ObjectID = "tFx-iw-1pG"; */
+"tFx-iw-1pG.headerTitle"="資料匯出";
+"B7o-M2-30F.normalTitle"="匯出TSV";
+"lGH-uz-fbp.normalTitle"="匯出CSV";
+"ZW1-hl-qOT.text"="文字檔";
+"lsg-Gm-ohQ.text"="匯入Google試算表, Microsoft Excel";
 
 "QQa-AY-ZrY.headerTitle" = "付款資訊";
 "Dr9-s6-jf4.text"= "付款帳戶";

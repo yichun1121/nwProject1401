@@ -14,7 +14,6 @@
 
 @interface ShareOptionTVC()
 @property (weak, nonatomic) IBOutlet UITableViewCell *tripNameCell;
-@property (weak, nonatomic) IBOutlet UITextField *email;
 @property (weak, nonatomic) IBOutlet UIButton *export2TSV;
 @property (weak, nonatomic) IBOutlet UIButton *export2CSV;
 
@@ -23,10 +22,6 @@
 @implementation ShareOptionTVC
 -(void)viewDidLoad{
     [super viewDidLoad];
-    self.email.delegate=self;
-//    self.export2CSV.enabled=NO;
-//    self.export2TSV.enabled=NO;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:self.email];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -48,19 +43,6 @@
 - (IBAction)export2CSV:(UIButton *)sender {
     [self.currentTrip exportTripByType:ExportFileCSV];
     [self emailFileByType:ExportFileCSV];
-}
-
-
-
-
-- (void)textFieldDidChange:(NSNotification *)notification {
-//    if ([NWValidate validateEmailWithString:self.email.text]) {
-//        self.export2CSV.enabled=YES;
-//        self.export2TSV.enabled=YES;
-//    }else{
-//        self.export2CSV.enabled=NO;
-//        self.export2TSV.enabled=NO;
-//    }
 }
 
 -(void)emailFileByType:(ExportFileType)type{
@@ -146,12 +128,5 @@
     }
     //執行取消發送電子郵件畫面的動畫
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark 監測UITextFeild事件，按下return的時候會收鍵盤
-//要在viewDidLoad裡加上textField的delegate=self，才監聽的到
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
-    return YES;
 }
 @end
