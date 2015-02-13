@@ -130,6 +130,7 @@
     switch (result) {
         case MFMailComposeResultSent:
             NSLog(@"You sent the email.");
+            [self popupView];
             break;
         case MFMailComposeResultSaved:
             NSLog(@"You saved a draft of this email");
@@ -146,5 +147,52 @@
     }
     //執行取消發送電子郵件畫面的動畫
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+/*!彈跳視窗提示已送出*/
+-(void)popupView
+{
+    //------maskView---------
+    CGRect maskRect=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    UIView *maskView=[[UIView alloc]initWithFrame:maskRect];
+    maskView.backgroundColor=[UIColor blackColor];
+    maskView.alpha=0.4f;
+    //------popView--------
+    float width=100;
+    float height=100;
+    float x=(self.view.frame.size.width-width)/2;
+    float y=(self.view.frame.size.height-height)/3;
+    CGRect popRect=CGRectMake(x, y, width, height);
+    UIView *popView=[[UIView alloc]initWithFrame:popRect];
+    //UIColor *bgColor=[UIColor colorWithRed:0.7 green:0.8 blue:1 alpha:1];
+    popView.backgroundColor=[UIColor whiteColor];
+    [popView.layer setCornerRadius:20.0f];
+    //------label in popView-------
+    CGRect lblRect=CGRectMake(0, 0, width, height);
+    UILabel *label=[[UILabel alloc]initWithFrame:lblRect];
+    label.textColor=[UIColor blackColor];
+    label.text=NSLocalizedString(@"SentMail", @"Sent Message");
+    label.textAlignment=NSTextAlignmentCenter;
+    [popView addSubview:label];
+    
+    //add popView
+    UIWindow* currentWindow = [UIApplication sharedApplication].keyWindow;
+    [currentWindow addSubview:maskView];
+    [currentWindow addSubview:popView];
+    
+    maskView.hidden = NO;
+    popView.hidden = NO;
+    
+    // 動畫淡出
+    // Then fades it away after 2 seconds (the cross-fade animation will take 0.5s)
+    [UIView animateWithDuration:0.5 delay:2.0 options:0 animations:^{
+        // Animate the alpha value of your imageView from 1.0 to 0.0 here
+        maskView.alpha = 0.0f;
+        popView.alpha=0.0f;
+    } completion:^(BOOL finished) {
+        // Once the animation is completed and the alpha has gone to 0.0, hide the view for good
+        maskView.hidden = YES;
+        popView.hidden = YES;
+        
+    }];
 }
 @end
