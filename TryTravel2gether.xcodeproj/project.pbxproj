@@ -61,7 +61,9 @@
 		C93867C71A888F6C00F54331 /* Trip+Export.m in Sources */ = {isa = PBXBuildFile; fileRef = C93867C61A888F6C00F54331 /* Trip+Export.m */; };
 		C93867CA1A8B9DAE00F54331 /* NWDataGetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C93867C91A8B9DAE00F54331 /* NWDataGetting.m */; };
 		C93867CD1A8B9DE100F54331 /* NWData.m in Sources */ = {isa = PBXBuildFile; fileRef = C93867CC1A8B9DE100F54331 /* NWData.m */; };
-		C94A76B11A8C6F2E000041D4 /* EmailTemplete.html in Resources */ = {isa = PBXBuildFile; fileRef = C94A76B01A8C6F2E000041D4 /* EmailTemplete.html */; };
+		C94A76B21A8CEBC4000041D4 /* EmailTemplete.html in Resources */ = {isa = PBXBuildFile; fileRef = C94A76B41A8CEBC4000041D4 /* EmailTemplete.html */; };
+		C94A76B81A8DA342000041D4 /* EmailTemplete_en.html in Resources */ = {isa = PBXBuildFile; fileRef = C94A76B61A8DA342000041D4 /* EmailTemplete_en.html */; };
+		C94A76B91A8DA342000041D4 /* EmailTemplete_zh.html in Resources */ = {isa = PBXBuildFile; fileRef = C94A76B71A8DA342000041D4 /* EmailTemplete_zh.html */; };
 		C94FD1301998769E001910AC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C94FD1321998769E001910AC /* Localizable.strings */; };
 		C9558F8E191893D500B6C430 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = C9558F8D191893D500B6C430 /* Item.m */; };
 		C9558F901918970200B6C430 /* TripDetailTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C9558F8F1918970200B6C430 /* TripDetailTVC.m */; };
@@ -251,7 +253,10 @@
 		C93867C91A8B9DAE00F54331 /* NWDataGetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWDataGetting.m; sourceTree = "<group>"; };
 		C93867CB1A8B9DE100F54331 /* NWData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NWData.h; sourceTree = "<group>"; };
 		C93867CC1A8B9DE100F54331 /* NWData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NWData.m; sourceTree = "<group>"; };
-		C94A76B01A8C6F2E000041D4 /* EmailTemplete.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = EmailTemplete.html; sourceTree = "<group>"; };
+		C94A76B31A8CEBC4000041D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = Base; path = Base.lproj/EmailTemplete.html; sourceTree = "<group>"; };
+		C94A76B51A8CEBCB000041D4 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hant"; path = "zh-Hant.lproj/EmailTemplete.html"; sourceTree = "<group>"; };
+		C94A76B61A8DA342000041D4 /* EmailTemplete_en.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = EmailTemplete_en.html; sourceTree = "<group>"; };
+		C94A76B71A8DA342000041D4 /* EmailTemplete_zh.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = EmailTemplete_zh.html; sourceTree = "<group>"; };
 		C94BF2C3189118940039C6CC /* ReceiptsCDTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiptsCDTVC.h; sourceTree = "<group>"; };
 		C94BF2C4189118940039C6CC /* ReceiptsCDTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiptsCDTVC.m; sourceTree = "<group>"; };
 		C94FD1311998769E001910AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -517,13 +522,15 @@
 		C96F0614190B926C0072899E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C94A76B61A8DA342000041D4 /* EmailTemplete_en.html */,
+				C94A76B71A8DA342000041D4 /* EmailTemplete_zh.html */,
 				C9789D92198BB37A00C4B1E6 /* Currency.plist */,
 				C9789D96198BB98100C4B1E6 /* ItemCategory.plist */,
 				C95C792919279DBB00F073EF /* testMergeFrom.plist */,
 				C94FD1321998769E001910AC /* Localizable.strings */,
 				C90510C2199F5CD300D87F39 /* PayWay.plist */,
 				C988FC9219A4E36D000A0FCB /* UserIcons.plist */,
-				C94A76B01A8C6F2E000041D4 /* EmailTemplete.html */,
+				C94A76B41A8CEBC4000041D4 /* EmailTemplete.html */,
 			);
 			name = Resource;
 			sourceTree = "<group>";
@@ -910,9 +917,11 @@
 			files = (
 				C907B72F194C4438001A4C53 /* NWCustCellImageTitleSubDetail.xib in Resources */,
 				180A506A1914EFE40053A9F0 /* NWCustCellSwitch.xib in Resources */,
+				C94A76B81A8DA342000041D4 /* EmailTemplete_en.html in Resources */,
 				C94FD1301998769E001910AC /* Localizable.strings in Resources */,
 				C95C792A19279DBB00F073EF /* testMergeFrom.plist in Resources */,
 				C9C4098418E8758900E1F3FE /* NWCustCellTitleSubDetail.xib in Resources */,
+				C94A76B91A8DA342000041D4 /* EmailTemplete_zh.html in Resources */,
 				C9789D94198BB98100C4B1E6 /* ItemCategory.plist in Resources */,
 				C988FCA419A96F60000A0FCB /* NWCustCellOwnItem.xib in Resources */,
 				C9789D90198BB37A00C4B1E6 /* Currency.plist in Resources */,
@@ -920,7 +929,7 @@
 				C988FC9319A4E36D000A0FCB /* UserIcons.plist in Resources */,
 				C9DB000E186B187E00F3B008 /* InfoPlist.strings in Resources */,
 				C903A89B18D46D76009708C6 /* Images.xcassets in Resources */,
-				C94A76B11A8C6F2E000041D4 /* EmailTemplete.html in Resources */,
+				C94A76B21A8CEBC4000041D4 /* EmailTemplete.html in Resources */,
 				C9AB920A19FBF4B700412B73 /* NWCustCellReceipt.xib in Resources */,
 				C9DB0017186B187E00F3B008 /* Main.storyboard in Resources */,
 			);
@@ -1059,6 +1068,15 @@
 				C90510C3199F5CE600D87F39 /* zh-Hant */,
 			);
 			name = PayWay.plist;
+			sourceTree = "<group>";
+		};
+		C94A76B41A8CEBC4000041D4 /* EmailTemplete.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C94A76B31A8CEBC4000041D4 /* Base */,
+				C94A76B51A8CEBCB000041D4 /* zh-Hant */,
+			);
+			name = EmailTemplete.html;
 			sourceTree = "<group>";
 		};
 		C94FD1321998769E001910AC /* Localizable.strings */ = {

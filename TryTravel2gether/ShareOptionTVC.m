@@ -63,7 +63,13 @@
         //設定內文並且不使用HTML語法
         //[mailController setMessageBody:@"Hi\n\n  The attached files are exported from LetsTravel2gether.\n\nFrom LetsTravel2gether" isHTML:NO];
 
-        NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"EmailTemplete" ofType:@"html"];
+        //下面這三句原本要做EmailTemplete的Localization，但是失敗，原因不明，於是先改用切換檔名方式
+        //NSArray* availableLocalizations = [[NSBundle mainBundle] localizations];
+        //NSArray* userPrefered = [NSBundle preferredLocalizationsFromArray:availableLocalizations forPreferences:[NSLocale preferredLanguages]];
+        //NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"EmailTemplete" ofType:@"html"inDirectory:@"" forLocalization:[userPrefered objectAtIndex:0]];
+        NSString *htmlFile = [[NSBundle mainBundle] pathForResource:NSLocalizedString(@"EmailTemplete",@"LocalizedEmailTempleteName") ofType:@"html"];
+
+        
         NSString *templeteString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
         NSString *tripName=self.currentTrip.name;
         NSString *tripStart=[[Trip dateFormatter_Local]stringFromDate:self.currentTrip.startDate];
