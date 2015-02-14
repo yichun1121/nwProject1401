@@ -67,20 +67,20 @@
     NSString *itemSavingString=@"";
     itemSavingString=[itemSavingString stringByAppendingString:
                       [NSString stringWithFormat:outputItemFormat,
-                       @"流水號",
-                       @"日期",
-                       @"分類",
-                       @"收據說明",
-                       @"品項",
-                       @"幣別",
-                       @"單價",
-                       @"數量",
-                       @"原幣別金額",
-                       @"歸屬群組",
-                       @"分攤人數",
-                       @"對應收據代號",
-                       @"歸屬人",
-                       @"歸屬金額"
+                       NSLocalizedString(@"Exp_ItemID", "ExportHead"),
+                       NSLocalizedString(@"Exp_DateTime", "ExportHead"),
+                       NSLocalizedString(@"Exp_Category", "ExportHead"),
+                       NSLocalizedString(@"Exp_ReceiptDesc", "ExportHead"),
+                       NSLocalizedString(@"Exp_ItemName", "ExportHead"),
+                       NSLocalizedString(@"Exp_Currency", "ExportHead"),
+                       NSLocalizedString(@"Exp_UnitPrice", "ExportHead"),
+                       NSLocalizedString(@"Exp_Quantity", "ExportHead"),
+                       NSLocalizedString(@"Exp_OriginTotal", "ExportHead"),
+                       NSLocalizedString(@"Exp_Group", "ExportHead"),
+                       NSLocalizedString(@"Exp_Parts", "ExportHead"),
+                       NSLocalizedString(@"Exp_ToReceiptID", "ExportHead"),
+                       NSLocalizedString(@"Exp_BelongsTo", "ExportHead"),
+                       NSLocalizedString(@"Exp_SharePrice", "ExportHead")
                        ]
                       ];
     
@@ -88,14 +88,14 @@
     NSString *receiptSavingString=@"";
     receiptSavingString=[receiptSavingString stringByAppendingString:
                          [NSString stringWithFormat:outputReceiptFormat,
-                          @"收據代號",
-                          @"日期",
-                          @"收據說明",
-                          @"幣別",
-                          @"總金額",
-                          @"付款帳戶",
-                          @"付款方式",
-                          @"付款人"
+                          NSLocalizedString(@"Exp_ReceiptID", "ExportHead"),
+                          NSLocalizedString(@"Exp_DateTime", "ExportHead"),
+                          NSLocalizedString(@"Exp_ReceiptDesc", "ExportHead"),
+                          NSLocalizedString(@"Exp_Currency", "ExportHead"),
+                          NSLocalizedString(@"Exp_Total", "ExportHead"),
+                          NSLocalizedString(@"Exp_Account", "ExportHead"),
+                          NSLocalizedString(@"Exp_Payway", "ExportHead"),
+                          NSLocalizedString(@"Exp_Payer", "ExportHead")
                           ]
                          ];
     

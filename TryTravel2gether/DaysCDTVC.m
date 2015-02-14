@@ -30,6 +30,7 @@
 @synthesize currentTrip=_currentTrip;
 @synthesize dateFormatter=_dateFormatter;
 @synthesize currencyIndex=_currencyIndex;
+@synthesize lblNavTitle=_lblNavTitle;
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -83,10 +84,13 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
+    
+    //-----預設顯示幣別----------
+    self.showingCurrency=self.currentTrip.mainCurrency;
+    self.currencyIndex=0;
     //-----設定title + 註冊手勢-----------
-//    self.navigationItem.title=self.currentTrip.name;
-    self.lblNavTitle.text=self.currentTrip.name;
+    //    self.navigationItem.title=self.currentTrip.name;
+    self.lblNavTitle.text=[NSString stringWithFormat:@"%@ - %@",self.showingCurrency.standardSign,self.currentTrip.name];
     UITapGestureRecognizer* tapRecon = [[UITapGestureRecognizer alloc]
                                         initWithTarget:self action:@selector(navigationTitleTapOnce:)];
     tapRecon.numberOfTapsRequired = 1;
@@ -106,9 +110,6 @@
     [self.tableView registerNib:myCellNib forCellReuseIdentifier:@"Cell"];
     //-----設定下一頁時的back button的字（避免本頁的title太長）-----------
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"NavBackString_Days", @"NavigationBackString") style:UIBarButtonItemStylePlain target:nil action:nil];
-    //-----預設顯示幣別----------
-    self.showingCurrency=self.currentTrip.mainCurrency;
-    self.currencyIndex=0;
     //-----記錄目前檢視中的Trip--------（讓切換share的tab時可以知道顯示哪個trip）
     UINavigationController *navigationCTL=self.tabBarController.childViewControllers[1];
     if ([navigationCTL.topViewController isKindOfClass:ShareMainPageCDTVC.class]) {
@@ -279,6 +280,8 @@
         self.currencyIndex++;
     }
     self.showingCurrency=currencies[self.currencyIndex];
+    
+    self.lblNavTitle.text=[NSString stringWithFormat:@"%@ - %@",self.showingCurrency.standardSign,self.currentTrip.name];
     [self.tableView reloadData];
 }
 
