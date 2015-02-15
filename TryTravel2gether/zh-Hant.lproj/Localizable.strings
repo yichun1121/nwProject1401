@@ -37,7 +37,7 @@
 "Unspecified_Account"="未設定帳戶";
 "EmailTemplete"="EmailTemplete_zh";
 "SentMail"="已送出";
-"Exp_ItemID"="流水號";
+"Exp_ItemID"="品項流水號";
 "Exp_DateTime"="日期";
 "Exp_Category"="分類";
 "Exp_ReceiptDesc"="收據說明";
